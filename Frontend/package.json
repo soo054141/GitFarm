@@ -1,0 +1,44 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --mode=production",
+        "dev": "webpack serve --open --mode=development",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/cli": "^7.16.8",
+        "@babel/core": "^7.16.12",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-react": "^7.16.7",
+        "@testing-library/jest-dom": "^5.16.1",
+        "@testing-library/react": "^12.1.2",
+        "babel-loader": "^8.2.3",
+        "clean-webpack-plugin": "^4.0.0",
+        "css-loader": "^6.5.1",
+        "eslint": "^8.8.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^5.5.0",
+        "jest": "^27.4.7",
+        "mini-css-extract-plugin": "^2.5.3",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.67.0",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.3"
+    },
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    }
+}
