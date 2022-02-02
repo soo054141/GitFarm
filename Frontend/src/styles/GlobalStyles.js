@@ -26,6 +26,11 @@ const GlobalStyles = createGlobalStyle`
     ol, ul{
         list-style: none;
     }
+    button {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyles;
