@@ -54,6 +54,6 @@ module.exports = {
       publicPath: "/assets", // localhost:port/publicPath안에 있는 파일에 접근 가능, 파일 업로드시 src경로 변경
     },
     compress: true,
-    port: 1112,
+    port: 1111,
   },
 };
