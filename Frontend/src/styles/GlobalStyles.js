@@ -21,10 +21,15 @@ const GlobalStyles = createGlobalStyle`
     body{
         line-height: 1;
         font-family: 'Noto Sans KR', sans-serif;
-        
+        background-color: #F6F9F0;
     }
     ol, ul{
         list-style: none;
+    }
+    button {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
     }
 `;
 
