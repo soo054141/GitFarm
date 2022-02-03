@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
 import mongoose from "mongoose";
-import keys from "./keys";
+import keys from "./keys.js";
 
 export default async () => {
   try {
