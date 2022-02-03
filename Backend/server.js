@@ -7,6 +7,7 @@ import passport from "passport";
 import httpError from "http-errors";
 import connectDB from "./config/db.js";
 import initPassportStrategy from "./passport/index.js";
+import apiRouter from "./routes/index.js";
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 initPassportStrategy(passport);
+
+app.use("/api", apiRouter);
 
 app.use((req, res, next) => {
   next(httpError(404).message);
