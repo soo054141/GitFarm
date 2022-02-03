@@ -12,7 +12,7 @@ export const Nav = () => {
       <NavList>
         <NavItem>
           <Link to="/calender">
-            <Calender />
+            <Calender width="22px" height="auto" />
           </Link>
         </NavItem>
         <NavItem>
