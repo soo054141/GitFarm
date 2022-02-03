@@ -4,7 +4,7 @@ import Seeds from "../../assets/icon/header/seeds.svg";
 import { Link } from "react-router-dom";
 import { HeaderWrapper } from "./style";
 
-export const Header = () => {
+export function Header() {
   return (
     <HeaderWrapper>
       <Refresh />
@@ -13,4 +13,4 @@ export const Header = () => {
       </Link>
     </HeaderWrapper>
   );
-};
+}

@@ -1,8 +1,26 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 812px;
-  max-width: 390px;
-  margin: 0 auto;
+  margin-top: 89px;
+  padding: 0 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TodaysCommit = styled.h1`
+  font-size: 28px;
+  line-height: 33px;
+  text-align: center;
+  color: ${(props) => props.theme.darkGray};
+  padding-bottom: 15px;
+`;
+
+export const TodaysCommitCount = styled.span`
+  font-size: 30px;
+  line-height: 33px;
+  text-align: center;
+  color: #66a97a;
 `;

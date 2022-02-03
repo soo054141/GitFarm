@@ -6,7 +6,7 @@ import Mypage from "../../assets/icon/nav/mypage_nav.svg";
 import { Link } from "react-router-dom";
 import { NavWrapper, Home, NavList, NavItem } from "./style";
 
-export const Nav = () => {
+export function Nav() {
   return (
     <NavWrapper>
       <NavList>
@@ -38,4 +38,4 @@ export const Nav = () => {
       </NavList>
     </NavWrapper>
   );
-};
+}
