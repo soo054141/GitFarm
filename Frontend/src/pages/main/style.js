@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin-top: 89px;
   padding: 0 25px;
-`;
 
-export const TodaysCommitWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,10 +23,4 @@ export const TodaysCommitCount = styled.span`
   line-height: 33px;
   text-align: center;
   color: #66a97a;
-`;
-
-export const FramePictureWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

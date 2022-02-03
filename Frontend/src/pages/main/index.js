@@ -11,20 +11,18 @@ const initialState = {
 export function Main() {
   return (
     <Controller.Container>
-      <Controller.TodaysCommitWrapper>
-        <Controller.TodaysCommit>오늘의 커밋</Controller.TodaysCommit>
-        <Controller.TodaysCommitCount>
-          {initialState.todaysCommit}
-        </Controller.TodaysCommitCount>
-      </Controller.TodaysCommitWrapper>
-      <Controller.FramePictureWrapper>
-        <FramePicture
-          ratio={Math.floor(
-            (initialState.todaysCommit / initialState.goalCommit) * 100,
-          )}
-        />
-      </Controller.FramePictureWrapper>
-      <SpeechBubble />
+      <Controller.TodaysCommit>오늘의 커밋</Controller.TodaysCommit>
+      <Controller.TodaysCommitCount>
+        {initialState.todaysCommit}
+      </Controller.TodaysCommitCount>
+      <FramePicture
+        ratio={Math.floor(
+          (initialState.todaysCommit / initialState.goalCommit) * 100,
+        )}
+      />
+      <SpeechBubble
+        leftCommit={initialState.goalCommit - initialState.todaysCommit}
+      />
     </Controller.Container>
   );
 }
