@@ -4,38 +4,38 @@ import Rranking from "../../assets/icon/nav/ranking_nav.svg";
 import Graph from "../../assets/icon/nav/graph_nav.svg";
 import Mypage from "../../assets/icon/nav/mypage_nav.svg";
 import { Link } from "react-router-dom";
-import { NavWrapper, Home, NavList, NavItem } from "./style";
+import * as Navs from "./style";
 
 export function Nav() {
   return (
-    <NavWrapper>
-      <NavList>
-        <NavItem>
+    <Navs.Container>
+      <Navs.List>
+        <Navs.Item>
           <Link to="/calender">
             <Calender width="22px" height="100%" />
           </Link>
-        </NavItem>
-        <NavItem>
+        </Navs.Item>
+        <Navs.Item>
           <Link to="/rank">
             <Rranking />
           </Link>
-        </NavItem>
-        <NavItem>
+        </Navs.Item>
+        <Navs.Item>
           <Link to="/">
-            <Home />
+            <Navs.Home />
           </Link>
-        </NavItem>
-        <NavItem>
+        </Navs.Item>
+        <Navs.Item>
           <Link to="/graph">
             <Graph />
           </Link>
-        </NavItem>
-        <NavItem>
+        </Navs.Item>
+        <Navs.Item>
           <Link to="/mypage">
             <Mypage />
           </Link>
-        </NavItem>
-      </NavList>
-    </NavWrapper>
+        </Navs.Item>
+      </Navs.List>
+    </Navs.Container>
   );
 }

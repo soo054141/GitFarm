@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import HomeIcon from "../../assets/icon/nav/home_nav.svg";
 
-export const NavWrapper = styled.nav`
+export const Container = styled.nav`
   padding: 0 25px;
   background-color: white;
   position: fixed;
@@ -16,7 +16,7 @@ export const Home = styled(HomeIcon)`
   position: relative;
 `;
 
-export const NavList = styled.ul`
+export const List = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,4 +24,4 @@ export const NavList = styled.ul`
   height: 60px;
 `;
 
-export const NavItem = styled.li``;
+export const Item = styled.li``;
