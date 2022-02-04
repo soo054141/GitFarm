@@ -1,7 +1,7 @@
 import React from "react";
-import { FramePicture } from "../../components/Main/FarmePicture";
+import { FarmPicture } from "../../components/Main/FarmPicture";
 import { SpeechBubble } from "../../components/Main/SpeechBubble";
-import * as Controller from "./style";
+import * as Mains from "./style";
 
 Main.defaultProps = {
   todaysCommit: 0,
@@ -9,13 +9,11 @@ Main.defaultProps = {
 };
 export function Main({ todaysCommit, goalCommit }) {
   return (
-    <Controller.Container>
-      <Controller.TodaysCommit>오늘의 커밋</Controller.TodaysCommit>
-      <Controller.TodaysCommitCount>
-        {todaysCommit}
-      </Controller.TodaysCommitCount>
-      <FramePicture ratio={Math.floor((todaysCommit / goalCommit) * 100)} />
+    <Mains.Container>
+      <Mains.TodaysCommit>오늘의 커밋</Mains.TodaysCommit>
+      <Mains.TodaysCommitCount>{todaysCommit}</Mains.TodaysCommitCount>
+      <FarmPicture ratio={Math.floor((todaysCommit / goalCommit) * 100)} />
       <SpeechBubble leftCommit={goalCommit - todaysCommit} />
-    </Controller.Container>
+    </Mains.Container>
   );
 }

@@ -27,9 +27,9 @@ export const Container = styled.div`
   }
 `;
 
-export const SpeechBubbleWrapper = styled.div``;
+export const Wrapper = styled.div``;
 
-export const SpeechBubbleTitle = styled.h3`
+export const Title = styled.h3`
   margin-bottom: 13px;
   font-size: 20px;
   font-weight: 600;
@@ -37,7 +37,7 @@ export const SpeechBubbleTitle = styled.h3`
   color: ${(props) => props.theme.darkGray};
 `;
 
-export const SpeechBubbleText = styled.p`
+export const Text = styled.p`
   font-size: 12px;
   line-height: 14px;
   color: ${(props) => props.theme.lightGray};
