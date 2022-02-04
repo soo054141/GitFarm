@@ -8,7 +8,7 @@ DateController.defaultProps = {
   month: 4,
 };
 
-function DateController({ year, month }) {
+export function DateController({ year, month }) {
   return (
     <Controller.Container>
       <Controller.ArrowWrapper>
@@ -23,5 +23,3 @@ function DateController({ year, month }) {
     </Controller.Container>
   );
 }
-
-export default DateController;

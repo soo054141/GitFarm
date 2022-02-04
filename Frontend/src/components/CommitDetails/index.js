@@ -40,7 +40,7 @@ CommitDetails.defaultProps = {
   ],
 };
 
-function CommitDetails({ score, totalCommit, commitsPerRepo }) {
+export function CommitDetails({ score, totalCommit, commitsPerRepo }) {
   return (
     <CommitDetail.Container>
       {totalCommit > 0 ? (
@@ -108,5 +108,3 @@ function CommitDetails({ score, totalCommit, commitsPerRepo }) {
     </CommitDetail.Container>
   );
 }
-
-export default CommitDetails;
