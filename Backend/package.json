@@ -17,6 +17,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "@octokit/core": "^3.5.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -26,7 +27,8 @@
     "mongoose": "^6.2.0",
     "morgan": "^1.10.0",
     "passport": "^0.5.2",
-    "passport-github2": "^0.1.12"
+    "passport-github2": "^0.1.12",
+    "passport-jwt": "^4.0.0"
   },
   "type": "module"
 }

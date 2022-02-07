@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 initPassportStrategy(passport);
-app.use("/api", apiRouter);
+app.use("/api", apiRouter());
 errorHandler(app);
 
 const PORT = 8888;
