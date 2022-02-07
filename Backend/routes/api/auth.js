@@ -3,6 +3,7 @@ import express from "express";
 import passport from "passport";
 import httpError from "http-errors";
 import createToken from "../../utils/create-token.js";
+import isLogin from "../../middleware/is-login.js";
 
 const router = express.Router();
 const CLIENT_URL = "http://localhost:1111/";
@@ -10,9 +11,9 @@ const CLIENT_URL = "http://localhost:1111/";
 // @route GET api/auth/test
 // @desc Test response
 // @access Public
-router.get("/test", (req, res) =>
-  res.json({ msg: "api/auth routes successfully work!" }),
-);
+router.get("/test", isLogin, (req, res) => {
+  res.json({ msg: "api/auth routes with login successfully work!" });
+});
 
 // @route GET api/auth/github
 // @desc Request to GitHub server
