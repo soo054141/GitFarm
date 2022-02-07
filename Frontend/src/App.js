@@ -8,6 +8,7 @@ import { Badge } from "./pages/badge";
 import { Main } from "./pages/main";
 import { MonthlyCalender } from "./pages/monthlyCalender";
 import { RankPage } from "./pages/rank";
+import { Setting } from "./pages/setting";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/calender" element={<MonthlyCalender />}></Route>
         <Route path="/badge" element={<Badge />}></Route>
         <Route path="/rank" element={<RankPage />} />
+        <Route path="/setting" element={<Setting />} />
       </Routes>
     </BrowserRouter>
   );
