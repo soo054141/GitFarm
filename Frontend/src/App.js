@@ -5,9 +5,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Nav } from "./components/Nav";
 import { Badge } from "./pages/badge";
+import { GoalSetting } from "./pages/goalSetting";
 import { Main } from "./pages/main";
 import { MonthlyCalender } from "./pages/monthlyCalender";
 import { RankPage } from "./pages/rank";
+import { MyPage } from "./pages/myPage";
 
 function App() {
   return (
@@ -15,10 +17,12 @@ function App() {
       <Header />
       <Nav />
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/calender" element={<MonthlyCalender />}></Route>
-        <Route path="/badge" element={<Badge />}></Route>
+        <Route path="/" element={<Main />} />
+        <Route path="/calender" element={<MonthlyCalender />} />
+        <Route path="/badge" element={<Badge />} />
         <Route path="/rank" element={<RankPage />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/goal" element={<GoalSetting />} />
       </Routes>
     </BrowserRouter>
   );
