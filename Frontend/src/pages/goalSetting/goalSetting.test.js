@@ -1,6 +1,4 @@
 import "@testing-library/jest-dom";
-import { screen, render } from "@testing-library/react";
-import React from "react";
 import { CommitGoal } from "../../components/CommitGoal";
 
 describe("defaultProps 값 테스트", () => {
