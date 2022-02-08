@@ -17,7 +17,7 @@ export const Title = styled.p`
   font-size: 18px;
   color: ${(props) => props.theme.darkGray};
   margin-left: 26px;
-  margin-top: 37px;'
+  margin-top: 37px;
 `;
 
 export const Description = styled.p``;
