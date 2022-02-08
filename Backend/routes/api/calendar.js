@@ -13,7 +13,10 @@ export default (app) => {
   // @access Private
   router.get(
     "/",
-    passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", {
+      session: false,
+      failureRedirect: "/api/auth/github",
+    }),
     async (req, res) => {
       const { user } = req;
       const totalCommit = await getTotalCommit(user);
