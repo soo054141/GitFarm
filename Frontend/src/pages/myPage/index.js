@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 import { Container } from "../../components/Container/style";
+import { StartedDayCount } from "../../components/MyPage/StartedDayCount";
+import { LevelInfo } from "../../components/MyPage/LevelInfo";
+import { CommitCount } from "../../components/MyPage/CommitCount";
+import { AccountSettings } from "../../components/MyPage/AccountSettings";
+
 export function MyPage() {
   return (
     <Container>
-      Account Settings
-      <Link to="/goal">목표 설정</Link>
+      <StartedDayCount />
+      <LevelInfo />
+      <CommitCount />
+      <AccountSettings />
     </Container>
   );
 }
