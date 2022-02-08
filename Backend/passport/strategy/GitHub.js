@@ -15,14 +15,17 @@ const config = {
 export default new GitHubStrategy(
   config,
   async (accessToken, refreshToken, profile, done) => {
+    const { username } = profile;
     // eslint-disable-next-line no-underscore-dangle
     const { id, email } = profile._json;
 
     const findUser = await User.findOne({ id });
+    console.log("findUser", findUser);
     if (!findUser) {
       const newUser = new User({
         id,
         email,
+        username,
         accessToken,
       });
 

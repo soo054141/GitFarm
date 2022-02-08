@@ -12,7 +12,7 @@ export default (app) => {
 
   // @route GET api/auth/test
   // @desc Test response
-  // @access Public
+  // @access Private
   router.get(
     "/test",
     passport.authenticate("jwt", { session: false }),
@@ -42,8 +42,8 @@ export default (app) => {
       failureRedirect: "/api/auth/login/failed",
     }),
     async (req, res) => {
-      const { id, email } = req.user;
-      const payload = { id, email };
+      const { id, email, username } = req.user;
+      const payload = { id, email, username };
       const token = await createToken(payload);
       res.cookie("token", token);
       res.redirect("/api/auth/login/success");

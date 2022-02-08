@@ -13,10 +13,15 @@ export default (app) => {
   // @access Private
   router.get(
     "/",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
+    passport.authenticate("jwt", {
+      session: false,
+      failureRedirect: "/api/auth/github",
+    }),
+    async (req, res) => {
       const { user } = req;
-      getTotalCommit(user);
+      const totalCommit = await getTotalCommit(user);
+      console.log("totalCommit =", totalCommit);
+
       res.json({ msg: "calender 페이지입니다." });
     },
   );
