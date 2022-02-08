@@ -30,7 +30,7 @@ export function Modal({ children, setOpenModal, title, twoBtn }) {
   };
   const clickOutsideHandler = ({ target }) => {
     if (!modalElement.current.contains(target)) {
-      setOpenModal(false);
+      closeModalHandler();
     }
   };
 
