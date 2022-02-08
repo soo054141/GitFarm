@@ -1,42 +1,45 @@
 import { Octokit } from "@octokit/core";
 
 // TODO: getEachCommit 구하기
-const getEachCommit = async (octokit, repo) => {
-  try {
-    let count = 0;
-    const repoInfo = await octokit.request(
-      `GET /repos/YWTechIT/${repo}/commits`,
-    );
-    console.log(repoInfo.data);
+const getEachCommit = async (user, repo) => {
+  const { username, accessToken } = user;
+  const octokit = new Octokit({ auth: accessToken });
+  const { data: commitRepo } = await octokit.request(
+    `GET /repos/${username}/${repo}/commits`,
+    {
+      per_page: 100,
+    },
+  );
 
-    repoInfo.data.filter((item) => {
-      if (item.commit.author.name === "YWTechIT") {
-        count += 1;
-      }
-      return item;
-    });
+  const eachCommit = commitRepo.filter((item) => {
+    const userName = item.commit.committer.name;
+    return userName === username;
+  });
 
-    console.log("count!!", count);
-  } catch (err) {
-    console.log("err occur!", err);
-  }
+  return [repo, eachCommit.length];
 };
 
 // TODO: getTotalCommit 구하기
 const getTotalCommit = async (user) => {
   const { accessToken } = user;
   const octokit = new Octokit({ auth: accessToken });
-  const repoList = await octokit.request("GET /user/repos");
-
-  console.log("repoList 반복문 시작");
-  repoList.data.forEach(async (item) => {
-    let answer = 0;
-    const { name: repo } = item;
-    const cnt = await getEachCommit(octokit, repo);
-    console.log("currnet cnt=", cnt);
-    answer += cnt;
-    console.log(answer);
+  const { data: userRepos } = await octokit.request("GET /user/repos", {
+    per_page: 100,
   });
+
+  const messages = await Promise.allSettled(
+    userRepos.map((item) => {
+      const repo = item.name;
+      return getEachCommit(user, repo);
+    }),
+  );
+
+  const fulfilledValue = messages
+    .filter((result) => result.status === "fulfilled")
+    .map((res) => res.value);
+
+  const totalCommit = fulfilledValue.reduce((acc, cur) => acc + cur);
+  return totalCommit;
 };
 
 export default getTotalCommit;

@@ -14,9 +14,11 @@ export default (app) => {
   router.get(
     "/",
     passport.authenticate("jwt", { session: false }),
-    (req, res) => {
+    async (req, res) => {
       const { user } = req;
-      getTotalCommit(user);
+      const totalCommit = await getTotalCommit(user);
+      console.log("totalCommit =", totalCommit);
+
       res.json({ msg: "calender 페이지입니다." });
     },
   );
