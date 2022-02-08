@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/core";
 
-// TODO: getEachCommit 구하기
+// TODO: commit 개수가 100개가 넘어갈 때 구하기
 const getEachCommit = async (user, repo) => {
   const { username, accessToken } = user;
   const octokit = new Octokit({ auth: accessToken });
@@ -16,10 +16,9 @@ const getEachCommit = async (user, repo) => {
     return userName === username;
   });
 
-  return [repo, eachCommit.length];
+  return eachCommit.length;
 };
 
-// TODO: getTotalCommit 구하기
 const getTotalCommit = async (user) => {
   const { accessToken } = user;
   const octokit = new Octokit({ auth: accessToken });
@@ -30,7 +29,15 @@ const getTotalCommit = async (user) => {
   const messages = await Promise.allSettled(
     userRepos.map((item) => {
       const repo = item.name;
-      return getEachCommit(user, repo);
+      const commit = getEachCommit(user, repo);
+      commit
+        .then((res) => {
+          console.log(`repo: ${repo}, commit: ${res}`);
+        })
+        .catch((err) =>
+          console.log(`err repo= ${repo}, err message = ${err.message}`),
+        );
+      return commit;
     }),
   );
 
