@@ -1,6 +1,7 @@
 {
   "testEnvironment": "jsdom",
-  "moduleNameMapper": {
-    "\\.svg": "<rootDir>/__mocks__/svg.js"
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.svg$": "<rootDir>/svgTransform.js"
   }
 }
