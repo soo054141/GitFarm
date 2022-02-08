@@ -7,6 +7,7 @@ export function MyPage() {
     <Container>
       Account Settings
       <Link to="/goal">목표 설정</Link>
+      <Link to="/setting">계정관리</Link>
     </Container>
   );
 }
