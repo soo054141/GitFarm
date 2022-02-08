@@ -2,9 +2,7 @@ import React from "react";
 import { Container, Title, IconWrapper, GoalNum } from "./style";
 import LeafIcon from "../../assets/icon/blank-leaf.svg";
 import { Description } from "../Description";
-CommitGoal.defaultProps = {
-  goalNum: 3,
-};
+
 export function CommitGoal({ goalNum, onClick }) {
   const NumLength = String(goalNum).length;
 
@@ -24,3 +22,7 @@ export function CommitGoal({ goalNum, onClick }) {
     </Container>
   );
 }
+
+CommitGoal.defaultProps = {
+  goalNum: 3,
+};
