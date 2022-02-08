@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Nav } from "./components/Nav";
+import { Login } from "./pages/login";
 import { Badge } from "./pages/badge";
 import { GoalSetting } from "./pages/goalSetting";
 import { Main } from "./pages/main";
@@ -18,7 +19,8 @@ function App() {
       <Header />
       <Nav />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/calender" element={<MonthlyCalender />} />
         <Route path="/badge" element={<Badge />} />
         <Route path="/rank" element={<RankPage />} />

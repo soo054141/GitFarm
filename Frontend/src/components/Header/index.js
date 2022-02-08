@@ -9,16 +9,22 @@ export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  return location.pathname === "/setting" || location.pathname === "/goal" ? (
-    <HeaderWrapper>
-      <BackButton onClick={() => navigate(-1)} />
-    </HeaderWrapper>
-  ) : (
-    <HeaderWrapper>
-      <Refresh />
-      <Link to="/badge">
-        <Seeds />
-      </Link>
-    </HeaderWrapper>
-  );
+  if (location.pathname === "/setting" || location.pathname === "/goal") {
+    return (
+      <HeaderWrapper>
+        <BackButton onClick={() => navigate(-1)} />
+      </HeaderWrapper>
+    );
+  } else if (location.pathname === "/") {
+    return null;
+  } else {
+    return (
+      <HeaderWrapper>
+        <Refresh />
+        <Link to="/badge">
+          <Seeds />
+        </Link>
+      </HeaderWrapper>
+    );
+  }
 }
