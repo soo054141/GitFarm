@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Btn } from "../Btn";
-import { Input } from "../Input";
+import { Btn } from "../../components/Btn";
 import {
   ModalContainer,
   Title,
