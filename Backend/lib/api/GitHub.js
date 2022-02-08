@@ -7,16 +7,11 @@ const getEachCommit = async (user, repo) => {
   const { data: commitRepo } = await octokit.request(
     `GET /repos/${username}/${repo}/commits`,
     {
+      author: username,
       per_page: 100,
     },
   );
-
-  const eachCommit = commitRepo.filter((item) => {
-    const userName = item.commit.committer.name;
-    return userName === username;
-  });
-
-  return eachCommit.length;
+  return commitRepo.length;
 };
 
 const getTotalCommit = async (user) => {
