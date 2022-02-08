@@ -37,7 +37,7 @@ export function Modal({ children, setOpenModal, title, twoBtn }) {
   return (
     <ModalBackground onClick={clickOutsideHandler}>
       <ModalContainer ref={modalElement}>
-        <Title>{title}</Title>
+        {title && <Title>{title}</Title>}
         <Content>{children}</Content>
         {twoBtn ? (
           <BtnWrapper>
