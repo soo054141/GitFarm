@@ -4,5 +4,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 72px;
+  color: ${(props) => props.theme.darkGray};
 `;
