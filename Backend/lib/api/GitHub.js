@@ -1,17 +1,19 @@
 import { Octokit } from "@octokit/core";
+import { paginateRest } from "@octokit/plugin-paginate-rest";
 
-// TODO: commit 개수가 100개가 넘어갈 때 구하기
 const getEachCommit = async (user, repo) => {
   const { username, accessToken } = user;
-  const octokit = new Octokit({ auth: accessToken });
-  const { data: commitRepo } = await octokit.request(
+  const MyOctokit = Octokit.plugin(paginateRest);
+  const octokit = new MyOctokit({ auth: accessToken });
+  const res = await octokit.paginate(
     `GET /repos/${username}/${repo}/commits`,
     {
       author: username,
       per_page: 100,
     },
+    (response) => response.data.length,
   );
-  return commitRepo.length;
+  return res.reduce((acc, cur) => acc + cur);
 };
 
 const getTotalCommit = async (user) => {
