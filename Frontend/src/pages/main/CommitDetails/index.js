@@ -1,8 +1,8 @@
 import React from "react";
 import * as CommitDetail from "./style";
-import CommitIcon from "../../assets/icon/commit.svg";
-import CommitCircleIcon from "../../assets/icon/commit-circle.svg";
-import VerticalLineIcon from "../../assets/icon/vertical-line.svg";
+import CommitIcon from "@/assets/icon/commit.svg";
+import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
+import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
 CommitDetails.defaultProps = {
   score: 10,
   totalCommit: 12,

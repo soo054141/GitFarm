@@ -1,10 +1,10 @@
 import React from "react";
-import { Description } from "../../Description";
-import { Modal } from "../../Modal";
+import { Description } from "@/components";
+import { Modal } from "@/components";
 import { Wrapper } from "./style";
-import * as Icon from "../../../components/Badge/BadgesIconComponents";
+import * as Icon from "@/components/Badge/BadgesIconComponents";
 
-CollectedBadge.defaultProps = {
+CollectedBadgeModal.defaultProps = {
   GainedBadges: [
     {
       id: 0,
@@ -21,7 +21,7 @@ CollectedBadge.defaultProps = {
   ],
 };
 
-export function CollectedBadge({ setOpenModal, GainedBadges }) {
+export function CollectedBadgeModal({ setOpenModal, GainedBadges }) {
   return (
     <Modal setOpenModal={setOpenModal} title="배지 획득 안내">
       <Wrapper>

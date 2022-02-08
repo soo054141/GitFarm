@@ -1,10 +1,10 @@
 import React from "react";
 import { Wrapper } from "./style";
-import { Description } from "../../Description";
-import { Modal } from "../../Modal";
-import SadIcon from "../../../assets/icon/sad-face.svg";
+import { Description, Modal } from "@/Components";
 
-export function Error({ setOpenModal }) {
+import SadIcon from "@/assets/icon/sad-face.svg";
+
+export function ErrorModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="error">
       <Wrapper>

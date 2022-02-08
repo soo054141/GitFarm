@@ -12,5 +12,6 @@ export const HeaderWrapper = styled.header`
   svg {
     width: 32px;
     height: 100%;
+    cursor: pointer;
   }
 `;

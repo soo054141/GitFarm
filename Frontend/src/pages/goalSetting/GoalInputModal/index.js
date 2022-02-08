@@ -1,8 +1,8 @@
 import React from "react";
-import { Modal } from "../../Modal";
-import { Input } from "../../Input";
+import { Modal } from "@/components/Modal";
 import { Wrapper } from "./style";
-export function GoalInput({ setOpenModal }) {
+import { Input } from "../Input";
+export function GoalInputModal({ setOpenModal }) {
   return (
     <Wrapper>
       <Modal

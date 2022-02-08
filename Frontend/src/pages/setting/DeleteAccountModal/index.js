@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import { Wrapper } from "./style";
-import { Description } from "../../Description";
-import { Modal } from "../../Modal";
+import { Modal } from "@/components/Modal";
+import { Description } from "@/components/Description";
 import SadIcon from "../../../assets/icon/sad-face.svg";
-export function DeleteAccount({ setOpenModal }) {
+export function DeleteAccountModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="GitFarm 탈퇴하기" twoBtn={true}>
       <Wrapper>
