@@ -16,4 +16,5 @@ export const DateText = styled.p`
   font-weight: 600;
   height: 20px;
   line-height: 20px;
+  cursor: pointer;
 `;
