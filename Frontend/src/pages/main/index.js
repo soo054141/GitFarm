@@ -1,6 +1,6 @@
 import React from "react";
-import { FarmPicture } from "../../components/Main/FarmPicture";
-import { SpeechBubble } from "../../components/Main/SpeechBubble";
+import { FarmPicture } from "./FarmPicture/";
+import { SpeechBubble } from "./SpeechBubble";
 import * as Mains from "./style";
 
 Main.defaultProps = {

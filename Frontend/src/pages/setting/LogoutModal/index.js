@@ -1,6 +1,6 @@
 import React from "react";
 import { Wrapper } from "./style";
-import { Description } from "../../../components/Description";
+import { Description } from "@/components/Description";
 import { Modal } from "@/components/Modal";
 
 export function LogoutModal({ setOpenModal }) {
