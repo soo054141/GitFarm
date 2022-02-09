@@ -3,12 +3,8 @@
 import { todaySince, todayUntil } from "../../../../utils/date.js";
 import { getOctokitAuth } from "../../Octokit/utils.js";
 
-export const getTodayTotalCommitEachRepo = async (
-  user,
-  repo = "alice-sw-engineer-track",
-) => {
-  // const { username } = user;
-  const username = "YWTechIT";
+export const getTodayTotalCommitEachRepo = async (user, repo) => {
+  const { username } = user;
   const octokit = getOctokitAuth(user);
   const commitNum = await octokit.paginate(
     `GET /repos/${username}/${repo}/commits`,
