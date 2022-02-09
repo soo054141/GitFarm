@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
-import getTotalCommit from "../../lib/api/GitHub.js";
+import { getTotalCommitAllRepo } from "../../lib/api/GitHub/getTotalCommitAllRepo.js";
 
 const router = express.Router();
 
@@ -13,10 +13,14 @@ export default (app) => {
   // @access Private
   router.get(
     "/",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
+    passport.authenticate("jwt", {
+      session: false,
+      failureRedirect: "/api/auth/github",
+    }),
+    async (req, res) => {
       const { user } = req;
-      getTotalCommit(user);
+      const totalCommitAllRepo = await getTotalCommitAllRepo(user);
+      console.log("totalCommitAllRepo=", totalCommitAllRepo);
       res.json({ msg: "calender 페이지입니다." });
     },
   );
