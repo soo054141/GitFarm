@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
+import { getDetailTotalCommitAllRepo } from "../../lib/api/GitHub/today/detail/getDetailTotalRepo.js";
 import { getTodayTotalCommitAllRepo } from "../../lib/api/GitHub/today/getTodayTotalCommitAllRepo.js";
 import { getTotalCommitAllRepo } from "../../lib/api/GitHub/total/getTotalCommitAllRepo.js";
 
@@ -40,3 +41,16 @@ export default (app) => {
     });
   });
 };
+
+// @route GET api/users/commits/detail
+// @desc today detail commits
+// @access Private
+router.get("/commits/today/detail", async (req, res) => {
+  const { user } = req;
+  const result = await getDetailTotalCommitAllRepo(user);
+
+  res.json({
+    success: true,
+    todayDetailCommit: result,
+  });
+});
