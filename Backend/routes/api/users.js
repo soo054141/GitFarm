@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
-import { getTodayTotalCommitAllRepo } from "../../lib/api/GitHub/getTodayTotalCommitAllRepo.js";
-import { getTotalCommitAllRepo } from "../../lib/api/GitHub/getTotalCommitAllRepo.js";
+import { getTodayTotalCommitAllRepo } from "../../lib/api/GitHub/today/getTodayTotalCommitAllRepo.js";
+import { getTotalCommitAllRepo } from "../../lib/api/GitHub/total/getTotalCommitAllRepo.js";
 
 const router = express.Router();
 
