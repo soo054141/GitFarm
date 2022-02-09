@@ -3,16 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 349px;
   margin-top: 32px;
-  display: flex;
-  align-items: center;
   padding: 28px 17px;
-  background: #ffffff;
   border-radius: 10px;
+  background: #ffffff;
 
-  h1 {
-    font-size: 16px;
-    color: ${(props) => props.theme.darkGray};
-  }
+  display: grid;
+  grid-template-columns: 30px 60px 150px 50px;
+  justify-content: center;
+  align-items: center;
+  overflow-wrap: break-word;
 `;
 
 export const Ranking = styled.div`
@@ -22,7 +21,7 @@ export const Ranking = styled.div`
 `;
 
 export const Detail = styled.div`
-  margin-left: 17px;
+  margin-right: 20px;
 `;
 
 export const Id = styled.div`
@@ -34,4 +33,20 @@ export const Point = styled.div`
   font-size: 8px;
   margin-top: 5px;
   color: ${(props) => props.theme.lightGray};
+`;
+
+export const newUser = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: rgba(106, 189, 140, 0.24);
+  p {
+    color: ${(props) => props.theme.lightGray};
+  }
+
+  span {
+    color: ${(props) => props.theme.mainColor};
+  }
 `;
