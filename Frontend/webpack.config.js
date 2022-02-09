@@ -29,7 +29,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.jpeg$/, // 파일 확장자 추가
+        test: /\.(webp|png|jpg|jpeg|gif)$/,
         use: [
           {
             loader: "file-loader",
