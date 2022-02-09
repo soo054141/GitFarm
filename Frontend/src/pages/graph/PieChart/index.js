@@ -29,9 +29,9 @@ export function PieChartComponent({ codeRatioArray }) {
         <PieCharts.RatioWrapper>
           {codeRatioArray &&
             codeRatioArray.map((it, idx) => (
-              <PieCharts.LangColorBoxWrapper>
+              <PieCharts.LangColorBoxWrapper key={`${it.name}-${it.value}`}>
                 <PieCharts.LangColorBox idx={COLORS[idx]} />
-                <div key={`${it.name}-${it.value}`}>
+                <div>
                   <PieCharts.LangText>{it.value}%</PieCharts.LangText>
                   <PieCharts.LangText>{it.name}</PieCharts.LangText>
                 </div>
