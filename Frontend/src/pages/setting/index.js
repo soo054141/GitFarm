@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SettingItem } from "../../components/MyPage/SettingItem";
+import { SettingItem } from "../myPage/SettingItem";
 import { Container } from "./../../components/Container/style";
 import NextArrow from "../../assets/icon/next-arrow.svg";
 import { LogoutModal } from "./LogoutModal";

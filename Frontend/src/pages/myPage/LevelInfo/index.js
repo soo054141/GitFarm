@@ -1,6 +1,6 @@
 import React from "react";
 import * as Level from "./style";
-import LevelImg from "../../../assets/icon/level/level1.svg";
+import LevelImg from "@/assets/icon/level/level1.svg";
 
 export function LevelInfo({ level, score }) {
   return (
