@@ -25,23 +25,22 @@ export const MyLevelIcon = styled.div`
 
 export const MyLevelInfo = styled.div`
   width: 195px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
 `;
 
 export const Content = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 1px;
 `;
 
 export const Title = styled.h3`
   font-size: 14px;
-`;
-
-export const InfoIcon = styled.div`
-  width: 14px;
-  height: 14px;
-  margin-left: 5px;
-  background: #fcc5c5;
 `;
 
 export const MyLevel = styled.p`
@@ -50,5 +49,5 @@ export const MyLevel = styled.p`
 
 export const MyScore = styled.span`
   font-size: 18px;
-  margin-left: 5px;
+  margin: 5px 0px 0px 5px;
 `;
