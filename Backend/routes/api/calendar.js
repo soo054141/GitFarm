@@ -1,7 +1,11 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
-import getTotalCommit from "../../lib/api/GitHub.js";
+import {
+  getTotalCommit,
+  getTodayCommit,
+  getContinousCommitDays,
+} from "../../lib/api/GitHub.js";
 
 const router = express.Router();
 
@@ -22,6 +26,10 @@ export default (app) => {
       const totalCommit = await getTotalCommit(user);
       console.log("totalCommit =", totalCommit);
 
+      const todayCommit = await getTodayCommit(user);
+
+      const continousCommits = await getContinousCommitDays(user);
+      console.log(continousCommits);
       res.json({ msg: "calender 페이지입니다." });
     },
   );
