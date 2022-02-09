@@ -1,11 +1,12 @@
 import React from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Nav } from "./components/Nav";
 import { Login } from "./pages/login";
 import { Badge } from "./pages/badge";
+import { Graph } from "./pages/graph";
 import { GoalSetting } from "./pages/goalSetting";
 import { Main } from "./pages/main";
 import { MonthlyCalender } from "./pages/monthlyCalender";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/calender" element={<MonthlyCalender />} />
         <Route path="/badge" element={<Badge />} />
+        <Route path="/graph" element={<Graph />} />
         <Route path="/rank" element={<RankPage />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/mypage" element={<MyPage />} />
