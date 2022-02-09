@@ -22,7 +22,10 @@ export default (app) => {
   router.get("/commits/total", async (req, res) => {
     const { user } = req;
     const result = await getTotalCommitAllRepo(user);
-    res.json({ totalCommit: result });
+    res.json({
+      success: true,
+      totalCommit: result,
+    });
   });
 
   // @route GET api/users/commits/today
@@ -31,6 +34,9 @@ export default (app) => {
   router.get("/commits/today", async (req, res) => {
     const { user } = req;
     const result = await getTodayTotalCommitAllRepo(user);
-    res.json({ todayCommit: result });
+    res.json({
+      success: true,
+      todayCommit: result,
+    });
   });
 };
