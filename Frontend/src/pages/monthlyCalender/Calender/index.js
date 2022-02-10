@@ -46,7 +46,7 @@ export function Calender({ date }) {
     newDates[parseInt(index / 7)].push(tempDate); // 달력의 시작이 1일이고, 전 달이 30일로 끝나는 날 때문에 따로 배치
     return newDates;
   };
-  console.log(date.getMonth());
+
   return (
     <div>
       <CalenderContainer>
