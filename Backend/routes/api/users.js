@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
+import { getLanguagesData } from "../../lib/api/GitHub/language/index.js";
 import { getDetailTotalCommitAllRepo } from "../../lib/api/GitHub/today/detail/getDetailTotalRepo.js";
 import { getTodayTotalCommitAllRepo } from "../../lib/api/GitHub/today/getTodayTotalCommitAllRepo.js";
 import { getTotalCommitAllRepo } from "../../lib/api/GitHub/total/getTotalCommitAllRepo.js";
@@ -52,5 +53,18 @@ router.get("/commits/today/detail", async (req, res) => {
   res.json({
     success: true,
     todayDetailCommit: result,
+  });
+});
+
+// @route GET api/users/levels/all
+// @desc level에 필요한 API 제공
+// @access Private
+router.get("/levels/all", async (req, res) => {
+  const { user } = req;
+  const result = await getLanguagesData(user);
+
+  res.json({
+    success: true,
+    data: result,
   });
 });
