@@ -11,16 +11,17 @@ export const Container = styled.div`
 `;
 
 export const TodaysCommit = styled.h1`
-  font-size: 28px;
+  font-size: 18px;
   line-height: 33px;
   text-align: center;
   color: ${(props) => props.theme.darkGray};
-  padding-bottom: 15px;
+  padding-bottom: 1px;
 `;
 
 export const TodaysCommitCount = styled.span`
-  font-size: 30px;
+  font-size: 14px;
   line-height: 33px;
   text-align: center;
-  color: #66a97a;
+  color: ${(props) => props.theme.lightGray};
+  padding-bottom: 10px;
 `;

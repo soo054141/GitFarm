@@ -75,8 +75,7 @@ export const RepoWrapper = styled.div`
   width: 95%;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin: 10px;
 `;
 export const RepoName = styled.p`
   margin-top: 10px;
@@ -107,7 +106,7 @@ export const LineWrapper = styled.div`
   svg {
     position: absolute;
     top: -17px;
-    left: 3.76px;
+    left: 3.24px;
   }
 `;
 export const CommitMessage = styled.p`
