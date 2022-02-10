@@ -3,13 +3,13 @@
 import { Commit } from "../model/index.js";
 
 export const FindByIdAndUpdate = async (_id, key, value) => {
+  const config = {};
+  config.author = _id;
+  config[key] = value;
   const dbUpdate = await Commit.findByIdAndUpdate(
     _id,
     {
-      $set: {
-        author: _id,
-        key: value,
-      },
+      $set: config,
     },
     { upsert: true },
   ).populate({ path: "author" });

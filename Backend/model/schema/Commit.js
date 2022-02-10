@@ -10,9 +10,11 @@ const CommitSchema = new Schema(
     },
     total: {
       type: Number,
+      default: 0,
     },
     today: {
       type: Number,
+      default: 0,
     },
     todayDetail: {
       type: [
@@ -24,6 +26,13 @@ const CommitSchema = new Schema(
           data: [{ date: String, message: String }],
         },
       ],
+      default: [
+        { info: { name: "", repo: "" }, data: [{ date: "", message: "" }] },
+      ],
+    },
+    commitPerYear: {
+      type: [Number],
+      default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     },
     languages: {
       type: [
@@ -32,6 +41,7 @@ const CommitSchema = new Schema(
           language: String,
         },
       ],
+      default: [{ repo: "", language: "" }],
     },
     continous: {
       type: String,

@@ -1,27 +1,24 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 import {
+  endOfDay,
   fillZero,
   monthDays,
   monthPerYear,
+  startOfDay,
 } from "../../../../../utils/date.js";
 import { getAllRepoName, getOctokitAuth } from "../../../Octokit/utils.js";
 
-export const getMonthTotalCommitEachRepo = async (
-  user,
-  repo,
-  year,
-  month,
-  day,
-) => {
-  const convertMonth = fillZero(month, 2, "0");
+export const getMonthTotalCommitEachRepo = async (user, repo, date) => {
+  const { year, month, day } = date;
+  const convertMonth = fillZero(month + 1, 2, "0");
   const { username } = user;
   const octokit = getOctokitAuth(user);
   const commitNum = await octokit.paginate(
     `GET /repos/${username}/${repo}/commits`,
     {
-      since: `${year}-${convertMonth}-01T00:00:00Z`,
-      until: `${year}-${convertMonth}-${day}T23:59:59Z`,
+      since: `${year}-${convertMonth}-01${startOfDay}`,
+      until: `${year}-${convertMonth}-${day}${endOfDay}`,
       author: username,
       per_page: 100,
     },
@@ -32,33 +29,41 @@ export const getMonthTotalCommitEachRepo = async (
 };
 
 export const getMonthTotalCommitAllRepo = async (user, year) => {
-  const answer = Array.from({ length: monthPerYear + 1 }, () => 0);
+  const monthes = Array.from({ length: monthPerYear + 1 }, () => 0);
   const repoName = await getAllRepoName(user);
 
-  const response = await repoName.map(async (name) => {
+  const commitPerYear = repoName.map(async (name) => {
     const getMonth = await monthDays.map(async (day, month) => {
-      const result = await getMonthTotalCommitEachRepo(
-        user,
-        name,
+      const date = {
         year,
-        month + 1,
+        month,
         day,
-      );
-      return [month + 1, result];
+      };
+      const [result] = await getMonthTotalCommitEachRepo(user, name, date);
+      return [name, month + 1, result];
     });
 
     const status = await Promise.allSettled(getMonth);
 
     const fulfilledValue = await status
       .filter((result) => result.status === "fulfilled")
-      .map((res) => res.value);
+      .map((item) => item.value);
 
-    await fulfilledValue.map((item) => {
-      const [month, [value]] = item;
-      answer[month] += Number(value);
-      return item;
-    });
-    return answer;
+    return fulfilledValue;
   });
-  return response;
+
+  const response = await Promise.allSettled(commitPerYear);
+
+  const commitData = await response
+    .filter((item) => item.status === "fulfilled")
+    .map((item) => item.value);
+
+  commitData.forEach((perYear) => {
+    perYear.forEach((item) => {
+      const [, month, count] = item;
+      monthes[month] += count;
+    });
+  });
+
+  return monthes;
 };
