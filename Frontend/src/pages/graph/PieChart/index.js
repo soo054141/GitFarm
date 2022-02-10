@@ -12,7 +12,7 @@ PieChartComponent.defaultProps = {
   ],
 };
 
-export function PieChartComponent({ codeRatioArray }) {
+function PieChartComponent({ codeRatioArray }) {
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
     const langName = it.name;
@@ -64,3 +64,5 @@ export function PieChartComponent({ codeRatioArray }) {
     </PieCharts.Container>
   );
 }
+
+export default React.memo(PieChartComponent);

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Container } from "@/components/Container/style";
 import { DateController } from "@/components/DateController";
 import { LineGraph } from "./LineGraph";
-import { MonthYearBtn } from "./MonthYearBtn";
-import { PieChartComponent } from "./PieChart";
+import MonthYearBtn from "./MonthYearBtn";
+import PieChartComponent from "./PieChart";
 import { DateControllerWrapper } from "./style";
 export function Graph() {
   const monthButton = true;
@@ -31,20 +31,20 @@ export function Graph() {
   const [checkMonth, setCheckMonth] = useState(false);
   const [graphTitle, setGraphTitle] = useState("월간");
 
-  const handleMonthBtn = () => {
+  const handleMonthBtn = useCallback(() => {
     if (monthButton) {
       setClickButtonColor(monthButton);
       setCheckMonth(false);
       setGraphTitle(checkMonth ? "월간" : "년간");
     }
-  };
-  const handlYearBtn = () => {
+  }, [graphTitle]);
+  const handlYearBtn = useCallback(() => {
     if (!yearButton) {
       setClickButtonColor(!monthButton);
       setCheckMonth(true);
       setGraphTitle(checkMonth ? "월간" : "년간");
     }
-  };
+  }, [graphTitle]);
 
   return (
     <Container>

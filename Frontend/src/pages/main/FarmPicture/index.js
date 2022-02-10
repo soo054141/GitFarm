@@ -2,7 +2,6 @@ import React from "react";
 import * as FarmPictures from "./style";
 
 export function FarmPicture({ ratio }) {
-  console.log(ratio);
   const Render = () => {
     return (
       <FarmPictures.Container>
