@@ -9,6 +9,10 @@ import {
   getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
 } from "../../lib/api/index.js";
+import {
+  FindByIdAndUpdate,
+  FindValueByKey,
+} from "../../services/user.service.js";
 
 const router = express.Router();
 
@@ -101,27 +105,17 @@ export default (app) => {
 
     try {
       const result = await getTodayTotalCommitAllRepo(user);
-      await Commit.findByIdAndUpdate(
-        _id,
-        {
-          $set: {
-            author: _id,
-            today: result,
-          },
-        },
-        { upsert: true },
-      ).populate({ path: "author" });
+      await FindByIdAndUpdate(_id, "today", result);
 
       res.json({
         success: true,
         message: result,
       });
     } catch (err) {
-      const key = "today";
-      const loadDB = await Commit.find({ id: _id });
+      const result = await FindValueByKey(_id, "today");
       res.json({
         success: false,
-        message: loadDB[key],
+        message: result,
       });
     }
   });
