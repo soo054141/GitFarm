@@ -38,10 +38,10 @@ export default (app) => {
     try {
       const result = "FAKE Mock DATA";
       await FindByIdAndUpdate(_id, "test", result);
-      ViewResponseJSON(res, true, result);
+      ViewResponseJSON(res, true, "test", result);
     } catch (err) {
       const result = await FindValueByKey(_id, "test");
-      ViewResponseJSON(res, false, result);
+      ViewResponseJSON(res, false, "test", result);
     }
   });
 
@@ -55,10 +55,10 @@ export default (app) => {
     try {
       const result = await getTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "total", result);
-      ViewResponseJSON(res, true, result);
+      ViewResponseJSON(res, true, "total", result);
     } catch (err) {
       const result = await FindValueByKey(_id, "total");
-      ViewResponseJSON(res, false, result);
+      ViewResponseJSON(res, false, "total", result);
     }
   });
 
@@ -73,10 +73,10 @@ export default (app) => {
     try {
       const result = await getTodayTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "today", result);
-      ViewResponseJSON(res, true, result);
+      ViewResponseJSON(res, true, "today", result);
     } catch (err) {
       const result = await FindValueByKey(_id, "today");
-      ViewResponseJSON(res, false, result);
+      ViewResponseJSON(res, false, "today", result);
     }
   });
 
@@ -90,10 +90,10 @@ export default (app) => {
     try {
       const result = await getDetailTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "todayDetail", result);
-      ViewResponseJSON(res, true, result);
+      ViewResponseJSON(res, true, "todayDetail", result);
     } catch (err) {
       const result = await FindValueByKey(_id, "todayDetail");
-      ViewResponseJSON(res, false, result);
+      ViewResponseJSON(res, false, "todayDetail", result);
     }
   });
 
@@ -107,10 +107,10 @@ export default (app) => {
     try {
       const result = await getLanguagesData(user);
       await FindByIdAndUpdate(_id, "languages", result);
-      ViewResponseJSON(res, true, result);
+      ViewResponseJSON(res, true, "languages", result);
     } catch (err) {
       const result = await FindValueByKey(_id, "languages");
-      ViewResponseJSON(res, false, result);
+      ViewResponseJSON(res, false, "languages", result);
     }
   });
 
@@ -119,12 +119,16 @@ export default (app) => {
   // @access Private
   router.get("/commits/total/year/:year", async (req, res) => {
     const { user, params } = req;
+    const { id } = user;
     const { year } = params;
-    const result = await getMonthTotalCommitAllRepo(user, year);
-    console.log(result);
-    res.json({
-      success: true,
-      message: "연도별 커밋을 보여줍니다.",
-    });
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = await getMonthTotalCommitAllRepo(user, year);
+      await FindByIdAndUpdate(_id, "commitPerYear", result);
+      ViewResponseJSON(res, true, "commitPerYear", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "commitPerYear");
+      ViewResponseJSON(res, false, "commitPerYear", result);
+    }
   });
 };
