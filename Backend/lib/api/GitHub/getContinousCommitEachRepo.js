@@ -28,11 +28,14 @@ export const getContinousCommitEachRepo = async (user, repo) => {
   const lastDate =
     new Date(myCommits[0]).getTime() +
     new Date(myCommits[0]).getTimezoneOffset() * 60 * 1000;
-  const longest = Math.ceil(
+
+  const shortest = Math.ceil(
     (today.getTime() - lastDate) / (1000 * 60 * 60 * 24),
   );
 
-  console.log(longest);
-
-  return;
+  if (shortest <= 1) {
+    return true;
+  } else {
+    return false;
+  }
 };

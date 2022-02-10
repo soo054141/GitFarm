@@ -12,13 +12,7 @@ export const getContinousCommitAllRepo = async (user) => {
 
   const fulfilledValue = status
     .filter((result) => result.status === "fulfilled")
-    .map((res) => {
-      if (res.value !== undefined) {
-        return res.value;
-      } else {
-        return 0;
-      }
-    });
+    .map((res) => res.value);
 
   return fulfilledValue;
 };
