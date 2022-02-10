@@ -56,10 +56,10 @@ router.get("/commits/today/detail", async (req, res) => {
   });
 });
 
-// @route GET api/users/levels/all
+// @route GET api/users/languages
 // @desc level에 필요한 API 제공
 // @access Private
-router.get("/levels/all", async (req, res) => {
+router.get("/languages", async (req, res) => {
   const { user } = req;
   const result = await getLanguagesData(user);
 
