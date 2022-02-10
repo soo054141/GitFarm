@@ -27,23 +27,56 @@ export function Calender({ date }) {
   };
 
   const makeCalendar = (firstDate, lastDate) => {
-    let tempDate = new Date(firstDate);
     let newDates = [];
     let index = 0;
-    while (
-      tempDate.getMonth() !== lastDate.getMonth() ||
-      tempDate.getDate() !== lastDate.getDate()
-    ) {
+    const firstDateYear = firstDate.getFullYear();
+    const firstDateMonth = firstDate.getMonth() + 1;
+    const firstDateDay = firstDate.getDate();
+    let firstDateMonthLastDay = new Date(firstDateYear, firstDateMonth, 0);
+    const lasDateMonth = lastDate.getMonth() + 1;
+    const lastDateDate = lastDate.getDate();
+
+    let tempDate = {
+      year: firstDateYear,
+      month: firstDateMonth,
+      date: firstDateDay,
+    };
+
+    if (firstDateMonthLastDay === firstDateDay) {
+      if (firstDateMonth === 12) {
+        tempDate = { year: firstDateYear + 1, month: 1, date: 1 };
+      } else {
+        tempDate = { year: firstDateYear, month: tempDate.month + 1, date: 1 };
+      }
+      firstDateMonthLastDay = new Date(tempDate.year, tempDate.month - 1, 0);
+    }
+
+    while (tempDate.month !== lasDateMonth || tempDate.date !== lastDateDate) {
       if (index % 7 === 0) newDates[parseInt(index / 7)] = [];
       newDates[parseInt(index / 7)].push(tempDate);
-      tempDate = new Date(
-        tempDate.getFullYear(),
-        tempDate.getMonth(),
-        tempDate.getDate() + 1,
-      );
+      if (tempDate.date === firstDateMonthLastDay.getDate()) {
+        if (tempDate.month === 12) {
+          tempDate = { year: firstDateYear + 1, month: 1, date: 1 };
+        } else {
+          tempDate = {
+            year: tempDate.year,
+            month: tempDate.month + 1,
+            date: 1,
+          };
+        }
+
+        firstDateMonthLastDay = new Date(tempDate.year, tempDate.month, 0);
+      } else {
+        tempDate = {
+          year: tempDate.year,
+          month: tempDate.month,
+          date: tempDate.date + 1,
+        };
+      }
       index++;
     }
-    newDates[parseInt(index / 7)].push(tempDate); // 달력의 시작이 1일이고, 전 달이 30일로 끝나는 날 때문에 따로 배치
+
+    newDates[parseInt(index / 7)].push(tempDate);
     return newDates;
   };
 
@@ -59,31 +92,16 @@ export function Calender({ date }) {
           <MonthlyRow key={`${oneWeek}-${idx}-monthly-row`}>
             {oneWeek.map((perDate) => (
               <MonthlyCell
-                key={`${idx}-${perDate.getDate()}-${perDate.getMonth()}-monthly-cell`}
+                key={`${idx}-${perDate.date}-${perDate.month}-monthly-cell`}
               >
-                {perDate.getMonth() === date.getMonth() ? (
-                  <DateCell
-                    view
-                    key={`${
-                      perDate.getDate() +
-                      idx +
-                      perDate.getMonth() +
-                      perDate.getFullYear()
-                    }-${idx}-date-cell`}
-                  >
-                    {perDate.getDate()}
-                  </DateCell>
-                ) : (
-                  <DateCell
-                    key={`${
-                      perDate.getDate() +
-                      perDate.getMonth() -
-                      perDate.getFullYear()
-                    }-${idx}-date-cell`}
-                  >
-                    {perDate.getDate()}
-                  </DateCell>
-                )}
+                <DateCell
+                  view={perDate.month === date.getMonth() + 1 && true}
+                  key={`${
+                    perDate.date + idx + perDate.month + perDate.year
+                  }-${idx}-date-cell`}
+                >
+                  {perDate.date}
+                </DateCell>
               </MonthlyCell>
             ))}
           </MonthlyRow>
