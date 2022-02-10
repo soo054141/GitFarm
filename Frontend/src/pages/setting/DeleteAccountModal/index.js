@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { Wrapper } from "./style";
 import { Modal } from "@/components/Modal";
 import { Description } from "@/components/Description";

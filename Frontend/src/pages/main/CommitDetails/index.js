@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import * as CommitDetail from "./style";
-import CommitIcon from "@/assets/icon/commit.svg";
+import InfoIcon from "@/assets/icon/info.svg";
 import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
 import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
+import { ScoreInformationModal } from "../ScoreInformationModal";
+
 CommitDetails.defaultProps = {
   score: 10,
   totalCommit: 12,
@@ -41,13 +43,24 @@ CommitDetails.defaultProps = {
 };
 
 export function CommitDetails({ score, totalCommit, commitsPerRepo }) {
+  const [openModal, setOpenModal] = useState(false);
+
+  const modalOpenHandler = () => {
+    setOpenModal(!openModal);
+  };
+
   return (
     <CommitDetail.Container>
       {totalCommit > 0 ? (
         <>
           <CommitDetail.ScoreContainer>
             <CommitDetail.ScoreCell>
-              <CommitDetail.SubTitle>얻은 점수</CommitDetail.SubTitle>
+              <CommitDetail.SubTitle>
+                얻은 점수
+                <CommitDetail.IconWrapper>
+                  <InfoIcon onClick={modalOpenHandler} />
+                </CommitDetail.IconWrapper>
+              </CommitDetail.SubTitle>
               <CommitDetail.Score>{score}</CommitDetail.Score>
             </CommitDetail.ScoreCell>
             <CommitDetail.ScoreCell>
@@ -101,6 +114,7 @@ export function CommitDetails({ score, totalCommit, commitsPerRepo }) {
       ) : (
         <CommitDetail.NoCommit>커밋 기록이 없습니다!</CommitDetail.NoCommit>
       )}
+      {openModal && <ScoreInformationModal setOpenModal={setOpenModal} />}
     </CommitDetail.Container>
   );
 }

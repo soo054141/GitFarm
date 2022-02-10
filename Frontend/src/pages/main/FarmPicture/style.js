@@ -27,12 +27,14 @@ export const Plat1 = styled(Plat1Icon)`
   position: absolute;
   bottom: 47px;
   left: 24px;
+  z-index: 1;
 `;
 
 export const Plat2 = styled(Plat2Icon)`
   position: absolute;
   bottom: 18px;
   left: 62px;
+  z-index: 2;
 `;
 
 export const House = styled(HousIcon)`
@@ -75,6 +77,7 @@ export const Goose = styled(GooseIcon)`
   position: absolute;
   bottom: 35px;
   left: 52px;
+  z-index: 3;
 `;
 
 export const Dog = styled(DogIcon)`

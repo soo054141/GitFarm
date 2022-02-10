@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Title, IconWrapper, GoalNum } from "./style";
+import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
 import LeafIcon from "@/assets/icon/blank-leaf.svg";
-import { Description } from "@/components/Description";
+// import { Description } from "@/components/Description";
 
 CommitGoal.defaultProps = {
   goalNum: 3,

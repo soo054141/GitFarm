@@ -2,11 +2,12 @@ import React from "react";
 import { FarmPicture } from "./FarmPicture/";
 import { SpeechBubble } from "./SpeechBubble";
 import { CommitDetails } from "./CommitDetails";
+
 import * as Mains from "./style";
 
 Main.defaultProps = {
-  todaysCommit: 6,
-  goalCommit: 6,
+  todaysCommit: 10,
+  goalCommit: 10,
 };
 export function Main({ todaysCommit, goalCommit }) {
   return (

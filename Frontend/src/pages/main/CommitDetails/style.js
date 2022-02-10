@@ -44,6 +44,18 @@ export const ScoreCell = styled.div`
   }
 `;
 
+export const IconWrapper = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 66px;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+`;
+
 export const Score = styled.p`
   font-size: 48px;
   font-weight: 300;
