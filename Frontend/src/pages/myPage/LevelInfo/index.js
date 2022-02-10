@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Level from "./style";
 import LevelImg from "@/assets/icon/level/level1.svg";
 import InfoIcon from "@/assets/icon/info.svg";
-import { LevelInfomationModal } from "../LevelInfomationModal";
+import { LevelInformationModal } from "../LevelInformationModal";
 
 export function LevelInfo({ level, score }) {
   const [openModal, setOpenModal] = useState(false);
@@ -12,7 +12,7 @@ export function LevelInfo({ level, score }) {
   };
   return (
     <Level.Wrapper>
-      {openModal && <LevelInfomationModal setOpenModal={setOpenModal} />}
+      {openModal && <LevelInformationModal setOpenModal={setOpenModal} />}
       <Level.MyLevelIcon>
         <LevelImg />
       </Level.MyLevelIcon>

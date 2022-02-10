@@ -6,7 +6,7 @@ import {
   ScoreText,
 } from "@/pages/setting/DeleteAccountModal/style.js";
 import WinkIcon from "@/assets/icon/wink-face.svg";
-export function ScoreInfomationModal({ setOpenModal }) {
+export function ScoreInformationModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="점수 산정 기준">
       <Wrapper>

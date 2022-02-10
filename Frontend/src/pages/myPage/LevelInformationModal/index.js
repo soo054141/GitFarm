@@ -7,7 +7,7 @@ import Level5 from "@/assets/icon/level/level5.svg";
 import { Modal } from "@/components/Modal";
 import { LevelWrapper, Explanation, IconWrapper } from "./style";
 
-export function LevelInfomationModal({ setOpenModal }) {
+export function LevelInformationModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="레벨 안내">
       <LevelWrapper>

@@ -3,7 +3,7 @@ import * as CommitDetail from "./style";
 import InfoIcon from "@/assets/icon/info.svg";
 import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
 import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
-import { ScoreInfomationModal } from "../ScoreInfomationMoal";
+import { ScoreInformationModal } from "../ScoreInformationModal";
 
 CommitDetails.defaultProps = {
   score: 10,
@@ -114,7 +114,7 @@ export function CommitDetails({ score, totalCommit, commitsPerRepo }) {
       ) : (
         <CommitDetail.NoCommit>커밋 기록이 없습니다!</CommitDetail.NoCommit>
       )}
-      {openModal && <ScoreInfomationModal setOpenModal={setOpenModal} />}
+      {openModal && <ScoreInformationModal setOpenModal={setOpenModal} />}
     </CommitDetail.Container>
   );
 }
