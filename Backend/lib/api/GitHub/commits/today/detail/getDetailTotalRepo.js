@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { getAllRepoName } from "../../../Octokit/utils.js";
+import { getAllRepoName } from "../../../../Octokit/utils.js";
 import { getDetailTotalCommitEachRepo } from "./getDetailEachRepo.js";
 
 export const getDetailTotalCommitAllRepo = async (user) => {

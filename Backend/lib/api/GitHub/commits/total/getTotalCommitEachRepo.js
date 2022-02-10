@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { getOctokitAuth } from "../../Octokit/utils.js";
+import { getOctokitAuth } from "../../../Octokit/utils.js";
 
 export const getTotalCommitEachRepo = async (user, repo) => {
   const { username } = user;
