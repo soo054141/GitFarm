@@ -5,12 +5,16 @@ import { Container } from "./style";
 import { Calender } from "./Calender";
 
 export function MonthlyCalender() {
-  const [date, setDate] = useState(new Date());
+  const toDay = new Date();
+  const [date, setDate] = useState(toDay);
 
   const clickLeft = () => {
+    if (date.getFullYear() - 2000 <= 0) return;
     changeDate(-1);
   };
   const clickRight = () => {
+    if (toDay.getFullYear() - date.getFullYear() <= 0) return;
+
     changeDate(1);
   };
 
@@ -20,7 +24,7 @@ export function MonthlyCalender() {
   };
 
   const goToday = () => {
-    setDate(new Date());
+    setDate(toDay);
   };
   return (
     <Container>
@@ -29,6 +33,7 @@ export function MonthlyCalender() {
         clickLeft={clickLeft}
         clickRight={clickRight}
         goToday={goToday}
+        month={true}
       />
       <Calender date={date} />
     </Container>
