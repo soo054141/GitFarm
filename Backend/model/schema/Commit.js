@@ -12,6 +12,10 @@ const CommitSchema = new Schema(
       type: String,
       required: true,
     },
+    continous: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
