@@ -6,6 +6,7 @@ import {
   getDetailTotalCommitAllRepo,
   getLanguagesData,
   getMonthTotalCommitAllRepo,
+  getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
 } from "../../lib/api/index.js";
 
