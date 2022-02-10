@@ -13,6 +13,7 @@ import {
   FindByIdAndUpdate,
   FindValueByKey,
 } from "../../services/user.service.js";
+import { ViewResponseJSON } from "../../controller/index.js";
 
 const router = express.Router();
 
@@ -106,17 +107,10 @@ export default (app) => {
     try {
       const result = await getTodayTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "today", result);
-
-      res.json({
-        success: true,
-        message: result,
-      });
+      ViewResponseJSON(res, true, result);
     } catch (err) {
       const result = await FindValueByKey(_id, "today");
-      res.json({
-        success: false,
-        message: result,
-      });
+      ViewResponseJSON(res, false, result);
     }
   });
 
