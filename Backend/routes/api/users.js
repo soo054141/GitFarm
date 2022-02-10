@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
-import { User, Commit } from "../../model/index.js";
+import { User } from "../../model/index.js";
 import {
   getDetailTotalCommitAllRepo,
   getLanguagesData,
@@ -34,30 +34,14 @@ export default (app) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
+
     try {
-      const result = "678";
-
-      await Commit.findByIdAndUpdate(
-        _id,
-        {
-          $set: {
-            author: _id,
-            test: result,
-          },
-        },
-        { upsert: true },
-      ).populate({ path: "author" });
-
-      res.json({
-        success: true,
-        message: result,
-      });
+      const result = "FAKE Mock DATA";
+      await FindByIdAndUpdate(_id, "test", result);
+      ViewResponseJSON(res, true, result);
     } catch (err) {
-      const loadDB = await Commit.find({ id: _id });
-      res.json({
-        success: false,
-        message: loadDB,
-      });
+      const result = await FindValueByKey(_id, "test");
+      ViewResponseJSON(res, false, result);
     }
   });
 
@@ -70,29 +54,11 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
     try {
       const result = await getTotalCommitAllRepo(user);
-
-      await Commit.findByIdAndUpdate(
-        _id,
-        {
-          $set: {
-            author: _id,
-            total: result,
-          },
-        },
-        { upsert: true },
-      ).populate({ path: "author" });
-
-      res.json({
-        success: true,
-        message: result,
-      });
+      await FindByIdAndUpdate(_id, "total", result);
+      ViewResponseJSON(res, true, result);
     } catch (err) {
-      const key = "total";
-      const loadDB = await Commit.find({ id: _id });
-      res.json({
-        success: false,
-        message: loadDB[key],
-      });
+      const result = await FindValueByKey(_id, "total");
+      ViewResponseJSON(res, false, result);
     }
   });
 
@@ -121,21 +87,13 @@ export default (app) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
-
     try {
       const result = await getDetailTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "todayDetail", result);
-
-      res.json({
-        success: true,
-        message: result,
-      });
+      ViewResponseJSON(res, true, result);
     } catch (err) {
       const result = await FindValueByKey(_id, "todayDetail");
-      res.json({
-        success: false,
-        message: result,
-      });
+      ViewResponseJSON(res, false, result);
     }
   });
 
@@ -146,31 +104,13 @@ export default (app) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
-
     try {
       const result = await getLanguagesData(user);
-      await Commit.findByIdAndUpdate(
-        _id,
-        {
-          $set: {
-            author: _id,
-            languages: result,
-          },
-        },
-        { upsert: true },
-      ).populate({ path: "author" });
-
-      res.json({
-        success: true,
-        message: result,
-      });
+      await FindByIdAndUpdate(_id, "languages", result);
+      ViewResponseJSON(res, true, result);
     } catch (err) {
-      const key = "languages";
-      const loadDB = await Commit.find({ id: _id });
-      res.json({
-        success: false,
-        message: loadDB[key],
-      });
+      const result = await FindValueByKey(_id, "languages");
+      ViewResponseJSON(res, false, result);
     }
   });
 
