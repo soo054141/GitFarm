@@ -13,6 +13,8 @@ export const getContinousCommitAllRepo = async (user) => {
   const fulfilledValue = status
     .filter((result) => result.status === "fulfilled")
     .map((res) => res.value);
-    
-  return fulfilledValue;
+
+  const continousList = fulfilledValue.filter((item) => item !== undefined);
+
+  return Math.max(...continousList);
 };

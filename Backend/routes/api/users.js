@@ -8,6 +8,7 @@ import {
   getMonthTotalCommitAllRepo,
   getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
+  getContinousCommitAllRepo,
 } from "../../lib/api/index.js";
 import {
   FindByIdAndUpdate,
@@ -129,6 +130,23 @@ export default (app) => {
     } catch (err) {
       const result = await FindValueByKey(_id, "commitPerYear");
       ViewResponseJSON(res, false, "commitPerYear", result);
+    }
+  });
+
+  // @route GET api/users/commits/continous
+  // @desc user continous commits days
+  // @access Private
+  router.get("/commits/continous", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = await getContinousCommitAllRepo(user);
+      await FindByIdAndUpdate(_id, "continous", result);
+      ViewResponseJSON(res, true, result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "continous");
+      ViewResponseJSON(res, false, result);
     }
   });
 };
