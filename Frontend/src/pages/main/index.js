@@ -4,7 +4,7 @@ import { SpeechBubble } from "./SpeechBubble";
 import * as Mains from "./style";
 
 Main.defaultProps = {
-  todaysCommit: 0,
+  todaysCommit: 5,
   goalCommit: 6,
 };
 export function Main({ todaysCommit, goalCommit }) {
