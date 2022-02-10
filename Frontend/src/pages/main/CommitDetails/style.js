@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 350px;
-  border: 1px solid rgba(119, 119, 119, 0.4);
-  border-radius: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,26 +20,37 @@ export const TitleText = styled.p`
 
 export const ScoreContainer = styled.div`
   display: flex;
-  margin-top: 29px;
+  margin-top: 20px;
+  width: 100%;
 `;
 export const SubTitle = styled.p`
-  font-size: 12px;
-  color: ${(props) => props.theme.lightGray};
-  margin-bottom: 11px;
-`;
+  font-size: 13px;
+  color: ${(props) => props.theme.darkGray};
 
-export const Score = styled.p`
-  font-size: 24px;
+  margin-left: 10px;
+  margin-top: 14px;
 `;
 
 export const ScoreCell = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 16px;
+  width: 50%;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
   + div {
-    margin-left: 120px;
+    margin-left: 27px;
   }
+`;
+
+export const Score = styled.p`
+  font-size: 48px;
+  font-weight: 300;
+  color: ${(props) => props.theme.mainColor};
+  margin-left: 100px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 `;
 
 export const DetailsContainer = styled.div`
@@ -55,11 +65,18 @@ export const DivideLine = styled.div`
   height: 0.25px;
   background-color: rgba(119, 119, 119, 0.4);
 `;
+
+export const RepoContainer = styled.div`
+  background-color: white;
+  width: 350px;
+  border-radius: 10px;
+`;
 export const RepoWrapper = styled.div`
   width: 95%;
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  margin-left: 10px;
 `;
 export const RepoName = styled.p`
   margin-top: 10px;

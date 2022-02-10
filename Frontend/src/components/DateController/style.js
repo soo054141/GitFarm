@@ -9,6 +9,9 @@ export const ArrowWrapper = styled.button`
     height: 100%;
   }
 `;
+export const TextWrapper = styled.div`
+  width: 250px;
+`;
 export const DateText = styled.p`
   color: ${(props) => props.theme.darkGray};
   font-size: 18px;
@@ -16,4 +19,6 @@ export const DateText = styled.p`
   font-weight: 600;
   height: 20px;
   line-height: 20px;
+  cursor: pointer;
+  text-align: center;
 `;
