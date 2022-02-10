@@ -1,4 +1,4 @@
-import { getOctokitAuth } from "../Octokit/utils.js";
+import { getOctokitAuth } from "../../../Octokit/utils.js";
 
 export const getContinousCommitEachRepo = async (user, repo) => {
   const { username } = user;
