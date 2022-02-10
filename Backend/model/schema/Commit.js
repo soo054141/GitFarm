@@ -43,7 +43,7 @@ const CommitSchema = new Schema(
       ],
       default: [{ repo: "", language: "" }],
     },
-    continous: {
+    continuous: {
       type: Number,
     },
   },
