@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-top: 15px;
 `;
 export const IconWrapper = styled.div`
-  margin-top: 40px;
+  margin-top: 50px;
   svg {
     width: 84px;
     height: 100%;
