@@ -1,4 +1,4 @@
-import { getAllRepoName } from "../../../Octokit/utils.js";
+import { getAllRepoName } from "../Octokit/utils.js";
 import { getContinousCommitEachRepo } from "./getContinousCommitEachRepo.js";
 
 export const getContinousCommitAllRepo = async (user) => {
@@ -13,6 +13,6 @@ export const getContinousCommitAllRepo = async (user) => {
   const fulfilledValue = status
     .filter((result) => result.status === "fulfilled")
     .map((res) => res.value);
-    
+
   return fulfilledValue;
 };
