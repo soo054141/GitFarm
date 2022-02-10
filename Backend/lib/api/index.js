@@ -5,4 +5,4 @@ export { getDetailTotalCommitAllRepo } from "./GitHub/commits/today/detail/getDe
 export { getTotalCommitAllRepo } from "./GitHub/commits/total/getTotalCommitAllRepo.js";
 export { getMonthTotalCommitAllRepo } from "./GitHub/commits/year/index.js";
 export { getLanguagesData } from "./GitHub/language/index.js";
-export { getContinousCommitAllRepo } from "./GitHub/commits/continous/getContinousCommitAllRepo.js";
+export { getContinuousCommitAllRepo } from "./GitHub/commits/continuous/getContinuousCommitAllRepo.js";
