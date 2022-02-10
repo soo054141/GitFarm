@@ -12,7 +12,7 @@ import {
 import {
   FindByIdAndUpdate,
   FindValueByKey,
-} from "../../services/user.service.js";
+} from "../../services/users.service.js";
 import { ViewResponseJSON } from "../../controller/index.js";
 
 const router = express.Router();
