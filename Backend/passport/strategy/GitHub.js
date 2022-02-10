@@ -17,7 +17,7 @@ export default new GitHubStrategy(
   async (accessToken, refreshToken, profile, done) => {
     const { username } = profile;
     // eslint-disable-next-line no-underscore-dangle
-    const { id, email } = profile._json;
+    const { id, email, avatar_url: avatarUrl } = profile._json;
 
     const findUser = await User.findOne({ id });
     console.log("findUser", findUser);
@@ -26,6 +26,7 @@ export default new GitHubStrategy(
         id,
         email,
         username,
+        avatarUrl,
         accessToken,
       });
 

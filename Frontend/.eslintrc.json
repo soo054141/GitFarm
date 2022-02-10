@@ -1,33 +1,33 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true,
-        "jest/globals": true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest/globals": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "eslint-config-prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": ["plugin:react/recommended", "airbnb", "eslint-config-prettier"],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": ["react", "eslint-plugin-prettier"],
-    "settings": {
-        "import/ignore": [".css$", "node_modules/*"]
-    },
-    "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "indent": "off", // prettier에서 설정
-        "linebreak-style": 0, // 빌드 시 개행문자 관련
-        "quotes": ["error", "double"], // double: 가능하면 큰 따옴표를 사용한다.(기본값)
-        "semi": ["error", "always"], // always: 세미콜론이 유효한 모든 위치에 세미콜론을 사용해야 한다.
-        "prettier/prettier": [
-            "error", // Eslint 내에서 Prettier를 실행하는 규칙을 켠다.
-            {
-                "endOfLine": "auto"
-            }
-        ]
-    }
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "eslint-plugin-prettier"],
+  "settings": {
+    "import/ignore": [".css$", "node_modules/*"]
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "indent": "off", // prettier에서 설정
+    "linebreak-style": 0, // 빌드 시 개행문자 관련
+    "quotes": ["error", "double"], // double: 가능하면 큰 따옴표를 사용한다.(기본값)
+    "semi": ["error", "always"], // always: 세미콜론이 유효한 모든 위치에 세미콜론을 사용해야 한다.
+    "prettier/prettier": [
+      "error", // Eslint 내에서 Prettier를 실행하는 규칙을 켠다.
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  }
 }

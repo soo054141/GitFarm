@@ -1,13 +1,16 @@
 import React from "react";
-import Calender from "../../assets/icon/nav/calender_nav.svg";
-import Rranking from "../../assets/icon/nav/ranking_nav.svg";
-import Graph from "../../assets/icon/nav/graph_nav.svg";
-import Mypage from "../../assets/icon/nav/mypage_nav.svg";
+import { useLocation } from "react-router-dom";
+import Calender from "@/assets/icon/nav/calender_nav.svg";
+import Rranking from "@/assets/icon/nav/ranking_nav.svg";
+import Graph from "@/assets/icon/nav/graph_nav.svg";
+import Mypage from "@/assets/icon/nav/mypage_nav.svg";
 import { Link } from "react-router-dom";
 import * as Navs from "./style";
 
 export function Nav() {
-  return (
+  const location = useLocation();
+
+  return location.pathname !== "/" ? (
     <Navs.Container>
       <Navs.List>
         <Navs.Item>
@@ -21,7 +24,7 @@ export function Nav() {
           </Link>
         </Navs.Item>
         <Navs.Item>
-          <Link to="/">
+          <Link to="/main">
             <Navs.Home />
           </Link>
         </Navs.Item>
@@ -37,5 +40,5 @@ export function Nav() {
         </Navs.Item>
       </Navs.List>
     </Navs.Container>
-  );
+  ) : null;
 }

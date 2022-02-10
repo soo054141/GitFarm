@@ -1,1 +1,7 @@
-node_modules / package - lock.json;
+node_modules
+*.json
+package.json
+babel.config.json
+jest.config.json
+.eslintrc.json
+

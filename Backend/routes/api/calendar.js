@@ -1,11 +1,10 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
-import {
-  getTotalCommit,
-  getTodayCommit,
-  getContinousCommitDays,
-} from "../../lib/api/GitHub.js";
+import { getTotalCommitAllRepo } from "../../lib/api/GitHub/getTotalCommitAllRepo.js";
+import { getTodayCommitAllRepo } from "../../lib/api/GitHub/getTodayCommitAllRepo.js";
+import { getContinousCommitAllRepo } from "../../lib/api/GitHub/getContinousCommitAllRepo.js";
+import { getCommitMessageAllRepo } from "../../lib/api/GitHub/getCommitMessageAllRepo.js";
 
 const router = express.Router();
 
@@ -23,13 +22,18 @@ export default (app) => {
     }),
     async (req, res) => {
       const { user } = req;
-      const totalCommit = await getTotalCommit(user);
-      console.log("totalCommit =", totalCommit);
+      const totalCommitAllRepo = await getTotalCommitAllRepo(user);
+      console.log("totalCommitAllRepo=", totalCommitAllRepo);
 
-      const todayCommit = await getTodayCommit(user);
+      const todayCommit = await getTodayCommitAllRepo(user);
+      console.log("todayCommitAllRepo=", todayCommit);
 
-      const continousCommits = await getContinousCommitDays(user);
-      console.log(continousCommits);
+      const continousCommit = await getContinousCommitAllRepo(user);
+      console.log("continousCommitAllRepo=", continousCommit);
+
+      const commitMessage = await getCommitMessageAllRepo(user);
+      console.log("commitMessageAllRepo=", commitMessage);
+
       res.json({ msg: "calender 페이지입니다." });
     },
   );

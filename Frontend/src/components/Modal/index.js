@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Btn } from "../Btn";
-import { Input } from "../Input";
+import { Btn } from "../../components/Btn";
 import {
   ModalContainer,
   Title,
@@ -30,14 +29,14 @@ export function Modal({ children, setOpenModal, title, twoBtn }) {
   };
   const clickOutsideHandler = ({ target }) => {
     if (!modalElement.current.contains(target)) {
-      setOpenModal(false);
+      closeModalHandler();
     }
   };
 
   return (
     <ModalBackground onClick={clickOutsideHandler}>
       <ModalContainer ref={modalElement}>
-        <Title>{title}</Title>
+        {title && <Title>{title}</Title>}
         <Content>{children}</Content>
         {twoBtn ? (
           <BtnWrapper>

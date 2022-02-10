@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { SettingItem } from "../../components/MyPage/SettingItem";
-import { Container } from "./../../components/Container/style";
-import NextArrow from "../../assets/icon/next-arrow.svg";
-import { Logout } from "./../../components/ModalTypes/Logout";
-import { DeleteAccount } from "./../../components/ModalTypes/DeleteAccount";
+
+import { SettingItem } from "./../myPage/SettingItem/index";
+import { Container } from "@/components/Container/style";
+import NextArrow from "@/assets/icon/next-arrow.svg";
+import { LogoutModal } from "./LogoutModal";
+import { DeleteAccountModal } from "./DeleteAccountModal";
 import * as Settings from "./style";
 
 export function Setting() {
-  const [openModal, setOpenModal] = useState(false);
-
-  const ModalOpenHandler = () => {
-    console.log("클릭");
-    setOpenModal(true);
+  const [openLogoutModal, setOpenLogoutModal] = useState(false);
+  const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
+  const ModalLogoutOpenHandler = () => {
+    setOpenLogoutModal(true);
+  };
+  const ModalDeleteAccountOpenHandler = () => {
+    setOpenDeleteAccountModal(true);
   };
 
   return (
@@ -23,16 +26,18 @@ export function Setting() {
           <SettingItem
             subTitle="계정 로그아웃"
             content={<NextArrow />}
-            onClick={ModalOpenHandler}
+            onClick={ModalLogoutOpenHandler}
           />
-          {openModal && <Logout setOpenModal={setOpenModal} />}
+          {openLogoutModal && <LogoutModal setOpenModal={setOpenLogoutModal} />}
           <SettingItem
             subTitle="깃팜 회원 탈퇴"
             textColor="#6ABD8C"
             content={<NextArrow />}
-            onClick={ModalOpenHandler}
+            onClick={ModalDeleteAccountOpenHandler}
           />
-          {openModal && <DeleteAccount setOpenModal={setOpenModal} />}
+          {openDeleteAccountModal && (
+            <DeleteAccountModal setOpenModal={setOpenDeleteAccountModal} />
+          )}
         </Settings.ItemWrapper>
       </Settings.Wrapper>
     </Container>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { TitleText } from "./style";
-import { CommitGoal } from "../../components/CommitGoal";
-import { Container } from "../../components/Container/style";
-import { GoalInput } from "../../components/ModalTypes/GoalInput";
+import { CommitGoal } from "./CommitGoal";
+import { Container } from "@/components/Container/style";
+import { GoalInputModal } from "./GoalInputModal";
 
 export function GoalSetting() {
   const [openModal, setOpenModal] = useState(false);
@@ -14,7 +14,7 @@ export function GoalSetting() {
     <Container>
       <TitleText>목표 설정</TitleText>
       <CommitGoal onClick={ModalOpenHandler} />
-      {openModal && <GoalInput setOpenModal={setOpenModal} />}
+      {openModal && <GoalInputModal setOpenModal={setOpenModal} />}
     </Container>
   );
 }

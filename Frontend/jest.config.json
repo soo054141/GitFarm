@@ -1,3 +1,10 @@
 {
-    "testEnvironment": "jsdom"
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "@/(.*)": "<rootDir>/src/$1"
+  },
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.svg$": "<rootDir>/svgTransform.js"
+  }
 }

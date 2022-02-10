@@ -16,13 +16,17 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    avatarUrl: {
+      type: String,
+      required: true,
+    },
     accessToken: {
       type: String,
       required: true,
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   },
 );
 
