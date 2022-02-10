@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const InputWrapper = styled.input.attrs((props) => ({
-  type: "number",
   placeholder: props.placeholder,
 }))`
   background-color: #f2f2f2;

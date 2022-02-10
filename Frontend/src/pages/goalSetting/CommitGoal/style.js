@@ -9,7 +9,12 @@ export const Container = styled.div`
   position: relative;
   cursor: pointer;
   & > :nth-child(2) {
-    margin-top: 10px;
+    margin-top: 20px;
+    width: 260px;
+  }
+
+  & + & {
+    margin-top: 60px;
   }
 `;
 
@@ -25,7 +30,11 @@ export const Description = styled.p``;
 export const IconWrapper = styled.div`
   position: absolute;
   left: 231px;
-  top: 40px;
+  top: 18px;
+
+  .fighting {
+    width: 100px;
+  }
 `;
 
 export const GoalNum = styled.p`
@@ -37,5 +46,5 @@ export const GoalNum = styled.p`
     props.length === 1
       ? "277px"
       : (props) => (props.length === 2 ? "268px" : "264px")};
-  top: 75px;
+  top: 50px;
 `;
