@@ -130,27 +130,17 @@ export default (app) => {
 
     try {
       const result = await getDetailTotalCommitAllRepo(user);
-      await Commit.findByIdAndUpdate(
-        _id,
-        {
-          $set: {
-            author: _id,
-            todayDetail: result,
-          },
-        },
-        { upsert: true },
-      ).populate({ path: "author" });
+      await FindByIdAndUpdate(_id, "todayDetail", result);
 
       res.json({
         success: true,
         message: result,
       });
     } catch (err) {
-      const key = "todayDetail";
-      const loadDB = await Commit.find({ id: _id });
+      const result = await FindValueByKey(_id, "todayDetail");
       res.json({
         success: false,
-        message: loadDB[key],
+        message: result,
       });
     }
   });
