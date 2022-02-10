@@ -1,14 +1,13 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { getAllRepoName } from "../Octokit/utils.js";
-import { getTotalCommitEachRepo } from "./getTotalCommitEachRepo.js";
+import { getAllRepoName } from "../../../Octokit/utils.js";
+import { getTodayTotalCommitEachRepo } from "./getTodayTotalCommitEachRepo.js";
 
-export const getTotalCommitAllRepo = async (user) => {
+export const getTodayTotalCommitAllRepo = async (user) => {
   const repoName = await getAllRepoName(user);
   const status = await Promise.allSettled(
     repoName.map((name) => {
-      const commit = getTotalCommitEachRepo(user, name);
-      return commit;
+      const commit = getTodayTotalCommitEachRepo(user, name);
       // commit
       //   .then((res) => {
       //     console.log(`repo: ${name}, commit: ${res}`);
@@ -16,6 +15,7 @@ export const getTotalCommitAllRepo = async (user) => {
       //   .catch((err) =>
       //     console.log(`err repo= ${name}, err message = ${err.message}`),
       //   );
+      return commit;
     }),
   );
 

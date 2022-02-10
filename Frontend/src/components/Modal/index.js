@@ -8,7 +8,13 @@ import {
   ModalBackground,
 } from "./style";
 
-export function Modal({ children, setOpenModal, title, twoBtn }) {
+export function Modal({
+  children,
+  setOpenModal,
+  title,
+  twoBtn,
+  confirmHandler,
+}) {
   const modalElement = useRef();
 
   useEffect(() => {
@@ -43,7 +49,7 @@ export function Modal({ children, setOpenModal, title, twoBtn }) {
             <Btn color="gray" onClick={closeModalHandler}>
               취소
             </Btn>
-            <Btn>확인</Btn>
+            <Btn onClick={confirmHandler}>확인</Btn>
           </BtnWrapper>
         ) : (
           <BtnWrapper>

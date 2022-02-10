@@ -1,7 +1,7 @@
 import React from "react";
 import * as MonthYearBtns from "./style";
 
-export function MonthYearBtn({ isClick, handlYearBtn, handleMonthBtn }) {
+function MonthYearBtn({ isClick, handlYearBtn, handleMonthBtn }) {
   return (
     <MonthYearBtns.Container>
       <MonthYearBtns.MonthWrapper isClick={isClick} onClick={handleMonthBtn}>
@@ -13,3 +13,5 @@ export function MonthYearBtn({ isClick, handlYearBtn, handleMonthBtn }) {
     </MonthYearBtns.Container>
   );
 }
+
+export default React.memo(MonthYearBtn);
