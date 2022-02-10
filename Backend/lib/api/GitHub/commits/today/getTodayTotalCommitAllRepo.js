@@ -8,13 +8,6 @@ export const getTodayTotalCommitAllRepo = async (user) => {
   const status = await Promise.allSettled(
     repoName.map((name) => {
       const commit = getTodayTotalCommitEachRepo(user, name);
-      // commit
-      //   .then((res) => {
-      //     console.log(`repo: ${name}, commit: ${res}`);
-      //   })
-      //   .catch((err) =>
-      //     console.log(`err repo= ${name}, err message = ${err.message}`),
-      //   );
       return commit;
     }),
   );
