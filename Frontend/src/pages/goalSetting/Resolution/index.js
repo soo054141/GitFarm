@@ -1,6 +1,10 @@
 import React from "react";
-import { Description } from "@/components/Description";
-import { Container, Title, IconWrapper } from "../CommitGoal/style";
+import {
+  Container,
+  Title,
+  IconWrapper,
+  Description,
+} from "../CommitGoal/style";
 import FightingIcon1 from "@/assets/icon/fightings/fighting-1.svg";
 import FightingIcon2 from "@/assets/icon/fightings/fighting-2.svg";
 import FightingIcon3 from "@/assets/icon/fightings/fighting-3.svg";

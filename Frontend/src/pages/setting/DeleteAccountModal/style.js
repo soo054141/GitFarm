@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  margin-top: 20px;
   display: flex;
-  width: 100%;
-  margin-bottom: 10px;
+  align-items: center;
+
   svg {
-    margin-left: 20px;
-    margin-top: -20px;
     width: 80px;
   }
+`;
+
+export const ScoreText = styled.div`
+  width: 210px;
+  font-size: 16px;
+  margin: 20px 0;
 `;

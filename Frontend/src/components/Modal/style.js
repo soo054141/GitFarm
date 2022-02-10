@@ -30,8 +30,7 @@ export const Title = styled.h1`
   font-size: 18px;
   font-weight: 600;
   color: ${(props) => props.theme.darkGray};
-  margin-top: 18px;
-  margin-left: 25px;
+  margin: 25px 0px 0px 25px;
 `;
 export const Content = styled.div`
   display: flex;

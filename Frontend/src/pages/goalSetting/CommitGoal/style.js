@@ -25,7 +25,12 @@ export const Title = styled.p`
   margin-top: 37px;'
 `;
 
-export const Description = styled.p``;
+export const Description = styled.p`
+  margin-left: 25px;
+  color: ${(props) => props.theme.lightGray};
+  line-height: 18px;
+  font-size: ${(props) => (props.big ? "16px" : "12px")};
+`;
 
 export const IconWrapper = styled.div`
   position: absolute;

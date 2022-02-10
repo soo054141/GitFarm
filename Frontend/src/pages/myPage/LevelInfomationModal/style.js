@@ -8,6 +8,10 @@ export const LevelWrapper = styled.div`
     width: 50px;
     height: 50px;
   }
+
+  &:last-child {
+    padding-bottom: 20px;
+  }
 `;
 export const IconWrapper = styled.div`
   display: flex;

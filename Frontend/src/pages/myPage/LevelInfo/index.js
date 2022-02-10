@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Level from "./style";
 import LevelImg from "@/assets/icon/level/level1.svg";
-import InfoImg from "@/assets/icon/info.svg";
+import InfoIcon from "@/assets/icon/info.svg";
 import { LevelInfomationModal } from "../LevelInfomationModal";
 
 export function LevelInfo({ level, score }) {
@@ -19,7 +19,7 @@ export function LevelInfo({ level, score }) {
       <Level.MyLevelInfo>
         <Level.Content>
           <Level.Title>나의 레벨</Level.Title>
-          <InfoImg onClick={modalOpenHandler} />
+          <InfoIcon onClick={modalOpenHandler} />
         </Level.Content>
         <Level.Content>
           <Level.MyLevel>{level}</Level.MyLevel>
