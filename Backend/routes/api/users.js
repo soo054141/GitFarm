@@ -1,12 +1,13 @@
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
-import { getLanguagesData } from "../../lib/api/GitHub/language/index.js";
-import { getDetailTotalCommitAllRepo } from "../../lib/api/GitHub/commits/today/detail/getDetailTotalRepo.js";
-import { getTodayTotalCommitAllRepo } from "../../lib/api/GitHub/commits/today/getTodayTotalCommitAllRepo.js";
-import { getTotalCommitAllRepo } from "../../lib/api/GitHub/commits/total/getTotalCommitAllRepo.js";
-import { getMonthTotalCommitAllRepo } from "../../lib/api/GitHub/commits/year/index.js";
 import { User, Commit } from "../../model/index.js";
+import {
+  getDetailTotalCommitAllRepo,
+  getLanguagesData,
+  getMonthTotalCommitAllRepo,
+  getTotalCommitAllRepo,
+} from "../../lib/api/index.js";
 
 const router = express.Router();
 
@@ -201,6 +202,7 @@ export default (app) => {
     const { user, params } = req;
     const { year } = params;
     const result = await getMonthTotalCommitAllRepo(user, year);
+    console.log(result);
     res.json({
       success: true,
       message: "연도별 커밋을 보여줍니다.",
