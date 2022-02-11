@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 import { getAllRepoName } from "../../../Octokit/utils.js";
-import { getContinuousCommitEachRepo } from "./getContinuousCommitEachRepo.js";
+import { getPullsEachRepo } from "./getPullsEachRepo.js";
 
-export const getContinuousCommitAllRepo = async (user) => {
+export const getPullsAllRepo = async (user) => {
   const repoName = await getAllRepoName(user);
   const status = await Promise.allSettled(
     repoName.map((name) => {
-      const commit = getContinuousCommitEachRepo(user, name);
-      return commit;
+      const pulls = getPullsEachRepo(user, name);
+      return pulls;
     }),
   );
 
@@ -16,5 +16,9 @@ export const getContinuousCommitAllRepo = async (user) => {
     .filter((result) => result.status === "fulfilled")
     .map((res) => res.value);
 
-  return Math.max(...fulfilledValue);
+  const totalPullsAfterRegister = fulfilledValue.reduce(
+    (acc, cur) => acc + cur,
+  );
+
+  return totalPullsAfterRegister;
 };
