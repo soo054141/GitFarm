@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArrowWrapper from "@/components/DateController/style";
+import { ArrowWrapper } from "@/components/DateController/style";
 import RightArrow from "@/assets/icon/right-arrow.svg";
 import * as Account from "./style";
 

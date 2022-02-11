@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Container from "@/components/Container/style";
+import { Container } from "@/components/Container/style";
 import CommitGoal from "./CommitGoal";
 import Resolution from "./Resolution";
 import GoalInputModal from "./GoalInputModal";
-import TitleText from "./style";
+import { TitleText } from "./style";
 
 function GoalSetting() {
   const [randomNum, setRandomNum] = useState(undefined);

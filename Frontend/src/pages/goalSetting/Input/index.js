@@ -1,5 +1,5 @@
 import React from "react";
-import InputWrapper from "./style";
+import { InputWrapper } from "./style";
 
 function Input({ placeholder, type, onChangeCallback }) {
   const inputType = type === 0 ? "number" : "text";

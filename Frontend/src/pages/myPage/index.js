@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "@/components/Container/style";
+import { Container } from "@/components/Container/style";
 import StartedDayCount from "./StartedDayCount";
 import LevelInfo from "./LevelInfo";
 import CommitCount from "./CommitCount";

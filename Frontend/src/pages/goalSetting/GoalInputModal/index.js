@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "@/components/Modal";
-import Wrapper from "./style";
+import { Wrapper } from "./style";
 import Input from "../Input";
 
 function GoalInputModal({ setOpenModal, modalType }) {

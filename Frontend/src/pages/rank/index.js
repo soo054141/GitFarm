@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "@/components/Container/style";
+import { Container } from "@/components/Container/style";
 import RankTitle from "./RankTitle";
 import MyRankComponent from "./MyRank";
 import OtherUserRanks from "./OtherUserRanks";

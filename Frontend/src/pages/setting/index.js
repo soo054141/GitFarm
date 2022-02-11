@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Container from "@/components/Container/style";
+import { Container } from "@/components/Container/style";
 import NextArrow from "@/assets/icon/next-arrow.svg";
 import LogoutModal from "./LogoutModal";
 import DeleteAccountModal from "./DeleteAccountModal";
