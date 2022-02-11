@@ -1,4 +1,13 @@
+/* eslint-disable import/extensions */
 import mongoose from "mongoose";
+import { UTC_TO_KST } from "../../utils/date.js";
+
+const config = {
+  timestamps: {
+    currentTime: () => Math.floor(Date.now() + UTC_TO_KST),
+  },
+  versionKey: false,
+};
 
 const { Schema } = mongoose;
 
@@ -25,10 +34,7 @@ const UserSchema = new Schema(
       required: true,
     },
   },
-  {
-    timestamps: true,
-    versionKey: false,
-  },
+  config,
 );
 
 export default UserSchema;
