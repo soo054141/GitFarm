@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import * as Level from "./style";
 import LevelImg from "@/assets/icon/level/level1.svg";
 import InfoIcon from "@/assets/icon/info.svg";
-import { LevelInformationModal } from "../LevelInformationModal";
+import * as Level from "./style";
+import LevelInformationModal from "../LevelInformationModal";
 
-export function LevelInfo({ level, score }) {
+function LevelInfo({ level, score }) {
   const [openModal, setOpenModal] = useState(false);
 
   const modalOpenHandler = () => {
@@ -34,3 +34,5 @@ LevelInfo.defaultProps = {
   level: "씨앗",
   score: "30",
 };
+
+export default LevelInfo;

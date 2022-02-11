@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useRef } from "react";
+import PropTypes from "prop-types";
 import SeedIcon from "../../assets/icon/header/seeds.svg";
 import * as Badges from "./style";
 import Lock from "../../assets/icon/lock.svg";
 import * as Icon from "../../components/Badge/BadgesIconComponents";
+
+function Badge({ badgesType, userBadgesId }) {
+  const setBadgesTypesUser = useRef(badgesType);
+  badgesType.forEach((badges) => {
+    if (userBadgesId.indexOf(badges.id) > -1) {
+      // element.userHaveBadge = true;
+      const newBadge = [...badgesType, { ...badges, userHaveBadge: true }];
+      setBadgesTypesUser(newBadge);
+    }
+  });
+
+  return (
+    <Badges.Container>
+      <Badges.IconWrapper>
+        <SeedIcon />
+      </Badges.IconWrapper>
+      <Badges.Text>열심히 커밋 하여 다양한 배지를 모아보세요!</Badges.Text>
+      <Badges.BadgeCollections>
+        {badgesType.map((badge) => (
+          <Badges.PerBadge key={`${badge.id}-${badge.title}`}>
+            {badge.userHaveBadge ? badge.icon : <Lock />}
+            <p>{badge.title}</p>
+          </Badges.PerBadge>
+        ))}
+      </Badges.BadgeCollections>
+    </Badges.Container>
+  );
+}
+
 Badge.defaultProps = {
   badgesType: [
     {
@@ -77,26 +107,9 @@ Badge.defaultProps = {
   userBadgesId: [0, 2, 6, 7, 12, 14, 17],
 };
 
-export function Badge({ badgesType, userBadgesId }) {
-  badgesType.forEach((element) => {
-    if (userBadgesId.indexOf(element.id) > -1) {
-      element.userHaveBadge = true;
-    }
-  });
-  return (
-    <Badges.Container>
-      <Badges.IconWrapper>
-        <SeedIcon />
-      </Badges.IconWrapper>
-      <Badges.Text>열심히 커밋 하여 다양한 배지를 모아보세요!</Badges.Text>
-      <Badges.BadgeCollections>
-        {badgesType.map((badge, idx) => (
-          <Badges.PerBadge key={`${badge.id}-${idx}-${badge.title}`}>
-            {badge.userHaveBadge ? badge.icon : <Lock />}
-            <p>{badge.title}</p>
-          </Badges.PerBadge>
-        ))}
-      </Badges.BadgeCollections>
-    </Badges.Container>
-  );
-}
+Badge.propTypes = {
+  badgesType: PropTypes.arrayOf(PropTypes.Object),
+  userBadgesId: PropTypes.number,
+};
+
+export default Badge;

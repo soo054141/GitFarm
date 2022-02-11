@@ -1,12 +1,10 @@
 import React from "react";
-import { Modal } from "@/components/Modal";
-import { Description } from "@/components/Description";
-import {
-  Wrapper,
-  ScoreText,
-} from "@/pages/setting/DeleteAccountModal/style.js";
+import Modal from "@/components/Modal";
+import Description from "@/components/Description";
 import WinkIcon from "@/assets/icon/wink-face.svg";
-export function ScoreInformationModal({ setOpenModal }) {
+import { Wrapper, ScoreText } from "@/pages/setting/DeleteAccountModal/style";
+
+function ScoreInformationModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="점수 산정 기준">
       <Wrapper>
@@ -25,3 +23,5 @@ export function ScoreInformationModal({ setOpenModal }) {
     </Modal>
   );
 }
+
+export default ScoreInformationModal;

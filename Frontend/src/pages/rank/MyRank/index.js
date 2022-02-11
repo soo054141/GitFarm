@@ -1,7 +1,7 @@
 import React from "react";
 import * as MyRanks from "./style";
 
-export function MyRankComponent({ ranking, id, point }) {
+function MyRankComponent({ ranking, id, point }) {
   return (
     <MyRanks.Container>
       <h1>나의 순위</h1>
@@ -16,3 +16,4 @@ export function MyRankComponent({ ranking, id, point }) {
     </MyRanks.Container>
   );
 }
+export default MyRankComponent;

@@ -1,15 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as Controller from "./style";
 import LeftArrow from "../../assets/icon/left-arrow.svg";
 import RightArrow from "../../assets/icon/right-arrow.svg";
 
-export function DateController({
-  date,
-  clickLeft,
-  clickRight,
-  goToday,
-  month,
-}) {
+function DateController({ date, clickLeft, clickRight, goToday, month }) {
   return (
     <Controller.Container>
       <Controller.ArrowWrapper onClick={clickLeft}>
@@ -27,3 +22,11 @@ export function DateController({
     </Controller.Container>
   );
 }
+DateController.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+  clickLeft: PropTypes.func.isRequired,
+  clickRight: PropTypes.func.isRequired,
+  goToday: PropTypes.func.isRequired,
+  month: PropTypes.bool.isRequired,
+};
+export default DateController;

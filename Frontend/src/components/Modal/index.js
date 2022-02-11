@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Btn } from "../../components/Btn";
+import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import Btn from "../Btn";
 import {
   ModalContainer,
   Title,
@@ -8,13 +9,7 @@ import {
   ModalBackground,
 } from "./style";
 
-export function Modal({
-  children,
-  setOpenModal,
-  title,
-  twoBtn,
-  confirmHandler,
-}) {
+function Modal({ children, setOpenModal, title, twoBtn, confirmHandler }) {
   const modalElement = useRef();
 
   useEffect(() => {
@@ -62,3 +57,16 @@ export function Modal({
     </ModalBackground>
   );
 }
+Modal.defaultProps = {
+  twoBtn: false,
+  title: "",
+  confirmHandler: () => {},
+};
+Modal.propTypes = {
+  children: PropTypes.element.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  twoBtn: PropTypes.bool,
+  confirmHandler: PropTypes.func,
+};
+export default Modal;

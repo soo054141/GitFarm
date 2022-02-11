@@ -1,7 +1,7 @@
 import React from "react";
 import * as CommitInfo from "./style";
 
-export function CommitCount() {
+function CommitCount() {
   return (
     <CommitInfo.Wrapper>
       <CommitInfo.Counter>
@@ -16,3 +16,5 @@ export function CommitCount() {
     </CommitInfo.Wrapper>
   );
 }
+
+export default CommitCount;

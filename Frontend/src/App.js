@@ -1,18 +1,17 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-import { Header } from "./components/Header";
-import { Nav } from "./components/Nav";
-import { Login } from "./pages/login";
-import { Badge } from "./pages/badge";
-import { Graph } from "./pages/graph";
-import { GoalSetting } from "./pages/goalSetting";
-import { Main } from "./pages/main";
-import { MonthlyCalender } from "./pages/monthlyCalender";
-import { RankPage } from "./pages/rank";
-import { Setting } from "./pages/setting";
-import { MyPage } from "./pages/myPage";
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import Login from "./pages/login";
+import Badge from "./pages/badge";
+import Graph from "./pages/graph";
+import GoalSetting from "./pages/goalSetting";
+import Main from "./pages/main";
+import MonthlyCalender from "./pages/monthlyCalender";
+import RankPage from "./pages/rank";
+import Setting from "./pages/setting";
+import MyPage from "./pages/myPage";
 
 function App() {
   return (

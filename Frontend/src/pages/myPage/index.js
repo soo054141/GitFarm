@@ -1,11 +1,11 @@
 import React from "react";
 import { Container } from "@/components/Container/style";
-import { StartedDayCount } from "./StartedDayCount";
-import { LevelInfo } from "./LevelInfo";
-import { CommitCount } from "./CommitCount";
-import { AccountSettings } from "./AccountSettings";
+import StartedDayCount from "./StartedDayCount";
+import LevelInfo from "./LevelInfo";
+import CommitCount from "./CommitCount";
+import AccountSettings from "./AccountSettings";
 
-export function MyPage() {
+function MyPage() {
   return (
     <Container>
       <StartedDayCount />
@@ -15,3 +15,5 @@ export function MyPage() {
     </Container>
   );
 }
+
+export default MyPage;

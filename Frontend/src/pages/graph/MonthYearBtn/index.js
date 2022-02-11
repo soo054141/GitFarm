@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as MonthYearBtns from "./style";
 
 function MonthYearBtn({ isClick, handlYearBtn, handleMonthBtn }) {
@@ -13,5 +14,15 @@ function MonthYearBtn({ isClick, handlYearBtn, handleMonthBtn }) {
     </MonthYearBtns.Container>
   );
 }
+
+MonthYearBtn.propTypes = {
+  isClick: PropTypes.bool,
+  handlYearBtn: PropTypes.func.isRequired,
+  handleMonthBtn: PropTypes.func.isRequired,
+};
+
+MonthYearBtn.defaultProps = {
+  isClick: true,
+};
 
 export default React.memo(MonthYearBtn);

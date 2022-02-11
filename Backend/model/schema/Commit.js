@@ -13,6 +13,10 @@ const CommitSchema = new Schema(
       type: Number,
       default: 0,
     },
+    recent: {
+      type: [[Number]],
+      default: [0, 0, 0],
+    },
     today: {
       type: Number,
       default: 0,

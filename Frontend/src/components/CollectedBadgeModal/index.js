@@ -1,27 +1,11 @@
 import React from "react";
-import { Description } from "@/components";
-import { Modal } from "@/components";
-import { Wrapper } from "./style";
 import * as Icon from "@/components/Badge/BadgesIconComponents";
+import PropTypes from "prop-types";
+import Description from "@/components/Description";
+import Modal from "@/components/Modal";
+import Wrapper from "./style";
 
-CollectedBadgeModal.defaultProps = {
-  GainedBadges: [
-    {
-      id: 0,
-      title: "가입 후 첫 커밋 축하",
-      icon: Icon.firstCommit,
-      userHaveBadge: false,
-    },
-    {
-      id: 2,
-      title: "2주 연속 커밋 달성",
-      icon: Icon.days14,
-      userHaveBadge: false,
-    },
-  ],
-};
-
-export function CollectedBadgeModal({ setOpenModal, GainedBadges }) {
+function CollectedBadgeModal({ setOpenModal, GainedBadges }) {
   return (
     <Modal setOpenModal={setOpenModal} title="배지 획득 안내">
       <Wrapper>
@@ -40,3 +24,33 @@ export function CollectedBadgeModal({ setOpenModal, GainedBadges }) {
     </Modal>
   );
 }
+
+CollectedBadgeModal.defaultProps = {
+  GainedBadges: [
+    {
+      id: 0,
+      title: "가입 후 첫 커밋 축하",
+      icon: Icon.firstCommit,
+      userHaveBadge: false,
+    },
+    {
+      id: 2,
+      title: "2주 연속 커밋 달성",
+      icon: Icon.days14,
+      userHaveBadge: false,
+    },
+  ],
+};
+
+CollectedBadgeModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+  GainedBadges: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      icon: PropTypes.element.isRequired,
+      userHaveBadge: PropTypes.bool.isRequired,
+    }),
+  ),
+};
+export default CollectedBadgeModal;

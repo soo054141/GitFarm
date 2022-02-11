@@ -35,7 +35,7 @@ export const Point = styled.div`
   color: ${(props) => props.theme.lightGray};
 `;
 
-export const newUser = styled.div`
+export const NewUser = styled.div`
   display: flex;
   align-items: center;
   padding: 7px 10px;
