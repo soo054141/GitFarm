@@ -115,10 +115,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/commits/total/year/:year
-  // @desc params 기준 월 별 총 commits
+  // @route GET api/users/commits/total/per/year/:year
+  // @desc :year 기준 매달 총 커밋 개수
   // @access Private
-  router.get("/commits/total/year/:year", async (req, res) => {
+  router.get("/commits/total/per/year/:year", async (req, res) => {
     const { user, params } = req;
     const { id } = user;
     const { year } = params;
