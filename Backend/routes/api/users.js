@@ -47,10 +47,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/commits/total
+  // @route GET api/users/repos/total/commits
   // @desc total commits
   // @access Private
-  router.get("/commits/total", async (req, res) => {
+  router.get("/repos/total/commits", async (req, res) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
