@@ -13,7 +13,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "eslint-plugin-prettier"],
+  "plugins": ["react", "jest", "eslint-plugin-prettier"],
   "settings": {
     "import/ignore": [".css$", "node_modules/*"]
   },
@@ -23,6 +23,11 @@
     "linebreak-style": 0, // 빌드 시 개행문자 관련
     "quotes": ["error", "double"], // double: 가능하면 큰 따옴표를 사용한다.(기본값)
     "semi": ["error", "always"], // always: 세미콜론이 유효한 모든 위치에 세미콜론을 사용해야 한다.
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
     "prettier/prettier": [
       "error", // Eslint 내에서 Prettier를 실행하는 규칙을 켠다.
       {
