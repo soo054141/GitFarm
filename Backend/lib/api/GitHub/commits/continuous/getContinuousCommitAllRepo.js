@@ -17,4 +17,4 @@ export const getContinuousCommitAllRepo = async (user) => {
     .map((res) => res.value);
 
   return Math.max(...fulfilledValue);
-};
+  };
