@@ -6,8 +6,8 @@ import {
   monthDays,
   monthPerYear,
   startOfDay,
-} from "../../../../../utils/date.js";
-import { getAllRepoName, getOctokitAuth } from "../../../Octokit/utils.js";
+} from "../../../../../../utils/date.js";
+import { getAllRepoName, getOctokitAuth } from "../../../../Octokit/utils.js";
 
 const getMonthTotalCommitEachRepo = async (user, repo, date) => {
   const { year, month, day } = date;
