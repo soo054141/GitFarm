@@ -19,6 +19,10 @@ const CommitSchema = new Schema(
       type: Number,
       default: 0,
     },
+    recent: {
+      type: [Number],
+      default: [0, 0, 0],
+    },
     today: {
       type: Number,
       default: 0,
@@ -33,6 +37,7 @@ const CommitSchema = new Schema(
           data: [{ date: String, message: String }],
         },
       ],
+
       default: [
         { info: { name: "", repo: "" }, data: [{ date: "", message: "" }] },
       ],
