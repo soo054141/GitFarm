@@ -9,6 +9,7 @@ import {
   getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
   getContinuousCommitAllRepo,
+  getRecentYearTotalCommit,
 } from "../../lib/api/index.js";
 import {
   FindByIdAndUpdate,
@@ -115,10 +116,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/commits/total/year/:year
-  // @desc params 기준 월 별 총 commits
+  // @route GET api/users/commits/total/per/year/:year
+  // @desc :year 기준 매달 총 커밋 개수
   // @access Private
-  router.get("/commits/total/year/:year", async (req, res) => {
+  router.get("/commits/total/per/year/:year", async (req, res) => {
     const { user, params } = req;
     const { id } = user;
     const { year } = params;
@@ -130,6 +131,24 @@ export default (app) => {
     } catch (err) {
       const result = await FindValueByKey(_id, "commitPerYear");
       ViewResponseJSON(res, false, "commitPerYear", result);
+    }
+  });
+
+  // @route GET api/users/commits/total/recent/year
+  // @desc 최근 3년 기준 연도별 총 커밋 개수
+  // @access Private
+  router.get("/commits/total/recent/year", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+
+    try {
+      const result = await getRecentYearTotalCommit(user);
+      await FindByIdAndUpdate(_id, "recent", result);
+      ViewResponseJSON(res, true, "lastThreeYear", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "recent");
+      ViewResponseJSON(res, false, "lastThreeYear", result);
     }
   });
 

@@ -5,11 +5,12 @@ import {
   fillZero,
   monthDays,
   monthPerYear,
+  RECENT_THREE_YEARS,
   startOfDay,
 } from "../../../../../utils/date.js";
 import { getAllRepoName, getOctokitAuth } from "../../../Octokit/utils.js";
 
-export const getMonthTotalCommitEachRepo = async (user, repo, date) => {
+const getMonthTotalCommitEachRepo = async (user, repo, date) => {
   const { year, month, day } = date;
   const convertMonth = fillZero(month + 1, 2, "0");
   const { username } = user;
@@ -28,7 +29,7 @@ export const getMonthTotalCommitEachRepo = async (user, repo, date) => {
   return commitNum;
 };
 
-export const getMonthTotalCommitAllRepo = async (user, year) => {
+const getMonthTotalCommitAllRepo = async (user, year) => {
   const monthes = Array.from({ length: monthPerYear + 1 }, () => 0);
   const repoName = await getAllRepoName(user);
 
@@ -65,5 +66,20 @@ export const getMonthTotalCommitAllRepo = async (user, year) => {
     });
   });
 
-  return monthes;
+  return [year, monthes];
+};
+
+export const getRecentYearTotalCommit = async (user) => {
+  const recentYearCommitData = await RECENT_THREE_YEARS.map(async (year) => {
+    const perYearCommits = await getMonthTotalCommitAllRepo(user, year);
+    const [RECENT_YEAR, commits] = perYearCommits;
+    const sumCommit = commits.reduce((acc, cur) => acc + cur);
+    return [RECENT_YEAR, sumCommit];
+  });
+
+  const response = await Promise.allSettled(recentYearCommitData);
+  const commitData = await response
+    .filter((item) => item.status === "fulfilled")
+    .map((item) => item.value);
+  return commitData;
 };
