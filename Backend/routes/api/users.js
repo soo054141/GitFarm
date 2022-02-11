@@ -9,6 +9,9 @@ import {
   getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
   getContinuousCommitAllRepo,
+  getIssuesAllRepo,
+  getCommitsAllRepo,
+  getPullsAllRepo,
   getRecentYearTotalCommit,
 } from "../../lib/api/index.js";
 import {
@@ -162,10 +165,81 @@ export default (app) => {
     try {
       const result = await getContinuousCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "continuous", result);
-      ViewResponseJSON(res, true, result);
+      ViewResponseJSON(res, true, "continuous", result);
     } catch (err) {
       const result = await FindValueByKey(_id, "continuous");
-      ViewResponseJSON(res, false, result);
+      ViewResponseJSON(res, false, "continuous", result);
+    }
+  });
+
+  // @route GET api/users/levels
+  // @desc user levels
+  // @access Private
+  router.get("/levels", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const commits = await getCommitsAllRepo(user);
+      const issues = await getIssuesAllRepo(user);
+      const pulls = await getPullsAllRepo(user);
+      const result = { commits, issues, pulls };
+      await FindByIdAndUpdate(_id, "levels", result);
+      ViewResponseJSON(res, true, "levels", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "levels");
+      ViewResponseJSON(res, false, "levels", result);
+    }
+  });
+
+  // @route GET api/users/levels/commits
+  // @desc user commits after register
+  // @access Private
+  router.get("/levels/commits", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = await getCommitsAllRepo(user);
+      await FindByIdAndUpdate(_id, "commits", result);
+      ViewResponseJSON(res, true, "commits", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "commits");
+      ViewResponseJSON(res, false, "commits", result);
+    }
+  });
+
+  // @route GET api/users/levels/issues
+  // @desc user issues after register
+  // @access Private
+  router.get("/levels/issues", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = await getIssuesAllRepo(user);
+      await FindByIdAndUpdate(_id, "issues", result);
+      ViewResponseJSON(res, true, "issues", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "issues");
+      ViewResponseJSON(res, false, "issues", result);
+    }
+  });
+
+  // @route GET api/users/levels/pulls
+  // @desc user pull requests after register
+  // @access Private
+  router.get("/levels/pulls", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = await getPullsAllRepo(user);
+      await FindByIdAndUpdate(_id, "pulls", result);
+      ViewResponseJSON(res, true, "pulls", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "pulls");
+      ViewResponseJSON(res, false, "pulls", result);
     }
   });
 };

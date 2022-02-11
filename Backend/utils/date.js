@@ -29,15 +29,6 @@ export const repoName = [
   "starbucks-recipe-project",
 ];
 export const monthPerYear = 12;
-export const UTC_SEOUL_OFFSET = 9;
-export const MILLISECOND_TO_SECOND = 1000;
-export const MINUTES_TO_SECOND = 60;
-export const HOUR_TO_MINUTES = 60;
-export const UTC_TO_KST =
-  UTC_SEOUL_OFFSET *
-  HOUR_TO_MINUTES *
-  MINUTES_TO_SECOND *
-  MILLISECOND_TO_SECOND;
 
 export function fillZero(target, targetLenth, padString) {
   const str = target.toString();
