@@ -9,7 +9,7 @@ import {
 } from "../../../../../utils/date.js";
 import { getAllRepoName, getOctokitAuth } from "../../../Octokit/utils.js";
 
-export const getMonthTotalCommitEachRepo = async (user, repo, date) => {
+const getMonthTotalCommitEachRepo = async (user, repo, date) => {
   const { year, month, day } = date;
   const convertMonth = fillZero(month + 1, 2, "0");
   const { username } = user;
