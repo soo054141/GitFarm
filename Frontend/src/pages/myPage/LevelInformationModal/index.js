@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Level1 from "@/assets/icon/level/level1.svg";
 import Level2 from "@/assets/icon/level/level2.svg";
 import Level3 from "@/assets/icon/level/level3.svg";
@@ -74,5 +75,9 @@ function LevelInformationModal({ setOpenModal }) {
     </Modal>
   );
 }
+
+LevelInformationModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+};
 
 export default LevelInformationModal;

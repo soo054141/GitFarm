@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import LevelImg from "@/assets/icon/level/level1.svg";
 import InfoIcon from "@/assets/icon/info.svg";
 import * as Level from "./style";
@@ -32,7 +33,12 @@ function LevelInfo({ level, score }) {
 
 LevelInfo.defaultProps = {
   level: "씨앗",
-  score: "30",
+  score: 30,
+};
+
+LevelInfo.propTypes = {
+  level: PropTypes.string,
+  score: PropTypes.number,
 };
 
 export default LevelInfo;

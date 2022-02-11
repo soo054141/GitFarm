@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as MyRanks from "./style";
 
 function MyRankComponent({ ranking, id, point }) {
@@ -16,4 +17,9 @@ function MyRankComponent({ ranking, id, point }) {
     </MyRanks.Container>
   );
 }
+MyRankComponent.propTypes = {
+  ranking: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  point: PropTypes.string.isRequired,
+};
 export default MyRankComponent;
