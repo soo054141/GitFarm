@@ -53,6 +53,6 @@ function Calender({ date }) {
 
 Calender.propTypes = {
   // TODO 고치기
-  date: PropTypes.instanceOf(Date),
+  date: PropTypes.instanceOf(Date).isRequired,
 };
 export default Calender;
