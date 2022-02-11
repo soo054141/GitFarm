@@ -1,16 +1,8 @@
 import React from "react";
-import { PieChart, Pie, Sector, Cell } from "recharts";
+import PropTypes from "prop-types";
+import { PieChart, Pie, Cell } from "recharts";
 import githubLangColors from "./github-lang-colors.json";
 import * as PieCharts from "./style";
-
-PieChartComponent.defaultProps = {
-  codeRatioArray: [
-    { name: "JavaScript", value: 44.53 },
-    { name: "HTML", value: 35.57 },
-    { name: "CSS", value: 13.27 },
-    { name: "TypeScript", value: 6.64 },
-  ],
-};
 
 function PieChartComponent({ codeRatioArray }) {
   const langColor = githubLangColors;
@@ -52,9 +44,9 @@ function PieChartComponent({ codeRatioArray }) {
             dataKey="value"
             isAnimationActive={false}
           >
-            {codeRatioArray.map((entry, index) => (
+            {codeRatioArray.map((index) => (
               <Cell
-                key={`cell-${index}`}
+                key={`cell-${it.name}-${it.value}`}
                 fill={COLORS[index % COLORS.length]}
               />
             ))}
@@ -64,5 +56,23 @@ function PieChartComponent({ codeRatioArray }) {
     </PieCharts.Container>
   );
 }
+
+PieChartComponent.propTypes = {
+  codeRatioArray: PropTypes.arrayOf(
+    PropTypes.objectOf({
+      name: PropTypes.string,
+      value: PropTypes.number,
+    }).isRequired,
+  ),
+};
+
+PieChartComponent.defaultProps = {
+  codeRatioArray: [
+    { name: "JavaScript", value: 44.53 },
+    { name: "HTML", value: 35.57 },
+    { name: "CSS", value: 13.27 },
+    { name: "TypeScript", value: 6.64 },
+  ],
+};
 
 export default React.memo(PieChartComponent);

@@ -1,6 +1,5 @@
 import React from "react";
-import * as LineGraphs from "./style";
-
+import PropTypes from "prop-types";
 import {
   LineChart,
   Line,
@@ -9,25 +8,9 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import * as LineGraphs from "./style";
 
-LineGraph.defaultProps = {
-  commitData: [
-    {
-      name: "2020",
-      commit: 200,
-    },
-    {
-      name: "2021",
-      commit: 15,
-    },
-    {
-      name: "2022",
-      commit: 704,
-    },
-  ],
-};
-
-export function LineGraph({ graphTitle, commitData }) {
+function LineGraph({ graphTitle, commitData }) {
   return (
     <LineGraphs.Container>
       <LineGraphs.Title>{graphTitle} 커밋 추이</LineGraphs.Title>
@@ -51,3 +34,33 @@ export function LineGraph({ graphTitle, commitData }) {
     </LineGraphs.Container>
   );
 }
+
+LineGraph.propTypes = {
+  graphTitle: PropTypes.string,
+  commitData: PropTypes.arrayOf(
+    PropTypes.objectOf({
+      name: PropTypes.string,
+      commit: PropTypes.number,
+    }).isRequired,
+  ),
+};
+
+LineGraph.defaultProps = {
+  graphTitle: "월간" || "연간",
+  commitData: [
+    {
+      name: "2020",
+      commit: 200,
+    },
+    {
+      name: "2021",
+      commit: 15,
+    },
+    {
+      name: "2022",
+      commit: 704,
+    },
+  ],
+};
+
+export default LineGraph;
