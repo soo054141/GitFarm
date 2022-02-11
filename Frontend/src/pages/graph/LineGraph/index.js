@@ -38,10 +38,10 @@ function LineGraph({ graphTitle, commitData }) {
 LineGraph.propTypes = {
   graphTitle: PropTypes.string,
   commitData: PropTypes.arrayOf(
-    PropTypes.objectOf({
+    PropTypes.shape({
       name: PropTypes.string,
       commit: PropTypes.number,
-    }).isRequired,
+    }),
   ),
 };
 

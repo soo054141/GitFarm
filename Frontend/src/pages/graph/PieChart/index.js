@@ -33,25 +33,27 @@ function PieChartComponent({ codeRatioArray }) {
       </PieCharts.Wrapper>
 
       <PieCharts.PieWrapper>
-        <PieChart width={200} height={200}>
-          <Pie
-            data={codeRatioArray}
-            cx="50%"
-            cy="50%"
-            innerRadius={40}
-            outerRadius={70}
-            fill="#8884d8"
-            dataKey="value"
-            isAnimationActive={false}
-          >
-            {codeRatioArray.map((index) => (
-              <Cell
-                key={`cell-${it.name}-${it.value}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
+        {codeRatioArray && (
+          <PieChart width={200} height={200}>
+            <Pie
+              data={codeRatioArray}
+              cx="50%"
+              cy="50%"
+              innerRadius={40}
+              outerRadius={70}
+              fill="#8884d8"
+              dataKey="value"
+              isAnimationActive={false}
+            >
+              {codeRatioArray.map((it, index) => (
+                <Cell
+                  key={`cell-${it.name}-${it.value}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        )}
       </PieCharts.PieWrapper>
     </PieCharts.Container>
   );
@@ -59,10 +61,10 @@ function PieChartComponent({ codeRatioArray }) {
 
 PieChartComponent.propTypes = {
   codeRatioArray: PropTypes.arrayOf(
-    PropTypes.objectOf({
-      name: PropTypes.string,
-      value: PropTypes.number,
-    }).isRequired,
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    }),
   ),
 };
 

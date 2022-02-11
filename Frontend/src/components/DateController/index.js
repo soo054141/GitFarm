@@ -24,9 +24,9 @@ function DateController({ date, clickLeft, clickRight, goToday, month }) {
 }
 DateController.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  clickLeft: PropTypes.number.isRequired,
-  clickRight: PropTypes.number.isRequired,
-  goToday: PropTypes.instanceOf(Date).isRequired,
-  month: PropTypes.instanceOf(Date).isRequired,
+  clickLeft: PropTypes.func.isRequired,
+  clickRight: PropTypes.func.isRequired,
+  goToday: PropTypes.func.isRequired,
+  month: PropTypes.bool.isRequired,
 };
 export default DateController;
