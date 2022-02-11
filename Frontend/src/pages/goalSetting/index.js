@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { TitleText } from "./style";
-import { CommitGoal } from "./CommitGoal";
-import { Container } from "@/components/Container/style";
-import { GoalInputModal } from "./GoalInputModal";
-import { Resolution } from "./Resolution";
+import Container from "@/components/Container/style";
+import CommitGoal from "./CommitGoal";
+import Resolution from "./Resolution";
+import GoalInputModal from "./GoalInputModal";
+import TitleText from "./style";
 
-export function GoalSetting() {
+function GoalSetting() {
   const [randomNum, setRandomNum] = useState(undefined);
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState(0);
@@ -34,3 +34,5 @@ export function GoalSetting() {
     </Container>
   );
 }
+
+export default GoalSetting;

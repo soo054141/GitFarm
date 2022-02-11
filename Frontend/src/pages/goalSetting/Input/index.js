@@ -1,7 +1,7 @@
 import React from "react";
-import { InputWrapper } from "./style";
+import InputWrapper from "./style";
 
-export function Input({ placeholder, type, onChangeCallback }) {
+function Input({ placeholder, type, onChangeCallback }) {
   const inputType = type === 0 ? "number" : "text";
 
   return (
@@ -12,3 +12,5 @@ export function Input({ placeholder, type, onChangeCallback }) {
     />
   );
 }
+
+export default Input;

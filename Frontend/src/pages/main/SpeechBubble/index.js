@@ -1,7 +1,7 @@
 import React from "react";
 import * as SpeechBubbles from "./style";
 
-export function SpeechBubble({ leftCommit }) {
+function SpeechBubble({ leftCommit }) {
   return (
     <SpeechBubbles.Container>
       <SpeechBubbles.Wrapper>
@@ -15,3 +15,5 @@ export function SpeechBubble({ leftCommit }) {
     </SpeechBubbles.Container>
   );
 }
+
+export default SpeechBubble;

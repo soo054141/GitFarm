@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ArrowWrapper from "@/components/DateController/style";
+import RightArrow from "@/assets/icon/right-arrow.svg";
 import * as Account from "./style";
-import { ArrowWrapper } from "../../../components/DateController/style";
-import RightArrow from "../../../assets/icon/right-arrow.svg";
 
-export function AccountSettings() {
+function AccountSettings() {
   return (
     <Account.Wrapper>
       <h1>Account Settings</h1>
@@ -28,3 +28,5 @@ export function AccountSettings() {
     </Account.Wrapper>
   );
 }
+
+export default AccountSettings;

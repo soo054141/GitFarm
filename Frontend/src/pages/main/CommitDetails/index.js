@@ -1,48 +1,11 @@
 import React, { useState } from "react";
-import * as CommitDetail from "./style";
 import InfoIcon from "@/assets/icon/info.svg";
 import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
 import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
-import { ScoreInformationModal } from "../ScoreInformationModal";
+import ScoreInformationModal from "../ScoreInformationModal";
+import * as CommitDetail from "./style";
 
-CommitDetails.defaultProps = {
-  score: 10,
-  totalCommit: 12,
-  commitsPerRepo: [
-    {
-      gitHubId: "GitHub-Id",
-      repoName: "repo-name1",
-      commitMessages: [
-        { message: "Add commit message", time: "22:12" },
-        { message: "Fix commit message", time: "21:04" },
-        { message: "Fix commit message", time: "20:23" },
-        { message: "Fix commit message", time: "19:32" },
-      ],
-    },
-    {
-      gitHubId: "GitHub-Id",
-      repoName: "repo-name2",
-      commitMessages: [
-        { message: "Add commit message", time: "22:30" },
-        { message: "Fix commit message", time: "21:44" },
-        { message: "Fix commit message", time: "20:39" },
-        { message: "Fix commit message", time: "19:24" },
-      ],
-    },
-    {
-      gitHubId: "GitHub-Id",
-      repoName: "repo-name3",
-      commitMessages: [
-        { message: "Add commit message", time: "22:11" },
-        { message: "Fix commit message", time: "21:22" },
-        { message: "Fix commit message", time: "20:33" },
-        { message: "Fix commit message", time: "19:44" },
-      ],
-    },
-  ],
-};
-
-export function CommitDetails({ score, totalCommit, commitsPerRepo }) {
+function CommitDetails({ score, totalCommit, commitsPerRepo }) {
   const [openModal, setOpenModal] = useState(false);
 
   const modalOpenHandler = () => {
@@ -118,3 +81,42 @@ export function CommitDetails({ score, totalCommit, commitsPerRepo }) {
     </CommitDetail.Container>
   );
 }
+
+CommitDetails.defaultProps = {
+  score: 10,
+  totalCommit: 12,
+  commitsPerRepo: [
+    {
+      gitHubId: "GitHub-Id",
+      repoName: "repo-name1",
+      commitMessages: [
+        { message: "Add commit message", time: "22:12" },
+        { message: "Fix commit message", time: "21:04" },
+        { message: "Fix commit message", time: "20:23" },
+        { message: "Fix commit message", time: "19:32" },
+      ],
+    },
+    {
+      gitHubId: "GitHub-Id",
+      repoName: "repo-name2",
+      commitMessages: [
+        { message: "Add commit message", time: "22:30" },
+        { message: "Fix commit message", time: "21:44" },
+        { message: "Fix commit message", time: "20:39" },
+        { message: "Fix commit message", time: "19:24" },
+      ],
+    },
+    {
+      gitHubId: "GitHub-Id",
+      repoName: "repo-name3",
+      commitMessages: [
+        { message: "Add commit message", time: "22:11" },
+        { message: "Fix commit message", time: "21:22" },
+        { message: "Fix commit message", time: "20:33" },
+        { message: "Fix commit message", time: "19:44" },
+      ],
+    },
+  ],
+};
+
+export default CommitDetails;

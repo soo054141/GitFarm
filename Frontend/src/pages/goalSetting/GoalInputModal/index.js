@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Modal } from "@/components/Modal";
-import { Wrapper } from "./style";
-import { Input } from "../Input";
+import Modal from "@/components/Modal";
+import Wrapper from "./style";
+import Input from "../Input";
 
-export function GoalInputModal({ setOpenModal, modalType }) {
+function GoalInputModal({ setOpenModal, modalType }) {
   const [value, setValue] = useState("");
   const [goal, setGoal] = useState(0);
   const [message, setMessage] = useState("");
@@ -37,7 +37,7 @@ export function GoalInputModal({ setOpenModal, modalType }) {
       <Modal
         setOpenModal={setOpenModal}
         title={content[modalType].title}
-        twoBtn={true}
+        twoBtn
         confirmHandler={confirmHandler}
       >
         <Input
@@ -49,3 +49,5 @@ export function GoalInputModal({ setOpenModal, modalType }) {
     </Wrapper>
   );
 }
+
+export default GoalInputModal;

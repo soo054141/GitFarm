@@ -1,9 +1,9 @@
 import React from "react";
+import Description from "@/components/Description";
+import Modal from "@/components/Modal";
 import { Wrapper } from "./style";
-import { Description } from "@/components/Description";
-import { Modal } from "@/components/Modal";
 
-export function LogoutModal({ setOpenModal }) {
+function LogoutModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="로그아웃" twoBtn={true}>
       <Wrapper>
@@ -12,3 +12,5 @@ export function LogoutModal({ setOpenModal }) {
     </Modal>
   );
 }
+
+export default LogoutModal;

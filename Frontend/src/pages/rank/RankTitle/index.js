@@ -1,7 +1,7 @@
 import React from "react";
 import * as RankTitleStyle from "./style";
 
-export function RankTitle() {
+function RankTitle() {
   return (
     <RankTitleStyle.Container>
       <p>깃팜 부농</p>
@@ -9,3 +9,5 @@ export function RankTitle() {
     </RankTitleStyle.Container>
   );
 }
+
+export default RankTitle;

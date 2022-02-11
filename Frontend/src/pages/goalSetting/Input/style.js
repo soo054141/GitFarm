@@ -1,3 +1,4 @@
+/* eslint-disable */
 import styled from "styled-components";
 
 export const InputWrapper = styled.input.attrs((props) => ({

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-
-import { SettingItem } from "./../myPage/SettingItem/index";
-import { Container } from "@/components/Container/style";
+import Container from "@/components/Container/style";
 import NextArrow from "@/assets/icon/next-arrow.svg";
-import { LogoutModal } from "./LogoutModal";
-import { DeleteAccountModal } from "./DeleteAccountModal";
+import LogoutModal from "./LogoutModal";
+import DeleteAccountModal from "./DeleteAccountModal";
+import SettingItem from "../myPage/SettingItem";
 import * as Settings from "./style";
 
-export function Setting() {
+function Setting() {
   const [openLogoutModal, setOpenLogoutModal] = useState(false);
   const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
   const ModalLogoutOpenHandler = () => {
@@ -43,3 +42,5 @@ export function Setting() {
     </Container>
   );
 }
+
+export default Setting;

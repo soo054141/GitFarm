@@ -1,8 +1,8 @@
 import React from "react";
 import * as FarmPictures from "./style";
 
-export function FarmPicture({ ratio }) {
-  const Render = () => {
+function FarmPicture({ ratio }) {
+  function Render() {
     return (
       <FarmPictures.Container>
         <FarmPictures.Default />
@@ -36,7 +36,8 @@ export function FarmPicture({ ratio }) {
         )}
       </FarmPictures.Container>
     );
-  };
+  }
 
   return Render();
 }
+export default FarmPicture;

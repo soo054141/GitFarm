@@ -1,7 +1,7 @@
 import React from "react";
 import { Wrapper, SubTitle, Content } from "./style";
 
-export function SettingItem({ subTitle, textColor, content, onClick }) {
+function SettingItem({ subTitle, textColor, content, onClick }) {
   return (
     <Wrapper onClick={onClick}>
       <SubTitle textColor={textColor}>{subTitle}</SubTitle>
@@ -15,3 +15,5 @@ SettingItem.defaultProps = {
   textColor: "#595959",
   content: "testId",
 };
+
+export default SettingItem;
