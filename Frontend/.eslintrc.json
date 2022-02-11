@@ -15,6 +15,7 @@
   },
   "plugins": ["react", "jest", "eslint-plugin-prettier"],
   "settings": {
+    "import/resolver": "webpack",
     "import/ignore": [".css$", "node_modules/*"]
   },
   "rules": {
