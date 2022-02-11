@@ -99,10 +99,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/languages
+  // @route GET api/users/repo/total/languages
   // @desc user별 languages
   // @access Private
-  router.get("/languages", async (req, res) => {
+  router.get("/repo/total/languages", async (req, res) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
