@@ -21,23 +21,14 @@ export const endOfDay = "T23:59:59Z";
 export const todaySince = `${today}${startOfDay}`;
 export const todayUntil = `${today}${endOfDay}`;
 // NOTE: test때는 두번째 monthDays 사용하기(API rate limit 방지)
-export const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-// export const monthDays = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+// export const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+export const monthDays = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 export const repoName = [
   "ci-cd-practice",
   "commento-assignment",
   "starbucks-recipe-project",
 ];
 export const monthPerYear = 12;
-export const UTC_SEOUL_OFFSET = 9;
-export const MILLISECOND_TO_SECOND = 1000;
-export const MINUTES_TO_SECOND = 60;
-export const HOUR_TO_MINUTES = 60;
-export const UTC_TO_KST =
-  UTC_SEOUL_OFFSET *
-  HOUR_TO_MINUTES *
-  MINUTES_TO_SECOND *
-  MILLISECOND_TO_SECOND;
 
 export function fillZero(target, targetLenth, padString) {
   const str = target.toString();

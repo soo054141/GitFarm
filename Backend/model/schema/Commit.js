@@ -1,11 +1,5 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
-import { UTC_TO_KST } from "../../utils/date.js";
-
-const config = {
-  timestamps: { currentTime: () => Math.floor(Date.now() + UTC_TO_KST) },
-  versionKey: false,
-};
 
 const { Schema } = mongoose;
 
@@ -58,7 +52,9 @@ const CommitSchema = new Schema(
       type: Number,
     },
   },
-  config,
+  {
+    timestamps: true,
+  },
 );
 
 export default CommitSchema;
