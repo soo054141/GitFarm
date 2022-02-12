@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as CommitInfo from "./style";
 
-function CommitCount({ total, continues }) {
+function CommitCount({ total, continuous }) {
   return (
     <CommitInfo.Wrapper>
       <CommitInfo.Counter>
@@ -12,7 +12,7 @@ function CommitCount({ total, continues }) {
       <CommitInfo.Divider />
       <CommitInfo.Counter>
         <CommitInfo.Title>Longest</CommitInfo.Title>
-        <CommitInfo.Count>{continues} days</CommitInfo.Count>
+        <CommitInfo.Count>{continuous} days</CommitInfo.Count>
       </CommitInfo.Counter>
     </CommitInfo.Wrapper>
   );
@@ -20,7 +20,7 @@ function CommitCount({ total, continues }) {
 
 CommitCount.propTypes = {
   total: PropTypes.number.isRequired,
-  continues: PropTypes.number.isRequired,
+  continuous: PropTypes.number.isRequired,
 };
 
 export default CommitCount;

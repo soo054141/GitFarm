@@ -10,7 +10,7 @@ function MyPage() {
   const [memberDate, setMemberDate] = useState(0);
   const [score, setScore] = useState(0);
   const [total, setTotal] = useState(0);
-  const [continues, setContinues] = useState(0);
+  const [continuous, setContinues] = useState(0);
 
   const dataFunc = async () => {
     const data = await api.getMyInfo();
@@ -20,7 +20,7 @@ function MyPage() {
       setMemberDate(user.memberDate);
       setScore(user.score);
       setTotal(user.total);
-      setContinues(user.continues);
+      setContinues(user.continuous);
     }
   };
 
@@ -32,7 +32,7 @@ function MyPage() {
     <Container>
       <StartedDayCount memberDate={memberDate} />
       <LevelInfo score={score} />
-      <CommitCount total={total} continues={continues} />
+      <CommitCount total={total} continuous={continuous} />
       <AccountSettings />
     </Container>
   );

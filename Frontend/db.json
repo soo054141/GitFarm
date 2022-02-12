@@ -21,7 +21,7 @@
     "mypage": {
         "total": 1234,
         "score": 89,
-        "continues": 31,  
+        "continuous": 31,  
         "memberDate" : 12
     }
   }
