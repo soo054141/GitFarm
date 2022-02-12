@@ -38,6 +38,7 @@ import {
   getMyRank,
   getUserRank,
 } from "../../services/rank.service.js";
+import { setGoal } from "../../services/goal.service.js";
 
 const router = express.Router();
 
@@ -366,6 +367,18 @@ export default (app) => {
     } catch (err) {
       const result = getDefaultRank();
       ViewResponseJSON(res, false, "data", result);
+    }
+  });
+
+  // @route POST api/users/goal
+  // @desc set goal
+  // @access Private
+  router.post("/goal", async (req, res) => {
+    try {
+      const result = await setGoal(req);
+      res.status(201).json(result);
+    } catch (err) {
+      res.status(500).json("InternalServerError");
     }
   });
 };
