@@ -39,6 +39,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
+    "json-server": "^0.17.0",
     "mini-css-extract-plugin": "^2.5.3",
     "style-loader": "^3.3.1",
     "webpack": "^5.67.0",
@@ -46,6 +47,7 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
