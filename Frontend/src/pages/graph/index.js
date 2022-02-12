@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Container } from "@/components/Container/style";
 import DateController from "@/components/DateController";
+import * as api from "@/api";
 import LineGraph from "./LineGraph";
 import MonthYearBtn from "./MonthYearBtn";
 import PieChartComponent from "./PieChart";
@@ -11,6 +12,30 @@ function Graph() {
   const yearButton = false;
   const toDay = new Date();
   const [date, setDate] = useState(toDay);
+  const [clickButtonColor, setClickButtonColor] = useState(true);
+  const [checkMonth, setCheckMonth] = useState(false);
+  const [graphTitle, setGraphTitle] = useState("월간");
+
+  const [commitData, setCommitData] = useState([]);
+
+  // TODO:
+  const getCommitsPerMonth = async () => {
+    const year = date.toISOString().slice(0, 4);
+    const data = await api.getCommitsTotalPerMonth(year);
+    if (data.success) {
+      const commitPerYear = await data.commitPerYear;
+
+      const createData = commitPerYear.map((commitCnt, index) => ({
+        id: `${date.toISOString().slice(0, 2)}:${index + 1}`,
+        commit: commitCnt,
+      }));
+      setCommitData(createData);
+    }
+  };
+
+  useEffect(() => {
+    getCommitsPerMonth();
+  }, [date]);
 
   const changeDate = (value) => {
     const newDate = new Date(date.getFullYear() + value, date.getMonth());
@@ -30,10 +55,6 @@ function Graph() {
   const goToday = () => {
     setDate(toDay);
   };
-
-  const [clickButtonColor, setClickButtonColor] = useState(true);
-  const [checkMonth, setCheckMonth] = useState(false);
-  const [graphTitle, setGraphTitle] = useState("월간");
 
   const handleMonthBtn = useCallback(() => {
     if (monthButton) {
@@ -69,7 +90,7 @@ function Graph() {
         handlYearBtn={handlYearBtn}
         handleMonthBtn={handleMonthBtn}
       />
-      <LineGraph graphTitle={graphTitle} />
+      <LineGraph graphTitle={graphTitle} commitData={commitData} />
       <PieChartComponent />
     </Container>
   );
