@@ -387,16 +387,10 @@ export default (app) => {
   // @access Private
   router.post("/goal", async (req, res) => {
     try {
-      const result = await setGoal(req);
-      res.status(201).json({
-        success: true,
-        goal: result,
-      });
+      await setGoal(req);
+      res.status(201);
     } catch (err) {
-      res.status(500).json({
-        success: false,
-        message: "Internal Server Error!",
-      });
+      res.status(500);
     }
   });
 };
