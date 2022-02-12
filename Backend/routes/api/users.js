@@ -25,10 +25,10 @@ import {
   getScore,
 } from "../../services/levels.service.js";
 import {
-  FindByIdAndUpdateUser,
-  FindValueByKeyUser,
   getResolution,
+  setResolution,
   getMemberDate,
+  setMemberDate,
 } from "../../services/users.service.js";
 
 import { ViewResponseJSON } from "../../controller/index.js";
@@ -216,15 +216,24 @@ export default (app) => {
   // @desc user resolution
   // @access Private
   router.get("/resolution", async (req, res) => {
-    const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
     try {
-      const result = getResolution(user);
-      ViewResponseJSON(res, true, "mypage", result);
+      const result = await getResolution(req);
+      ViewResponseJSON(res, true, "resolution", result);
     } catch (err) {
-      const result = await FindValueByKey(_id, "resolution");
+      const result = await getResolution(req);
       ViewResponseJSON(res, false, "resolution", result);
+    }
+  });
+
+  // @route POST api/users/resolution
+  // @desc user resolution
+  // @access Private
+  router.post("/resolution", async (req, res) => {
+    try {
+      await setResolution(req);
+      res.status(201);
+    } catch (err) {
+      res.status(500);
     }
   });
 
@@ -253,7 +262,7 @@ export default (app) => {
       await FindByIdAndUpdate(_id, "continuous", continuous);
 
       const memberDate = getMemberDate(user);
-      await FindByIdAndUpdateUser(_id, "memberDate", memberDate);
+      await setMemberDate(req, memberDate);
 
       const mypage = { total, score, continuous, memberDate };
 
@@ -262,7 +271,7 @@ export default (app) => {
       const total = await FindValueByKey(_id, "total");
       const score = await FindValueByKeyLevel(_id, "score");
       const continuous = await FindValueByKey(_id, "continuous");
-      const memberDate = await FindValueByKeyUser(_id, "memberDate");
+      const memberDate = await getMemberDate(user);
 
       const mypage = { total, score, continuous, memberDate };
 
