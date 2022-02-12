@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
-import { fillZeroMonth, getMonthCalendar } from "../../utils/date";
+import { fillZeroMonth, getMonthCalendar } from "../../utils/date.js";
 
-const month = fillZeroMonth();
+const month = fillZeroMonth;
 const defaultMonth = getMonthCalendar(month);
 
 const { Schema } = mongoose;
