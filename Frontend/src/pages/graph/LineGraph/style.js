@@ -22,3 +22,13 @@ export const Title = styled.h5`
   margin-left: 18px;
   margin-top: 15px;
 `;
+
+export const NoData = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  color: ${(props) => props.theme.darkGray};
+`;
