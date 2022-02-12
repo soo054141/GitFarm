@@ -253,15 +253,8 @@ export default (app) => {
     }
   });
 
-  // @route POST api/users/resolution
-  // @desc user resolution
-  // @access Private
-  router.post("/resolution", async (req, res) => {
-    console.log(req.body);
-  });
-
-  // @route GET api/users/levels/commits
-  // @desc user commits after register
+  // @route GET api/users/levels
+  // @desc 가입 이후의 commit, issues, pull 개수확인
   // @access Private
   router.get("/levels", async (req, res) => {
     const { user } = req;
@@ -274,25 +267,17 @@ export default (app) => {
       await FindByIdAndUpdateLevels(_id, "issues", issues);
       const pulls = await getPullsAllRepo(user);
       await FindByIdAndUpdateLevels(_id, "pulls", pulls);
-
-      const levels = { commits, issues, pulls };
       const score = getScore(commits, issues, pulls);
       await FindByIdAndUpdateLevels(_id, "score", score);
-
-      const data = { levels, score };
-
-      ViewResponseJSON(res, true, "data", data);
+      const levels = { score, commits, issues, pulls };
+      ViewResponseJSON(res, true, "data", levels);
     } catch (err) {
       const commits = await FindValueByKeyLevels(_id, "commits");
       const issues = await FindValueByKeyLevels(_id, "issues");
       const pulls = await FindValueByKeyLevels(_id, "pulls");
-
-      const levels = { commits, issues, pulls };
       const score = await FindValueByKeyLevels(_id, "score");
-
-      const data = { levels, score };
-
-      ViewResponseJSON(res, false, "data", data);
+      const levels = { score, commits, issues, pulls };
+      ViewResponseJSON(res, false, "data", levels);
     }
   });
 
