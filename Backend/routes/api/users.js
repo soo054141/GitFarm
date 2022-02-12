@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
@@ -31,6 +32,11 @@ import {
 
 import { ViewResponseJSON } from "../../controller/index.js";
 import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
+import {
+  getDefaultRank,
+  getMyRank,
+  getUserRank,
+} from "../../services/rank.service.js";
 
 const router = express.Router();
 
@@ -329,6 +335,27 @@ export default (app) => {
     } catch (err) {
       const result = await FindValueByKeyLevels(_id, "pulls");
       ViewResponseJSON(res, false, "pulls", result);
+    }
+  });
+
+  // @route GET api/users/rank
+  // @desc get myRank and userRank
+  // @access Private
+  router.get("/rank", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const myRank = await getMyRank(_id);
+      const userRank = await getUserRank();
+      const result = {
+        myRank,
+        userRank,
+      };
+      ViewResponseJSON(res, true, "data", result);
+    } catch (err) {
+      const result = getDefaultRank();
+      ViewResponseJSON(res, false, "data", result);
     }
   });
 };
