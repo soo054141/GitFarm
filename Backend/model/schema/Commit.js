@@ -1,5 +1,9 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
+import { fillZeroMonth, getMonthCalendar } from "../../utils/date.js";
+
+const month = fillZeroMonth;
+const defaultMonth = getMonthCalendar(month);
 
 const { Schema } = mongoose;
 
@@ -38,6 +42,10 @@ const CommitSchema = new Schema(
     commitPerYear: {
       type: [Number],
       default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    commitPerDay: {
+      type: [Number],
+      default: defaultMonth,
     },
     languages: {
       type: [

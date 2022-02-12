@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { getAllRepoData } from "../../Octokit/utils.js";
+import { getAllRepoData } from "../../../Octokit/utils.js";
 
 export const getLanguagesData = async (user) => {
   const repoData = await getAllRepoData(user);

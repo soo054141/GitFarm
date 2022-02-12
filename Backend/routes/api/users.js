@@ -23,6 +23,7 @@ import {
   FindValueByKeyLevels,
 } from "../../services/levels.service.js";
 import { ViewResponseJSON } from "../../controller/index.js";
+import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
 
 const router = express.Router();
 
@@ -54,10 +55,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/commits/total
+  // @route GET api/users/repos/total/commits
   // @desc total commits
   // @access Private
-  router.get("/commits/total", async (req, res) => {
+  router.get("/repos/total/commits", async (req, res) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
@@ -106,10 +107,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/languages
-  // @desc user별 languages
+  // @route GET api/users/repos/language
+  // @desc repo별 사용 language
   // @access Private
-  router.get("/languages", async (req, res) => {
+  router.get("/repos/language", async (req, res) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
@@ -138,6 +139,26 @@ export default (app) => {
     } catch (err) {
       const result = await FindValueByKey(_id, "commitPerYear");
       ViewResponseJSON(res, false, "commitPerYear", result);
+    }
+  });
+
+  // @route GET api/users/commits/total/per/day/:YYYY-MM
+  // @desc :year 기준 매일 총 커밋 개수
+  // @access Private
+  router.get("/commits/total/per/day/:YYYYMM", async (req, res) => {
+    const { user, params } = req;
+    const { id } = user;
+    const { YYYYMM } = params;
+    const date = YYYYMM.split("-");
+    const [{ _id }] = await User.find({ id });
+
+    try {
+      const result = await getPerDayCommitAllRepo(user, date);
+      await FindByIdAndUpdate(_id, "commitPerDay", result);
+      ViewResponseJSON(res, true, "commitPerDay", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "commitPerDay");
+      ViewResponseJSON(res, false, "commitPerDay", result);
     }
   });
 
