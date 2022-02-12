@@ -38,6 +38,7 @@ import {
   getMyRank,
   getUserRank,
 } from "../../services/rank.service.js";
+import { getGoal, setGoal } from "../../services/goal.service.js";
 
 const router = express.Router();
 
@@ -366,6 +367,30 @@ export default (app) => {
     } catch (err) {
       const result = getDefaultRank();
       ViewResponseJSON(res, false, "data", result);
+    }
+  });
+
+  // @route GET api/users/goal
+  // @desc get goal
+  // @access Private
+  router.get("/goal", async (req, res) => {
+    try {
+      const result = await getGoal(req);
+      ViewResponseJSON(res, true, "goal", result);
+    } catch (err) {
+      ViewResponseJSON(res, false, "goal", 5);
+    }
+  });
+
+  // @route POST api/users/goal
+  // @desc set goal
+  // @access Private
+  router.post("/goal", async (req, res) => {
+    try {
+      await setGoal(req);
+      res.status(201);
+    } catch (err) {
+      res.status(500);
     }
   });
 };
