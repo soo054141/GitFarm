@@ -1,11 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, Suspense } from "react";
 import { Container } from "@/components/Container/style";
 import DateController from "@/components/DateController";
 import * as api from "@/api";
-import LineGraph from "./LineGraph";
+import LoadingModal from "@/components/LoadingModal";
 import MonthYearBtn from "./MonthYearBtn";
 import PieChartComponent from "./PieChart";
 import { DateControllerWrapper } from "./style";
+
+const LineGraph = React.lazy(() => import("./LineGraph"));
 
 function Graph() {
   const monthButton = true;
@@ -18,7 +20,6 @@ function Graph() {
 
   const [commitData, setCommitData] = useState([]);
 
-  // TODO:
   const getCommitsPerMonth = async () => {
     const year = date.toISOString().slice(0, 4);
     const data = await api.getCommitsTotalPerMonth(year);
@@ -73,25 +74,27 @@ function Graph() {
 
   return (
     <Container>
-      <DateControllerWrapper>
-        {!checkMonth && (
-          <DateController
-            date={date}
-            clickLeft={clickLeft}
-            clickRight={clickRight}
-            goToday={goToday}
-            month={false}
-          />
-        )}
-      </DateControllerWrapper>
+      <Suspense fallback={<LoadingModal />}>
+        <DateControllerWrapper>
+          {!checkMonth && (
+            <DateController
+              date={date}
+              clickLeft={clickLeft}
+              clickRight={clickRight}
+              goToday={goToday}
+              month={false}
+            />
+          )}
+        </DateControllerWrapper>
 
-      <MonthYearBtn
-        isClick={clickButtonColor}
-        handlYearBtn={handlYearBtn}
-        handleMonthBtn={handleMonthBtn}
-      />
-      <LineGraph graphTitle={graphTitle} commitData={commitData} />
-      <PieChartComponent />
+        <MonthYearBtn
+          isClick={clickButtonColor}
+          handlYearBtn={handlYearBtn}
+          handleMonthBtn={handleMonthBtn}
+        />
+        <LineGraph graphTitle={graphTitle} commitData={commitData} />
+        <PieChartComponent />
+      </Suspense>
     </Container>
   );
 }
