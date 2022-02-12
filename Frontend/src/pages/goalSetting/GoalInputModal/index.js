@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "@/components/Modal";
+import PropTypes from "prop-types";
 import { Wrapper } from "./style";
 import Input from "../Input";
 
@@ -49,5 +50,10 @@ function GoalInputModal({ setOpenModal, modalType }) {
     </Wrapper>
   );
 }
+
+GoalInputModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+  modalType: PropTypes.number.isRequired,
+};
 
 export default GoalInputModal;

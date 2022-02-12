@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import {
   CalenderContainer,
@@ -12,8 +12,9 @@ import { makeCalendar, getFirstAndLastDate } from "./CalendarUtils";
 function Calender({ date }) {
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [dates, setDates] = useState([]); // 달력의 행
+  const currentMonth = date.getMonth();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const { firstDate, lastDate } = getFirstAndLastDate(date);
     setDates(makeCalendar(firstDate, lastDate));
   }, [date]);
@@ -26,14 +27,16 @@ function Calender({ date }) {
             <div key={`${day}-day`}>{day}</div>
           ))}
         </DayRow>
-        {dates.map((oneWeek) => (
-          <MonthlyRow key={`${oneWeek}-monthly-row`}>
+        {dates.map((oneWeek, idx) => (
+          <MonthlyRow
+            key={`${oneWeek[idx].date}-${oneWeek[idx].month}}-monthly-row`}
+          >
             {oneWeek.map((perDate) => (
               <MonthlyCell
                 key={`${perDate.date}-${perDate.month}-monthly-cell`}
               >
                 <DateCell
-                  view={perDate.month === date.getMonth() + 1 && true}
+                  view={perDate.month === currentMonth + 1 && true}
                   key={`${
                     perDate.date + perDate.month + perDate.year
                   }-date-cell`}
@@ -52,7 +55,6 @@ function Calender({ date }) {
 }
 
 Calender.propTypes = {
-  // TODO 고치기
   date: PropTypes.instanceOf(Date).isRequired,
 };
 export default Calender;

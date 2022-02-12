@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InfoIcon from "@/assets/icon/info.svg";
 import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
 import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
+import PropTypes from "prop-types";
 import ScoreInformationModal from "../ScoreInformationModal";
 import * as CommitDetail from "./style";
 
@@ -34,28 +35,28 @@ function CommitDetails({ score, totalCommit, commitsPerRepo }) {
           <CommitDetail.DetailsContainer>
             <CommitDetail.RepoContainer>
               <CommitDetail.SubTitle>커밋 상세 내역</CommitDetail.SubTitle>
-              {commitsPerRepo.map((commits, idx) => (
-                <CommitDetail.RepoWrapper key={`${commits.repoName}-${idx}`}>
-                  <CommitDetail.RepoName key={`${commits.repoName}/${idx}`}>
+              {commitsPerRepo.map((commits) => (
+                <CommitDetail.RepoWrapper key={`${commits.repoName}`}>
+                  <CommitDetail.RepoName key={`${commits.repoName}`}>
                     {commits.gitHubId}/{commits.repoName}
                   </CommitDetail.RepoName>
 
                   {commits.commitMessages.map((commit, idx) => (
                     <CommitDetail.CommitWrapper
-                      key={`${commit.message}-${commit.time}-${idx}`}
+                      key={`${commit.message}-${commit.time}`}
                     >
                       <div>
                         {idx > 0 && (
                           <CommitDetail.LineWrapper
-                            key={`${commit.message}-${idx}-${commit.time}`}
+                            key={`${commit.message}--${commit.time}`}
                           >
                             <VerticalLineIcon
-                              key={`${commit.message}-${idx}--${commit.time}`}
+                              key={`${commit.message}---${commit.time}`}
                             />
                           </CommitDetail.LineWrapper>
                         )}
                         <CommitDetail.CommitMessage
-                          key={`${commit.message}-${idx}---${commit.time}`}
+                          key={`${commit.message}----${commit.time}`}
                         >
                           <CommitCircleIcon />
                           {commit.message}
@@ -63,7 +64,7 @@ function CommitDetails({ score, totalCommit, commitsPerRepo }) {
                       </div>
                       <CommitDetail.CommitMessage
                         time
-                        key={`${commit.message}-${idx}----${commit.time}`}
+                        key={`${commit.message}----${commit.time}`}
                       >
                         {commit.time}
                       </CommitDetail.CommitMessage>
@@ -117,6 +118,23 @@ CommitDetails.defaultProps = {
       ],
     },
   ],
+};
+
+CommitDetails.propTypes = {
+  score: PropTypes.number,
+  totalCommit: PropTypes.number,
+  commitsPerRepo: PropTypes.arrayOf(
+    PropTypes.shape({
+      gitHubId: PropTypes.string.isRequired,
+      repoName: PropTypes.string.isRequired,
+      commitMessages: PropTypes.arrayOf(
+        PropTypes.shape({
+          message: PropTypes.string.isRequired,
+          time: PropTypes.string.isRequired,
+        }),
+      ).isRequired,
+    }),
+  ),
 };
 
 export default CommitDetails;

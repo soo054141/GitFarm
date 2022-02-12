@@ -15,7 +15,7 @@ Btn.defaultProps = {
   color: "white",
 };
 Btn.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.string.isRequired,
   long: PropTypes.bool,
   color: PropTypes.string,
   onClick: PropTypes.func.isRequired,

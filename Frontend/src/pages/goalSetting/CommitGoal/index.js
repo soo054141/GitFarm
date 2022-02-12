@@ -1,8 +1,8 @@
 import React from "react";
 import LeafIcon from "@/assets/icon/blank-leaf.svg";
+import PropTypes from "prop-types";
 import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
-// import { Description } from "@/components/Description";
-
+// import Description from "@/components/Description";
 function CommitGoal({ goalNum, onClick }) {
   const NumLength = String(goalNum).length;
 
@@ -27,4 +27,8 @@ CommitGoal.defaultProps = {
   goalNum: 3,
 };
 
+CommitGoal.propTypes = {
+  goalNum: PropTypes.number,
+  onClick: PropTypes.func.isRequired,
+};
 export default CommitGoal;
