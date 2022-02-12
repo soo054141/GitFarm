@@ -12,25 +12,28 @@ const LineGraph = React.lazy(() => import("./LineGraph"));
 function Graph() {
   const monthButton = true;
   const yearButton = false;
+  const ClickedMoth = true;
   const toDay = new Date();
   const [date, setDate] = useState(toDay);
   const [clickButtonColor, setClickButtonColor] = useState(true);
   const [checkMonth, setCheckMonth] = useState(false);
   const [graphTitle, setGraphTitle] = useState("월간");
-
   const [commitData, setCommitData] = useState([]);
 
   const getCommitsPerMonth = async () => {
     const year = date.toISOString().slice(0, 4);
     const data = await api.getCommitsTotalPerMonth(year);
+
     if (data.success) {
       const commitPerYear = await data.commitPerYear;
 
       const createData = commitPerYear.map((commitCnt, index) => ({
-        id: `${date.toISOString().slice(0, 2)}:${index + 1}`,
+        name: `${date.toISOString().slice(0, 2)}.${index + 1}`,
         commit: commitCnt,
       }));
       setCommitData(createData);
+    } else {
+      setCommitData([]);
     }
   };
 
@@ -61,14 +64,15 @@ function Graph() {
     if (monthButton) {
       setClickButtonColor(monthButton);
       setCheckMonth(false);
-      setGraphTitle(checkMonth ? "월간" : "년간");
+      setGraphTitle(ClickedMoth ? "월간" : "년간");
     }
   }, [graphTitle]);
+
   const handlYearBtn = useCallback(() => {
     if (!yearButton) {
-      setClickButtonColor(!monthButton);
+      setClickButtonColor(yearButton);
       setCheckMonth(true);
-      setGraphTitle(checkMonth ? "월간" : "년간");
+      setGraphTitle(!ClickedMoth ? "월간" : "년간");
     }
   }, [graphTitle]);
 
