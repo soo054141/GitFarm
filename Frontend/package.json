@@ -7,7 +7,7 @@
     "build": "webpack --mode=production",
     "dev": "webpack serve --open --mode=development",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
-    "server": "json-server --watch db.json --port 8888"
+    "server": "json-server --w db.json --p 8888"
   },
   "keywords": [],
   "author": "",

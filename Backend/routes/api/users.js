@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
@@ -19,10 +20,24 @@ import {
   FindValueByKey,
 } from "../../services/commits.service.js";
 import {
-  FindByIdAndUpdateLevels,
-  FindValueByKeyLevels,
+  FindByIdAndUpdateLevel,
+  FindValueByKeyLevel,
+  getScore,
 } from "../../services/levels.service.js";
+import {
+  FindByIdAndUpdateUser,
+  FindValueByKeyUser,
+  getResolution,
+  getMemberDate,
+} from "../../services/users.service.js";
+
 import { ViewResponseJSON } from "../../controller/index.js";
+import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
+import {
+  getDefaultRank,
+  getMyRank,
+  getUserRank,
+} from "../../services/rank.service.js";
 
 const router = express.Router();
 
@@ -54,10 +69,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/commits/total
+  // @route GET api/users/repos/total/commits
   // @desc total commits
   // @access Private
-  router.get("/commits/total", async (req, res) => {
+  router.get("/repos/total/commits", async (req, res) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
@@ -106,10 +121,10 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/languages
-  // @desc user별 languages
+  // @route GET api/users/repos/language
+  // @desc repo별 사용 language
   // @access Private
-  router.get("/languages", async (req, res) => {
+  router.get("/repos/language", async (req, res) => {
     const { user } = req;
     const { id } = user;
     const [{ _id }] = await User.find({ id });
@@ -138,6 +153,26 @@ export default (app) => {
     } catch (err) {
       const result = await FindValueByKey(_id, "commitPerYear");
       ViewResponseJSON(res, false, "commitPerYear", result);
+    }
+  });
+
+  // @route GET api/users/commits/total/per/day/:YYYY-MM
+  // @desc :year 기준 매일 총 커밋 개수
+  // @access Private
+  router.get("/commits/total/per/day/:YYYYMM", async (req, res) => {
+    const { user, params } = req;
+    const { id } = user;
+    const { YYYYMM } = params;
+    const date = YYYYMM.split("-");
+    const [{ _id }] = await User.find({ id });
+
+    try {
+      const result = await getPerDayCommitAllRepo(user, date);
+      await FindByIdAndUpdate(_id, "commitPerDay", result);
+      ViewResponseJSON(res, true, "commitPerDay", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "commitPerDay");
+      ViewResponseJSON(res, false, "commitPerDay", result);
     }
   });
 
@@ -176,8 +211,66 @@ export default (app) => {
     }
   });
 
+  // @route GET api/users/resolution
+  // @desc user resolution
+  // @access Private
+  router.get("/resolution", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = getResolution(user);
+      ViewResponseJSON(res, true, "mypage", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "resolution");
+      ViewResponseJSON(res, false, "resolution", result);
+    }
+  });
+
+  // @route GET api/users/mypage
+  // @desc user resolution
+  // @access Private
+  router.get("/mypage", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const total = await getTotalCommitAllRepo(user);
+      await FindByIdAndUpdate(_id, "total", total);
+
+      const commits = await getCommitsAllRepo(user);
+      await FindByIdAndUpdateLevel(_id, "commits", commits);
+      const issues = await getIssuesAllRepo(user);
+      await FindByIdAndUpdateLevel(_id, "issues", issues);
+      const pulls = await getPullsAllRepo(user);
+      await FindByIdAndUpdateLevel(_id, "pulls", pulls);
+
+      const score = getScore(commits, issues, pulls);
+      await FindByIdAndUpdateLevel(_id, "score", score);
+
+      const continuous = await getContinuousCommitAllRepo(user);
+      await FindByIdAndUpdate(_id, "continuous", continuous);
+
+      const memberDate = getMemberDate(user);
+      await FindByIdAndUpdateUser(_id, "memberDate", memberDate);
+
+      const mypage = { total, score, continuous, memberDate };
+
+      ViewResponseJSON(res, true, "mypage", mypage);
+    } catch (err) {
+      const total = await FindValueByKey(_id, "total");
+      const score = await FindValueByKeyLevel(_id, "score");
+      const continuous = await FindValueByKey(_id, "continuous");
+      const memberDate = await FindValueByKeyUser(_id, "memberDate");
+
+      const mypage = { total, score, continuous, memberDate };
+
+      ViewResponseJSON(res, true, "mypage", mypage);
+    }
+  });
+
   // @route GET api/users/levels
-  // @desc user levels
+  // @desc 가입 이후의 commit, issues, pull 개수확인
   // @access Private
   router.get("/levels", async (req, res) => {
     const { user } = req;
@@ -185,18 +278,22 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
     try {
       const commits = await getCommitsAllRepo(user);
+      await FindByIdAndUpdateLevel(_id, "commits", commits);
       const issues = await getIssuesAllRepo(user);
+      await FindByIdAndUpdateLevel(_id, "issues", issues);
       const pulls = await getPullsAllRepo(user);
-
-      await FindByIdAndUpdateLevels(_id, "commits", commits);
-      await FindByIdAndUpdateLevels(_id, "issues", issues);
-      await FindByIdAndUpdateLevels(_id, "pulls", pulls);
-
-      const result = { commits, issues, pulls };
-      ViewResponseJSON(res, true, "levels", result);
+      await FindByIdAndUpdateLevel(_id, "pulls", pulls);
+      const score = getScore(commits, issues, pulls);
+      await FindByIdAndUpdateLevel(_id, "score", score);
+      const levels = { score, commits, issues, pulls };
+      ViewResponseJSON(res, true, "data", levels);
     } catch (err) {
-      const result = await FindValueByKey(_id, "levels");
-      ViewResponseJSON(res, false, "levels", result);
+      const commits = await FindValueByKeyLevel(_id, "commits");
+      const issues = await FindValueByKeyLevel(_id, "issues");
+      const pulls = await FindValueByKeyLevel(_id, "pulls");
+      const score = await FindValueByKeyLevel(_id, "score");
+      const levels = { score, commits, issues, pulls };
+      ViewResponseJSON(res, false, "data", levels);
     }
   });
 
@@ -209,10 +306,10 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
     try {
       const result = await getCommitsAllRepo(user);
-      await FindByIdAndUpdateLevels(_id, "commits", result);
+      await FindByIdAndUpdateLevel(_id, "commits", result);
       ViewResponseJSON(res, true, "commits", result);
     } catch (err) {
-      const result = await FindValueByKeyLevels(_id, "commits");
+      const result = await FindValueByKeyLevel(_id, "commits");
       ViewResponseJSON(res, false, "commits", result);
     }
   });
@@ -226,10 +323,10 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
     try {
       const result = await getIssuesAllRepo(user);
-      await FindByIdAndUpdateLevels(_id, "issues", result);
+      await FindByIdAndUpdateLevel(_id, "issues", result);
       ViewResponseJSON(res, true, "issues", result);
     } catch (err) {
-      const result = await FindValueByKeyLevels(_id, "issues");
+      const result = await FindValueByKeyLevel(_id, "issues");
       ViewResponseJSON(res, false, "issues", result);
     }
   });
@@ -243,11 +340,32 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
     try {
       const result = await getPullsAllRepo(user);
-      await FindByIdAndUpdateLevels(_id, "pulls", result);
+      await FindByIdAndUpdateLevel(_id, "pulls", result);
       ViewResponseJSON(res, true, "pulls", result);
     } catch (err) {
-      const result = await FindValueByKeyLevels(_id, "pulls");
+      const result = await FindValueByKeyLevel(_id, "pulls");
       ViewResponseJSON(res, false, "pulls", result);
+    }
+  });
+
+  // @route GET api/users/rank
+  // @desc get myRank and userRank
+  // @access Private
+  router.get("/rank", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const myRank = await getMyRank(_id);
+      const userRank = await getUserRank();
+      const result = {
+        myRank,
+        userRank,
+      };
+      ViewResponseJSON(res, true, "data", result);
+    } catch (err) {
+      const result = getDefaultRank();
+      ViewResponseJSON(res, false, "data", result);
     }
   });
 };

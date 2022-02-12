@@ -25,6 +25,18 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    goal: {
+      type: Number,
+      default: 5,
+    },
+    resolution: {
+      type: String,
+      default: "",
+    },
+    memberDate: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true },
 );

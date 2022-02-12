@@ -1,13 +1,14 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
+import { getFulfilledValue } from "../../../../../../utils/async.js";
 import {
   endOfDay,
   fillZero,
   monthDays,
   monthPerYear,
   startOfDay,
-} from "../../../../../utils/date.js";
-import { getAllRepoName, getOctokitAuth } from "../../../Octokit/utils.js";
+} from "../../../../../../utils/date.js";
+import { getAllRepoName, getOctokitAuth } from "../../../../Octokit/utils.js";
 
 const getMonthTotalCommitEachRepo = async (user, repo, date) => {
   const { year, month, day } = date;
@@ -43,20 +44,11 @@ export const getMonthTotalCommitAllRepo = async (user, year) => {
       return [name, month + 1, result];
     });
 
-    const status = await Promise.allSettled(getMonth);
-
-    const fulfilledValue = await status
-      .filter((result) => result.status === "fulfilled")
-      .map((item) => item.value);
-
+    const fulfilledValue = await getFulfilledValue(getMonth);
     return fulfilledValue;
   });
 
-  const response = await Promise.allSettled(commitPerYear);
-
-  const commitData = await response
-    .filter((item) => item.status === "fulfilled")
-    .map((item) => item.value);
+  const commitData = await getFulfilledValue(commitPerYear);
 
   commitData.forEach((perYear) => {
     perYear.forEach((item) => {

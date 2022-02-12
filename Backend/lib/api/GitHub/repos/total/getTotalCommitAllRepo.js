@@ -9,13 +9,6 @@ export const getTotalCommitAllRepo = async (user) => {
     repoName.map((name) => {
       const commit = getTotalCommitEachRepo(user, name);
       return commit;
-      // commit
-      //   .then((res) => {
-      //     console.log(`repo: ${name}, commit: ${res}`);
-      //   })
-      //   .catch((err) =>
-      //     console.log(`err repo= ${name}, err message = ${err.message}`),
-      //   );
     }),
   );
 

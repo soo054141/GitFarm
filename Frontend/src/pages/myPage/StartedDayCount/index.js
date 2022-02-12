@@ -2,21 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as StartedDay from "./style";
 
-function StartedDayCount({ date }) {
+function StartedDayCount({ memberDate }) {
   return (
     <StartedDay.Wrapper>
       <StartedDay.Title>
         깃팜을 시작한 지<br />
-        <span>{date}일째</span> 입니다.
+        <span>{memberDate}일째</span> 입니다.
       </StartedDay.Title>
     </StartedDay.Wrapper>
   );
 }
 
 StartedDayCount.defaultProps = {
-  date: "42",
+  memberDate: 0,
 };
+
 StartedDayCount.propTypes = {
-  date: PropTypes.string,
+  memberDate: PropTypes.number,
 };
+
 export default StartedDayCount;
