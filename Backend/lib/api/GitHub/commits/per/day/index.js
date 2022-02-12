@@ -28,7 +28,7 @@ const getPerDayCommitEachRepo = async (user, repo, date) => {
   return [day, ...commitNum];
 };
 
-export const getDayTest = async (user, date) => {
+export const getPerDayCommitAllRepo = async (user, date) => {
   const [year, month] = date;
   const repoName = await getAllRepoName(user);
   const monthCalendar = getMonthCalendar(month);

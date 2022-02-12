@@ -23,7 +23,7 @@ import {
   FindValueByKeyLevels,
 } from "../../services/levels.service.js";
 import { ViewResponseJSON } from "../../controller/index.js";
-import { getDayTest } from "../../lib/api/GitHub/commits/per/day/index.js";
+import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
 
 const router = express.Router();
 
@@ -153,7 +153,7 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
 
     try {
-      const result = await getDayTest(user, date);
+      const result = await getPerDayCommitAllRepo(user, date);
       await FindByIdAndUpdate(_id, "commitPerDay", result);
       ViewResponseJSON(res, true, "commitPerDay", result);
     } catch (err) {
