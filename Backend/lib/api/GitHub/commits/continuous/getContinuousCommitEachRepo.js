@@ -22,11 +22,8 @@ export const getContinuousCommitEachRepo = async (user, repo) => {
   const dateFormatter = (date) => date.getTime();
 
   const today = dateFormatter(new Date());
-
   const firstDate = dateFormatter(new Date(myCommits[myCommits.length - 1]));
-
   const longest = Math.ceil((today - firstDate) / (1000 * 60 * 60 * 24));
-
   const commitDay = new Array(longest).fill(0);
 
   myCommits.forEach((myCommit) => {

@@ -33,6 +33,10 @@ const UserSchema = new Schema(
       type: String,
       default: "",
     },
+    memberDate: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true },
 );

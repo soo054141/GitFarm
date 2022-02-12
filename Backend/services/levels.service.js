@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import { Level } from "../model/index.js";
 
-export const FindByIdAndUpdateLevels = async (_id, key, value) => {
+export const FindByIdAndUpdateLevel = async (_id, key, value) => {
   const config = {};
   config.author = _id;
   config[key] = value;
@@ -17,7 +17,7 @@ export const FindByIdAndUpdateLevels = async (_id, key, value) => {
   return dbUpdate;
 };
 
-export const FindValueByKeyLevels = async (_id, key) => {
+export const FindValueByKeyLevel = async (_id, key) => {
   const [document] = await Level.find({ id: _id });
   return document[key];
 };

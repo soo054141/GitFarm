@@ -16,5 +16,8 @@ export const getContinuousCommitAllRepo = async (user) => {
     .filter((result) => result.status === "fulfilled")
     .map((res) => res.value);
 
-  return Math.max(...fulfilledValue);
+  const continuousDays =
+    fulfilledValue.length === 0 ? 0 : Math.max(...fulfilledValue);
+
+  return continuousDays;
 };
