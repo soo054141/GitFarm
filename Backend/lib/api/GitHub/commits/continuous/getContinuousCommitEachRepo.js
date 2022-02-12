@@ -3,11 +3,12 @@
 import { getOctokitAuth } from "../../../Octokit/utils.js";
 
 export const getContinuousCommitEachRepo = async (user, repo) => {
-  const { username } = user;
+  const { username, createdAt } = user;
   const octokit = getOctokitAuth(user);
   const res = await octokit.paginate(
     `GET /repos/${username}/${repo}/commits`,
     {
+      since: createdAt,
       author: username,
       per_page: 100,
     },
