@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 import express from "express";
 import passport from "passport";
@@ -31,6 +32,11 @@ import {
 
 import { ViewResponseJSON } from "../../controller/index.js";
 import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
+import {
+  getDefaultRank,
+  getMyRank,
+  getUserRank,
+} from "../../services/rank.service.js";
 
 const router = express.Router();
 
@@ -253,15 +259,8 @@ export default (app) => {
     }
   });
 
-  // @route POST api/users/resolution
-  // @desc user resolution
-  // @access Private
-  router.post("/resolution", async (req, res) => {
-    console.log(req.body);
-  });
-
-  // @route GET api/users/levels/commits
-  // @desc user commits after register
+  // @route GET api/users/levels
+  // @desc 가입 이후의 commit, issues, pull 개수확인
   // @access Private
   router.get("/levels", async (req, res) => {
     const { user } = req;
@@ -274,25 +273,17 @@ export default (app) => {
       await FindByIdAndUpdateLevels(_id, "issues", issues);
       const pulls = await getPullsAllRepo(user);
       await FindByIdAndUpdateLevels(_id, "pulls", pulls);
-
-      const levels = { commits, issues, pulls };
       const score = getScore(commits, issues, pulls);
       await FindByIdAndUpdateLevels(_id, "score", score);
-
-      const data = { levels, score };
-
-      ViewResponseJSON(res, true, "data", data);
+      const levels = { score, commits, issues, pulls };
+      ViewResponseJSON(res, true, "data", levels);
     } catch (err) {
       const commits = await FindValueByKeyLevels(_id, "commits");
       const issues = await FindValueByKeyLevels(_id, "issues");
       const pulls = await FindValueByKeyLevels(_id, "pulls");
-
-      const levels = { commits, issues, pulls };
       const score = await FindValueByKeyLevels(_id, "score");
-
-      const data = { levels, score };
-
-      ViewResponseJSON(res, false, "data", data);
+      const levels = { score, commits, issues, pulls };
+      ViewResponseJSON(res, false, "data", levels);
     }
   });
 
@@ -344,6 +335,27 @@ export default (app) => {
     } catch (err) {
       const result = await FindValueByKeyLevels(_id, "pulls");
       ViewResponseJSON(res, false, "pulls", result);
+    }
+  });
+
+  // @route GET api/users/rank
+  // @desc get myRank and userRank
+  // @access Private
+  router.get("/rank", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const myRank = await getMyRank(_id);
+      const userRank = await getUserRank();
+      const result = {
+        myRank,
+        userRank,
+      };
+      ViewResponseJSON(res, true, "data", result);
+    } catch (err) {
+      const result = getDefaultRank();
+      ViewResponseJSON(res, false, "data", result);
     }
   });
 };

@@ -9,6 +9,10 @@ const LevelSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    score: {
+      type: Number,
+      default: 0,
+    },
     commits: {
       type: Number,
       default: 0,
@@ -18,10 +22,6 @@ const LevelSchema = new Schema(
       default: 0,
     },
     pulls: {
-      type: Number,
-      default: 0,
-    },
-    score: {
       type: Number,
       default: 0,
     },
