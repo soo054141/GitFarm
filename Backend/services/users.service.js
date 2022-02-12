@@ -2,28 +2,24 @@
 /* eslint-disable import/prefer-default-export */
 import { User } from "../model/index.js";
 
-export const FindByIdAndUpdateUser = async (_id, key, value) => {
-  const config = {};
-  config.author = _id;
-  config[key] = value;
-  const dbUpdate = await User.findByIdAndUpdate(
-    _id,
-    {
-      $set: config,
-    },
-    { upsert: true },
-  );
-  return dbUpdate;
+export const getResolution = async (req) => {
+  const { user } = req;
+  const { id } = user;
+  const [{ _id }] = await User.find({ id });
+  const userDocument = await User.findById(_id);
+  const { resolution } = userDocument;
+  return resolution;
 };
 
-export const FindValueByKeyUser = async (_id, key) => {
-  const [document] = await User.find({ id: _id });
-  return document[key];
-};
-
-export const getResolution = async (_id) => {
-  const db = await User.findById(_id);
-  return db.resolution;
+export const setResolution = async (req) => {
+  const { user } = req;
+  const { resolution } = req.body;
+  const { id } = user;
+  const [{ _id }] = await User.find({ id });
+  await User.findByIdAndUpdate(_id, {
+    $set: { resolution: String(resolution) },
+  });
+  return String(resolution);
 };
 
 export const getMemberDate = (user) => {
@@ -32,4 +28,14 @@ export const getMemberDate = (user) => {
     (new Date() - createdAt) / (1000 * 60 * 60 * 24),
   );
   return memberDate;
+};
+
+export const setMemberDate = async (req, memberDate) => {
+  const { user } = req;
+  const { id } = user;
+  const [{ _id }] = await User.find({ id });
+  await User.findByIdAndUpdate(_id, {
+    $set: { memberDate: Number(memberDate) },
+  });
+  return Number(memberDate);
 };
