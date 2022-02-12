@@ -50,6 +50,7 @@ const CommitSchema = new Schema(
     },
     continuous: {
       type: Number,
+      default: 0,
     },
   },
   { timestamps: true },
