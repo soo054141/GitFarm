@@ -12,8 +12,7 @@ export const FindByIdAndUpdateUser = async (_id, key, value) => {
       $set: config,
     },
     { upsert: true },
-  ).populate({ path: "author" });
-
+  );
   return dbUpdate;
 };
 

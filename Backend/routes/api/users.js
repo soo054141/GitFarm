@@ -227,6 +227,17 @@ export default (app) => {
     }
   });
 
+  // @route POST api/users/resolution
+  // @desc user resolution
+  // @access Private
+  router.post("/resolution", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    const { resolution } = req.body;
+    await FindByIdAndUpdateUser(_id, "resolution", resolution);
+  });
+
   // @route GET api/users/mypage
   // @desc user resolution
   // @access Private
