@@ -21,11 +21,11 @@ import {
 import {
   FindByIdAndUpdateLevels,
   FindValueByKeyLevels,
+  getScore,
 } from "../../services/levels.service.js";
 import {
   getResolution,
   updateResolution,
-  getScore,
   getMemberDate,
 } from "../../services/users.service.js";
 
@@ -256,6 +256,7 @@ export default (app) => {
 
       const levels = { commits, issues, pulls };
       const score = getScore(commits, issues, pulls);
+      await FindByIdAndUpdateLevels(_id, "score", score);
 
       const data = { levels, score };
 
@@ -266,7 +267,7 @@ export default (app) => {
       const pulls = await FindValueByKeyLevels(_id, "pulls");
 
       const levels = { commits, issues, pulls };
-      const score = getScore(commits, issues, pulls);
+      const score = await FindValueByKeyLevels(_id, "score");
 
       const data = { levels, score };
 

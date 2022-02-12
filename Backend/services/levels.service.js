@@ -21,3 +21,11 @@ export const FindValueByKeyLevels = async (_id, key) => {
   const [document] = await Level.find({ id: _id });
   return document[key];
 };
+
+export const getScore = (commits, issues, pulls) => {
+  const CommitEXP = 10;
+  const IssueEXP = 10;
+  const PullEXP = 10;
+  const score = CommitEXP * commits + IssueEXP * issues + PullEXP * pulls;
+  return score;
+};
