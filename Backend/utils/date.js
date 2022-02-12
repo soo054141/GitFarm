@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 const dt = new Date();
 export const year = dt.getFullYear();
 export const month = dt.getMonth() + 1;
@@ -23,31 +24,44 @@ export const todayUntil = `${today}${endOfDay}`;
 // NOTE: test때는 두번째 monthDays 사용하기(API rate limit 방지)
 export const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 // export const monthDays = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-export const repoName = ["ci-cd-practice", "commento-assignment"];
+// export const repoName = ["ci-cd-practice", "commento-assignment"];
 export const monthPerYear = 12;
+export const customDate = (year, month, day) => ({
+  year,
+  month,
+  day,
+});
 
 export function fillZero(target, targetLenth, padString) {
   const str = target.toString();
   return str.padStart(targetLenth, padString);
 }
 
-const isLeapYear = (currentYear) =>
-  (currentYear % 4 === 0 && currentYear % 100 !== 0) || currentYear % 400 === 0;
+const checkLeapYear = (year) =>
+  (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
-const getMonth = () => {
-  const checkLeapYear = isLeapYear(year);
+const getFebruary = () => {
+  const isLeapYear = checkLeapYear(year);
 
-  return checkLeapYear ? [31, 29, 31, 30] : [31, 28];
+  return isLeapYear
+    ? Array.from({ length: 29 }, () => 0)
+    : Array.from({ length: 28 }, () => 0);
 };
 
-export const getCalendar = () => {
-  const calendar = [];
-  const monthes = getMonth();
+export const getMonthCalendar = (month) => {
+  const thirtyOneDaysMonth = ["01", "03", "05", "07", "08", "10", "12"];
+  const february = "02";
+  const monthReg = new RegExp(month);
 
-  monthes.forEach((item) => {
-    const filldays = Array.from({ length: item }, () => 0);
-    calendar.push(filldays);
-  });
+  if (month === february) {
+    return getFebruary(year);
+  }
 
-  return calendar;
+  if (monthReg.test(thirtyOneDaysMonth)) {
+    return Array.from({ length: 31 }, () => 0);
+  }
+
+  return Array.from({ length: 30 }, () => 0);
 };
+
+export const fillZeroMonth = fillZero(month, 2, "0");
