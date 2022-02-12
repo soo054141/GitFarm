@@ -1,12 +1,17 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { Level } from "../model/index.js";
+import { User } from "../model/index.js";
 
-export const FindByIdAndUpdateLevels = async (_id, key, value) => {
+export const getResolution = async (_id) => {
+  const db = await User.findById(_id);
+  return db.resolution;
+};
+
+export const updateResolution = async (_id, value) => {
   const config = {};
   config.author = _id;
-  config[key] = value;
-  const dbUpdate = await Level.findByIdAndUpdate(
+  config.resolution = value;
+  const dbUpdate = await User.findByIdAndUpdate(
     _id,
     {
       $set: config,
@@ -17,15 +22,15 @@ export const FindByIdAndUpdateLevels = async (_id, key, value) => {
   return dbUpdate;
 };
 
-export const FindValueByKeyLevels = async (_id, key) => {
-  const [document] = await Level.find({ id: _id });
-  return document[key];
-};
-
 export const getScore = (commits, issues, pulls) => {
   const CommitEXP = 10;
   const IssueEXP = 10;
   const PullEXP = 10;
   const score = CommitEXP * commits + IssueEXP * issues + PullEXP * pulls;
   return score;
+};
+
+export const getMemberDate = (user) => {
+  const { createdAt } = user;
+  return createdAt;
 };
