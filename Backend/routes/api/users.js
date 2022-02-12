@@ -22,6 +22,13 @@ import {
   FindByIdAndUpdateLevels,
   FindValueByKeyLevels,
 } from "../../services/levels.service.js";
+import {
+  getResolution,
+  updateResolution,
+  getScore,
+  getMemberDate,
+} from "../../services/users.service.js";
+
 import { ViewResponseJSON } from "../../controller/index.js";
 import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
 
@@ -197,8 +204,64 @@ export default (app) => {
     }
   });
 
-  // @route GET api/users/levels
-  // @desc user levels
+  // @route GET api/users/resolution
+  // @desc user resolution
+  // @access Private
+  router.get("/resolution", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const result = getResolution(user);
+      ViewResponseJSON(res, true, "mypage", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "resolution");
+      ViewResponseJSON(res, false, "resolution", result);
+    }
+  });
+
+  // @route GET api/users/mypage
+  // @desc user resolution
+  // @access Private
+  router.get("/mypage", async (req, res) => {
+    const { user } = req;
+    const { id } = user;
+    const [{ _id }] = await User.find({ id });
+    try {
+      const total = await getTotalCommitAllRepo(user);
+      await FindByIdAndUpdate(_id, "total", total);
+
+      const commits = await getCommitsAllRepo(user);
+      await FindByIdAndUpdateLevels(_id, "commits", commits);
+      const issues = await getIssuesAllRepo(user);
+      await FindByIdAndUpdateLevels(_id, "issues", issues);
+      const pulls = await getPullsAllRepo(user);
+      await FindByIdAndUpdateLevels(_id, "pulls", pulls);
+
+      const score = getScore(commits, issues, pulls);
+      console.log("score");
+
+      const continuous = await getContinuousCommitAllRepo(user);
+      await FindByIdAndUpdate(_id, "continuous", continuous);
+
+      const result = { total };
+
+      ViewResponseJSON(res, true, "mypage", result);
+    } catch (err) {
+      const result = await FindValueByKey(_id, "resolution");
+      ViewResponseJSON(res, false, "resolution", result);
+    }
+  });
+
+  // @route POST api/users/resolution
+  // @desc user resolution
+  // @access Private
+  router.post("/resolution", async (req, res) => {
+    console.log(req.body);
+  });
+
+  // @route GET api/users/levels/commits
+  // @desc user commits after register
   // @access Private
   router.get("/levels", async (req, res) => {
     const { user } = req;
@@ -206,18 +269,29 @@ export default (app) => {
     const [{ _id }] = await User.find({ id });
     try {
       const commits = await getCommitsAllRepo(user);
-      const issues = await getIssuesAllRepo(user);
-      const pulls = await getPullsAllRepo(user);
-
       await FindByIdAndUpdateLevels(_id, "commits", commits);
+      const issues = await getIssuesAllRepo(user);
       await FindByIdAndUpdateLevels(_id, "issues", issues);
+      const pulls = await getPullsAllRepo(user);
       await FindByIdAndUpdateLevels(_id, "pulls", pulls);
 
-      const result = { commits, issues, pulls };
-      ViewResponseJSON(res, true, "levels", result);
+      const levels = { commits, issues, pulls };
+      const score = getScore(commits, issues, pulls);
+
+      const data = { levels, score };
+
+      ViewResponseJSON(res, true, "data", data);
     } catch (err) {
-      const result = await FindValueByKey(_id, "levels");
-      ViewResponseJSON(res, false, "levels", result);
+      const commits = await FindValueByKeyLevels(_id, "commits");
+      const issues = await FindValueByKeyLevels(_id, "issues");
+      const pulls = await FindValueByKeyLevels(_id, "pulls");
+
+      const levels = { commits, issues, pulls };
+      const score = getScore(commits, issues, pulls);
+
+      const data = { levels, score };
+
+      ViewResponseJSON(res, false, "data", data);
     }
   });
 
