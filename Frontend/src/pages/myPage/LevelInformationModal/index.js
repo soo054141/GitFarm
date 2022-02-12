@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Level1 from "@/assets/icon/level/level1.svg";
 import Level2 from "@/assets/icon/level/level2.svg";
 import Level3 from "@/assets/icon/level/level3.svg";
 import Level4 from "@/assets/icon/level/level4.svg";
 import Level5 from "@/assets/icon/level/level5.svg";
-import { Modal } from "@/components/Modal";
+import Modal from "@/components/Modal";
 import { LevelWrapper, Explanation, IconWrapper } from "./style";
 
-export function LevelInformationModal({ setOpenModal }) {
+function LevelInformationModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="레벨 안내">
       <LevelWrapper>
@@ -74,3 +75,9 @@ export function LevelInformationModal({ setOpenModal }) {
     </Modal>
   );
 }
+
+LevelInformationModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+};
+
+export default LevelInformationModal;

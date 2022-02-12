@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as Ranks from "./style";
 import ExampleProfile from "./example.svg";
 
-export function OtherUserRanks({ ranking, id, point, newEntry }) {
+function OtherUserRanks({ ranking, id, point, newEntry }) {
   return (
     <Ranks.Container>
       <Ranks.Ranking>{ranking}</Ranks.Ranking>
@@ -12,11 +13,24 @@ export function OtherUserRanks({ ranking, id, point, newEntry }) {
         <Ranks.Point>{point} P</Ranks.Point>
       </Ranks.Detail>
       {newEntry && (
-        <Ranks.newUser>
+        <Ranks.NewUser>
           <p>new</p>
           <span>▲</span>
-        </Ranks.newUser>
+        </Ranks.NewUser>
       )}
     </Ranks.Container>
   );
 }
+
+OtherUserRanks.defaultProps = {
+  newEntry: false,
+};
+
+OtherUserRanks.propTypes = {
+  ranking: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  point: PropTypes.string.isRequired,
+  newEntry: PropTypes.bool,
+};
+
+export default OtherUserRanks;

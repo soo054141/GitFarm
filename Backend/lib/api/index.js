@@ -6,4 +6,7 @@ export { getTotalCommitAllRepo } from "./GitHub/repos/total/getTotalCommitAllRep
 export { getMonthTotalCommitAllRepo } from "./GitHub/commits/per/month/index.js";
 export { getLanguagesData } from "./GitHub/repos/language/index.js";
 export { getContinuousCommitAllRepo } from "./GitHub/commits/continuous/getContinuousCommitAllRepo.js";
+export { getCommitsAllRepo } from "./GitHub/levels/commits/getCommitsAllRepo.js";
+export { getIssuesAllRepo } from "./GitHub/levels/issues/getIssuesAllRepo.js";
+export { getPullsAllRepo } from "./GitHub/levels/pullReqeusts/getPullsAllRepo.js";
 export { getRecentYearTotalCommit } from "./GitHub/commits/recent/index.js";

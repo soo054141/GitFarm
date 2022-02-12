@@ -1,16 +1,8 @@
 import React from "react";
-import { PieChart, Pie, Sector, Cell } from "recharts";
+import PropTypes from "prop-types";
+import { PieChart, Pie, Cell } from "recharts";
 import githubLangColors from "./github-lang-colors.json";
 import * as PieCharts from "./style";
-
-PieChartComponent.defaultProps = {
-  codeRatioArray: [
-    { name: "JavaScript", value: 44.53 },
-    { name: "HTML", value: 35.57 },
-    { name: "CSS", value: 13.27 },
-    { name: "TypeScript", value: 6.64 },
-  ],
-};
 
 function PieChartComponent({ codeRatioArray }) {
   const langColor = githubLangColors;
@@ -41,28 +33,48 @@ function PieChartComponent({ codeRatioArray }) {
       </PieCharts.Wrapper>
 
       <PieCharts.PieWrapper>
-        <PieChart width={200} height={200}>
-          <Pie
-            data={codeRatioArray}
-            cx="50%"
-            cy="50%"
-            innerRadius={40}
-            outerRadius={70}
-            fill="#8884d8"
-            dataKey="value"
-            isAnimationActive={false}
-          >
-            {codeRatioArray.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
+        {codeRatioArray && (
+          <PieChart width={200} height={200}>
+            <Pie
+              data={codeRatioArray}
+              cx="50%"
+              cy="50%"
+              innerRadius={40}
+              outerRadius={70}
+              fill="#8884d8"
+              dataKey="value"
+              isAnimationActive={false}
+            >
+              {codeRatioArray.map((it, index) => (
+                <Cell
+                  key={`cell-${it.name}-${it.value}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        )}
       </PieCharts.PieWrapper>
     </PieCharts.Container>
   );
 }
+
+PieChartComponent.propTypes = {
+  codeRatioArray: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    }),
+  ),
+};
+
+PieChartComponent.defaultProps = {
+  codeRatioArray: [
+    { name: "JavaScript", value: 44.53 },
+    { name: "HTML", value: 35.57 },
+    { name: "CSS", value: 13.27 },
+    { name: "TypeScript", value: 6.64 },
+  ],
+};
 
 export default React.memo(PieChartComponent);

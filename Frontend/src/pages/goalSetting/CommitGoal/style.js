@@ -47,9 +47,6 @@ export const GoalNum = styled.p`
   font-size: ${(props) => (props.length === 3 ? "33px" : "40px")};
   position: absolute;
 
-  left: ${(props) =>
-    props.length === 1
-      ? "277px"
-      : (props) => (props.length === 2 ? "268px" : "264px")};
+  left: ${(props) => (props.length === 1 ? "277px" : "268px")};
   top: 50px;
 `;

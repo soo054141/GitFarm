@@ -1,15 +1,9 @@
 import React from "react";
-import { FarmPicture } from "./FarmPicture/";
-import { SpeechBubble } from "./SpeechBubble";
-import { CommitDetails } from "./CommitDetails";
-
+import FarmPicture from "./FarmPicture";
+import CommitDetails from "./CommitDetails";
 import * as Mains from "./style";
 
-Main.defaultProps = {
-  todaysCommit: 10,
-  goalCommit: 10,
-};
-export function Main({ todaysCommit, goalCommit }) {
+function Main({ todaysCommit, goalCommit }) {
   return (
     <Mains.Container>
       <Mains.TodaysCommit>오늘의 커밋</Mains.TodaysCommit>
@@ -24,7 +18,13 @@ export function Main({ todaysCommit, goalCommit }) {
       )}
       <FarmPicture ratio={Math.floor((todaysCommit / goalCommit) * 100)} />
       <CommitDetails />
-      {/* <SpeechBubble leftCommit={goalCommit - todaysCommit} /> */}
     </Mains.Container>
   );
 }
+
+Main.defaultProps = {
+  todaysCommit: 10,
+  goalCommit: 10,
+};
+
+export default Main;

@@ -16,7 +16,5 @@ export const getContinuousCommitAllRepo = async (user) => {
     .filter((result) => result.status === "fulfilled")
     .map((res) => res.value);
 
-  const continuousList = fulfilledValue.filter((item) => item !== undefined);
-
-  return Math.max(...continuousList);
+  return Math.max(...fulfilledValue);
 };

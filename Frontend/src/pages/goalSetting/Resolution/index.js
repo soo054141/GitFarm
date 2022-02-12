@@ -1,15 +1,17 @@
 import React from "react";
+import FightingIcon1 from "@/assets/icon/fightings/fighting-1.svg";
+import FightingIcon2 from "@/assets/icon/fightings/fighting-2.svg";
+import FightingIcon3 from "@/assets/icon/fightings/fighting-3.svg";
+import PropTypes from "prop-types";
+
 import {
   Container,
   Title,
   IconWrapper,
   Description,
 } from "../CommitGoal/style";
-import FightingIcon1 from "@/assets/icon/fightings/fighting-1.svg";
-import FightingIcon2 from "@/assets/icon/fightings/fighting-2.svg";
-import FightingIcon3 from "@/assets/icon/fightings/fighting-3.svg";
 
-export function Resolution({ randomViewNum, onClick }) {
+function Resolution({ randomViewNum, onClick }) {
   return (
     <Container onClick={onClick}>
       <Title>나의 다짐 설정</Title>
@@ -30,3 +32,13 @@ export function Resolution({ randomViewNum, onClick }) {
     </Container>
   );
 }
+
+Resolution.defaultProps = {
+  randomViewNum: 0,
+};
+Resolution.propTypes = {
+  randomViewNum: PropTypes.number,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default Resolution;

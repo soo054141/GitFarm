@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import SeedIcon from "../../assets/icon/header/seeds.svg";
 import * as Badges from "./style";
 import Lock from "../../assets/icon/lock.svg";
 import * as Icon from "../../components/Badge/BadgesIconComponents";
+
+function Badge({ badgesType, userBadgesId }) {
+  const userBadgesTurnTrue = () => {
+    const newBadges = badgesType.map((badges) => {
+      if (userBadgesId.indexOf(badges.id) > -1) {
+        return { ...badges, userHaveBadge: true };
+      }
+      return badges;
+    });
+    return newBadges;
+  };
+
+  const trueBadge = useMemo(() => userBadgesTurnTrue(), [userBadgesId]);
+  return (
+    <Badges.Container>
+      <Badges.IconWrapper>
+        <SeedIcon />
+      </Badges.IconWrapper>
+      <Badges.Text>열심히 커밋 하여 다양한 배지를 모아보세요!</Badges.Text>
+      <Badges.BadgeCollections>
+        {trueBadge.map((badge) => (
+          <Badges.PerBadge key={`${badge.id}-${badge.title}`}>
+            {badge.userHaveBadge ? badge.icon : <Lock />}
+            <p>{badge.title}</p>
+          </Badges.PerBadge>
+        ))}
+      </Badges.BadgeCollections>
+    </Badges.Container>
+  );
+}
+
 Badge.defaultProps = {
   badgesType: [
     {
@@ -74,29 +106,19 @@ Badge.defaultProps = {
     { id: 16, title: "고수 농부", icon: Icon.level4, userHaveBadge: false },
     { id: 17, title: "팜 마스터", icon: Icon.level5, userHaveBadge: false },
   ],
-  userBadgesId: [0, 2, 6, 7, 12, 14, 17],
+  userBadgesId: [0, 1, 2, 6, 7, 12, 14, 17],
 };
 
-export function Badge({ badgesType, userBadgesId }) {
-  badgesType.forEach((element) => {
-    if (userBadgesId.indexOf(element.id) > -1) {
-      element.userHaveBadge = true;
-    }
-  });
-  return (
-    <Badges.Container>
-      <Badges.IconWrapper>
-        <SeedIcon />
-      </Badges.IconWrapper>
-      <Badges.Text>열심히 커밋 하여 다양한 배지를 모아보세요!</Badges.Text>
-      <Badges.BadgeCollections>
-        {badgesType.map((badge, idx) => (
-          <Badges.PerBadge key={`${badge.id}-${idx}-${badge.title}`}>
-            {badge.userHaveBadge ? badge.icon : <Lock />}
-            <p>{badge.title}</p>
-          </Badges.PerBadge>
-        ))}
-      </Badges.BadgeCollections>
-    </Badges.Container>
-  );
-}
+Badge.propTypes = {
+  badgesType: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      icon: PropTypes.element,
+      userHaveBadge: PropTypes.bool,
+    }),
+  ),
+  userBadgesId: PropTypes.arrayOf(PropTypes.number),
+};
+
+export default Badge;

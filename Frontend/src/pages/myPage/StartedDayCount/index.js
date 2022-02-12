@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as StartedDay from "./style";
 
-export function StartedDayCount({ date }) {
+function StartedDayCount({ date }) {
   return (
     <StartedDay.Wrapper>
       <StartedDay.Title>
@@ -15,3 +16,7 @@ export function StartedDayCount({ date }) {
 StartedDayCount.defaultProps = {
   date: "42",
 };
+StartedDayCount.propTypes = {
+  date: PropTypes.string,
+};
+export default StartedDayCount;

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { DateController } from "@/components/DateController";
+import DateController from "@/components/DateController";
 
 import { Container } from "./style";
-import { Calender } from "./Calender";
+import Calender from "./Calender";
 
-export function MonthlyCalender() {
+function MonthlyCalender() {
   const toDay = new Date();
   const [date, setDate] = useState(toDay);
 
+  const changeDate = (value) => {
+    const newDate = new Date(date.getFullYear(), date.getMonth() + value);
+    setDate(newDate);
+  };
   const clickLeft = () => {
     if (date.getFullYear() - 2000 <= 0) return;
     changeDate(-1);
@@ -16,11 +20,6 @@ export function MonthlyCalender() {
     if (toDay.getFullYear() - date.getFullYear() <= 0) return;
 
     changeDate(1);
-  };
-
-  const changeDate = (value) => {
-    let newDate = new Date(date.getFullYear(), date.getMonth() + value);
-    setDate(newDate);
   };
 
   const goToday = () => {
@@ -33,9 +32,11 @@ export function MonthlyCalender() {
         clickLeft={clickLeft}
         clickRight={clickRight}
         goToday={goToday}
-        month={true}
+        month
       />
       <Calender date={date} />
     </Container>
   );
 }
+
+export default MonthlyCalender;

@@ -1,11 +1,11 @@
 import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Refresh from "@/assets/icon/header/refresh.svg";
 import Seeds from "@/assets/icon/header/seeds.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { HeaderBackground, HeaderWrapper } from "./style";
 import BackButton from "@/assets/icon/header/back-button.svg";
+import { HeaderBackground, HeaderWrapper } from "./style";
 
-export function Header() {
+function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -15,17 +15,19 @@ export function Header() {
         <BackButton onClick={() => navigate(-1)} />
       </HeaderWrapper>
     );
-  } else if (location.pathname === "/") {
-    return null;
-  } else {
-    return (
-      <HeaderWrapper>
-        <HeaderBackground />
-        <Refresh />
-        <Link to="/badge">
-          <Seeds />
-        </Link>
-      </HeaderWrapper>
-    );
   }
+  if (location.pathname === "/") {
+    return null;
+  }
+  return (
+    <HeaderWrapper>
+      <HeaderBackground />
+      <Refresh />
+      <Link to="/badge">
+        <Seeds />
+      </Link>
+    </HeaderWrapper>
+  );
 }
+
+export default Header;

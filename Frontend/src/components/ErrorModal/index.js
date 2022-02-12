@@ -1,10 +1,11 @@
 import React from "react";
-import { Wrapper } from "./style";
-import { Description, Modal } from "@/Components";
-
+import PropTypes from "prop-types";
 import SadIcon from "@/assets/icon/sad-face.svg";
+import Description from "@/components/DateController";
+import Modal from "@/components/Modal";
+import { Wrapper } from "./style";
 
-export function ErrorModal({ setOpenModal }) {
+function ErrorModal({ setOpenModal }) {
   return (
     <Modal setOpenModal={setOpenModal} title="error">
       <Wrapper>
@@ -14,3 +15,9 @@ export function ErrorModal({ setOpenModal }) {
     </Modal>
   );
 }
+
+ErrorModal.propTypes = {
+  setOpenModal: PropTypes.bool.isRequired,
+};
+
+export default ErrorModal;

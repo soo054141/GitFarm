@@ -1,13 +1,9 @@
 import React from "react";
-import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
 import LeafIcon from "@/assets/icon/blank-leaf.svg";
-// import { Description } from "@/components/Description";
-
-CommitGoal.defaultProps = {
-  goalNum: 3,
-};
-
-export function CommitGoal({ goalNum, onClick }) {
+import PropTypes from "prop-types";
+import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
+// import Description from "@/components/Description";
+function CommitGoal({ goalNum, onClick }) {
   const NumLength = String(goalNum).length;
 
   return (
@@ -26,3 +22,13 @@ export function CommitGoal({ goalNum, onClick }) {
     </Container>
   );
 }
+
+CommitGoal.defaultProps = {
+  goalNum: 3,
+};
+
+CommitGoal.propTypes = {
+  goalNum: PropTypes.number,
+  onClick: PropTypes.func.isRequired,
+};
+export default CommitGoal;

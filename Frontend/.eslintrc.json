@@ -15,9 +15,11 @@
   },
   "plugins": ["react", "jest", "eslint-plugin-prettier"],
   "settings": {
+    "import/resolver": "webpack",
     "import/ignore": [".css$", "node_modules/*"]
   },
   "rules": {
+    "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "indent": "off", // prettier에서 설정
     "linebreak-style": 0, // 빌드 시 개행문자 관련
