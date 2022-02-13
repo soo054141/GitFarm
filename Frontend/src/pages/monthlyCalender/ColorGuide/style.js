@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { stageFunc } from "../style";
+import { stageFunc } from "../Calender/style";
 
 export const Circle = styled.div`
   background-color: green;
@@ -15,8 +15,9 @@ export const Circle = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
+
   justify-content: center;
+  width: 350px;
 `;
 
 export const Wrapper = styled.div`
