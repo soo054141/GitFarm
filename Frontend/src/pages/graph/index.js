@@ -27,7 +27,7 @@ function Graph() {
     if (data.success) {
       const commitPerYear = await data.commitPerYear;
 
-      const createData = commitPerYear.map((commitCnt, index) => ({
+      const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
         name: `${date.toISOString().slice(0, 2)}.${index + 1}`,
         commit: commitCnt,
       }));
