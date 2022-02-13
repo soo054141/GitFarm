@@ -21,3 +21,13 @@ export const getMyInfo = async () => {
     console.error();
   }
 };
+
+// graph - 월간
+export const getCommitsTotalPerMonth = async (year) => {
+  try {
+    const res = await axios.get(`${url}/month/${year}`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};

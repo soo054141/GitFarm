@@ -13,24 +13,28 @@ import * as LineGraphs from "./style";
 function LineGraph({ graphTitle, commitData }) {
   return (
     <LineGraphs.Container>
-      <LineGraphs.Title>{graphTitle} 커밋 추이</LineGraphs.Title>
-      <LineGraphs.Wrapper>
-        {commitData && (
-          <LineChart width={350} height={280} data={commitData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="commit"
-              stroke="#6ABD8C"
-              activeDot={{ r: 2 }}
-              isAnimationActive={false}
-            />
-          </LineChart>
-        )}
-      </LineGraphs.Wrapper>
+      {commitData.length ? (
+        <>
+          <LineGraphs.Title>{graphTitle} 커밋 추이</LineGraphs.Title>
+          <LineGraphs.Wrapper>
+            <LineChart width={350} height={280} data={commitData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="commit"
+                stroke="#6ABD8C"
+                activeDot={{ r: 2 }}
+                isAnimationActive={false}
+              />
+            </LineChart>
+          </LineGraphs.Wrapper>
+        </>
+      ) : (
+        <LineGraphs.NoData>데이터가 없습니다.</LineGraphs.NoData>
+      )}
     </LineGraphs.Container>
   );
 }
