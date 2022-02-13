@@ -30,6 +30,11 @@ import {
   getMemberDate,
   setMemberDate,
 } from "../../services/users.service.js";
+import {
+  getBadge,
+  getBadgeFromDB,
+  setBadge,
+} from "../../services/badge.service.js";
 
 import { ViewResponseJSON } from "../../controller/index.js";
 import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
@@ -231,6 +236,31 @@ export default (app) => {
   router.post("/resolution", async (req, res) => {
     try {
       await setResolution(req);
+      res.status(201);
+    } catch (err) {
+      res.status(500);
+    }
+  });
+
+  // @route GET api/users/badge
+  // @desc user badge
+  // @access Private
+  router.get("/badge", async (req, res) => {
+    try {
+      const result = await getBadge(req);
+      ViewResponseJSON(res, true, "badge", result);
+    } catch (err) {
+      const result = await getBadgeFromDB(req);
+      ViewResponseJSON(res, false, "badge", result);
+    }
+  });
+
+  // @route POST api/users/badge
+  // @desc user badge
+  // @access Private
+  router.post("/badge", async (req, res) => {
+    try {
+      await setBadge(req);
       res.status(201);
     } catch (err) {
       res.status(500);
