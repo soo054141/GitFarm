@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import DateController from "@/components/DateController";
+import LoadingModal from "@/components/LoadingModal";
 
 import { Container } from "./style";
-import Calender from "./Calender";
+// import Calender from "./Calender";
+import ColorGuide from "./ColorGuide";
+
+const Calender = React.lazy(() => import("./Calender"));
 
 function MonthlyCalender() {
   const toDay = new Date();
@@ -37,7 +41,11 @@ function MonthlyCalender() {
         goToday={goToday}
         month
       />
-      <Calender date={date} />
+      <Suspense fallback={<LoadingModal />}>
+        <Calender date={date} />
+      </Suspense>
+
+      <ColorGuide />
     </Container>
   );
 }
