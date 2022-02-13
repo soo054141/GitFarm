@@ -15,5 +15,43 @@
   ],
   "profile": {
     "name": "typicode"
+  },
+  "mypage": {
+    "success": true,
+    "mypage": {
+      "total": 1234,
+      "score": 89,
+      "continues": 31,
+      "memberDate": 12
+    }
+  },
+  "month": [
+    {
+      "id": 2019,
+      "success": true,
+      "commitPerYear": [0, 182, 43, 3, 399, 115, 21, 32, 66, 81, 236, 10, 28]
+    },
+    {
+      "id": 2020,
+      "success": true,
+      "commitPerYear": [0, 82, 143, 73, 99, 135, 151, 84, 166, 108, 66, 60, 28]
+    },
+    {
+      "id": 2021,
+      "success": true,
+      "commitPerYear": [0, 2, 3, 3, 9, 35, 151, 84, 16, 8, 66, 0, 8]
+    },
+    {
+      "id": 2022,
+      "success": true,
+      "commitPerYear": [0, 82, 143]
+    }
+  ],
+  "perMonth": {
+    "success": true,
+    "commitPerMonth": [
+      1, 2, 3, 4, 5, 6, 7, 8, 2, 10, 11, 12, 13, 0, 30, 16, 17, 18, 19, 20, 21,
+      10, 2, 57, 5, 4, 7, 2, 29, 30, 31
+    ]
   }
 }
