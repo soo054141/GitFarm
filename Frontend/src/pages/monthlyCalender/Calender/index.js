@@ -1,7 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import * as api from "@/api";
-import ColorGuide from "./ColorGuide";
+import LoadingModal from "@/components/LoadingModal";
+
 import {
   CalenderContainer,
   MonthlyRow,
@@ -18,6 +19,7 @@ import {
 
 function Calender({ date }) {
   const [loading, setLoading] = useState(false);
+
   const [commitCountsPerDate, setCommitCountsPerDate] = useState([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [dates, setDates] = useState([]);
@@ -40,7 +42,7 @@ function Calender({ date }) {
 
   useLayoutEffect(() => {
     matchDateCommit(firstDate, commitCountsPerDate, setCommitCountsPerDate);
-  }, [loading]);
+  }, []);
 
   return (
     <div>
@@ -50,7 +52,6 @@ function Calender({ date }) {
             <div key={`${day}-day`}>{day}</div>
           ))}
         </DayRow>
-
         {!loading ? (
           dates.map((oneWeek, idx2) => (
             <MonthlyRow
@@ -83,11 +84,9 @@ function Calender({ date }) {
             </MonthlyRow>
           ))
         ) : (
-          <div>로딩중...</div>
+          <LoadingModal />
         )}
       </CalenderContainer>
-
-      <ColorGuide />
     </div>
   );
 }
