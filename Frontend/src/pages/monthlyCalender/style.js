@@ -11,8 +11,4 @@ export const Container = styled.div`
   & > :nth-child(2) {
     margin-top: 32px;
   }
-
-  & > :nth-child(3) {
-    margin-top: 32px;
-  }
 `;
