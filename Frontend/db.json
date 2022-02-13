@@ -53,5 +53,28 @@
       1, 2, 3, 4, 5, 6, 7, 8, 2, 10, 11, 12, 13, 0, 30, 16, 17, 18, 19, 20, 21,
       10, 2, 57, 5, 4, 7, 2, 29, 30, 31
     ]
+  },
+  "badge": {
+    "success": true,
+    "badge": [
+      true,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false
+    ]
   }
 }

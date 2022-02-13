@@ -41,3 +41,13 @@ export const getCommitMonthly = async () => {
     return error;
   }
 };
+
+// user가 가진 badges
+export const getUserBadges = async () => {
+  try {
+    const res = await axios.get(`${url}/badge`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
