@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CalenderContainer = styled.div`
   width: 350px;
-  height: 326px;
+  min-height: 375px;
   background-color: white;
   border-radius: 10px;
 `;
@@ -22,22 +22,42 @@ export const DayRow = styled.div`
 export const MonthlyRow = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  & > nth-child(1): {
+    align="left"
+  }
 `;
+export const stageFunc = (stageNum) => {
+  const colors = [
+    "white",
+    "#e7f4eb",
+    "#E5F1D4",
+    "#B9E8C9",
+    "#8ECFA5",
+    "#649C81",
+  ];
+
+  return colors[stageNum];
+};
+
 export const MonthlyCell = styled.div`
   margin: 2px;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   margin: 0 auto;
   // border-radius: 20px;
   text-align: center;
   margin-top: 20px;
+  border-radius: 50%;
+  background-color: ${(props) =>
+    !props.view ? "white" : stageFunc(props.stage)};
 `;
 
 export const DateCell = styled.p`
   position: relative;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   font-size: 17px;
   ${(props) => !props.view && "display:none"};
-  color: ${(props) => props.theme.lightGray};
+  color: ${(props) =>
+    props.stage === 0 ? props.theme.superLightGray : "#F6F9F0"};
 `;
