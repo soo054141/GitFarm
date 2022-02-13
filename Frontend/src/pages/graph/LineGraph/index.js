@@ -20,12 +20,11 @@ function LineGraph({ graphTitle, date }) {
     setLoading(true);
     const year = date.toISOString().slice(0, 4);
     const data = await api.getCommitsTotalPerMonth(year);
-
     if (data.success) {
       const commitPerYear = await data.commitPerYear;
 
       const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
-        name: `${date.toISOString().slice(0, 2)}.${index + 1}`,
+        name: `${year.slice(2, 4)}.${index + 1}`,
         commit: commitCnt,
       }));
       setCommitData(createData);
