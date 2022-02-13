@@ -1,14 +1,33 @@
-import React, { useMemo } from "react";
+import React, { useLayoutEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
+import * as api from "@/api";
+import LoadingModal from "@/components/LoadingModal";
 import SeedIcon from "../../assets/icon/header/seeds.svg";
 import * as Badges from "./style";
 import Lock from "../../assets/icon/lock.svg";
 import * as Icon from "../../components/Badge/BadgesIconComponents";
 
-function Badge({ badgesType, userBadgesId }) {
+function Badge({ badgesType }) {
+  const [loading, setLoading] = useState(false);
+  const [userBadges, setUserBadges] = useState([]);
+
+  const getUserBadges = async () => {
+    setLoading(true);
+
+    const badgesData = await api.getUserBadges();
+    if (badgesData.success) {
+      setUserBadges(badgesData.badge);
+      setLoading(false);
+    }
+  };
+
+  useLayoutEffect(() => {
+    getUserBadges();
+  }, []);
+
   const userBadgesTurnTrue = () => {
     const newBadges = badgesType.map((badges) => {
-      if (userBadgesId.indexOf(badges.id) > -1) {
+      if (userBadges[badges.id] === true) {
         return { ...badges, userHaveBadge: true };
       }
       return badges;
@@ -16,7 +35,7 @@ function Badge({ badgesType, userBadgesId }) {
     return newBadges;
   };
 
-  const trueBadge = useMemo(() => userBadgesTurnTrue(), [userBadgesId]);
+  const trueBadge = useMemo(() => userBadgesTurnTrue(), [userBadges]);
   return (
     <Badges.Container>
       <Badges.IconWrapper>
@@ -24,12 +43,16 @@ function Badge({ badgesType, userBadgesId }) {
       </Badges.IconWrapper>
       <Badges.Text>열심히 커밋 하여 다양한 배지를 모아보세요!</Badges.Text>
       <Badges.BadgeCollections>
-        {trueBadge.map((badge) => (
-          <Badges.PerBadge key={`${badge.id}-${badge.title}`}>
-            {badge.userHaveBadge ? badge.icon : <Lock />}
-            <p>{badge.title}</p>
-          </Badges.PerBadge>
-        ))}
+        {!loading ? (
+          trueBadge.map((badge) => (
+            <Badges.PerBadge key={`${badge.id}-${badge.title}`}>
+              {badge.userHaveBadge ? badge.icon : <Lock />}
+              <p>{badge.title}</p>
+            </Badges.PerBadge>
+          ))
+        ) : (
+          <LoadingModal />
+        )}
       </Badges.BadgeCollections>
     </Badges.Container>
   );
@@ -106,7 +129,6 @@ Badge.defaultProps = {
     { id: 16, title: "고수 농부", icon: Icon.level4, userHaveBadge: false },
     { id: 17, title: "팜 마스터", icon: Icon.level5, userHaveBadge: false },
   ],
-  userBadgesId: [0, 1, 2, 6, 7, 12, 14, 17],
 };
 
 Badge.propTypes = {
@@ -118,7 +140,6 @@ Badge.propTypes = {
       userHaveBadge: PropTypes.bool,
     }),
   ),
-  userBadgesId: PropTypes.arrayOf(PropTypes.number),
 };
 
 export default Badge;
