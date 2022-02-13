@@ -103,6 +103,8 @@ export const stageCalc = (commitCountNum) => {
   if (commitCountNum >= 16 && commitCountNum <= 20) {
     return 4;
   }
-
-  return 5;
+  if (commitCountNum >= 21) {
+    return 5;
+  }
+  // return 0;
 };
