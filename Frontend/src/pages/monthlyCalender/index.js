@@ -17,8 +17,11 @@ function MonthlyCalender() {
     changeDate(-1);
   };
   const clickRight = () => {
-    if (toDay.getFullYear() - date.getFullYear() <= 0) return;
-
+    if (
+      String(toDay.getFullYear()) + String(toDay.getMonth()) ===
+      String(date.getFullYear()) + String(date.getMonth())
+    )
+      return;
     changeDate(1);
   };
 
