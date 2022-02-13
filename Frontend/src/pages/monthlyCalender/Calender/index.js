@@ -1,5 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
+import * as api from "@/api";
+import ColorGuide from "./ColorGuide";
 import {
   CalenderContainer,
   MonthlyRow,
@@ -7,17 +9,38 @@ import {
   DayRow,
   DateCell,
 } from "./style";
-import { makeCalendar, getFirstAndLastDate } from "./CalendarUtils";
+import {
+  makeCalendar,
+  getFirstAndLastDate,
+  matchDateCommit,
+  stageCalc,
+} from "./CalendarUtils";
 
 function Calender({ date }) {
+  const [loading, setLoading] = useState(false);
+  const [commitCountsPerDate, setCommitCountsPerDate] = useState([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  const [dates, setDates] = useState([]); // 달력의 행
+  const [dates, setDates] = useState([]);
   const currentMonth = date.getMonth();
+  const { firstDate, lastDate } = getFirstAndLastDate(date);
+
+  const getCommitMonthlyCount = async (setFunc) => {
+    setLoading(true);
+    const commitMonthData = await api.getCommitMonthly();
+    if (commitMonthData.success) {
+      setFunc(commitMonthData.commitPerMonth);
+      setLoading(false);
+    }
+  };
 
   useLayoutEffect(() => {
-    const { firstDate, lastDate } = getFirstAndLastDate(date);
-    setDates(makeCalendar(firstDate, lastDate));
+    getCommitMonthlyCount(setCommitCountsPerDate);
+    setDates(makeCalendar(firstDate, lastDate, commitCountsPerDate));
   }, [date]);
+
+  useLayoutEffect(() => {
+    matchDateCommit(firstDate, commitCountsPerDate, setCommitCountsPerDate);
+  }, [loading]);
 
   return (
     <div>
@@ -27,29 +50,44 @@ function Calender({ date }) {
             <div key={`${day}-day`}>{day}</div>
           ))}
         </DayRow>
-        {dates.map((oneWeek, idx) => (
-          <MonthlyRow
-            key={`${oneWeek[idx].date}-${oneWeek[idx].month}}-monthly-row`}
-          >
-            {oneWeek.map((perDate) => (
-              <MonthlyCell
-                key={`${perDate.date}-${perDate.month}-monthly-cell`}
-              >
-                <DateCell
-                  view={perDate.month === currentMonth + 1 && true}
-                  key={`${
-                    perDate.date + perDate.month + perDate.year
-                  }-date-cell`}
-                >
-                  {perDate.date}
-                </DateCell>
-              </MonthlyCell>
-            ))}
-          </MonthlyRow>
-        ))}
+
+        {!loading ? (
+          dates.map((oneWeek, idx2) => (
+            <MonthlyRow
+              key={`${oneWeek[idx2].date}-${oneWeek[idx2].month}}-monthly-row`}
+            >
+              {oneWeek.map((perDate, idx) => {
+                const weekNum3 = idx2 * 7;
+                return (
+                  <MonthlyCell
+                    view={perDate.month === currentMonth + 1 && true}
+                    key={`${perDate.date}-${perDate.month}-monthly-cell`}
+                    stage={stageCalc(
+                      commitCountsPerDate[parseInt(idx + weekNum3, 10)],
+                    )}
+                  >
+                    <DateCell
+                      view={perDate.month === currentMonth + 1 && true}
+                      key={`${
+                        perDate.date + perDate.month + perDate.year
+                      }-date-cell`}
+                      stage={stageCalc(
+                        commitCountsPerDate[parseInt(idx + weekNum3, 10)],
+                      )}
+                    >
+                      {perDate.date}
+                    </DateCell>
+                  </MonthlyCell>
+                );
+              })}
+            </MonthlyRow>
+          ))
+        ) : (
+          <div>로딩중...</div>
+        )}
       </CalenderContainer>
 
-      <div />
+      <ColorGuide />
     </div>
   );
 }
@@ -57,4 +95,5 @@ function Calender({ date }) {
 Calender.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
 };
+
 export default Calender;
