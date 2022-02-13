@@ -31,3 +31,13 @@ export const getCommitsTotalPerMonth = async (year) => {
     return error;
   }
 };
+// calendar 초록 동그라미
+export const getCommitMonthly = async () => {
+  try {
+    const res = await axios.get(`${url}/perMonth`);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
