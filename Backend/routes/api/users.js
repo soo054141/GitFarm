@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
+/* eslint-disable no-underscore-dangle */
 import express from "express";
 import passport from "passport";
 import { User } from "../../model/index.js";
@@ -44,6 +45,7 @@ import {
   getUserRank,
 } from "../../services/rank.service.js";
 import { getGoal, setGoal } from "../../services/goal.service.js";
+import { getUserObjectId } from "../../utils/db.js";
 
 const router = express.Router();
 
@@ -62,8 +64,7 @@ export default (app) => {
   // @access Private
   router.get("/commits/test", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
 
     try {
       const result = "FAKE Mock DATA";
@@ -80,8 +81,7 @@ export default (app) => {
   // @access Private
   router.get("/repos/total/commits", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = getUserObjectId(user);
     try {
       const result = await getTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "total", result);
@@ -97,8 +97,7 @@ export default (app) => {
   // @access Private
   router.get("/commits/today", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
 
     try {
       const result = await getTodayTotalCommitAllRepo(user);
@@ -115,8 +114,7 @@ export default (app) => {
   // @access Private
   router.get("/commits/today/detail", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const result = await getDetailTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "todayDetail", result);
@@ -132,8 +130,7 @@ export default (app) => {
   // @access Private
   router.get("/repos/language", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const result = await getLanguagesData(user);
       await FindByIdAndUpdate(_id, "languages", result);
@@ -187,8 +184,7 @@ export default (app) => {
   // @access Private
   router.get("/commits/total/recent/year", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
 
     try {
       const result = await getRecentYearTotalCommit(user);
@@ -205,8 +201,7 @@ export default (app) => {
   // @access Private
   router.get("/commits/continuous", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const result = await getContinuousCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "continuous", result);
@@ -272,8 +267,7 @@ export default (app) => {
   // @access Private
   router.get("/mypage", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const total = await getTotalCommitAllRepo(user);
       await FindByIdAndUpdate(_id, "total", total);
@@ -314,8 +308,7 @@ export default (app) => {
   // @access Private
   router.get("/levels", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const commits = await getCommitsAllRepo(user);
       await FindByIdAndUpdateLevel(_id, "commits", commits);
@@ -342,8 +335,7 @@ export default (app) => {
   // @access Private
   router.get("/levels/commits", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const result = await getCommitsAllRepo(user);
       await FindByIdAndUpdateLevel(_id, "commits", result);
@@ -359,8 +351,7 @@ export default (app) => {
   // @access Private
   router.get("/levels/issues", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const result = await getIssuesAllRepo(user);
       await FindByIdAndUpdateLevel(_id, "issues", result);
@@ -376,8 +367,7 @@ export default (app) => {
   // @access Private
   router.get("/levels/pulls", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const result = await getPullsAllRepo(user);
       await FindByIdAndUpdateLevel(_id, "pulls", result);
@@ -393,8 +383,7 @@ export default (app) => {
   // @access Private
   router.get("/rank", async (req, res) => {
     const { user } = req;
-    const { id } = user;
-    const [{ _id }] = await User.find({ id });
+    const _id = await getUserObjectId(user);
     try {
       const myRank = await getMyRank(_id);
       const userRank = await getUserRank();
