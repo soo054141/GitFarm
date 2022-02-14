@@ -17,7 +17,7 @@ export const setResolution = async (req) => {
   const { id } = user;
   const [{ _id }] = await User.find({ id });
   await User.findByIdAndUpdate(_id, {
-    $set: { resolution: String(resolution) },
+    $set: { resolution },
   });
-  return String(resolution);
+  return resolution;
 };
