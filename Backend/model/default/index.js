@@ -7,7 +7,7 @@ const currentMonth = fillZeroMonth;
 export const BADGE = Array.from({ length: BADGE_LENGTH }, () => false);
 export const ZERO = 0;
 export const GOAL = 5;
-export const RECENT = Array.from({ length: RECENT_YEAR }, () => 0);
+export const RECENT = Array.from({ length: RECENT_YEAR }, () => []);
 export const TODAY_DETAIL = [
   { info: { name: "", repo: "" }, data: [{ date: "", message: "" }] },
 ];

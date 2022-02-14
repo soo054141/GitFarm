@@ -26,4 +26,9 @@ app.use("/api", apiRouter());
 errorHandler(app);
 
 const PORT = 8888;
-app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+}
+
+export default app;

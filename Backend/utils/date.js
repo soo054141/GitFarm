@@ -12,6 +12,10 @@ export const RECENT_THREE_YEARS = [
   year - ONE_YEARS_AGO,
   year,
 ];
+export const fillZero = (target, targetLenth, padString) => {
+  const str = target.toString();
+  return str.padStart(targetLenth, padString);
+};
 export const THREE_YEARS = 3;
 // eslint-disable-next-line no-use-before-define
 export const today = `${year}-${fillZero(month, 2, "0")}-${fillZero(
@@ -34,15 +38,10 @@ export const customDate = (year, month, day) => ({
   day,
 });
 
-export function fillZero(target, targetLenth, padString) {
-  const str = target.toString();
-  return str.padStart(targetLenth, padString);
-}
-
-const checkLeapYear = (year) =>
+export const checkLeapYear = (year) =>
   (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
-const getFebruary = () => {
+export const getFebruary = () => {
   const isLeapYear = checkLeapYear(year);
 
   return isLeapYear
