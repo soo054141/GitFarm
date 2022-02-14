@@ -14,7 +14,7 @@ const config = {
 // eslint-disable-next-line consistent-return
 export default new JWTStrategy(config, async (jwtPayload, done) => {
   try {
-    const { id } = jwtPayload;
+    const { id } = jwtPayload.data;
     const findUser = await User.findOne({ id });
 
     if (!findUser) return done(httpError(401).message);
