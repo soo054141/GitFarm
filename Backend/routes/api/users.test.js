@@ -47,6 +47,19 @@ describe("/api/users", () => {
       expect(response.statusCode).toEqual(expectedStatus);
       expect(response._body.data).toEqual(expectedLevels);
     });
+
+    test("GET levels/commits", async () => {
+      const response = await request(app)
+        .get("/api/users/levels/commits")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedLevelsCommits = 0;
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.commits).toEqual(expectedLevelsCommits);
+    });
   });
 
   describe("/api/users/rank", () => {
