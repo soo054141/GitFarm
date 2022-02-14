@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
+import { ZERO } from "../default/index.js";
 
 const { Schema } = mongoose;
 
@@ -11,19 +12,19 @@ const LevelSchema = new Schema(
     },
     score: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
     commits: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
     issues: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
     pulls: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
   },
   { timestamps: true },

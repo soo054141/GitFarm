@@ -2,7 +2,8 @@
 import express from "express";
 import passport from "passport";
 import httpError from "http-errors";
-import createToken from "../../utils/create-token.js";
+import createToken from "../../utils/jwt.js";
+import { cookieConfig } from "../../utils/cookie.js";
 
 const router = express.Router();
 const CLIENT_URL = "http://localhost:1111/";
@@ -45,7 +46,7 @@ export default (app) => {
       const { id, email, username } = req.user;
       const payload = { id, email, username };
       const token = await createToken(payload);
-      res.cookie("token", token);
+      res.cookie("token", token, cookieConfig);
       res.redirect("/api/auth/login/success");
     },
   );

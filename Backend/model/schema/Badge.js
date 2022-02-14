@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
+import { BADGE } from "../default/index.js";
 
 const { Schema } = mongoose;
-
 const BadgeSchema = new Schema(
   {
     author: {
@@ -11,26 +11,7 @@ const BadgeSchema = new Schema(
     },
     badge: {
       type: [Boolean],
-      default: [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-      ],
+      default: BADGE,
     },
   },
   { timestamps: true },
