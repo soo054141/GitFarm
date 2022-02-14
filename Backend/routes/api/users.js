@@ -25,6 +25,7 @@ import {
   getRankController,
   getGoalController,
   postGoalController,
+  deleteUserController,
 } from "../../controller/users.controller.js";
 
 const router = express.Router();
@@ -43,22 +44,6 @@ export default (app) => {
   // @desc total commits
   // @access Private
   router.get("/repos/total/commits", getReposTotalCommitsController);
-
-  // @route GET api/users/repos/total/commits
-  // @desc total commits
-  // @access Private
-  router.get("/repos/total/commits", async (req, res) => {
-    const { user } = req;
-    const _id = getUserObjectId(user);
-    try {
-      const result = await getTotalCommitAllRepo(user);
-      await FindByIdAndUpdate(Commit, _id, "total", result);
-      ViewResponseJSON(res, true, "total", result);
-    } catch (err) {
-      const result = await FindValueByKey(Commit, _id, "total");
-      ViewResponseJSON(res, false, "total", result);
-    }
-  });
 
   // @route GET api/users/commits/today
   // @desc today total commits
@@ -154,4 +139,9 @@ export default (app) => {
   // @desc set goal
   // @access Private
   router.post("/goal", postGoalController);
+
+  // @route DELETE api/users/:
+  // @desc set goal
+  // @access Private
+  router.delete("/delete", deleteUserController);
 };
