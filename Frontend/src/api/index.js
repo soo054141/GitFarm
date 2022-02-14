@@ -61,3 +61,13 @@ export const getRecentThreeYear = async () => {
     return error;
   }
 };
+
+// 총 레포지토리 별 사용 언어
+export const getReposLanguage = async () => {
+  try {
+    const res = await axios.get(`${url}/reposLanguage`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
