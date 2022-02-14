@@ -28,4 +28,4 @@ function ColorGuide() {
   );
 }
 
-export default ColorGuide;
+export default React.memo(ColorGuide);

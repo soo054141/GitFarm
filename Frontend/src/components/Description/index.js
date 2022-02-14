@@ -5,9 +5,11 @@ import { Text } from "./style";
 function Description({ children, big }) {
   return <Text big={big}>{children}</Text>;
 }
-
+Description.defaultProps = {
+  big: false,
+};
 Description.propTypes = {
-  children: PropTypes.element.isRequired,
-  big: PropTypes.bool.isRequired,
+  children: PropTypes.string.isRequired,
+  big: PropTypes.bool,
 };
 export default Description;

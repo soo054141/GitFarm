@@ -45,3 +45,12 @@ export const BtnWrapper = styled.div`
     margin-left: 20px;
   }
 `;
+
+export const Validation = styled.div`
+  height: 20px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+  p {
+    font-size: 13px;
+  }
+`;

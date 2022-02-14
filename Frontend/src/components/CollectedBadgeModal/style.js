@@ -16,3 +16,10 @@ export const Wrapper = styled.div`
     margin-left: 0px;
   }
 `;
+
+export const Body = styled.p`
+  color: ${(props) => props.theme.lightGray};
+  line-height: 18px;
+  font-size: 16px;
+  margin-left: 5px;
+`;
