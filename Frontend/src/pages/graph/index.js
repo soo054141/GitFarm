@@ -71,7 +71,7 @@ function Graph() {
         handlYearBtn={handlYearBtn}
         handleMonthBtn={handleMonthBtn}
       />
-      <LineGraph graphTitle={graphTitle} date={date} />
+      <LineGraph graphTitle={graphTitle} date={date} clickYear={checkMonth} />
       <PieChartComponent />
     </Container>
   );
