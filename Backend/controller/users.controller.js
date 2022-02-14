@@ -14,25 +14,13 @@ import {
   getDetailTotalCommitAllRepo,
   getContinuousCommitAllRepo,
 } from "../lib/api/index.js";
-
 import {
-  getGoal,
   getScore,
-  getBadge,
-  getMyRank,
-  getUserRank,
   getMemberDate,
-  getResolution,
-  getDefaultRank,
-  getBadgeFromDB,
-  setGoal,
-  setBadge,
-  setResolution,
   setMemberDate,
   FindValueByKey,
   FindByIdAndUpdate,
 } from "../services/index.js";
-
 import { ViewResponseJSON } from "./index.js";
 
 export const getReposTotalCommitsController = async (req, res) => {
@@ -139,7 +127,7 @@ export const getCommitsTotalRecentYearController = async (req, res) => {
   }
 };
 
-export const getCommitsContinousController = async (req, res) => {
+export const getCommitsContinuousController = async (req, res) => {
   const { user } = req;
   const { id } = user;
   const [{ _id }] = await User.find({ id });
@@ -150,44 +138,6 @@ export const getCommitsContinousController = async (req, res) => {
   } catch (err) {
     const result = await FindValueByKey(_id, "continuous");
     ViewResponseJSON(res, false, "continuous", result);
-  }
-};
-
-export const getResolutionController = async (req, res) => {
-  try {
-    const result = await getResolution(req);
-    ViewResponseJSON(res, true, "resolution", result);
-  } catch (err) {
-    const result = await getResolution(req);
-    ViewResponseJSON(res, false, "resolution", result);
-  }
-};
-
-export const postResolutionController = async (req, res) => {
-  try {
-    await setResolution(req);
-    res.status(201);
-  } catch (err) {
-    res.status(500);
-  }
-};
-
-export const getBadgeController = async (req, res) => {
-  try {
-    const result = await getBadge(req);
-    ViewResponseJSON(res, true, "badge", result);
-  } catch (err) {
-    const result = await getBadgeFromDB(req);
-    ViewResponseJSON(res, false, "badge", result);
-  }
-};
-
-export const postBadgeController = async (req, res) => {
-  try {
-    await setBadge(req);
-    res.status(201);
-  } catch (err) {
-    res.status(500);
   }
 };
 
@@ -227,108 +177,5 @@ export const getMyPageController = async (req, res) => {
     const mypage = { total, score, continuous, memberDate };
 
     ViewResponseJSON(res, true, "mypage", mypage);
-  }
-};
-
-export const getLevelsController = async (req, res) => {
-  const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
-  try {
-    const commits = await getCommitsAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "commits", commits);
-    const issues = await getIssuesAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "issues", issues);
-    const pulls = await getPullsAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "pulls", pulls);
-    const score = getScore(commits, issues, pulls);
-    await FindByIdAndUpdate(Level, _id, "score", score);
-    const levels = { score, commits, issues, pulls };
-    ViewResponseJSON(res, true, "data", levels);
-  } catch (err) {
-    const commits = await FindValueByKey(Level, _id, "commits");
-    const issues = await FindValueByKey(Level, _id, "issues");
-    const pulls = await FindValueByKey(Level, _id, "pulls");
-    const score = await FindValueByKey(Level, _id, "score");
-    const levels = { score, commits, issues, pulls };
-    ViewResponseJSON(res, false, "data", levels);
-  }
-};
-
-export const getLevelsCommitsController = async (req, res) => {
-  const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
-  try {
-    const result = await getCommitsAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "commits", result);
-    ViewResponseJSON(res, true, "commits", result);
-  } catch (err) {
-    const result = await FindValueByKey(Level, _id, "commits");
-    ViewResponseJSON(res, false, "commits", result);
-  }
-};
-
-export const getLevelsIssuesController = async (req, res) => {
-  const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
-  try {
-    const result = await getIssuesAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "issues", result);
-    ViewResponseJSON(res, true, "issues", result);
-  } catch (err) {
-    const result = await FindValueByKey(Level, _id, "issues");
-    ViewResponseJSON(res, false, "issues", result);
-  }
-};
-
-export const getLevelsPullsController = async (req, res) => {
-  const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
-  try {
-    const result = await getPullsAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "pulls", result);
-    ViewResponseJSON(res, true, "pulls", result);
-  } catch (err) {
-    const result = await FindValueByKey(Level, _id, "pulls");
-    ViewResponseJSON(res, false, "pulls", result);
-  }
-};
-
-export const getRankController = async (req, res) => {
-  const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
-  try {
-    const myRank = await getMyRank(_id);
-    const userRank = await getUserRank();
-    const result = {
-      myRank,
-      userRank,
-    };
-    ViewResponseJSON(res, true, "data", result);
-  } catch (err) {
-    const result = getDefaultRank();
-    ViewResponseJSON(res, false, "data", result);
-  }
-};
-
-export const getGoalController = async (req, res) => {
-  try {
-    const result = await getGoal(req);
-    ViewResponseJSON(res, true, "goal", result);
-  } catch (err) {
-    ViewResponseJSON(res, false, "goal", 5);
-  }
-};
-
-export const postGoalController = async (req, res) => {
-  try {
-    await setGoal(req);
-    res.status(201);
-  } catch (err) {
-    res.status(500);
   }
 };
