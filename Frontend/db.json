@@ -76,5 +76,13 @@
       false,
       false
     ]
+  },
+  "recentThreeYear": {
+    "success": true,
+    "recentThreeYear": [
+      [2020, 49],
+      [2021, 1163],
+      [2022, 127]
+    ]
   }
 }
