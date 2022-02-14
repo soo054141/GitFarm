@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
-import { User, Level } from "../model/index.js";
+import { Level } from "../model/index.js";
 import {
   getPullsAllRepo,
   getIssuesAllRepo,
@@ -11,37 +12,37 @@ import {
   FindValueByKey,
   FindByIdAndUpdate,
 } from "../services/index.js";
-import { ViewResponseJSON } from "./index.js";
+import { getUserObjectId } from "../utils/db.js";
+import { ViewResponseJSON } from "./view.controller.js";
 
 export const getLevelsController = async (req, res) => {
   const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
+  const _id = await getUserObjectId(user);
   try {
     const commits = await getCommitsAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "commits", commits);
     const issues = await getIssuesAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "issues", issues);
     const pulls = await getPullsAllRepo(user);
-    await FindByIdAndUpdate(Level, _id, "pulls", pulls);
     const score = getScore(commits, issues, pulls);
+    const result = { score, commits, issues, pulls };
+
+    await FindByIdAndUpdate(Level, _id, "commits", commits);
+    await FindByIdAndUpdate(Level, _id, "issues", issues);
+    await FindByIdAndUpdate(Level, _id, "pulls", pulls);
     await FindByIdAndUpdate(Level, _id, "score", score);
-    const levels = { score, commits, issues, pulls };
-    ViewResponseJSON(res, true, "data", levels);
+    ViewResponseJSON(res, true, "data", result);
   } catch (err) {
     const commits = await FindValueByKey(Level, _id, "commits");
     const issues = await FindValueByKey(Level, _id, "issues");
     const pulls = await FindValueByKey(Level, _id, "pulls");
     const score = await FindValueByKey(Level, _id, "score");
-    const levels = { score, commits, issues, pulls };
-    ViewResponseJSON(res, false, "data", levels);
+    const result = { score, commits, issues, pulls };
+    ViewResponseJSON(res, false, "data", result);
   }
 };
 
 export const getLevelsCommitsController = async (req, res) => {
   const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
+  const _id = await getUserObjectId(user);
   try {
     const result = await getCommitsAllRepo(user);
     await FindByIdAndUpdate(Level, _id, "commits", result);
@@ -54,8 +55,7 @@ export const getLevelsCommitsController = async (req, res) => {
 
 export const getLevelsIssuesController = async (req, res) => {
   const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
+  const _id = await getUserObjectId(user);
   try {
     const result = await getIssuesAllRepo(user);
     await FindByIdAndUpdate(Level, _id, "issues", result);
@@ -68,8 +68,7 @@ export const getLevelsIssuesController = async (req, res) => {
 
 export const getLevelsPullsController = async (req, res) => {
   const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
+  const _id = await getUserObjectId(user);
   try {
     const result = await getPullsAllRepo(user);
     await FindByIdAndUpdate(Level, _id, "pulls", result);

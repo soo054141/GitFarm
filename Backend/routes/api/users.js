@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
@@ -25,6 +26,7 @@ import {
   getRankController,
   getGoalController,
   postGoalController,
+  deleteUserController,
 } from "../../controller/index.js";
 
 const router = express.Router();
@@ -138,4 +140,9 @@ export default (app) => {
   // @desc set goal
   // @access Private
   router.post("/goal", postGoalController);
+
+  // @route DELETE api/users/delete
+  // @desc Delete user account
+  // @access Private
+  router.delete("/delete", deleteUserController);
 };

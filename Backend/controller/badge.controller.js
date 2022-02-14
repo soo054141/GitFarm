@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
 import { getBadge, getBadgeFromDB, setBadge } from "../services/index.js";
-import { ViewResponseJSON } from "./index.js";
+import { ViewResponseJSON } from "./view.controller.js";
 
 export const getBadgeController = async (req, res) => {
   try {

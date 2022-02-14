@@ -1,14 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
 import { getGoal, setGoal } from "../services/index.js";
-import { ViewResponseJSON } from "./index.js";
+import { ViewResponseJSON } from "./view.controller.js";
+import { GOAL } from "../model/default/index.js";
 
 export const getGoalController = async (req, res) => {
   try {
     const result = await getGoal(req);
     ViewResponseJSON(res, true, "goal", result);
   } catch (err) {
-    ViewResponseJSON(res, false, "goal", 5);
+    ViewResponseJSON(res, false, "goal", GOAL);
   }
 };
 
