@@ -7,9 +7,18 @@ import {
   Content,
   BtnWrapper,
   ModalBackground,
+  Validation,
 } from "./style";
 
-function Modal({ children, setOpenModal, title, twoBtn, confirmHandler }) {
+function Modal({
+  children,
+  setOpenModal,
+  title,
+  twoBtn,
+  confirmHandler,
+  validation,
+  inputModal,
+}) {
   const modalElement = useRef();
 
   useEffect(() => {
@@ -39,6 +48,11 @@ function Modal({ children, setOpenModal, title, twoBtn, confirmHandler }) {
       <ModalContainer ref={modalElement}>
         {title && <Title>{title}</Title>}
         <Content>{children}</Content>
+        {inputModal && (
+          <Validation>
+            <p>{validation}</p>
+          </Validation>
+        )}
         {twoBtn ? (
           <BtnWrapper>
             <Btn color="gray" onClick={closeModalHandler}>
@@ -60,6 +74,8 @@ function Modal({ children, setOpenModal, title, twoBtn, confirmHandler }) {
 Modal.defaultProps = {
   twoBtn: false,
   title: "",
+  inputModal: false,
+  validation: "",
   confirmHandler: () => {},
 };
 Modal.propTypes = {
@@ -67,6 +83,8 @@ Modal.propTypes = {
   setOpenModal: PropTypes.func.isRequired,
   title: PropTypes.string,
   twoBtn: PropTypes.bool,
+  inputModal: PropTypes.bool,
   confirmHandler: PropTypes.func,
+  validation: PropTypes.string,
 };
 export default Modal;
