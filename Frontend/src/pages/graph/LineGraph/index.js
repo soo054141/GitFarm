@@ -41,7 +41,7 @@ function LineGraph({ graphTitle, date, clickYear }) {
       const year = date.toISOString().slice(0, 4);
       const data = await api.getCommitsTotalPerMonth(year);
       if (data.success) {
-        const commitPerYear = await data.commitPerYear;
+        const { commitPerYear } = data;
 
         const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
           name: `${year.slice(2, 4)}.${index + 1}`,
