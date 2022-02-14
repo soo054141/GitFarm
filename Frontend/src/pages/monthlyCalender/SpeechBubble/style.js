@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
-  height: 135px;
+  width: 350px;
+  height: 90px;
   background: #fff;
   padding: 5px;
   margin: 37px auto;
@@ -12,7 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-
+  display: flex;
   &::before {
     content: "";
     display: block;
@@ -30,16 +30,16 @@ export const Container = styled.div`
 export const Wrapper = styled.div``;
 
 export const Title = styled.h3`
-  margin-bottom: 13px;
   font-size: 20px;
   font-weight: 600;
   line-height: 23px;
-  color: ${(props) => props.theme.darkGray};
+  color: ${(props) => props.theme.mainColor};
+  font-weight: bold;
 `;
 
 export const Text = styled.p`
   font-size: 12px;
   line-height: 14px;
   color: ${(props) => props.theme.lightGray};
-  color: #939292;
+  margin-bottom: 10px;
 `;
