@@ -15,7 +15,7 @@ function PieChartComponent({ reposLanguage }) {
     }
   });
 
-  const codeRatioArray = [];
+  let codeRatioArray = [];
   const language = Object.keys(languageCountObj);
   const values = Object.values(languageCountObj);
 
@@ -28,6 +28,7 @@ function PieChartComponent({ reposLanguage }) {
     });
   }
   codeRatioArray.sort((a, b) => b.value - a.value);
+  codeRatioArray = codeRatioArray.slice(0, 4);
 
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
