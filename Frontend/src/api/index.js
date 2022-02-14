@@ -51,3 +51,45 @@ export const getUserBadges = async () => {
     return error;
   }
 };
+
+export const getGoal = async () => {
+  try {
+    const res = await axios.get(`${url}/goal`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getResolution = async () => {
+  try {
+    const res = await axios.get(`${url}/resolution`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const postGoal = async (goalNum) => {
+  try {
+    const res = await axios.post(`${url}/goal`, {
+      success: true,
+      goal: goalNum,
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const postResolution = async (resolutionString) => {
+  try {
+    const res = await axios.post(`${url}/resolution`, {
+      success: true,
+      resolution: resolutionString,
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
