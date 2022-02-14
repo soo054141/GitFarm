@@ -7,7 +7,7 @@ jest.setTimeout(20000);
 
 describe("/api/users", () => {
   const token =
-    "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0NTQzMDEzIiwiZW1haWwiOiJ5d3RlY2hpdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IllXVGVjaElUIiwiaWF0IjoxNjQ0ODQ5NTA0LCJleHAiOjE2NDU0NTQzMDR9.KiW72eE8_ZNos42UYOa73_KohnoaiiHEYLeMFxO9eYw";
+    "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDYwODI1OTIsImRhdGEiOnsiaWQiOiI1NDU0MzAxMyIsImVtYWlsIjoieXd0ZWNoaXRAZ21haWwuY29tIiwidXNlcm5hbWUiOiJZV1RlY2hJVCJ9LCJpYXQiOjE2NDQ4NzI5OTJ9.uOnsM_clKhAsz9ZXyoDdf0BXcf6CZ0RVwhSJ9M4VXnc";
 
   describe("/api/users/mypage", () => {
     test("GET mypage", async () => {
@@ -46,6 +46,45 @@ describe("/api/users", () => {
 
       expect(response.statusCode).toEqual(expectedStatus);
       expect(response._body.data).toEqual(expectedLevels);
+    });
+
+    test("GET levels/commits", async () => {
+      const response = await request(app)
+        .get("/api/users/levels/commits")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedLevelsCommits = 0;
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.commits).toEqual(expectedLevelsCommits);
+    });
+
+    test("GET levels/issues", async () => {
+      const response = await request(app)
+        .get("/api/users/levels/issues")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedLevelsIssues = 0;
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.issues).toEqual(expectedLevelsIssues);
+    });
+
+    test("GET levels/pulls", async () => {
+      const response = await request(app)
+        .get("/api/users/levels/pulls")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedLevelsPulls = 0;
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.pulls).toEqual(expectedLevelsPulls);
     });
   });
 
@@ -110,13 +149,10 @@ describe("/api/users", () => {
         .send({ resolution: "테스트 코드 작성 재밌다." });
 
       const expectedStatus = 201;
-      const expectedBody = {
-        success: true,
-        resolution: "테스트 코드 작성 재밌다.",
-      };
+      const expectedResolution = "테스트 코드 작성 재밌다.";
 
       expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body).toStrictEqual(expectedBody);
+      expect(response._body.resolution).toStrictEqual(expectedResolution);
     });
 
     test("GET resolution", async () => {
@@ -144,13 +180,10 @@ describe("/api/users", () => {
         .send({ goal: GOAL });
 
       const expectedStatus = 201;
-      const expectedBody = {
-        success: true,
-        goal: GOAL,
-      };
+      const expectedGoal = GOAL;
 
       expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body).toStrictEqual(expectedBody);
+      expect(response._body.goal).toEqual(expectedGoal);
     });
 
     test("GET Goal", async () => {

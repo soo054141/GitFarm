@@ -15,10 +15,10 @@ export const getGoalController = async (req, res) => {
 
 export const postGoalController = async (req, res) => {
   try {
-    await setBadge(req);
+    await setGoal(req);
     res.status(201).json({
       success: true,
-      badge: req.body.badge,
+      goal: req.body.goal,
     });
   } catch (err) {
     res.status(400).json({
