@@ -327,8 +327,7 @@ export const postGoalController = async (req, res) => {
 
 export const deleteUserController = async (req, res) => {
   const { user } = req;
-  const { id } = user;
-  const [{ _id }] = await User.find({ id });
+  const _id = getUserObjectId(user);
 
   try {
     await User.findByIdAndDelete(_id);
