@@ -15,9 +15,15 @@ export const getResolutionController = async (req, res) => {
 
 export const postResolutionController = async (req, res) => {
   try {
-    await setResolution(req);
-    res.status(201);
+    await setBadge(req);
+    res.status(201).json({
+      success: true,
+      badge: req.body.badge,
+    });
   } catch (err) {
-    res.status(500);
+    res.status(400).json({
+      success: true,
+      message: "Bad Request",
+    });
   }
 };
