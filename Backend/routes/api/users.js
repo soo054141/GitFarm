@@ -140,8 +140,8 @@ export default (app) => {
   // @access Private
   router.post("/goal", postGoalController);
 
-  // @route DELETE api/users/:
-  // @desc set goal
+  // @route DELETE api/users/delete
+  // @desc Delete user account
   // @access Private
   router.delete("/delete", deleteUserController);
 };
