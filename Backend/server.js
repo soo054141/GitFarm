@@ -28,7 +28,7 @@ errorHandler(app);
 const PORT = 8888;
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(port, () => console.log(`Listening on PORT ${PORT}`));
+  app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 }
 
 export default app;
