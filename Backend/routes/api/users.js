@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
@@ -26,7 +27,7 @@ import {
   getGoalController,
   postGoalController,
   deleteUserController,
-} from "../../controller/users.controller.js";
+} from "../../controller/index.js";
 
 const router = express.Router();
 
