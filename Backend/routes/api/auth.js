@@ -2,7 +2,7 @@
 import express from "express";
 import passport from "passport";
 import httpError from "http-errors";
-import createToken from "../../utils/create-token.js";
+import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
 
 const router = express.Router();
