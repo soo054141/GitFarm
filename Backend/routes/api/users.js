@@ -12,7 +12,7 @@ import {
   getCommitsTotalPerYearController,
   getCommitsTotalPerDayController,
   getCommitsTotalRecentYearController,
-  getCommitsContinousController,
+  getCommitsContinuousController,
   getResolutionController,
   postResolutionController,
   getBadgeController,
@@ -78,7 +78,7 @@ export default (app) => {
   // @route GET api/users/commits/continuous
   // @desc user continuous commits days
   // @access Private
-  router.get("/commits/continuous", getCommitsContinousController);
+  router.get("/commits/continuous", getCommitsContinuousController);
 
   // @route GET api/users/resolution
   // @desc user resolution

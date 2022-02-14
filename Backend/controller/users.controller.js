@@ -138,7 +138,7 @@ export const getCommitsTotalRecentYearController = async (req, res) => {
   }
 };
 
-export const getCommitsContinousController = async (req, res) => {
+export const getCommitsContinuousController = async (req, res) => {
   const { user } = req;
   const _id = getUserObjectId(user);
   try {
