@@ -1,9 +1,13 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
-import { fillZeroMonth, getMonthCalendar } from "../../utils/date.js";
-
-const month = fillZeroMonth;
-const defaultMonth = getMonthCalendar(month);
+import {
+  COMMIT_PER_YEAR,
+  LANGUAGES,
+  MONTH,
+  RECENT,
+  TODAY_DETAIL,
+  ZERO,
+} from "../default/index.js";
 
 const { Schema } = mongoose;
 
@@ -15,15 +19,15 @@ const CommitSchema = new Schema(
     },
     total: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
     recent: {
       type: [[Number]],
-      default: [0, 0, 0],
+      default: RECENT,
     },
     today: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
     todayDetail: {
       type: [
@@ -35,17 +39,15 @@ const CommitSchema = new Schema(
           data: [{ date: String, message: String }],
         },
       ],
-      default: [
-        { info: { name: "", repo: "" }, data: [{ date: "", message: "" }] },
-      ],
+      default: TODAY_DETAIL,
     },
     commitPerYear: {
       type: [Number],
-      default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      default: COMMIT_PER_YEAR,
     },
     commitPerDay: {
       type: [Number],
-      default: defaultMonth,
+      default: MONTH,
     },
     languages: {
       type: [
@@ -54,11 +56,11 @@ const CommitSchema = new Schema(
           language: String,
         },
       ],
-      default: [{ repo: "", language: "" }],
+      default: LANGUAGES,
     },
     continuous: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
   },
   { timestamps: true },

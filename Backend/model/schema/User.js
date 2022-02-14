@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
+import { GOAL, ZERO } from "../default";
 
 const { Schema } = mongoose;
 
@@ -27,7 +28,7 @@ const UserSchema = new Schema(
     },
     goal: {
       type: Number,
-      default: 5,
+      default: GOAL,
     },
     resolution: {
       type: String,
@@ -35,7 +36,7 @@ const UserSchema = new Schema(
     },
     memberDate: {
       type: Number,
-      default: 0,
+      default: ZERO,
     },
   },
   { timestamps: true },
