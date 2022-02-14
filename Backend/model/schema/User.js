@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
-import { GOAL, ZERO } from "../default";
+import { GOAL, ZERO } from "../default/index.js";
 
 const { Schema } = mongoose;
 

@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import mongoose from "mongoose";
-import { ZERO } from "../default";
+import { ZERO } from "../default/index.js";
 
 const { Schema } = mongoose;
 
