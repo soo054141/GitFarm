@@ -73,6 +73,19 @@ describe("/api/users", () => {
       expect(response.statusCode).toEqual(expectedStatus);
       expect(response._body.issues).toEqual(expectedLevelsIssues);
     });
+
+    test("GET levels/pulls", async () => {
+      const response = await request(app)
+        .get("/api/users/levels/pulls")
+        .set("Cookie", token)
+        .send();
+
+      const expectedStatus = 200;
+      const expectedLevelsPulls = 0;
+
+      expect(response.statusCode).toEqual(expectedStatus);
+      expect(response._body.pulls).toEqual(expectedLevelsPulls);
+    });
   });
 
   describe("/api/users/rank", () => {
