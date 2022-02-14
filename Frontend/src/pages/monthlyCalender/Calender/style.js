@@ -11,7 +11,7 @@ export const DayRow = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   padding-top: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   div {
     text-align: center;
     color: ${(props) => props.theme.darkGray};
