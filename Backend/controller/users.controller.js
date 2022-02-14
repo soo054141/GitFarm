@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
-import { User, Commit, Level } from "../model/index.js";
+import { User, Badge, Commit, Level } from "../model/index.js";
 import {
   getPullsAllRepo,
   getLanguagesData,
@@ -322,5 +322,21 @@ export const postGoalController = async (req, res) => {
     res.status(201);
   } catch (err) {
     res.status(500);
+  }
+};
+
+export const deleteUserController = async (req, res) => {
+  const { user } = req;
+  const { id } = user;
+  const [{ _id }] = await User.find({ id });
+
+  try {
+    await User.findByIdAndDelete(_id);
+    await Badge.findByIdAndDelete(_id);
+    await Commit.findByIdAndDelete(_id);
+    await Level.findByIdAndDelete(_id);
+    res.status(201);
+  } catch (err) {
+    res.status(501);
   }
 };
