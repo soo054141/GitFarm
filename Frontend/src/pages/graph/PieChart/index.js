@@ -4,7 +4,31 @@ import { PieChart, Pie, Cell } from "recharts";
 import githubLangColors from "./github-lang-colors.json";
 import * as PieCharts from "./style";
 
-function PieChartComponent({ codeRatioArray }) {
+function PieChartComponent({ reposLanguage }) {
+  const languageCountObj = {};
+
+  reposLanguage.forEach((it) => {
+    if (Object.prototype.hasOwnProperty.call(languageCountObj, it.language)) {
+      languageCountObj[it.language] += 1;
+    } else {
+      languageCountObj[it.language] = 1;
+    }
+  });
+
+  const codeRatioArray = [];
+  const language = Object.keys(languageCountObj);
+  const values = Object.values(languageCountObj);
+
+  const denominator = reposLanguage.length;
+  for (let i = 0; i < language.length; i += 1) {
+    const valueCal = +((values[i] / denominator) * 100).toFixed(2);
+    codeRatioArray.push({
+      name: language[i],
+      value: valueCal,
+    });
+  }
+  codeRatioArray.sort((a, b) => b.value - a.value);
+
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
     const langName = it.name;
@@ -60,21 +84,16 @@ function PieChartComponent({ codeRatioArray }) {
 }
 
 PieChartComponent.propTypes = {
-  codeRatioArray: PropTypes.arrayOf(
+  reposLanguage: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
+      language: PropTypes.string.isRequired,
+      repo: PropTypes.string.isRequired,
     }),
   ),
 };
 
 PieChartComponent.defaultProps = {
-  codeRatioArray: [
-    { name: "JavaScript", value: 44.53 },
-    { name: "HTML", value: 35.57 },
-    { name: "CSS", value: 13.27 },
-    { name: "TypeScript", value: 6.64 },
-  ],
+  reposLanguage: [{ language: "JavaScript", repo: "44.53" }],
 };
 
 export default React.memo(PieChartComponent);

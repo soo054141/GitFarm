@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Container } from "@/components/Container/style";
 import DateController from "@/components/DateController";
+import * as api from "@/api";
 import MonthYearBtn from "./MonthYearBtn";
 import PieChartComponent from "./PieChart";
+import LineGraph from "./LineGraph";
 import { DateControllerWrapper } from "./style";
-
-const LineGraph = React.lazy(() => import("./LineGraph"));
 
 function Graph() {
   const monthButton = true;
@@ -16,6 +16,7 @@ function Graph() {
   const [clickButtonColor, setClickButtonColor] = useState(true);
   const [checkMonth, setCheckMonth] = useState(false);
   const [graphTitle, setGraphTitle] = useState("월간");
+  const [reposLanguage, setReposLanguage] = useState();
 
   const changeDate = (value) => {
     const newDate = new Date(date.getFullYear() + value, date.getMonth());
@@ -52,6 +53,17 @@ function Graph() {
     }
   }, [graphTitle]);
 
+  const getUsersReposLanguage = async () => {
+    const res = await api.getReposLanguage();
+    if (res.success) {
+      setReposLanguage(res.data);
+    }
+  };
+
+  useEffect(() => {
+    getUsersReposLanguage();
+  }, []);
+
   return (
     <Container>
       <DateControllerWrapper>
@@ -72,7 +84,7 @@ function Graph() {
         handleMonthBtn={handleMonthBtn}
       />
       <LineGraph graphTitle={graphTitle} date={date} clickYear={checkMonth} />
-      <PieChartComponent />
+      <PieChartComponent reposLanguage={reposLanguage} />
     </Container>
   );
 }
