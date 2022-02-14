@@ -3,6 +3,6 @@ import jwt from "jsonwebtoken";
 import keys from "../config/keys.js";
 
 const createToken = (payload) =>
-  jwt.sign(payload, keys.secretOrKey, { expiresIn: keys.expiresIn });
+  jwt.sign(payload, keys.secretOrKey, { expiresIn: keys.JWTexpiresIn });
 
 export default createToken;
