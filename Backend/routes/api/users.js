@@ -5,42 +5,38 @@ import express from "express";
 import passport from "passport";
 import { User, Commit, Level } from "../../model/index.js";
 import {
-  getDetailTotalCommitAllRepo,
+  getPullsAllRepo,
   getLanguagesData,
-  getMonthTotalCommitAllRepo,
-  getTodayTotalCommitAllRepo,
-  getTotalCommitAllRepo,
-  getContinuousCommitAllRepo,
   getIssuesAllRepo,
   getCommitsAllRepo,
-  getPullsAllRepo,
+  getTotalCommitAllRepo,
+  getPerDayCommitAllRepo,
   getRecentYearTotalCommit,
+  getMonthTotalCommitAllRepo,
+  getTodayTotalCommitAllRepo,
+  getDetailTotalCommitAllRepo,
+  getContinuousCommitAllRepo,
 } from "../../lib/api/index.js";
-import {
-  FindByIdAndUpdate,
-  FindValueByKey,
-} from "../../services/db.service.js";
-import { getScore } from "../../services/levels.service.js";
-import {
-  getResolution,
-  setResolution,
-  getMemberDate,
-  setMemberDate,
-} from "../../services/users.service.js";
-import {
-  getBadge,
-  getBadgeFromDB,
-  setBadge,
-} from "../../services/badge.service.js";
 
-import { ViewResponseJSON } from "../../controller/index.js";
-import { getPerDayCommitAllRepo } from "../../lib/api/GitHub/commits/per/day/index.js";
 import {
-  getDefaultRank,
+  getGoal,
+  getScore,
+  getBadge,
   getMyRank,
   getUserRank,
-} from "../../services/rank.service.js";
-import { getGoal, setGoal } from "../../services/goal.service.js";
+  getMemberDate,
+  getResolution,
+  getDefaultRank,
+  getBadgeFromDB,
+  setGoal,
+  setBadge,
+  setResolution,
+  setMemberDate,
+  FindValueByKey,
+  FindByIdAndUpdate,
+} from "../../services/index.js";
+
+import { ViewResponseJSON } from "../../controller/index.js";
 import { getUserObjectId } from "../../utils/db.js";
 
 const router = express.Router();
@@ -269,17 +265,17 @@ export default (app) => {
       await FindByIdAndUpdate(_id, "total", total);
 
       const commits = await getCommitsAllRepo(user);
-      await FindByIdAndUpdateLevel(_id, "commits", commits);
+      await FindByIdAndUpdate(Level, _id, "commits", commits);
       const issues = await getIssuesAllRepo(user);
-      await FindByIdAndUpdateLevel(_id, "issues", issues);
+      await FindByIdAndUpdate(Level, _id, "issues", issues);
       const pulls = await getPullsAllRepo(user);
-      await FindByIdAndUpdateLevel(_id, "pulls", pulls);
+      await FindByIdAndUpdate(Level, _id, "pulls", pulls);
 
       const score = getScore(commits, issues, pulls);
-      await FindByIdAndUpdateLevel(_id, "score", score);
+      await FindByIdAndUpdate(Level, _id, "score", score);
 
       const continuous = await getContinuousCommitAllRepo(user);
-      await FindByIdAndUpdate(_id, "continuous", continuous);
+      await FindByIdAndUpdate(Commit, _id, "continuous", continuous);
 
       const memberDate = getMemberDate(user);
       await setMemberDate(req, memberDate);
@@ -288,9 +284,9 @@ export default (app) => {
 
       ViewResponseJSON(res, true, "mypage", mypage);
     } catch (err) {
-      const total = await FindValueByKey(_id, "total");
-      const score = await FindValueByKeyLevel(_id, "score");
-      const continuous = await FindValueByKey(_id, "continuous");
+      const total = await FindValueByKey(Commit, _id, "total");
+      const score = await FindValueByKey(Level, _id, "score");
+      const continuous = await FindValueByKey(Commit, _id, "continuous");
       const memberDate = await getMemberDate(user);
 
       const mypage = { total, score, continuous, memberDate };
@@ -307,20 +303,20 @@ export default (app) => {
     const _id = await getUserObjectId(user);
     try {
       const commits = await getCommitsAllRepo(user);
-      await FindByIdAndUpdateLevel(Level, _id, "commits", commits);
+      await FindByIdAndUpdate(Level, _id, "commits", commits);
       const issues = await getIssuesAllRepo(user);
-      await FindByIdAndUpdateLevel(Level, _id, "issues", issues);
+      await FindByIdAndUpdate(Level, _id, "issues", issues);
       const pulls = await getPullsAllRepo(user);
-      await FindByIdAndUpdateLevel(Level, _id, "pulls", pulls);
+      await FindByIdAndUpdate(Level, _id, "pulls", pulls);
       const score = getScore(commits, issues, pulls);
-      await FindByIdAndUpdateLevel(Level, _id, "score", score);
+      await FindByIdAndUpdate(Level, _id, "score", score);
       const levels = { score, commits, issues, pulls };
       ViewResponseJSON(res, true, "data", levels);
     } catch (err) {
-      const commits = await FindValueByKeyLevel(Level, _id, "commits");
-      const issues = await FindValueByKeyLevel(Level, _id, "issues");
-      const pulls = await FindValueByKeyLevel(Level, _id, "pulls");
-      const score = await FindValueByKeyLevel(Level, _id, "score");
+      const commits = await FindValueByKey(Level, _id, "commits");
+      const issues = await FindValueByKey(Level, _id, "issues");
+      const pulls = await FindValueByKey(Level, _id, "pulls");
+      const score = await FindValueByKey(Level, _id, "score");
       const levels = { score, commits, issues, pulls };
       ViewResponseJSON(res, false, "data", levels);
     }
@@ -334,10 +330,10 @@ export default (app) => {
     const _id = await getUserObjectId(user);
     try {
       const result = await getCommitsAllRepo(user);
-      await FindByIdAndUpdateLevel(Commit, _id, "commits", result);
+      await FindByIdAndUpdate(Level, _id, "commits", result);
       ViewResponseJSON(res, true, "commits", result);
     } catch (err) {
-      const result = await FindValueByKeyLevel(Commit, _id, "commits");
+      const result = await FindValueByKey(Level, _id, "commits");
       ViewResponseJSON(res, false, "commits", result);
     }
   });
@@ -350,10 +346,10 @@ export default (app) => {
     const _id = await getUserObjectId(user);
     try {
       const result = await getIssuesAllRepo(user);
-      await FindByIdAndUpdateLevel(Level, _id, "issues", result);
+      await FindByIdAndUpdate(Level, _id, "issues", result);
       ViewResponseJSON(res, true, "issues", result);
     } catch (err) {
-      const result = await FindValueByKeyLevel(Level, _id, "issues");
+      const result = await FindValueByKey(Level, _id, "issues");
       ViewResponseJSON(res, false, "issues", result);
     }
   });
@@ -366,10 +362,10 @@ export default (app) => {
     const _id = await getUserObjectId(user);
     try {
       const result = await getPullsAllRepo(user);
-      await FindByIdAndUpdateLevel(Level, _id, "pulls", result);
+      await FindByIdAndUpdate(Level, _id, "pulls", result);
       ViewResponseJSON(res, true, "pulls", result);
     } catch (err) {
-      const result = await FindValueByKeyLevel(Level, _id, "pulls");
+      const result = await FindValueByKey(Level, _id, "pulls");
       ViewResponseJSON(res, false, "pulls", result);
     }
   });
