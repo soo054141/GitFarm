@@ -18,6 +18,8 @@ function Modal({
   confirmHandler,
   validation,
   inputModal,
+  logoutHanlder,
+  deleteAccountHanlder,
 }) {
   const modalElement = useRef();
 
@@ -58,7 +60,13 @@ function Modal({
             <Btn color="gray" onClick={closeModalHandler}>
               취소
             </Btn>
-            <Btn onClick={confirmHandler}>확인</Btn>
+            {title === "로그아웃" && <Btn onClick={logoutHanlder}>확인</Btn>}
+            {title === "GitFarm 탈퇴하기" && (
+              <Btn onClick={deleteAccountHanlder}>확인</Btn>
+            )}
+            {title !== "로그아웃" && title !== "GitFarm 탈퇴하기" && (
+              <Btn onClick={confirmHandler}>확인</Btn>
+            )}
           </BtnWrapper>
         ) : (
           <BtnWrapper>
@@ -77,6 +85,8 @@ Modal.defaultProps = {
   inputModal: false,
   validation: "",
   confirmHandler: () => {},
+  logoutHanlder: () => {},
+  deleteAccountHanlder: () => {},
 };
 Modal.propTypes = {
   children: PropTypes.element.isRequired,
@@ -86,5 +96,7 @@ Modal.propTypes = {
   inputModal: PropTypes.bool,
   confirmHandler: PropTypes.func,
   validation: PropTypes.string,
+  logoutHanlder: PropTypes.func,
+  deleteAccountHanlder: PropTypes.func,
 };
 export default Modal;
