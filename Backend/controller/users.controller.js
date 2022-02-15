@@ -34,6 +34,13 @@ import { isInTime, TARGET_TIME } from "../utils/date.js";
 export const getReposTotalCommitsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "total");
+    ViewResponseJSON(res, true, "total", result);
+    return;
+  }
 
   try {
     const result = await getTotalCommitAllRepo(user);
@@ -48,6 +55,13 @@ export const getReposTotalCommitsController = async (req, res) => {
 export const getCommitsTodayController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "today");
+    ViewResponseJSON(res, true, "today", result);
+    return;
+  }
 
   try {
     const result = await getTodayTotalCommitAllRepo(user);
@@ -62,6 +76,14 @@ export const getCommitsTodayController = async (req, res) => {
 export const getCommitsTodayDetailController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "todayDetail");
+    ViewResponseJSON(res, true, "todayDetail", result);
+    return;
+  }
+
   try {
     const result = await getDetailTotalCommitAllRepo(user);
     await FindByIdAndUpdate(Commit, _id, "todayDetail", result);
@@ -98,6 +120,14 @@ export const getCommitsTotalPerYearController = async (req, res) => {
   const { id } = user;
   const { year } = params;
   const [{ _id }] = await User.find({ id });
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "commitPerYear");
+    ViewResponseJSON(res, true, "commitPerYear", result);
+    return;
+  }
+
   try {
     const result = await getMonthTotalCommitAllRepo(user, year);
     await FindByIdAndUpdate(Commit, _id, "commitPerYear", result);
@@ -114,6 +144,13 @@ export const getCommitsTotalPerDayController = async (req, res) => {
   const { YYYYMM } = params;
   const date = YYYYMM.split("-");
   const [{ _id }] = await User.find({ id });
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "commitPerDay");
+    ViewResponseJSON(res, true, "commitPerDay", result);
+    return;
+  }
 
   try {
     const result = await getPerDayCommitAllRepo(user, date);
@@ -128,6 +165,13 @@ export const getCommitsTotalPerDayController = async (req, res) => {
 export const getCommitsTotalRecentYearController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "recent");
+    ViewResponseJSON(res, true, "lastThreeYear", result);
+    return;
+  }
 
   try {
     const result = await getRecentYearTotalCommit(user);
@@ -142,6 +186,14 @@ export const getCommitsTotalRecentYearController = async (req, res) => {
 export const getCommitsContinuousController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Commit);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Commit, _id, "continuous");
+    ViewResponseJSON(res, true, "continuous", result);
+    return;
+  }
+
   try {
     const result = await getContinuousCommitAllRepo(user);
     await FindByIdAndUpdate(Commit, _id, "continuous", result);
@@ -240,6 +292,18 @@ export const getMyPageController = async (req, res) => {
 export const getLevelsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Level);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const commits = await FindValueByKey(Level, _id, "commits");
+    const issues = await FindValueByKey(Level, _id, "issues");
+    const pulls = await FindValueByKey(Level, _id, "pulls");
+    const score = await FindValueByKey(Level, _id, "score");
+    const result = { score, commits, issues, pulls };
+    ViewResponseJSON(res, false, "data", result);
+    return;
+  }
+
   try {
     const commits = await getCommitsAllRepo(user);
     const issues = await getIssuesAllRepo(user);
@@ -265,6 +329,14 @@ export const getLevelsController = async (req, res) => {
 export const getLevelsCommitsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Level);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Level, _id, "commits");
+    ViewResponseJSON(res, true, "commits", result);
+    return;
+  }
+
   try {
     const result = await getCommitsAllRepo(user);
     await FindByIdAndUpdate(Level, _id, "commits", result);
@@ -278,6 +350,14 @@ export const getLevelsCommitsController = async (req, res) => {
 export const getLevelsIssuesController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Level);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Level, _id, "issues");
+    ViewResponseJSON(res, true, "issues", result);
+    return;
+  }
+
   try {
     const result = await getIssuesAllRepo(user);
     await FindByIdAndUpdate(Level, _id, "issues", result);
@@ -291,6 +371,14 @@ export const getLevelsIssuesController = async (req, res) => {
 export const getLevelsPullsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
+  const updatedAt = await getUpdatedAtById(user, Level);
+  const inTime = isInTime(TARGET_TIME, updatedAt);
+  if (inTime) {
+    const result = await FindValueByKey(Level, _id, "pulls");
+    ViewResponseJSON(res, true, "pulls", result);
+    return;
+  }
+
   try {
     const result = await getPullsAllRepo(user);
     await FindByIdAndUpdate(Level, _id, "pulls", result);
