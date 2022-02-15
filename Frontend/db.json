@@ -77,6 +77,14 @@
       false
     ]
   },
+  "goal": {
+    "success": true,
+    "goal": "22"
+  },
+  "resolution": {
+    "success": true,
+    "resolution": "개발자가 되기 위해서어쩌구저꺼주어쩌궇"
+  },
   "recentThreeYear": {
     "success": true,
     "recentThreeYear": [
