@@ -10,7 +10,7 @@ const LevelSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    score: {
+    totalScore: {
       type: Number,
       default: ZERO,
     },
