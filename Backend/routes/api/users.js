@@ -131,15 +131,15 @@ export default (app) => {
   // @access Private
   router.get("/rank", getRankController);
 
-  // @route GET api/users/goal
+  // @route GET api/users/today/goal
   // @desc get goal
   // @access Private
-  router.get("/goal", getGoalController);
+  router.get("/today/goal", getGoalController);
 
-  // @route POST api/users/goal
+  // @route POST api/users/today/goal
   // @desc set goal
   // @access Private
-  router.post("/goal", postGoalController);
+  router.post("/today/goal", postGoalController);
 
   // @route DELETE api/users/delete
   // @desc Delete user account

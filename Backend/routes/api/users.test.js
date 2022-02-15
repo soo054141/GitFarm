@@ -172,10 +172,10 @@ describe("/api/users", () => {
     });
   });
 
-  describe("/api/users/goal", () => {
+  describe("/api/users/today/goal", () => {
     test("POST Goal", async () => {
       const response = await request(app)
-        .post("/api/users/goal")
+        .post("/api/users/today/goal")
         .set("Cookie", token)
         .send({ goal: GOAL });
 
@@ -188,7 +188,7 @@ describe("/api/users", () => {
 
     test("GET Goal", async () => {
       const response = await request(app)
-        .get("/api/users/goal")
+        .get("/api/users/today/goal")
         .set("Cookie", token)
         .send();
 
