@@ -3,6 +3,7 @@ const dt = new Date();
 export const year = dt.getFullYear();
 export const month = dt.getMonth() + 1;
 export const date = dt.getDate();
+export const ONE_MILLISECOND = 1000;
 export const ONE_MINUTE = 60;
 export const ONE_DAY = 24;
 export const ONE_YEARS_AGO = 1;
@@ -27,10 +28,7 @@ export const startOfDay = "T00:00:00Z";
 export const endOfDay = "T23:59:59Z";
 export const todaySince = `${today}${startOfDay}`;
 export const todayUntil = `${today}${endOfDay}`;
-// NOTE: test때는 두번째 monthDays 사용하기(API rate limit 방지)
 export const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-// export const monthDays = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-// export const repoName = ["ci-cd-practice", "commento-assignment"];
 export const monthPerYear = 12;
 export const customDate = (year, month, day) => ({
   year,
@@ -66,3 +64,9 @@ export const getMonthCalendar = (month) => {
 };
 
 export const fillZeroMonth = fillZero(month, 2, "0");
+
+export const TARGET_TIME = 5;
+export const isInTime = (TARGET_TIME, pastTime) => {
+  const calc = Math.floor((dt - pastTime) / (ONE_MILLISECOND * ONE_MINUTE));
+  return calc <= TARGET_TIME;
+};

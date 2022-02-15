@@ -7,3 +7,11 @@ export const getUserObjectId = async (user) => {
   const [{ _id }] = await User.find({ id });
   return _id;
 };
+
+export const getUpdatedAtById = async (user, Model) => {
+  const { id } = user;
+  const [{ _id }] = await User.find({ id });
+  const document = await Model.findById(_id);
+  const updatedAt = document?.updatedAt;
+  return updatedAt;
+};

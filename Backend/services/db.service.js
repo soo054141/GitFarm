@@ -16,6 +16,6 @@ export const FindByIdAndUpdate = async (Model, _id, key, value) => {
 };
 
 export const FindValueByKey = async (Model, _id, key) => {
-  const [document] = await Model.find({ id: _id });
-  return document[key];
+  const document = await Model.findById(_id);
+  return document?.[key];
 };
