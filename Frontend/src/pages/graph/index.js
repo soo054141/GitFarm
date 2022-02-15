@@ -6,12 +6,9 @@ import MonthYearBtn from "./MonthYearBtn";
 import PieChartComponent from "./PieChart";
 import LineGraph from "./LineGraph";
 import { DateControllerWrapper } from "./style";
+import { toDay } from "./graphUtils";
 
 function Graph() {
-  const monthButton = true;
-  const yearButton = false;
-  const ClickedMoth = true;
-  const toDay = new Date();
   const [date, setDate] = useState(toDay);
   const [clickButtonColor, setClickButtonColor] = useState(true);
   const [checkMonth, setCheckMonth] = useState(false);
@@ -38,19 +35,15 @@ function Graph() {
   };
 
   const handleMonthBtn = useCallback(() => {
-    if (monthButton) {
-      setClickButtonColor(monthButton);
-      setCheckMonth(false);
-      setGraphTitle(ClickedMoth ? "월간" : "년간");
-    }
+    setClickButtonColor(true);
+    setCheckMonth(false);
+    setGraphTitle("월간");
   }, [graphTitle]);
 
   const handlYearBtn = useCallback(() => {
-    if (!yearButton) {
-      setClickButtonColor(yearButton);
-      setCheckMonth(true);
-      setGraphTitle(!ClickedMoth ? "월간" : "년간");
-    }
+    setClickButtonColor(false);
+    setCheckMonth(true);
+    setGraphTitle("년간");
   }, [graphTitle]);
 
   const getUsersReposLanguage = async () => {
