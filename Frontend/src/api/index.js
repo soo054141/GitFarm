@@ -53,6 +53,19 @@ export const getUserBadges = async () => {
   }
 };
 
+// 뱃지
+export const postBadges = async (badges) => {
+  try {
+    const res = await axios.post(`${url}/badge`, {
+      success: true,
+      badge: badges,
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getGoal = async () => {
   try {
     const res = await axios.get(`${url}/goal`);
