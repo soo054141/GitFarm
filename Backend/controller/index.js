@@ -25,3 +25,4 @@ export {
   getResolutionController,
   postResolutionController,
 } from "./resolution.controller.js";
+export { getTodayController } from "./today.controller.js";

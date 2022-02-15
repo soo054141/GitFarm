@@ -27,6 +27,7 @@ import {
   getGoalController,
   postGoalController,
   deleteUserController,
+  getTodayController,
 } from "../../controller/index.js";
 
 const router = express.Router();
@@ -41,42 +42,113 @@ export default (app) => {
     router,
   );
 
-  // commits
-  router.get("/commits/total", getReposTotalCommitsController);
-  router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
-  router.get("/commits/total/per/day/:YYYYMM", getCommitsTotalPerDayController);
-  router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
-  router.get("/commits/continuous", getCommitsContinuousController);
+  // @route GET api/users/repos/total/commits
+  // @desc total commits
+  // @access Private
+  router.get("/repos/total/commits", getReposTotalCommitsController);
 
-  // today
-  router.get("/today/commits", getCommitsTodayController);
-  router.get("/today/commits/detail", getCommitsTodayDetailController);
-  router.get("/today/goal", getGoalController);
-  router.post("/today/goal", postGoalController);
+  // @route GET api/users/commits/today
+  // @desc today total commits
+  // @access Private
+  router.get("/commits/today", getCommitsTodayController);
 
-  // levels
-  router.get("/levels", getLevelsController);
-  router.get("/levels/commits", getLevelsCommitsController);
-  router.get("/levels/issues", getLevelsIssuesController);
-  router.get("/levels/pulls", getLevelsPullsController);
+  // @route GET api/users/commits/today/detail
+  // @desc today detail commits
+  // @access Private
+  router.get("/commits/today/detail", getCommitsTodayDetailController);
 
-  // language
+  // @route GET api/users/repos/language
+  // @desc repo별 사용 language
+  // @access Private
   router.get("/repos/language", getReposLanguage);
 
-  // rank
-  router.get("/rank", getRankController);
+  // @route GET api/users/commits/total/per/year/:year
+  // @desc :year 기준 매달 총 커밋 개수
+  // @access Private
+  router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
 
-  // resolution
+  // @route GET api/users/commits/total/per/day/:YYYY-MM
+  // @desc :year 기준 매일 총 커밋 개수
+  // @access Private
+  router.get("/commits/total/per/day/:YYYYMM", getCommitsTotalPerDayController);
+
+  // @route GET api/users/commits/total/recent/year
+  // @desc 최근 3년 기준 연도별 총 커밋 개수
+  // @access Private
+  router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
+
+  // @route GET api/users/commits/continuous
+  // @desc user continuous commits days
+  // @access Private
+  router.get("/commits/continuous", getCommitsContinuousController);
+
+  // @route GET api/users/resolution
+  // @desc user resolution
+  // @access Private
   router.get("/resolution", getResolutionController);
+
+  // @route POST api/users/resolution
+  // @desc user resolution
+  // @access Private
   router.post("/resolution", postResolutionController);
 
-  // badge
+  // @route GET api/users/badge
+  // @desc user badge
+  // @access Private
   router.get("/badge", getBadgeController);
+
+  // @route POST api/users/badge
+  // @desc user badge
+  // @access Private
   router.post("/badge", postBadgeController);
 
-  // mypage
+  // @route GET api/users/mypage
+  // @desc user resolution
+  // @access Private
   router.get("/mypage", getMyPageController);
 
-  // delete
+  // @route GET api/users/levels
+  // @desc 가입 이후의 commit, issues, pull 개수확인
+  // @access Private
+  router.get("/levels", getLevelsController);
+
+  // @route GET api/users/levels/commits
+  // @desc user commits after register
+  // @access Private
+  router.get("/levels/commits", getLevelsCommitsController);
+
+  // @route GET api/users/levels/issues
+  // @desc user issues after register
+  // @access Private
+  router.get("/levels/issues", getLevelsIssuesController);
+
+  // @route GET api/users/levels/pulls
+  // @desc user pull requests after register
+  // @access Private
+  router.get("/levels/pulls", getLevelsPullsController);
+
+  // @route GET api/users/rank
+  // @desc get myRank and userRank
+  // @access Private
+  router.get("/rank", getRankController);
+
+  // @route GET api/users/goal
+  // @desc get goal
+  // @access Private
+  router.get("/goal", getGoalController);
+
+  // @route POST api/users/goal
+  // @desc set goal
+  // @access Private
+  router.post("/goal", postGoalController);
+
+  // @route DELETE api/users/delete
+  // @desc Delete user account
+  // @access Private
   router.delete("/delete", deleteUserController);
+
+  // @route GET api/users/today
+  // @desc today data
+  // @access Private
+  router.get("/today", getTodayController);
 };
