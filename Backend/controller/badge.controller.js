@@ -1,14 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
-import { getBadge, getBadgeFromDB, setBadge } from "../services/index.js";
+import { setDefaultBadge } from "../services/badge.service.js";
+import { getBadge, setBadge } from "../services/index.js";
 import { ViewResponseJSON } from "./view.controller.js";
-
 export const getBadgeController = async (req, res) => {
   try {
     const result = await getBadge(req);
     ViewResponseJSON(res, true, "badge", result);
   } catch (err) {
-    const result = await getBadgeFromDB(req);
+    const result = await setDefaultBadge(req);
     ViewResponseJSON(res, false, "badge", result);
   }
 };
