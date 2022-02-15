@@ -210,7 +210,7 @@ export const getMyPageController = async (req, res) => {
     const continuous = await getContinuousCommitAllRepo(user);
     const memberDate = getMemberDate(user);
 
-    await FindByIdAndUpdate(Level, _id, "toTalScore", totalScore);
+    await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
     await FindByIdAndUpdate(Commit, _id, "continuous", continuous);
     await setMemberDate(req, memberDate);
 
