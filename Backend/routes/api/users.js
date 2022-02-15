@@ -46,15 +46,15 @@ export default (app) => {
   // @access Private
   router.get("/repos/total/commits", getReposTotalCommitsController);
 
-  // @route GET api/users/commits/today
+  // @route GET api/users/today/commits
   // @desc today total commits
   // @access Private
-  router.get("/commits/today", getCommitsTodayController);
+  router.get("/today/commits", getCommitsTodayController);
 
-  // @route GET api/users/commits/today/detail
+  // @route GET api/users/today/commits/detail
   // @desc today detail commits
   // @access Private
-  router.get("/commits/today/detail", getCommitsTodayDetailController);
+  router.get("/today/commits/detail", getCommitsTodayDetailController);
 
   // @route GET api/users/repos/language
   // @desc repo별 사용 language
