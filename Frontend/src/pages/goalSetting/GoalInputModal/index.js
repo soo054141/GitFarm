@@ -62,7 +62,7 @@ function GoalInputModal({ setOpenModal, modalType }) {
   };
 
   const confirmHandler = () => {
-    console.log("hi");
+    
     if (modalType === 0) {
       if (value < 1 || value >= 100) {
         setValidation("1~100까지의 숫자를 입력해주세요");
