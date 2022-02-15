@@ -12,31 +12,52 @@ import {
 import * as api from "@/api";
 import * as LineGraphs from "./style";
 
-function LineGraph({ graphTitle, date }) {
+function LineGraph({ graphTitle, date, clickYear }) {
   const [commitData, setCommitData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getCommitsPerMonth = async () => {
-    setLoading(true);
-    const year = date.toISOString().slice(0, 4);
-    const data = await api.getCommitsTotalPerMonth(year);
-    if (data.success) {
-      const commitPerYear = await data.commitPerYear;
+  if (clickYear) {
+    const getRecentThreeYearCommitsCount = async () => {
+      setLoading(true);
+      const data = await api.getRecentThreeYear();
+      if (data.success) {
+        const createData = data.recentThreeYear.map((it) => ({
+          name: it[0],
+          commit: it[1],
+        }));
+        setCommitData(createData);
+      } else {
+        setCommitData([]);
+      }
+      setLoading(false);
+    };
 
-      const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
-        name: `${year.slice(2, 4)}.${index + 1}`,
-        commit: commitCnt,
-      }));
-      setCommitData(createData);
-    } else {
-      setCommitData([]);
-    }
-    setLoading(false);
-  };
+    useEffect(() => {
+      getRecentThreeYearCommitsCount();
+    }, [clickYear]);
+  } else {
+    const getCommitsPerMonth = async () => {
+      setLoading(true);
+      const year = date.toISOString().slice(0, 4);
+      const data = await api.getCommitsTotalPerMonth(year);
+      if (data.success) {
+        const { commitPerYear } = data;
 
-  useEffect(() => {
-    getCommitsPerMonth();
-  }, [date]);
+        const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
+          name: `${year.slice(2, 4)}.${index + 1}`,
+          commit: commitCnt,
+        }));
+        setCommitData(createData);
+      } else {
+        setCommitData([]);
+      }
+      setLoading(false);
+    };
+
+    useEffect(() => {
+      getCommitsPerMonth();
+    }, [date]);
+  }
 
   return (
     <LineGraphs.Container>
@@ -75,6 +96,7 @@ function LineGraph({ graphTitle, date }) {
 LineGraph.propTypes = {
   graphTitle: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
+  clickYear: PropTypes.bool.isRequired,
 };
 
 LineGraph.defaultProps = {

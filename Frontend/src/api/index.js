@@ -93,3 +93,23 @@ export const postResolution = async (resolutionString) => {
     return error;
   }
 };
+
+// 총 커밋 개수 호출(getFullYear 기준 최근 3년)
+export const getRecentThreeYear = async () => {
+  try {
+    const res = await axios.get(`${url}/recentThreeYear`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+// 총 레포지토리 별 사용 언어
+export const getReposLanguage = async () => {
+  try {
+    const res = await axios.get(`${url}/reposLanguage`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
