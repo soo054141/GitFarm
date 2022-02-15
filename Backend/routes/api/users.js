@@ -43,9 +43,9 @@ export default (app) => {
 
   // commits
   router.get("/commits/total", getReposTotalCommitsController);
-  router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
   router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
   router.get("/commits/total/per/day/:YYYYMM", getCommitsTotalPerDayController);
+  router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
   router.get("/commits/continuous", getCommitsContinuousController);
 
   // today
@@ -54,8 +54,17 @@ export default (app) => {
   router.get("/today/goal", getGoalController);
   router.post("/today/goal", postGoalController);
 
-  // repos
+  // levels
+  router.get("/levels", getLevelsController);
+  router.get("/levels/commits", getLevelsCommitsController);
+  router.get("/levels/issues", getLevelsIssuesController);
+  router.get("/levels/pulls", getLevelsPullsController);
+
+  // language
   router.get("/repos/language", getReposLanguage);
+
+  // rank
+  router.get("/rank", getRankController);
 
   // resolution
   router.get("/resolution", getResolutionController);
@@ -67,15 +76,6 @@ export default (app) => {
 
   // mypage
   router.get("/mypage", getMyPageController);
-
-  // levels
-  router.get("/levels", getLevelsController);
-  router.get("/levels/commits", getLevelsCommitsController);
-  router.get("/levels/issues", getLevelsIssuesController);
-  router.get("/levels/pulls", getLevelsPullsController);
-
-  // rank
-  router.get("/rank", getRankController);
 
   // delete
   router.delete("/delete", deleteUserController);
