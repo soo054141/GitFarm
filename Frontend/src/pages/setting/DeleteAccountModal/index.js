@@ -1,12 +1,22 @@
 import React from "react";
+import * as api from "@/api";
 import Modal from "@/components/Modal";
 import Description from "@/components/Description";
 import SadIcon from "@/assets/icon/sad-face.svg";
+import PropTypes from "prop-types";
 import { Wrapper } from "./style";
 
 function DeleteAccountModal({ setOpenModal }) {
+  const deleteAccountHanlder = async () => {
+    await api.deleteAccount();
+  };
   return (
-    <Modal setOpenModal={setOpenModal} title="GitFarm 탈퇴하기" twoBtn={true}>
+    <Modal
+      setOpenModal={setOpenModal}
+      title="GitFarm 탈퇴하기"
+      deleteAccountHanlder={deleteAccountHanlder}
+      twoBtn
+    >
       <Wrapper>
         <Description>
           GitFarm 내의 모든 정보를 삭제하고
@@ -19,5 +29,7 @@ function DeleteAccountModal({ setOpenModal }) {
     </Modal>
   );
 }
-
+DeleteAccountModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+};
 export default DeleteAccountModal;

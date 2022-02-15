@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import axios from "axios";
 
 const url = "http://localhost:8888";
@@ -110,6 +111,30 @@ export const getReposLanguage = async () => {
     const res = await axios.get(`${url}/reposLanguage`);
     return res.data;
   } catch (error) {
+    return error;
+  }
+};
+
+// 로그아웃
+export const logout = async () => {
+  try {
+    const res = await axios.get(`${url}/logout`);
+    return res;
+  } catch (error) {
+    alert("에러가 발생했습니다.");
+    return error;
+  }
+};
+
+// 회원 탈퇴
+export const deleteAccount = async () => {
+  try {
+    const res = await axios.delete(`${url}/delete`);
+    if (res.status === 201) {
+      return alert("탈퇴 처리되었습니다.");
+    }
+  } catch (error) {
+    alert("에러가 발생했습니다.");
     return error;
   }
 };
