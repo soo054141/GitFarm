@@ -39,7 +39,7 @@ const UserSchema = new Schema(
       default: ZERO,
     },
   },
-  { timestamps: true },
+  { timestamps: true, versionKey: false },
 );
 
 export default UserSchema;
