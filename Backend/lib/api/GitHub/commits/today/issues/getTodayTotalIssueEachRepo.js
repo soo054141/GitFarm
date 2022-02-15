@@ -3,7 +3,7 @@
 import { todaySince } from "../../../../../utils/date.js";
 import { getOctokitAuth } from "../../../../Octokit/utils.js";
 
-export const getTodayIssueEachRepo = async (user, repo) => {
+export const getTodayTotalIssueEachRepo = async (user, repo) => {
   const { username } = user;
   const octokit = getOctokitAuth(user);
 

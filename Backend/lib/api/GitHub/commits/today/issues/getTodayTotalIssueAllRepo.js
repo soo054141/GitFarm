@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 import { getAllRepoName } from "../../../../Octokit/utils.js";
-import { getTodayPullEachRepo } from "./getTodayPullEachRepo.js";
+import { getTodayTotalIssueEachRepo } from "./getTodayTotalIssueEachRepo.js";
 
-export const getTodayPullAllRepo = async (user) => {
+export const getTodayTotalIssueAllRepo = async (user) => {
   const repoName = await getAllRepoName(user);
   const status = await Promise.allSettled(
     repoName.map((name) => {
-      const pulls = getTodayPullEachRepo(user, name);
-      return pulls;
+      const issues = getTodayTotalIssueEachRepo(user, name);
+      return issues;
     }),
   );
 
@@ -16,7 +16,7 @@ export const getTodayPullAllRepo = async (user) => {
     .filter((result) => result.status === "fulfilled")
     .map((res) => res.value);
 
-  const todayPulls = fulfilledValue.reduce((acc, cur) => acc + cur);
+  const todayIssues = fulfilledValue.reduce((acc, cur) => acc + cur);
 
-  return todayPulls;
+  return todayIssues;
 };
