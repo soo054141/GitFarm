@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-export { getBadge, setBadge, getBadgeFromDB } from "./badge.service.js";
+export { getBadge, setBadge } from "./badge.service.js";
 export { FindByIdAndUpdate, FindValueByKey } from "./db.service.js";
 export { getGoal, setGoal } from "./goal.service.js";
 export { getScore } from "./levels.service.js";

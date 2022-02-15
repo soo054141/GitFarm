@@ -17,10 +17,15 @@ import {
 } from "../lib/api/index.js";
 import {
   getScore,
+  setGoal,
+  getBadge,
+  setBadge,
   getMemberDate,
   setMemberDate,
   FindValueByKey,
   FindByIdAndUpdate,
+  getResolution,
+  setResolution,
 } from "../services/index.js";
 import { getUserObjectId } from "../utils/db.js";
 import { ViewResponseJSON } from "./view.controller.js";
@@ -143,8 +148,7 @@ export const getResolutionController = async (req, res) => {
     const result = await getResolution(req);
     ViewResponseJSON(res, true, "resolution", result);
   } catch (err) {
-    const result = await getResolution(req);
-    ViewResponseJSON(res, false, "resolution", result);
+    ViewResponseJSON(res, false, "resolution", "우주최강 개발자가 될거야!");
   }
 };
 
@@ -168,7 +172,7 @@ export const getBadgeController = async (req, res) => {
     const result = await getBadge(req);
     ViewResponseJSON(res, true, "badge", result);
   } catch (err) {
-    const result = await getBadgeFromDB(req);
+    const result = await FindByIdAndUpdate(req);
     ViewResponseJSON(res, false, "badge", result);
   }
 };
@@ -285,23 +289,6 @@ export const getLevelsPullsController = async (req, res) => {
   } catch (err) {
     const result = await FindValueByKey(Level, _id, "pulls");
     ViewResponseJSON(res, false, "pulls", result);
-  }
-};
-
-export const getRankController = async (req, res) => {
-  const { user } = req;
-  const _id = await getUserObjectId(user);
-  try {
-    const myRank = await getMyRank(_id);
-    const userRank = await getUserRank();
-    const result = {
-      myRank,
-      userRank,
-    };
-    ViewResponseJSON(res, true, "data", result);
-  } catch (err) {
-    const result = getDefaultRank();
-    ViewResponseJSON(res, false, "data", result);
   }
 };
 
