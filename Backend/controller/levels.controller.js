@@ -25,8 +25,8 @@ export const getLevelsController = async (req, res) => {
     const commits = await FindValueByKey(Level, _id, "commits");
     const issues = await FindValueByKey(Level, _id, "issues");
     const pulls = await FindValueByKey(Level, _id, "pulls");
-    const score = await FindValueByKey(Level, _id, "score");
-    const result = { score, commits, issues, pulls };
+    const totalScore = await FindValueByKey(Level, _id, "totalScore");
+    const result = { totalScore, commits, issues, pulls };
     ViewResponseJSON(res, false, "data", result);
     return;
   }
@@ -38,16 +38,16 @@ export const getLevelsController = async (req, res) => {
     const totalScore = getScore(commits, issues, pulls);
     const result = { totalScore, commits, issues, pulls };
 
+    await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
     await FindByIdAndUpdate(Level, _id, "commits", commits);
     await FindByIdAndUpdate(Level, _id, "issues", issues);
     await FindByIdAndUpdate(Level, _id, "pulls", pulls);
-    await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
     ViewResponseJSON(res, true, "data", result);
   } catch (err) {
+    const totalScore = await FindValueByKey(Level, _id, "totalScore");
     const commits = await FindValueByKey(Level, _id, "commits");
     const issues = await FindValueByKey(Level, _id, "issues");
     const pulls = await FindValueByKey(Level, _id, "pulls");
-    const totalScore = await FindValueByKey(Level, _id, "totalScore");
     const result = { totalScore, commits, issues, pulls };
     ViewResponseJSON(res, false, "data", result);
   }
