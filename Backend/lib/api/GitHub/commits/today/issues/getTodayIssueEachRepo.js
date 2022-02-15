@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 import { todaySince } from "../../../../../utils/date.js";
-import { getOctokitAuth } from "../../../Octokit/utils.js";
+import { getOctokitAuth } from "../../../../Octokit/utils.js";
 
 export const getTodayIssueEachRepo = async (user, repo) => {
   const { username } = user;

@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { getOctokitAuth } from "../../../Octokit/utils.js";
+import { getOctokitAuth } from "../../../../Octokit/utils.js";
 
-export const getPullsEachRepo = async (user, repo) => {
+export const getTodayPullEachRepo = async (user, repo) => {
   const { username, createdAt } = user;
   const octokit = getOctokitAuth(user);
 
@@ -16,7 +16,7 @@ export const getPullsEachRepo = async (user, repo) => {
     (response) => response.data,
   );
   const filteredPulls = pulls.filter(
-    (pull) => new Date(pull.closed_at) > createdAt,
+    (pull) => new Date() - new Date(pull.closed_at) < 1,
   );
 
   return filteredPulls.length;
