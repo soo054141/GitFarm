@@ -1,6 +1,7 @@
 import "regenerator-runtime";
-import request from "supertest";
 import { GOAL } from "../../model/default/index.js";
+import { BADGE_LENGTH } from "../../utils/model.js";
+import request from "supertest";
 import app from "../../server.js";
 
 jest.setTimeout(20000);
@@ -19,7 +20,7 @@ describe("/api/users", () => {
       const expectedStatus = 200;
       const expectedMyPage = {
         total: expect.any(Number),
-        score: expect.any(Number),
+        totalScore: expect.any(Number),
         continuous: expect.any(Number),
         memberDate: expect.any(Number),
       };
@@ -38,7 +39,7 @@ describe("/api/users", () => {
 
       const expectedStatus = 200;
       const expectedLevels = {
-        score: expect.any(Number),
+        totalScore: expect.any(Number),
         commits: expect.any(Number),
         issues: expect.any(Number),
         pulls: expect.any(Number),
@@ -131,6 +132,7 @@ describe("/api/users", () => {
         {
           repo: expect.any(String),
           language: expect.any(String),
+          _id: expect.any(String),
         },
       ];
 
@@ -224,33 +226,10 @@ describe("/api/users", () => {
         .get("/api/users/badge")
         .set("Cookie", token)
         .send();
-      const badge = [
-        false,
-        true,
-        false,
-        true,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-      ];
+
       const expectedStatus = 200;
-      const expectedBody = {
-        success: true,
-        badge,
-      };
       expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body).toStrictEqual(expectedBody);
+      expect(response._body.badge).toHaveLength(BADGE_LENGTH);
     });
   });
 });
