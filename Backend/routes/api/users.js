@@ -42,7 +42,7 @@ export default (app) => {
   );
 
   // commits
-  router.get("/repos/total/commits", getReposTotalCommitsController);
+  router.get("/commits/total", getReposTotalCommitsController);
   router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
   router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
   router.get("/commits/total/per/day/:YYYYMM", getCommitsTotalPerDayController);
