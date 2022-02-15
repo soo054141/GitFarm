@@ -1,5 +1,4 @@
 /* eslint-disable import/named */
-/* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
 import express from "express";
@@ -27,6 +26,7 @@ import {
   getGoalController,
   postGoalController,
   deleteUserController,
+  getTodayController,
 } from "../../controller/index.js";
 
 const router = express.Router();
@@ -49,6 +49,7 @@ export default (app) => {
   router.get("/commits/continuous", getCommitsContinuousController);
 
   // today
+  router.get("/today", getTodayController);
   router.get("/today/commits", getCommitsTodayController);
   router.get("/today/commits/detail", getCommitsTodayDetailController);
   router.get("/today/goal", getGoalController);

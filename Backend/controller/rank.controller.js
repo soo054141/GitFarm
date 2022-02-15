@@ -1,6 +1,6 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable import/extensions */
 import { getMyRank, getUserRank, getDefaultRank } from "../services/index.js";
 import { getUserObjectId } from "../utils/db.js";
 import { ViewResponseJSON } from "./view.controller.js";

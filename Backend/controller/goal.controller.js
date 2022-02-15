@@ -1,8 +1,8 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
+/* eslint-disable import/prefer-default-export */
+import { GOAL } from "../model/default/index.js";
 import { getGoal, setGoal } from "../services/index.js";
 import { ViewResponseJSON } from "./view.controller.js";
-import { GOAL } from "../model/default/index.js";
 
 export const getGoalController = async (req, res) => {
   try {

@@ -6,7 +6,6 @@ export const getGoal = async (req) => {
   const { user } = req;
   const { id } = user;
   const [{ _id }] = await User.find({ id });
-  console.log(_id);
 
   const userDocument = await User.findById(_id);
   const { goal } = userDocument;

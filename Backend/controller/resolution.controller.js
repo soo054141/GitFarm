@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
+/* eslint-disable import/prefer-default-export */
 import { getResolution, setResolution } from "../services/index.js";
 import { ViewResponseJSON } from "./view.controller.js";
 
@@ -8,8 +8,7 @@ export const getResolutionController = async (req, res) => {
     const result = await getResolution(req);
     ViewResponseJSON(res, true, "resolution", result);
   } catch (err) {
-    const result = await getResolution(req);
-    ViewResponseJSON(res, false, "resolution", result);
+    ViewResponseJSON(res, false, "resolution", "우주최강 개발자가 될거야!");
   }
 };
 
