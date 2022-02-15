@@ -35,7 +35,7 @@ export const getContinuousCommitEachRepo = async (user, repo) => {
   // 연속 커밋 일수를 계산해서 리턴
   let cnt = 0;
 
-  for (let i = commitDay.length - 1; i > 0; i -= 1) {
+  for (let i = commitDay.length - 1; i >= 0; i -= 1) {
     // 해당 날에 커밋이 있으면 연속 커밋 일수 +1
     if (commitDay[i] !== 0) {
       cnt += 1;
