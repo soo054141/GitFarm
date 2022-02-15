@@ -23,6 +23,11 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Noto Sans KR', sans-serif;
         background-color: #F6F9F0;
         margin-bottom: 100px;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+    body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
     }
     ol, ul{
         list-style: none;

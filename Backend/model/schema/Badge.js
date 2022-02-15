@@ -14,7 +14,7 @@ const BadgeSchema = new Schema(
       default: BADGE,
     },
   },
-  { timestamps: true },
+  { timestamps: true, versionKey: false },
 );
 
 export default BadgeSchema;

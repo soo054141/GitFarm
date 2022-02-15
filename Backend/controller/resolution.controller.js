@@ -15,10 +15,10 @@ export const getResolutionController = async (req, res) => {
 
 export const postResolutionController = async (req, res) => {
   try {
-    await setBadge(req);
+    await setResolution(req);
     res.status(201).json({
       success: true,
-      badge: req.body.badge,
+      resolution: req.body.resolution,
     });
   } catch (err) {
     res.status(400).json({

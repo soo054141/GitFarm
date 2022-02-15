@@ -1,22 +1,22 @@
 import React from "react";
 import * as Icon from "@/components/Badge/BadgesIconComponents";
 import PropTypes from "prop-types";
-import Description from "@/components/Description";
 import Modal from "@/components/Modal";
-import Wrapper from "./style";
+import Description from "@/components/Description";
+import { Wrapper, Body } from "./style";
 
 function CollectedBadgeModal({ setOpenModal, GainedBadges }) {
   return (
     <Modal setOpenModal={setOpenModal} title="배지 획득 안내">
       <Wrapper>
         {GainedBadges[0].icon}
-        <Description big>
+        <Body>
           축하합니다!
           <br />[{GainedBadges[0].title}]
           <br />
           {GainedBadges.length > 1 && `외 ${GainedBadges.length - 1}개의 `}
           배지를 획득하셨습니다!
-        </Description>
+        </Body>
         <Description>
           획득하신 배지를 확인하시려면 오른쪽 상단 씨앗을 눌러주세요.
         </Description>

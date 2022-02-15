@@ -14,6 +14,7 @@ export const Container = styled.nav`
 export const Home = styled(HomeIcon)`
   bottom: 17px;
   position: relative;
+  left: -15px;
 `;
 
 export const List = styled.ul`

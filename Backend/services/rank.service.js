@@ -47,8 +47,8 @@ export const getDefaultRank = () => {
 export const getMyRank = async (_id) => {
   const userDocument = await User.findById(_id);
   const { username, avatarUrl } = userDocument;
-  const myCommitDocument = await Level.findById(_id);
-  const score = myCommitDocument.score ? myCommitDocument.score : 0;
+  const myLevelDocument = await Level.findById(_id);
+  const score = myLevelDocument?.score ? myLevelDocument.score : 0;
   return {
     username,
     avatarUrl,
@@ -58,11 +58,10 @@ export const getMyRank = async (_id) => {
 
 export const getUserRank = async () => {
   const userDocument = await User.find();
-
   const processUserData = userDocument.map(async (user) => {
     const { _id, username, avatarUrl } = user;
     const userData = await Level.findById(_id);
-    const score = userData.score ? userData.score : 0;
+    const score = userData?.score ? userData.score : 0;
     return {
       username,
       avatarUrl,

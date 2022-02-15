@@ -1,14 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 import PropTypes from "prop-types";
+import * as api from "@/api";
+
 import { Wrapper } from "./style";
 import Input from "../Input";
 
 function GoalInputModal({ setOpenModal, modalType }) {
+  const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("");
-  const [goal, setGoal] = useState(0);
-  const [message, setMessage] = useState("");
+  const [goal, setGoal] = useState();
 
+  const [message, setMessage] = useState();
+  const [validation, setValidation] = useState("");
+
+  const getGoalValue = async () => {
+    setLoading(true);
+    const data = await api.getGoal();
+    if (data.success) {
+      if (data.goal !== 0) {
+        setValue(data.goal);
+      }
+
+      setLoading(false);
+    }
+  };
+  const getResolutionValue = async () => {
+    setLoading(true);
+    const data = await api.getResolution();
+    if (data.success) {
+      if (data.resolution.length !== 0) {
+        setValue(data.resolution);
+      }
+
+      setLoading(false);
+    }
+  };
+  const postGoalInput = async (goalNum) => {
+    await api.postGoal(goalNum);
+  };
+  const postResolutionInput = async (postResolution) => {
+    await api.postResolution(postResolution);
+  };
+  useEffect(() => {
+    if (modalType === 1) {
+      getResolutionValue();
+    } else {
+      getGoalValue();
+    }
+  }, []);
   const content = [
     {
       title: "일별 목표 커밋 수",
@@ -22,17 +62,26 @@ function GoalInputModal({ setOpenModal, modalType }) {
   };
 
   const confirmHandler = () => {
-    if (!value) {
-      return alert("입력값을 확인하세요.");
-    }
-
     if (modalType === 0) {
+      if (value < 1 || value >= 100) {
+        setValidation("1~100까지의 숫자를 입력해주세요");
+        return;
+      }
+      setValidation("");
       setGoal(Number(value));
+      postGoalInput(value);
+      setOpenModal(false);
     } else {
+      if (value.length <= 0) {
+        setValidation("값을 입력해주세요");
+        return;
+      }
+      setValidation("");
       setMessage(value);
+      postResolutionInput(value);
+      setOpenModal(false);
     }
   };
-
   return (
     <Wrapper>
       <Modal
@@ -40,8 +89,12 @@ function GoalInputModal({ setOpenModal, modalType }) {
         title={content[modalType].title}
         twoBtn
         confirmHandler={confirmHandler}
+        inputValue={modalType === 0 ? goal : message}
+        inputModal
+        validation={validation}
       >
         <Input
+          value={!loading && value}
           onChangeCallback={onChangeHandler}
           type={modalType}
           placeholder={content[modalType].text}
