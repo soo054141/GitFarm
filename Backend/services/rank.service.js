@@ -70,6 +70,38 @@ export const getUserRank = async () => {
   });
 
   const totalUser = await getFulfilledValue(processUserData);
-  const userRank = [...totalUser].sort((a, b) => b.score - a.score);
+  const userRank = calcRankWithConcurrentScore(totalUser);
   return userRank;
+};
+
+const calcRankWithConcurrentScore = (userData) => {
+  const userRank = [...userData];
+
+  userRank.sort((a, b) => {
+    if (a.score === b.score) {
+      if (a.username < b.username) return -1;
+      if (a.username > b.username) return 1;
+    }
+    return b.score - a.score;
+  });
+
+  let rank = 1;
+  let currentScore = 0;
+  const result = userRank.map((user) => {
+    const { score } = user;
+    if (score >= currentScore) {
+      const newUser = {
+        ...user,
+        rank,
+      };
+      currentScore = score;
+      return newUser;
+    }
+
+    rank += 1;
+    currentScore = score;
+    return { ...user, rank };
+  });
+
+  return result;
 };
