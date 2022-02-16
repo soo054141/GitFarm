@@ -2,11 +2,11 @@ import React, { useLayoutEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import * as api from "@/api";
 import LoadingModal from "@/components/LoadingModal";
+import { AllBadgesFuncion } from "@/utils/badge";
+import * as Icon from "@/utils/badgesIcon";
 import SeedIcon from "../../assets/icon/header/seeds.svg";
 import * as Badges from "./style";
 import Lock from "../../assets/icon/lock.svg";
-import * as Icon from "../../components/Badge/BadgesIconComponents";
-import { AllBadgesFuncion } from "./badgeUtils";
 
 function Badge({ badgesType }) {
   const [loading, setLoading] = useState(false);
