@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from "recharts";
 import * as api from "@/api";
+import { checkMonth } from "@/utils/graph";
 import * as LineGraphs from "./style";
 
 function LineGraph({ graphTitle, date, clickYear }) {
@@ -19,9 +20,10 @@ function LineGraph({ graphTitle, date, clickYear }) {
   if (clickYear) {
     const getRecentThreeYearCommitsCount = async () => {
       setLoading(true);
+      setCommitData([]);
       const data = await api.getRecentThreeYear();
       if (data.success) {
-        const createData = data.recentThreeYear.map((it) => ({
+        const createData = data.lastThreeYear.map((it) => ({
           name: it[0],
           commit: it[1],
         }));
@@ -38,16 +40,26 @@ function LineGraph({ graphTitle, date, clickYear }) {
   } else {
     const getCommitsPerMonth = async () => {
       setLoading(true);
-      const year = date.toISOString().slice(0, 4);
+      const { year, month, thisMonth } = checkMonth(date);
+
       const data = await api.getCommitsTotalPerMonth(year);
       if (data.success) {
-        const { commitPerYear } = data;
+        let { commitPerYear } = data;
 
-        const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
-          name: `${year.slice(2, 4)}.${index + 1}`,
-          commit: commitCnt,
-        }));
-        setCommitData(createData);
+        if (month === thisMonth) {
+          commitPerYear = commitPerYear.slice(0, thisMonth + 1);
+        }
+
+        const checkEmptyArray = commitPerYear.every((it) => it === 0);
+        if (checkEmptyArray) {
+          setCommitData([]);
+        } else {
+          const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
+            name: `${year.slice(2, 4)}.${index + 1}`,
+            commit: commitCnt,
+          }));
+          setCommitData(createData);
+        }
       } else {
         setCommitData([]);
       }
