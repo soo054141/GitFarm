@@ -53,8 +53,7 @@ export default (app) => {
   router.get("/today", getTodayController);
   router.get("/today/commits", getCommitsTodayController);
   router.get("/today/commits/detail", getCommitsTodayDetailController);
-  router.get("/today/goal", getGoalController);
-  router.post("/today/goal", postGoalController);
+  router.route("/today/goal").get(getGoalController).post(postGoalController);
 
   // levels
   router.get("/levels", getLevelsController);
@@ -69,12 +68,13 @@ export default (app) => {
   router.get("/rank", getRankController);
 
   // resolution
-  router.get("/resolution", getResolutionController);
-  router.post("/resolution", postResolutionController);
+  router
+    .route("/resolution")
+    .get(getResolutionController)
+    .post(postResolutionController);
 
   // badge
-  router.get("/badge", getBadgeController);
-  router.post("/badge", postBadgeController);
+  router.route("/badge").get(getBadgeController).post(postBadgeController);
 
   // mypage
   router.get("/mypage", getMyPageController);

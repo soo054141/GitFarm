@@ -13,12 +13,12 @@ function Login() {
       <GitFarm.Logo>
         <GitFarmLogoImg />
       </GitFarm.Logo>
-      <a href="http://localhost:8888/api/auth/github">
+      <Link to="/main">
         <GitFarm.LoginBtn>
           <MarkGitHub />
           GitHub 계정으로 시작
         </GitFarm.LoginBtn>
-      </a>
+      </Link>
     </GitFarm.Container>
   );
 }
