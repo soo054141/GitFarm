@@ -4,18 +4,18 @@ import * as api from "@/api";
 import LoadingModal from "@/components/LoadingModal";
 
 import {
+  makeCalendar,
+  getFirstAndLastDate,
+  matchDateCommit,
+  stageCalc,
+} from "@/utils/calendar";
+import {
   CalenderContainer,
   MonthlyRow,
   MonthlyCell,
   DayRow,
   DateCell,
 } from "./style";
-import {
-  makeCalendar,
-  getFirstAndLastDate,
-  matchDateCommit,
-  stageCalc,
-} from "./CalendarUtils";
 
 function Calender({ date }) {
   const [loading, setLoading] = useState(false);
