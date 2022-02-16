@@ -16,10 +16,10 @@ export const getBreeds = async () => {
 // mypage
 export const getMyInfo = async () => {
   try {
-    const res = await axios.get(`/api/users/mypage`);
+    const res = await axios.get(`${url}/mypage`);
     return res.data;
   } catch (error) {
-    return error;
+    console.error();
   }
 };
 
@@ -77,7 +77,7 @@ export const getGoal = async () => {
 
 export const getResolution = async () => {
   try {
-    const res = await axios.get(`/api/users/resolution`);
+    const res = await axios.get(`${url}/resolution`);
     return res.data;
   } catch (error) {
     return error;
@@ -98,7 +98,7 @@ export const postGoal = async (goalNum) => {
 
 export const postResolution = async (resolutionString) => {
   try {
-    const res = await axios.post(`/api/users/resolution`, {
+    const res = await axios.post(`${url}/resolution`, {
       success: true,
       resolution: resolutionString,
     });
@@ -131,7 +131,7 @@ export const getReposLanguage = async () => {
 // 로그아웃
 export const logout = async () => {
   try {
-    const res = await axios.get(`/api/auth/logout`);
+    const res = await axios.get(`${url}/logout`);
     return res;
   } catch (error) {
     alert("에러가 발생했습니다.");
@@ -142,7 +142,7 @@ export const logout = async () => {
 // 회원 탈퇴
 export const deleteAccount = async () => {
   try {
-    const res = await axios.delete(`/api/users/delete`);
+    const res = await axios.delete(`${url}/delete`);
     if (res.status === 201) {
       return alert("탈퇴 처리되었습니다.");
     }

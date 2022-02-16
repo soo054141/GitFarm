@@ -250,58 +250,41 @@
     "success": true,
     "data": {
       "myRank": {
-        "username": "YWTechIT",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-        "score": 0
+        "username": "500",
+        "avatarUrl": "https://http.cat/500",
+        "score": 10,
+        "rank": 1
       },
       "userRank": [
         {
-          "username": "Jin1won",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 100,
+          "username": "500",
+          "avatarUrl": "https://http.cat/500",
+          "score": 10,
           "rank": 1
         },
         {
-          "username": "YWTechIT",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 100,
+          "username": "502",
+          "avatarUrl": "https://http.cat/502",
+          "score": 10,
           "rank": 1
         },
         {
-          "username": "cafeLatte",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 70,
+          "username": "503",
+          "avatarUrl": "https://http.cat/503",
+          "score": 8,
           "rank": 2
         },
         {
-          "username": "coffee",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 50,
+          "username": "504",
+          "avatarUrl": "https://http.cat/504",
+          "score": 5,
           "rank": 3
         },
         {
-          "username": "h1jun",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 50,
-          "rank": 3
-        },
-        {
-          "username": "alice",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 30,
+          "username": "505",
+          "avatarUrl": "https://http.cat/505",
+          "score": 3,
           "rank": 4
-        },
-        {
-          "username": "soo054141",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 30,
-          "rank": 4
-        },
-        {
-          "username": "project",
-          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
-          "score": 20,
-          "rank": 5
         }
       ]
     }
