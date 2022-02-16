@@ -19,7 +19,7 @@ export const MyLevelIcon = styled.div`
 
   svg {
     width: 30px;
-    height: 20px;
+    height: 30px;
   }
 `;
 
