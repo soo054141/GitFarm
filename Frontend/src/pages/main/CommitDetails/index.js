@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import ScoreInformationModal from "../ScoreInformationModal";
 import * as CommitDetail from "./style";
 
-function CommitDetails({ score, totalCommit, commitsPerRepo }) {
+function CommitDetails({ todayScore, todayCommit, detail }) {
   const [openModal, setOpenModal] = useState(false);
 
   const modalOpenHandler = () => {
@@ -15,7 +15,7 @@ function CommitDetails({ score, totalCommit, commitsPerRepo }) {
 
   return (
     <CommitDetail.Container>
-      {totalCommit > 0 ? (
+      {todayCommit > 0 ? (
         <>
           <CommitDetail.ScoreContainer>
             <CommitDetail.ScoreCell>
@@ -25,48 +25,48 @@ function CommitDetails({ score, totalCommit, commitsPerRepo }) {
                   <InfoIcon onClick={modalOpenHandler} />
                 </CommitDetail.IconWrapper>
               </CommitDetail.SubTitle>
-              <CommitDetail.Score>{score}</CommitDetail.Score>
+              <CommitDetail.Score>{todayScore}</CommitDetail.Score>
             </CommitDetail.ScoreCell>
             <CommitDetail.ScoreCell>
               <CommitDetail.SubTitle>총 커밋 수</CommitDetail.SubTitle>
-              <CommitDetail.Score>{totalCommit}</CommitDetail.Score>
+              <CommitDetail.Score>{todayCommit}</CommitDetail.Score>
             </CommitDetail.ScoreCell>
           </CommitDetail.ScoreContainer>
           <CommitDetail.DetailsContainer>
             <CommitDetail.RepoContainer>
               <CommitDetail.SubTitle>커밋 상세 내역</CommitDetail.SubTitle>
-              {commitsPerRepo.map((commits) => (
-                <CommitDetail.RepoWrapper key={`${commits.repoName}`}>
-                  <CommitDetail.RepoName key={`${commits.repoName}`}>
-                    {commits.gitHubId}/{commits.repoName}
+              {detail.map((commits) => (
+                <CommitDetail.RepoWrapper key={`${commits.info.repo}`}>
+                  <CommitDetail.RepoName key={`${commits.info.repo}`}>
+                    {commits.info.name}/{commits.info.repo}
                   </CommitDetail.RepoName>
 
-                  {commits.commitMessages.map((commit, idx) => (
+                  {commits.data.map((el, commitLength) => (
                     <CommitDetail.CommitWrapper
-                      key={`${commit.message}-${commit.time}`}
+                      key={`${el.message}-${el.date}`}
                     >
                       <div>
-                        {idx > 0 && (
+                        {commitLength > 0 && (
                           <CommitDetail.LineWrapper
-                            key={`${commit.message}--${commit.time}`}
+                            key={`${el.message}--${el.date}`}
                           >
                             <VerticalLineIcon
-                              key={`${commit.message}---${commit.time}`}
+                              key={`${el.message}--${el.date}`}
                             />
                           </CommitDetail.LineWrapper>
                         )}
                         <CommitDetail.CommitMessage
-                          key={`${commit.message}----${commit.time}`}
+                          key={`${el.message}----${el.date}`}
                         >
                           <CommitCircleIcon />
-                          {commit.message}
+                          {el.message}
                         </CommitDetail.CommitMessage>
                       </div>
                       <CommitDetail.CommitMessage
                         time
-                        key={`${commit.message}----${commit.time}`}
+                        key={`${el.message}----${el.date}`}
                       >
-                        {commit.time}
+                        {el.date.split("T")[1].slice(0, 5)}
                       </CommitDetail.CommitMessage>
                     </CommitDetail.CommitWrapper>
                   ))}
@@ -84,53 +84,105 @@ function CommitDetails({ score, totalCommit, commitsPerRepo }) {
 }
 
 CommitDetails.defaultProps = {
-  score: 10,
-  totalCommit: 12,
-  commitsPerRepo: [
+  todayScore: 10,
+  todayCommit: 12,
+  detail: [
     {
-      gitHubId: "GitHub-Id",
-      repoName: "repo-name1",
-      commitMessages: [
-        { message: "Add commit message", time: "22:12" },
-        { message: "Fix commit message", time: "21:04" },
-        { message: "Fix commit message", time: "20:23" },
-        { message: "Fix commit message", time: "19:32" },
+      info: {
+        name: "YWTechIT",
+        repo: "alice-sw-engineer-track",
+      },
+      data: [
+        {
+          date: "2022-01-20T13:33:11Z",
+          message: "63일차 1.20.목. 실시간 강의",
+        },
       ],
     },
     {
-      gitHubId: "GitHub-Id",
-      repoName: "repo-name2",
-      commitMessages: [
-        { message: "Add commit message", time: "22:30" },
-        { message: "Fix commit message", time: "21:44" },
-        { message: "Fix commit message", time: "20:39" },
-        { message: "Fix commit message", time: "19:24" },
+      info: {
+        name: "YWTechIT",
+        repo: "ci-cd-practice",
+      },
+      data: [
+        {
+          date: "2022-01-20T07:38:42Z",
+          message: "Fix typo",
+        },
+        {
+          date: "2022-01-20T07:29:57Z",
+          message: "Add Heroku actions",
+        },
+        {
+          date: "2022-01-20T06:41:25Z",
+          message: "Fix typo",
+        },
+        {
+          date: "2022-01-20T06:32:27Z",
+          message: "Fix blanks",
+        },
+        {
+          date: "2022-01-20T06:31:25Z",
+          message: "Add actions",
+        },
+        {
+          date: "2022-01-20T06:24:46Z",
+          message: "Add 단계별 build",
+        },
+        {
+          date: "2022-01-20T06:22:28Z",
+          message: "Add ci command",
+        },
       ],
     },
     {
-      gitHubId: "GitHub-Id",
-      repoName: "repo-name3",
-      commitMessages: [
-        { message: "Add commit message", time: "22:11" },
-        { message: "Fix commit message", time: "21:22" },
-        { message: "Fix commit message", time: "20:33" },
-        { message: "Fix commit message", time: "19:44" },
+      info: {
+        name: "YWTechIT",
+        repo: "custombucks-api",
+      },
+      data: [
+        {
+          date: "2022-01-20T23:11:15Z",
+          message: "Update README",
+        },
+        {
+          date: "2022-01-20T22:16:40Z",
+          message: "Add comment cron",
+        },
+        {
+          date: "2022-01-20T22:08:53Z",
+          message: "Add heroku-awake action",
+        },
+      ],
+    },
+    {
+      info: {
+        name: "YWTechIT",
+        repo: "ywBot",
+      },
+      data: [
+        {
+          date: "2022-01-20T15:24:45Z",
+          message: "Update README.md",
+        },
       ],
     },
   ],
 };
 
 CommitDetails.propTypes = {
-  score: PropTypes.number,
-  totalCommit: PropTypes.number,
-  commitsPerRepo: PropTypes.arrayOf(
+  todayScore: PropTypes.number,
+  todayCommit: PropTypes.number,
+  detail: PropTypes.arrayOf(
     PropTypes.shape({
-      gitHubId: PropTypes.string.isRequired,
-      repoName: PropTypes.string.isRequired,
-      commitMessages: PropTypes.arrayOf(
+      info: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        repo: PropTypes.string.isRequired,
+      }),
+      data: PropTypes.arrayOf(
         PropTypes.shape({
+          date: PropTypes.string.isRequired,
           message: PropTypes.string.isRequired,
-          time: PropTypes.string.isRequired,
         }),
       ).isRequired,
     }),

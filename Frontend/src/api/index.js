@@ -161,3 +161,23 @@ export const getRank = async () => {
     return error;
   }
 };
+
+// main
+export const getTodayCommit = async () => {
+  try {
+    const res = await axios.get(`${url}/today`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+// main - 커밋 상세 내역
+export const getTodayDetailCommit = async () => {
+  try {
+    const res = await axios.get(`${url}/detail`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
