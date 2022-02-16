@@ -107,3 +107,8 @@ export const stageCalc = (commitCountNum) => {
     return 5;
   }
 };
+
+export const fillZeroMonth = (month) => {
+  const str = month.toString();
+  return str.padStart(2, "0");
+};
