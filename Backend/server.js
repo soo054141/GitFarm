@@ -10,8 +10,10 @@ import connectDB from "./config/db.js";
 import initPassportStrategy from "./passport/index.js";
 import apiRouter from "./routes/index.js";
 import errorHandler from "./middleware/error-handler.js";
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 
 connectDB();
 app.use(favicon(path.resolve("../", "Frontend", "public", "favicon.ico")));
@@ -25,10 +27,10 @@ initPassportStrategy(passport);
 app.use("/api", apiRouter());
 errorHandler(app);
 
-const PORT = 8888;
+const port = process.env.PORT || 8888;
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+  app.listen(port, () => console.log(`Listening on PORT ${port}`));
 }
 
 export default app;
