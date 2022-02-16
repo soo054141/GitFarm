@@ -7,34 +7,40 @@ export const getDefaultRank = () => {
   const myRank = {
     username: "500",
     avatarUrl: "https://http.cat/500",
-    score: 0,
+    score: 10,
+    rank: 1,
   };
 
   const userRank = [
     {
-      username: "501",
-      avatarUrl: "https://http.cat/501",
-      score: 0,
+      username: "500",
+      avatarUrl: "https://http.cat/500",
+      score: 10,
+      rank: 1,
     },
     {
       username: "502",
       avatarUrl: "https://http.cat/502",
-      score: 0,
+      score: 10,
+      rank: 1,
     },
     {
       username: "503",
       avatarUrl: "https://http.cat/503",
-      score: 0,
+      score: 8,
+      rank: 2,
     },
     {
       username: "504",
       avatarUrl: "https://http.cat/504",
-      score: 0,
+      score: 5,
+      rank: 3,
     },
     {
       username: "505",
       avatarUrl: "https://http.cat/505",
-      score: 0,
+      score: 3,
+      rank: 4,
     },
   ];
 
