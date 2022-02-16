@@ -57,6 +57,5 @@ export const DateCell = styled.p`
   transform: translateY(-50%);
   font-size: 17px;
   ${(props) => !props.view && "display:none"};
-  color: ${(props) =>
-    props.stage === 0 ? props.theme.superLightGray : "#F6F9F0"};
+  color: ${(props) => (props.stage === 0 ? "#C2C2C2" : "#F6F9F0")};
 `;
