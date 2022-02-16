@@ -17,20 +17,12 @@ import {
   FindValueByKey,
   FindByIdAndUpdate,
 } from "../services/index.js";
-import { getUpdatedAtById, getUserObjectId } from "../utils/db.js";
+import { getUserObjectId } from "../utils/db.js";
 import { ViewResponseJSON } from "./view.controller.js";
-import { isInTime, TARGET_TIME } from "../utils/date.js";
 
 export const getReposLanguage = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "languages");
-    ViewResponseJSON(res, true, "languages", result);
-    return;
-  }
 
   try {
     const result = await getLanguagesData(user);

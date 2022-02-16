@@ -68,5 +68,5 @@ export const fillZeroMonth = fillZero(month, 2, "0");
 export const TARGET_TIME = 5;
 export const isInTime = (TARGET_TIME, pastTime) => {
   const calc = Math.floor((dt - pastTime) / (ONE_MILLISECOND * ONE_MINUTE));
-  return calc > TARGET_TIME;
+  return calc <= TARGET_TIME;
 };

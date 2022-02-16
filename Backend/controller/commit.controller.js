@@ -15,13 +15,6 @@ import { FindByIdAndUpdate, FindValueByKey } from "../services/db.service.js";
 export const getReposTotalCommitsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "total");
-    ViewResponseJSON(res, true, "total", result);
-    return;
-  }
 
   try {
     const result = await getTotalCommitAllRepo(user);
@@ -36,13 +29,6 @@ export const getReposTotalCommitsController = async (req, res) => {
 export const getCommitsTodayController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "today");
-    ViewResponseJSON(res, true, "today", result);
-    return;
-  }
 
   try {
     const result = await getTodayTotalCommitAllRepo(user);
@@ -57,13 +43,6 @@ export const getCommitsTodayController = async (req, res) => {
 export const getCommitsTodayDetailController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "todayDetail");
-    ViewResponseJSON(res, true, "todayDetail", result);
-    return;
-  }
 
   try {
     const result = await getDetailTotalCommitAllRepo(user);
@@ -146,13 +125,6 @@ export const getCommitsTotalRecentYearController = async (req, res) => {
 export const getCommitsContinuousController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-  const updatedAt = await getUpdatedAtById(user, Commit);
-  const inTime = isInTime(TARGET_TIME, updatedAt);
-  if (inTime) {
-    const result = await FindValueByKey(Commit, _id, "continuous");
-    ViewResponseJSON(res, true, "continuous", result);
-    return;
-  }
 
   try {
     const result = await getContinuousCommitAllRepo(user);
