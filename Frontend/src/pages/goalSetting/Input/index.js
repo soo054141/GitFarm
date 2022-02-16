@@ -23,9 +23,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.number,
   onChangeCallback: PropTypes.func.isRequired,
-  // value: PropTypes.bool.isRequired,
-
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default Input;
