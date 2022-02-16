@@ -1,6 +1,8 @@
 import "regenerator-runtime";
 import request from "supertest";
 import app from "../../server.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 describe("/api/auth", () => {
   test("GitHub 로그인 페이지 접속", async () => {
@@ -36,7 +38,11 @@ describe("/api/auth", () => {
   test("GitHub 로그아웃 한 경우", async () => {
     const response = await request(app).get("/api/auth/logout").send();
     const expectedStatus = 302;
-    const expectedLocation = "http://localhost:1111/";
+    const expectedLocation =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:8888"
+        : "http://localhost:1111";
+
     expect(response.statusCode).toEqual(expectedStatus);
     expect(response.headers.location).toStrictEqual(expectedLocation);
   });
