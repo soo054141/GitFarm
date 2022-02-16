@@ -27,6 +27,11 @@
   },
   "month": [
     {
+      "id": 2018,
+      "success": true,
+      "commitPerYear": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
       "id": 2019,
       "success": true,
       "commitPerYear": [0, 182, 43, 3, 399, 115, 21, 32, 66, 81, 236, 10, 28]
@@ -44,7 +49,7 @@
     {
       "id": 2022,
       "success": true,
-      "commitPerYear": [0, 82, 143]
+      "commitPerYear": [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
   ],
   "perMonth": {
