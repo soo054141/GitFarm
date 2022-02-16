@@ -1,4 +1,5 @@
 /* eslint-disable import/named */
+/* eslint-disable no-shadow */
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
 import express from "express";

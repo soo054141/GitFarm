@@ -1,4 +1,4 @@
-import { Commit, Level } from "../model/index.js";
+import { Commit, Level, User } from "../model/index.js";
 import {
   getTodayTotalCommitAllRepo,
   getTodayTotalIssueAllRepo,
@@ -16,12 +16,12 @@ export const getTodayController = async (req, res) => {
   const updatedAt = await getUpdatedAtById(user, Level);
   const inTime = isInTime(TARGET_TIME, updatedAt);
   if (inTime) {
-    const commits = await FindValueByKey(Commit, _id, "commits");
-    const issues = await FindValueByKey(Commit, _id, "issues");
-    const pulls = await FindValueByKey(Commit, _id, "pulls");
-    const todayScore = getScore(commits, issues, pulls);
+    const todayScore = 0;
+    const goal = await FindValueByKey(User, _id, "commits");
+    const pulls = 0;
+    const detail = await FindValueByKey(Commit, _id, "todayDetail");
     const result = { todayScore, goal, pulls, detail };
-    ViewResponseJSON(res, false, "data", result);
+    ViewResponseJSON(res, false, "today", result);
     return;
   }
 
@@ -31,18 +31,19 @@ export const getTodayController = async (req, res) => {
     const pulls = await getTodayTotalPullAllRepo(user);
     const todayScore = getScore(commits, issues, pulls);
 
-    const goal = await getGoal(user);
+    const goal = await getGoal(req);
+
     const detail = await getDetailTotalCommitAllRepo(user);
 
     const result = { todayScore, goal, pulls, detail };
 
     ViewResponseJSON(res, true, "today", result);
   } catch (err) {
-    const totalScore = 0;
-    const goal = 5;
+    const todayScore = 0;
+    const goal = await FindValueByKey(User, _id, "commits");
     const pulls = 0;
     const detail = await FindValueByKey(Commit, _id, "todayDetail");
-    const result = { totalScore, goal, pulls, detail };
+    const result = { todayScore, goal, pulls, detail };
     ViewResponseJSON(res, false, "today", result);
   }
 };

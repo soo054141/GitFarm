@@ -59,6 +59,11 @@ module.exports = {
     }),
   ],
   devServer: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:8888",
+      },
+    },
     static: {
       directory: path.resolve(__dirname, "dist"), // directory경로: dist 폴더
       publicPath: "/assets", // localhost:port/publicPath안에 있는 파일에 접근 가능, 파일 업로드시 src경로 변경
