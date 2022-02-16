@@ -21,7 +21,7 @@ function LineGraph({ graphTitle, date, clickYear }) {
       setLoading(true);
       const data = await api.getRecentThreeYear();
       if (data.success) {
-        const createData = data.recentThreeYear.map((it) => ({
+        const createData = data.lastThreeYear.map((it) => ({
           name: it[0],
           commit: it[1],
         }));

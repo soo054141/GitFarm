@@ -49,7 +49,7 @@ function Graph() {
   const getUsersReposLanguage = async () => {
     const res = await api.getReposLanguage();
     if (res.success) {
-      setReposLanguage(res.data);
+      setReposLanguage(res.languages);
     }
   };
 
