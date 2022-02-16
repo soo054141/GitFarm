@@ -4,9 +4,12 @@ import passport from "passport";
 import httpError from "http-errors";
 import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const router = express.Router();
-const CLIENT_URL = "http://localhost:1111/main";
+const CLIENT_URL = "http://localhost:1111";
 
 export default (app) => {
   app.use("/auth", router);
@@ -50,6 +53,6 @@ export default (app) => {
 
   router.get("/logout", (req, res) => {
     res.clearCookie("token");
-    res.redirect(CLIENT_URL);
+    res.redirect(process.env.NODE_ENV === "development" ? "/" : CLIENT_URL);
   });
 };
