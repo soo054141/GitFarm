@@ -20,6 +20,7 @@ function LineGraph({ graphTitle, date, clickYear }) {
   if (clickYear) {
     const getRecentThreeYearCommitsCount = async () => {
       setLoading(true);
+      setCommitData([]);
       const data = await api.getRecentThreeYear();
       if (data.success) {
         const createData = data.lastThreeYear.map((it) => ({
