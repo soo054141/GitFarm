@@ -20,7 +20,7 @@
     "success": true,
     "mypage": {
       "total": 1234,
-      "score": 89,
+      "totalScore": 30,
       "continuous": 31,
       "memberDate": 12
     }

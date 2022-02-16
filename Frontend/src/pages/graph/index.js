@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Container } from "@/components/Container/style";
 import DateController from "@/components/DateController";
 import * as api from "@/api";
+import { toDay } from "@/utils/graph";
 import MonthYearBtn from "./MonthYearBtn";
 import PieChartComponent from "./PieChart";
 import LineGraph from "./LineGraph";
 import { DateControllerWrapper } from "./style";
-import { toDay } from "./graphUtils";
 
 function Graph() {
   const [date, setDate] = useState(toDay);

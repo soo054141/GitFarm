@@ -2,10 +2,11 @@ import React, { useLayoutEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import * as api from "@/api";
 import LoadingModal from "@/components/LoadingModal";
+import { AllBadgesFuncion } from "@/utils/badge";
+import * as Icon from "@/utils/badgesIcon";
 import SeedIcon from "../../assets/icon/header/seeds.svg";
 import * as Badges from "./style";
 import Lock from "../../assets/icon/lock.svg";
-import * as Icon from "../../components/Badge/BadgesIconComponents";
 
 function Badge({ badgesType }) {
   const [loading, setLoading] = useState(false);
@@ -13,10 +14,17 @@ function Badge({ badgesType }) {
 
   const getUserBadges = async () => {
     setLoading(true);
-
-    const badgesData = await api.getUserBadges();
-    if (badgesData.success) {
-      setUserBadges(badgesData.badge);
+    const badgesData = await Promise.all([
+      api.getUserBadges(),
+      api.getMyInfo(),
+    ]);
+    if (badgesData[0].success && badgesData[1].success) {
+      const newUserBadges = await AllBadgesFuncion(
+        badgesData[0].badge,
+        badgesData[1].mypage,
+      );
+      api.postBadges(newUserBadges);
+      setUserBadges(newUserBadges);
       setLoading(false);
     }
   };
@@ -67,69 +75,52 @@ Badge.defaultProps = {
       userHaveBadge: false,
     },
     {
-      id: 8,
+      id: 1,
       title: "50 커밋 달성",
       icon: Icon.achievement50,
       userHaveBadge: false,
     },
     {
-      id: 9,
+      id: 2,
       title: "100 커밋 달성",
       icon: Icon.achievement100,
       userHaveBadge: false,
     },
-    {
-      id: 5,
-      title: "농장 1단계 완성",
-      icon: Icon.farmStage1,
-      userHaveBadge: false,
-    },
-    {
-      id: 6,
-      title: "농장 2단계 완성",
-      icon: Icon.farmStage2,
-      userHaveBadge: false,
-    },
-    {
-      id: 7,
-      title: "농장 3단계 완성",
-      icon: Icon.farmStage3,
-      userHaveBadge: false,
-    },
-    { id: 10, title: "랭킹 1위", icon: Icon.ranking1, userHaveBadge: false },
-    { id: 11, title: "랭킹 2위", icon: Icon.ranking2, userHaveBadge: false },
-    { id: 12, title: "랭킹 3위", icon: Icon.ranking3, userHaveBadge: false },
+
+    { id: 3, title: "랭킹 1위", icon: Icon.ranking1, userHaveBadge: false },
+    { id: 4, title: "랭킹 2위", icon: Icon.ranking2, userHaveBadge: false },
+    { id: 5, title: "랭킹 3위", icon: Icon.ranking3, userHaveBadge: false },
 
     {
-      id: 1,
+      id: 6,
       title: "7일 연속 커밋 달성",
       icon: Icon.days7,
       userHaveBadge: false,
     },
     {
-      id: 2,
+      id: 7,
       title: "2주 연속 커밋 달성",
       icon: Icon.days14,
       userHaveBadge: false,
     },
     {
-      id: 3,
+      id: 8,
       title: "3주 연속 커밋 달성",
       icon: Icon.days21,
       userHaveBadge: false,
     },
     {
-      id: 4,
+      id: 9,
       title: "4주 연속 커밋 달성",
       icon: Icon.days28,
       userHaveBadge: false,
     },
 
-    { id: 13, title: "씨앗 레벨", icon: Icon.level1, userHaveBadge: false },
-    { id: 14, title: "초보 농부", icon: Icon.level2, userHaveBadge: false },
-    { id: 15, title: "중수 농부", icon: Icon.level3, userHaveBadge: false },
-    { id: 16, title: "고수 농부", icon: Icon.level4, userHaveBadge: false },
-    { id: 17, title: "팜 마스터", icon: Icon.level5, userHaveBadge: false },
+    { id: 10, title: "씨앗 레벨", icon: Icon.level1, userHaveBadge: false },
+    { id: 11, title: "초보 농부", icon: Icon.level2, userHaveBadge: false },
+    { id: 12, title: "중수 농부", icon: Icon.level3, userHaveBadge: false },
+    { id: 13, title: "고수 농부", icon: Icon.level4, userHaveBadge: false },
+    { id: 14, title: "팜 마스터", icon: Icon.level5, userHaveBadge: false },
   ],
 };
 
