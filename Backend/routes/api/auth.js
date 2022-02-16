@@ -26,8 +26,8 @@ export default (app) => {
       failureRedirect: "/api/auth/login/failed",
     }),
     async (req, res) => {
-      const { id, email, username } = req.user;
-      const payload = { id, email, username };
+      const { id, username } = req.user;
+      const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
       res.redirect(CLIENT_URL);
