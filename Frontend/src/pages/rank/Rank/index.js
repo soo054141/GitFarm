@@ -26,12 +26,12 @@ Rank.propTypes = {
   point: PropTypes.number,
 };
 
-// Rank.defaultProps = {
-//   myRank: false,
-//   ranking: 1,
-//   imgURL: "https://avatars.githubusercontent.com/u/54543013?v=4",
-//   id: "teset",
-//   point: 10,
-// };
+Rank.defaultProps = {
+  myRanking: false,
+  ranking: 0,
+  imgURL: "",
+  id: "",
+  point: 0,
+};
 
 export default Rank;
