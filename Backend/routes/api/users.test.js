@@ -56,10 +56,9 @@ describe("/api/users", () => {
         .send();
 
       const expectedStatus = 200;
-      const expectedLevelsCommits = 0;
 
       expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body.commits).toEqual(expectedLevelsCommits);
+      expect(typeof response._body.commits).toBe("number");
     });
 
     test("GET levels/issues", async () => {
@@ -107,6 +106,7 @@ describe("/api/users", () => {
           username: expect.any(String),
           avatarUrl: expect.any(String),
           score: expect.any(Number),
+          rank: expect.any(Number),
         },
       ];
 
@@ -132,7 +132,6 @@ describe("/api/users", () => {
         {
           repo: expect.any(String),
           language: expect.any(String),
-          _id: expect.any(String),
         },
       ];
 
