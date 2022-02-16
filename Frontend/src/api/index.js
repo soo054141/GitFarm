@@ -151,3 +151,13 @@ export const deleteAccount = async () => {
     return error;
   }
 };
+
+// 깃팜 랭크
+export const getRank = async () => {
+  try {
+    const res = await axios.get(`${url}/rank`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};

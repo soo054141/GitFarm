@@ -245,5 +245,65 @@
         "language": "HTML"
       }
     ]
+  },
+  "rank": {
+    "success": true,
+    "data": {
+      "myRank": {
+        "username": "YWTechIT",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+        "score": 0
+      },
+      "userRank": [
+        {
+          "username": "Jin1won",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 100,
+          "rank": 1
+        },
+        {
+          "username": "YWTechIT",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 100,
+          "rank": 1
+        },
+        {
+          "username": "cafeLatte",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 70,
+          "rank": 2
+        },
+        {
+          "username": "coffee",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 50,
+          "rank": 3
+        },
+        {
+          "username": "h1jun",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 50,
+          "rank": 3
+        },
+        {
+          "username": "alice",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 30,
+          "rank": 4
+        },
+        {
+          "username": "soo054141",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 30,
+          "rank": 4
+        },
+        {
+          "username": "project",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "score": 20,
+          "rank": 5
+        }
+      ]
+    }
   }
 }
