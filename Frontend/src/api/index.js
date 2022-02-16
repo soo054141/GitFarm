@@ -42,6 +42,18 @@ export const getCommitMonthly = async () => {
     return error;
   }
 };
+// calendar 초록 동그라미-서버연동시 사용
+// export const getCommitMonthly = async (year, month) => {
+//   try {
+//     const res = await axios.get(
+//       `/api/users/commits/total/per/day/${year}-${month}`,
+//     );
+//     return res.data;
+//   } catch (error) {
+//     console.error(error);
+//     return error;
+//   }
+// };
 
 // user가 가진 badges
 export const getUserBadges = async () => {
