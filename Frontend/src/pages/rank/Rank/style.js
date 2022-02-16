@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import GoldIcon from "@/assets/icon/rank/gold.svg";
+import SilverIcon from "@/assets/icon/rank/silver.svg";
+import BronzeIcon from "@/assets/icon/rank/bronze.svg";
 
 export const Container = styled.div`
   width: 349px;
@@ -6,6 +9,22 @@ export const Container = styled.div`
   padding: ${({ myRank }) => (myRank ? "22px" : "28px")} 17px;
   border-radius: 10px;
   background: #ffffff;
+  position: relative;
+`;
+
+export const Gold = styled(GoldIcon)`
+  position: absolute;
+  left: 90px;
+`;
+
+export const Silver = styled(SilverIcon)`
+  position: absolute;
+  left: 90px;
+`;
+
+export const Bronze = styled(BronzeIcon)`
+  position: absolute;
+  left: 90px;
 `;
 
 export const Wrapper = styled.div`

@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@/components/Container/style";
+import * as api from "@/api";
 import RankTitle from "./RankTitle";
-import MyRankComponent from "./MyRank";
-import OtherUserRanks from "./OtherUserRanks";
+import Rank from "./Rank";
 
 function RankPage() {
+  const [myRank, setMyRank] = useState({});
+  const [userRank, setUserRank] = useState([]);
+
+  const getRank = async () => {
+    const rankData = await api.getRank();
+    if (rankData.success) {
+      setMyRank(rankData.data.myRank);
+      setUserRank(rankData.data.userRank);
+    }
+  };
+
+  useEffect(() => {
+    getRank();
+  }, []);
+
   return (
     <Container>
       <RankTitle />
-      <MyRankComponent ranking="256" id="MyId" point="300" />
-      <OtherUserRanks ranking="1" id="A" point="1,400" />
-      <OtherUserRanks ranking="2" id="B" point="1,300" />
-      <OtherUserRanks ranking="3" id="C" point="1,200" />
-      <OtherUserRanks ranking="4" id="D" point="1,100" newEntry />
-      <OtherUserRanks ranking="5" id="E" point="1,000" />
+      <Rank
+        myRanking
+        imgURL={myRank.avatarUrl}
+        id={myRank.username}
+        point={myRank.score}
+      />
+      {userRank.map((it) => (
+        <Rank
+          key={`${it.username}-${it.rank}-${it.score}`}
+          ranking={it.rank}
+          imgURL={it.avatarUrl}
+          id={it.username}
+          point={it.score}
+          rank={it.rank}
+        />
+      ))}
     </Container>
   );
 }
