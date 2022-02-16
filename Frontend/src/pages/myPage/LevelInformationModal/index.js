@@ -19,7 +19,7 @@ function LevelInformationModal({ setOpenModal }) {
         <Explanation>
           깃팜에 오신 걸 환영합니다!
           <br />
-          씨앗 레벨은 0~99점 구간입니다. <br />
+          씨앗 레벨은 0~100점 구간입니다. <br />
           얼른 커밋 하러 가보세요!
           <br />
         </Explanation>
@@ -32,7 +32,7 @@ function LevelInformationModal({ setOpenModal }) {
 
         <Explanation>
           커밋 생활에 적응하셨군요! <br />
-          초보 농부 레벨은 100~350점 구간입니다. <br />
+          초보 농부 레벨은 101~350점 구간입니다. <br />
           매일 커밋 한다면 새로운 배지를 얻을 수 <br />
           있는 사실을 알고 계시나요?
         </Explanation>

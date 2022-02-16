@@ -7,20 +7,18 @@ import CommitCount from "./CommitCount";
 import AccountSettings from "./AccountSettings";
 
 function MyPage() {
-  const [memberDate, setMemberDate] = useState(0);
-  const [score, setScore] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [continuous, setContinues] = useState(0);
-
+  const [user, setUser] = useState({
+    memberDate: 0,
+    totalScore: 0,
+    total: 0,
+    continuous: 0,
+  });
   const dataFunc = async () => {
-    const data = await api.getMyInfo();
+    const res = await api.getMyInfo();
 
-    if (data.success) {
-      const user = await data.mypage;
-      setMemberDate(user.memberDate);
-      setScore(user.score);
-      setTotal(user.total);
-      setContinues(user.continuous);
+    if (res.success) {
+      const data = await res.mypage;
+      setUser(data);
     }
   };
 
@@ -30,9 +28,9 @@ function MyPage() {
 
   return (
     <Container>
-      <StartedDayCount memberDate={memberDate} />
-      <LevelInfo score={score} />
-      <CommitCount total={total} continuous={continuous} />
+      <StartedDayCount memberDate={user.memberDate} />
+      <LevelInfo totalScore={user.totalScore} />
+      <CommitCount total={user.total} continuous={user.continuous} />
       <AccountSettings />
     </Container>
   );
