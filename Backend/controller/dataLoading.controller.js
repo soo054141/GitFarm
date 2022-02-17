@@ -11,17 +11,17 @@ import {
   getTodayTotalPullAllRepo,
   getTotalCommitAllRepo,
 } from "../lib/api/index.js";
-import { Commit, Level } from "../model/index.js";
-import { setDefaultBadge } from "../services/badge.service.js";
+import { Commit, Level, User } from "../model/index.js";
+import { getBadge, setDefaultBadge } from "../services/badge.service.js";
 import { FindByIdAndUpdate } from "../services/db.service.js";
 import { getScore } from "../services/levels.service.js";
 import {
   getMemberDate,
   setMemberDate,
 } from "../services/memberDate.service.js";
+import { getResolution } from "../services/resolution.service.js";
 import { year, month, fillZero } from "../utils/date.js";
 import { getUserObjectId } from "../utils/db.js";
-import { getReposLanguage } from "./users.controller.js";
 
 export const getLoadingData = async (req, res) => {
   const { user } = req;
@@ -72,7 +72,23 @@ export const getLoadingData = async (req, res) => {
     await FindByIdAndUpdate(Commit, _id, "languages", languages);
 
     // badges
-    await setDefaultBadge(req);
+    try {
+      await getBadge(req);
+    } catch (err) {
+      await setDefaultBadge(req);
+    }
+
+    // resolution
+    try {
+      await getResolution(req);
+    } catch (err) {
+      await FindByIdAndUpdate(
+        User,
+        _id,
+        "resolution",
+        "나는 최강의 개발자가 될거야!",
+      );
+    }
 
     res.json({
       message: "calendar와 myPage data를 성공적으로 가져왔습니다.",
