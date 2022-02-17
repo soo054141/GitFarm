@@ -1,7 +1,11 @@
-export const size = {
+export const deviceSizes = {
   tablet: "640px",
-  laptop: "1200px",
-  desktop: "1800px",
+  laptop: "900px",
+};
+
+export const device = {
+  tablet: `screen and (min-width: ${deviceSizes.tablet})`,
+  laptop: `screen and (min-width: ${deviceSizes.laptop})`,
 };
 
 export const theme = {
@@ -11,4 +15,5 @@ export const theme = {
   darkGray: "#595959",
   lightGray: "#939292",
   superLightGray: "#F1F2F5",
+  device,
 };

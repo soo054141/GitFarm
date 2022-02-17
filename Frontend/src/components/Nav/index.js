@@ -14,26 +14,31 @@ function Nav() {
       <Navs.List>
         <Navs.Item>
           <Link to="/calender">
+            <Navs.String>월별 커밋 기록</Navs.String>
             <Calender width="22px" height="100%" />
           </Link>
         </Navs.Item>
         <Navs.Item>
           <Link to="/rank">
+            <Navs.String>랭크</Navs.String>
             <Rranking />
           </Link>
         </Navs.Item>
         <Navs.Item>
           <Link to="/main">
+            <Navs.String>홈</Navs.String>
             <Navs.Home />
           </Link>
         </Navs.Item>
         <Navs.Item>
           <Link to="/graph">
+            <Navs.String>연간 커밋 그래프</Navs.String>
             <Graph />
           </Link>
         </Navs.Item>
         <Navs.Item>
           <Link to="/mypage">
+            <Navs.String>마이 페이지</Navs.String>
             <Mypage />
           </Link>
         </Navs.Item>

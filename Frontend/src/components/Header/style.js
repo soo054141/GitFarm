@@ -17,6 +17,9 @@ export const HeaderWrapper = styled.header`
     height: 100%;
     cursor: pointer;
   }
+  @media ${({ theme }) => theme.device.laptop} {
+    display: none;
+  }
 `;
 
 export const HeaderBackground = styled.div`

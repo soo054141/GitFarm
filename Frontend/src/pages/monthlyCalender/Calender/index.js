@@ -8,6 +8,7 @@ import {
   getFirstAndLastDate,
   matchDateCommit,
   stageCalc,
+  fillZeroMonth,
 } from "@/utils/calendar";
 import {
   CalenderContainer,
@@ -28,11 +29,14 @@ function Calender({ date }) {
 
   const getCommitMonthlyCount = async (setFunc) => {
     setLoading(true);
+    // const year = date.getFullYear();
+    // const month = fillZeroMonth(date.getMonth() + 1);
     const commitMonthData = await api.getCommitMonthly();
-    if (commitMonthData.success) {
-      setFunc(commitMonthData.commitPerMonth);
-      setLoading(false);
-    }
+    // 서버연동시 사용코드
+    // const commitMonthData = await api.getCommitMonthly(year, month);
+
+    setFunc(commitMonthData.commitPerMonth);
+    setLoading(false);
   };
 
   useLayoutEffect(() => {
