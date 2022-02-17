@@ -3,13 +3,23 @@ import axios from "axios";
 
 const url = "http://localhost:8888";
 
-// test
-export const getBreeds = async () => {
+// main
+export const getTodayCommit = async () => {
   try {
-    const r = await axios.get(`${url}/posts`);
-    console.log(r);
+    const res = await axios.get(`${url}/today`);
+    return res.data;
   } catch (error) {
-    console.error(error);
+    return error;
+  }
+};
+
+// main - 커밋 상세 내역
+export const getTodayDetailCommit = async () => {
+  try {
+    const res = await axios.get(`${url}/detail`);
+    return res.data;
+  } catch (error) {
+    return error;
   }
 };
 
@@ -32,6 +42,7 @@ export const getCommitsTotalPerMonth = async (year) => {
     return error;
   }
 };
+
 // calendar 초록 동그라미
 export const getCommitMonthly = async () => {
   try {
@@ -42,18 +53,6 @@ export const getCommitMonthly = async () => {
     return error;
   }
 };
-// calendar 초록 동그라미-서버연동시 사용
-// export const getCommitMonthly = async (year, month) => {
-//   try {
-//     const res = await axios.get(
-//       `/api/users/commits/total/per/day/${year}-${month}`,
-//     );
-//     return res.data;
-//   } catch (error) {
-//     console.error(error);
-//     return error;
-//   }
-// };
 
 // user가 가진 badges
 export const getUserBadges = async () => {
@@ -78,6 +77,7 @@ export const postBadges = async (badges) => {
   }
 };
 
+// 목표 커밋갯수
 export const getGoal = async () => {
   try {
     const res = await axios.get(`${url}/goal`);
@@ -87,15 +87,7 @@ export const getGoal = async () => {
   }
 };
 
-export const getResolution = async () => {
-  try {
-    const res = await axios.get(`${url}/resolution`);
-    return res.data;
-  } catch (error) {
-    return error;
-  }
-};
-
+// 목표 커밋갯수 등록하기
 export const postGoal = async (goalNum) => {
   try {
     const res = await axios.post(`${url}/goal`, {
@@ -108,6 +100,17 @@ export const postGoal = async (goalNum) => {
   }
 };
 
+// 유저 다짐 가져오기
+export const getResolution = async () => {
+  try {
+    const res = await axios.get(`${url}/resolution`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+// 유저 다짐 등록하기
 export const postResolution = async (resolutionString) => {
   try {
     const res = await axios.post(`${url}/resolution`, {
@@ -168,26 +171,6 @@ export const deleteAccount = async () => {
 export const getRank = async () => {
   try {
     const res = await axios.get(`${url}/rank`);
-    return res.data;
-  } catch (error) {
-    return error;
-  }
-};
-
-// main
-export const getTodayCommit = async () => {
-  try {
-    const res = await axios.get(`${url}/today`);
-    return res.data;
-  } catch (error) {
-    return error;
-  }
-};
-
-// main - 커밋 상세 내역
-export const getTodayDetailCommit = async () => {
-  try {
-    const res = await axios.get(`${url}/detail`);
     return res.data;
   } catch (error) {
     return error;
