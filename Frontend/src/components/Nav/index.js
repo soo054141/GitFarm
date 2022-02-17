@@ -8,8 +8,7 @@ import * as Navs from "./style";
 
 function Nav() {
   const location = useLocation();
-
-  return location.pathname !== "/" ? (
+  return location.pathname !== "/" && location.pathname !== "/loading" ? (
     <>
       <Navs.Container>
         <Navs.List>

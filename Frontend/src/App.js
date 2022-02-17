@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 // const Header = lazy(() => import("./components/Header"));
 // const Nav = lazy(() => import("./components/Nav"));
 const Login = lazy(() => import("./pages/login"));
+const Loading = lazy(() => import("./pages/loading"));
 const Main = lazy(() => import("./pages/main"));
 const MonthlyCalender = lazy(() => import("./pages/monthlyCalender"));
 const RankPage = lazy(() => import("./pages/rank"));
@@ -24,6 +25,7 @@ function App() {
       <Suspense fallback={<LoadingModal />}>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/loading" element={<Loading />} />
           <Route path="/main" element={<Main />} />
           <Route path="/calender" element={<MonthlyCalender />} />
           <Route path="/rank" element={<RankPage />} />
