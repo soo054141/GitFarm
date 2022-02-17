@@ -28,7 +28,7 @@ export const commitMonthlyURL =
 export const userBadgesURL =
   MODE === "production" ? "/api/users/badges" : "/badge";
 
-export const badgesURL = MODE === "production" ? "/api/users/badges" : "/badge";
+export const badgesURL = MODE === "production" ? "/api/users/badge" : "/badge";
 
 export const goalURL =
   MODE === "production" ? "/api/users/today/goal" : "/goal";
