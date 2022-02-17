@@ -27,13 +27,13 @@ function Calender({ date }) {
   const currentMonth = date.getMonth();
   const { firstDate, lastDate } = getFirstAndLastDate(date);
 
-  const getCommitMonthlyCount = async (setFunc) => {
+  const getCommitMonthlyCount = async () => {
     setLoading(true);
-    const year = String(date.getFullYear());
-    const month = fillZeroMonth(date.getMonth() + 1);
-    const commitMonthData = await api.getCommitMonthly(year, month);
-
-    setFunc(commitMonthData.commitPerDay);
+    // const year = String(date.getFullYear());
+    // const month = fillZeroMonth(date.getMonth() + 1);
+    const commitMonthData = await api.getCommitMonthly();
+    const { commitPerDay } = commitMonthData;
+    setCommitCountsPerDate(matchDateCommit(firstDate, commitPerDay));
     setLoading(false);
   };
 
@@ -41,10 +41,6 @@ function Calender({ date }) {
     getCommitMonthlyCount(setCommitCountsPerDate);
     setDates(makeCalendar(firstDate, lastDate, commitCountsPerDate));
   }, [date]);
-
-  useLayoutEffect(() => {
-    matchDateCommit(firstDate, commitCountsPerDate, setCommitCountsPerDate);
-  }, []);
 
   return (
     <div>
