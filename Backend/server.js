@@ -11,6 +11,7 @@ import initPassportStrategy from "./passport/index.js";
 import apiRouter from "./routes/index.js";
 import errorHandler from "./middleware/error-handler.js";
 import dotenv from "dotenv";
+import keys from "./config/keys.js";
 
 const app = express();
 dotenv.config();
@@ -20,7 +21,7 @@ app.use(favicon(path.resolve("../", "Frontend", "public", "favicon.ico")));
 app.use(logger("dev"));
 app.use(
   cors({
-    origin: "http://localhost:1111",
+    origin: keys.clientURL,
     credentials: true,
   }),
 );

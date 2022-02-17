@@ -7,6 +7,7 @@ export default {
   secretOrKey: process.env.secretOrKey,
   JWTexpiresIn: process.env.expiresIn,
   cookieMaxAge: process.env.maxAge,
+  clientURL: process.env.CLIENT_URL,
   GitHub: {
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
