@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -53,6 +54,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "main.css",
     }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        MODE: JSON.stringify("production"),
+        SERVER_URL: JSON.stringify("http://localhost:8888"),
+      },
+    }),
   ],
   devServer: {
     proxy: {
@@ -65,7 +72,7 @@ module.exports = {
       publicPath: "/assets", // localhost:port/publicPath안에 있는 파일에 접근 가능, 파일 업로드시 src경로 변경
     },
     compress: true,
-    port: 1811,
+    port: 1111,
     historyApiFallback: true,
   },
 };
