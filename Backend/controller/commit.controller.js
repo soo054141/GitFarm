@@ -78,11 +78,10 @@ export const getCommitsTotalPerYearController = async (req, res) => {
 };
 
 export const getCommitsTotalPerDayController = async (req, res) => {
-  const { user, params } = req;
+  const { user } = req;
   const { id } = user;
-  const { YYYYMM } = params;
-  const date = YYYYMM.split("-");
   const [{ _id }] = await User.find({ id });
+  const date = [year, fillZero(month, 2, "0")];
   const updatedAt = await getUpdatedAtById(user, Commit);
   const inTime = isInTime(TARGET_TIME, updatedAt);
   if (inTime) {

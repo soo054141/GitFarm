@@ -5,6 +5,7 @@ import httpError from "http-errors";
 import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
 import dotenv from "dotenv";
+import keys from "../../config/keys.js";
 
 dotenv.config();
 
@@ -12,13 +13,13 @@ const router = express.Router();
 
 const AFTER_LOGIN =
   process.env.NODE_ENV === "production"
-    ? "/loading"
+    ? `${keys.clientURL}/loading`
     : "/api/auth/login/success";
 
 const LOGOUT =
   process.env.NODE_ENV === "production"
-    ? "/loading"
-    : "/api/auth/login/success";
+    ? `${keys.clientURL}/`
+    : `/api/auth/login/failed`;
 
 export default (app) => {
   app.use("/auth", router);
