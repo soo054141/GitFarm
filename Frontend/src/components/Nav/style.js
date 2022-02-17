@@ -41,8 +41,8 @@ export const Item = styled.li`
     margin: 0 30px;
     padding: 0.5rem 1rem;
 
-    @media (max-width: 1100px) {
-      margin: 0 20px;
+    @media (max-width: 1200px) {
+      margin: 0 18px;
       padding: 0;
     }
   }
