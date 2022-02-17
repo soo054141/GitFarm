@@ -10,6 +10,7 @@ export const isInTime = async (req, res, next) => {
   );
   if (calc > TARGET_TIME) {
     next();
+    return;
   }
-  return;
+  res.redirect("/main");
 };
