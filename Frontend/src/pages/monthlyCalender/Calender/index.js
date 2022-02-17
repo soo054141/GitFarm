@@ -29,11 +29,10 @@ function Calender({ date }) {
 
   const getCommitMonthlyCount = async (setFunc) => {
     setLoading(true);
-    // const year = date.getFullYear();
-    // const month = fillZeroMonth(date.getMonth() + 1);
-    const commitMonthData = await api.getCommitMonthly();
-    // 서버연동시 사용코드
-    // const commitMonthData = await api.getCommitMonthly(year, month);
+    const year = String(date.getFullYear());
+    const month = fillZeroMonth(date.getMonth() + 1);
+
+    const commitMonthData = await api.getCommitMonthly(year, month);
 
     setFunc(commitMonthData.commitPerMonth);
     setLoading(false);
