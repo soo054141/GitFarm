@@ -30,7 +30,8 @@ export const userBadgesURL =
 
 export const badgesURL = MODE === "production" ? "/api/users/badges" : "/badge";
 
-export const goalURL = MODE === "production" ? "/api/users/goal" : "/goal";
+export const goalURL =
+  MODE === "production" ? "/api/users/today/goal" : "/goal";
 
 export const resolutionURL =
   MODE === "production" ? "/api/users/resolution" : "/resolution";
