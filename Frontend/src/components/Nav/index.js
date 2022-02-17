@@ -74,6 +74,11 @@ function Nav() {
                 </Link>
               </Navs.Item>
               <Navs.Item>
+                <Link to="/badge">
+                  <Navs.String>배지</Navs.String>
+                </Link>
+              </Navs.Item>
+              <Navs.Item>
                 <Link to="/mypage">
                   <Navs.String>마이페이지</Navs.String>
                 </Link>

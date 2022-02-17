@@ -4,10 +4,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 117px;
 `;
 export const IconWrapper = styled.div`
-  margin-top: 50px;
   svg {
     width: 84px;
     height: 100%;
