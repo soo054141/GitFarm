@@ -7,7 +7,7 @@
     "build": "webpack --mode=production",
     "dev": "webpack serve --open --mode=development",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
-    "server": "json-server --w db.json --p 8888"
+    "mock": "json-server --w --p 8888 db.json"
   },
   "keywords": [],
   "author": "",

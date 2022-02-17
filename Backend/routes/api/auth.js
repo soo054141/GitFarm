@@ -16,7 +16,9 @@ const AFTER_LOGIN =
     : "/api/auth/login/success";
 
 const LOGOUT =
-  process.env.NODE_ENV === "production" ? "/" : "/api/auth/login/failed";
+  process.env.NODE_ENV === "production"
+    ? "/loading"
+    : "/api/auth/login/success";
 
 export default (app) => {
   app.use("/auth", router);
