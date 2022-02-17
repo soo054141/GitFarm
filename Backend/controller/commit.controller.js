@@ -1,102 +1,48 @@
-import { getUpdatedAtById, getUserObjectId } from "../utils/db.js";
+import { getUserObjectId } from "../utils/db.js";
 import { User, Commit } from "../model/index.js";
 import { ViewResponseJSON } from "./index.js";
-import {
-  getContinuousCommitAllRepo,
-  getDetailTotalCommitAllRepo,
-  getMonthTotalCommitAllRepo,
-  getPerDayCommitAllRepo,
-  getTodayTotalCommitAllRepo,
-  getTotalCommitAllRepo,
-} from "../lib/api/index.js";
-import { isInTime, month, TARGET_TIME, year, fillZero } from "../utils/date.js";
-import { FindByIdAndUpdate, FindValueByKey } from "../services/db.service.js";
+import { FindValueByKey } from "../services/db.service.js";
 
 export const getReposTotalCommitsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-
-  try {
-    const result = await getTotalCommitAllRepo(user);
-    await FindByIdAndUpdate(Commit, _id, "total", result);
-    ViewResponseJSON(res, true, "total", result);
-  } catch (err) {
-    const result = await FindValueByKey(Commit, _id, "total");
-    ViewResponseJSON(res, false, "total", result);
-  }
+  const result = await FindValueByKey(Commit, _id, "total");
+  ViewResponseJSON(res, false, "total", result);
 };
 
 export const getCommitsTodayController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-
-  try {
-    const result = await getTodayTotalCommitAllRepo(user);
-    await FindByIdAndUpdate(Commit, _id, "today", result);
-    ViewResponseJSON(res, true, "today", result);
-  } catch (err) {
-    const result = await FindValueByKey(Commit, _id, "today");
-    ViewResponseJSON(res, false, "today", result);
-  }
+  const result = await FindValueByKey(Commit, _id, "today");
+  ViewResponseJSON(res, false, "today", result);
 };
 
 export const getCommitsTodayDetailController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-
-  try {
-    const result = await getDetailTotalCommitAllRepo(user);
-    await FindByIdAndUpdate(Commit, _id, "todayDetail", result);
-    ViewResponseJSON(res, true, "todayDetail", result);
-  } catch (err) {
-    console.log(err.message);
-    const result = await FindValueByKey(Commit, _id, "todayDetail");
-    ViewResponseJSON(res, false, "todayDetail", result);
-  }
+  const result = await FindValueByKey(Commit, _id, "todayDetail");
+  ViewResponseJSON(res, false, "todayDetail", result);
 };
 
 export const getCommitsTotalPerYearController = async (req, res) => {
-  const { user, params } = req;
+  const { user } = req;
   const { id } = user;
-  const { year } = params;
   const [{ _id }] = await User.find({ id });
-
-  try {
-    const result = await getMonthTotalCommitAllRepo(user, year);
-    await FindByIdAndUpdate(Commit, _id, "commitPerYear", result);
-    ViewResponseJSON(res, true, "commitPerYear", result);
-  } catch (err) {
-    const result = await FindValueByKey(Commit, _id, "commitPerYear");
-    ViewResponseJSON(res, false, "commitPerYear", result);
-  }
+  const result = await FindValueByKey(Commit, _id, "commitPerYear");
+  ViewResponseJSON(res, false, "commitPerYear", result);
 };
 
 export const getCommitsTotalPerDayController = async (req, res) => {
   const { user } = req;
   const { id } = user;
   const [{ _id }] = await User.find({ id });
-  const date = [year, fillZero(month, 2, "0")];
-
-  try {
-    const result = await getPerDayCommitAllRepo(user, date);
-    await FindByIdAndUpdate(Commit, _id, "commitPerDay", result);
-    ViewResponseJSON(res, true, "commitPerDay", result);
-  } catch (err) {
-    const result = await FindValueByKey(Commit, _id, "commitPerDay");
-    ViewResponseJSON(res, false, "commitPerDay", result);
-  }
+  const result = await FindValueByKey(Commit, _id, "commitPerDay");
+  ViewResponseJSON(res, false, "commitPerDay", result);
 };
 
 export const getCommitsContinuousController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-
-  try {
-    const result = await getContinuousCommitAllRepo(user);
-    await FindByIdAndUpdate(Commit, _id, "continuous", result);
-    ViewResponseJSON(res, true, "continuous", result);
-  } catch (err) {
-    const result = await FindValueByKey(Commit, _id, "continuous");
-    ViewResponseJSON(res, false, "continuous", result);
-  }
+  const result = await FindValueByKey(Commit, _id, "continuous");
+  ViewResponseJSON(res, false, "continuous", result);
 };
