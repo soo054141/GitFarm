@@ -7,18 +7,18 @@ import RightArrow from "../../assets/icon/right-arrow.svg";
 function DateController({ date, clickLeft, clickRight, goToday, month }) {
   return (
     <Controller.Container>
-      <Controller.ArrowWrapper onClick={clickLeft}>
+      {/* <Controller.ArrowWrapper>
         <LeftArrow />
-      </Controller.ArrowWrapper>
+      </Controller.ArrowWrapper> */}
       <Controller.TextWrapper>
         <Controller.DateText onClick={goToday}>
           {date.getFullYear()}년 {month && `${date.getMonth() + 1}월`}{" "}
         </Controller.DateText>
       </Controller.TextWrapper>
-
-      <Controller.ArrowWrapper onClick={clickRight}>
+      {/* 
+      <Controller.ArrowWrapper>
         <RightArrow />
-      </Controller.ArrowWrapper>
+      </Controller.ArrowWrapper> */}
     </Controller.Container>
   );
 }
