@@ -28,6 +28,7 @@ import {
   postGoalController,
   deleteUserController,
   getTodayController,
+  getDataInit,
 } from "../../controller/index.js";
 
 const router = express.Router();
@@ -41,6 +42,9 @@ export default (app) => {
     }),
     router,
   );
+
+  // loading
+  router.get("/loading", getDataInit);
 
   // commits
   router.get("/commits/total", getReposTotalCommitsController);

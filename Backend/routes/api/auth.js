@@ -9,7 +9,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const router = express.Router();
-const CLIENT_URL = "http://localhost:1111";
+
+const AFTER_LOGIN =
+  process.env.NODE_ENV === "production"
+    ? "/loading"
+    : "/api/auth/login/success";
+
+const LOGOUT =
+  process.env.NODE_ENV === "production" ? "/" : "/api/auth/login/failed";
 
 export default (app) => {
   app.use("/auth", router);
@@ -33,7 +40,7 @@ export default (app) => {
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect(CLIENT_URL);
+      res.redirect(AFTER_LOGIN);
     },
   );
 
@@ -53,6 +60,6 @@ export default (app) => {
 
   router.get("/logout", (req, res) => {
     res.clearCookie("token");
-    res.redirect(process.env.NODE_ENV === "development" ? "/" : CLIENT_URL);
+    res.redirect(LOGOUT);
   });
 };
