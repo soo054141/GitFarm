@@ -13,63 +13,41 @@ import * as api from "@/api";
 import { checkMonth } from "@/utils/graph";
 import * as LineGraphs from "./style";
 
-function LineGraph({ graphTitle, date, clickYear }) {
+function LineGraph({ date }) {
   const [commitData, setCommitData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  if (clickYear) {
-    const getRecentThreeYearCommitsCount = async () => {
-      setLoading(true);
-      setCommitData([]);
-      const data = await api.getRecentThreeYear();
-      if (data.success) {
-        const createData = data.lastThreeYear.map((it) => ({
-          name: it[0],
-          commit: it[1],
+  const getCommitsPerMonth = async () => {
+    setLoading(true);
+    const { year, month, thisMonth } = checkMonth(date);
+
+    const data = await api.getCommitsTotalPerMonth(year);
+    if (data.success) {
+      let { commitPerYear } = data;
+
+      if (month === thisMonth) {
+        commitPerYear = commitPerYear.slice(0, thisMonth + 1);
+      }
+
+      const checkEmptyArray = commitPerYear.every((it) => it === 0);
+      if (checkEmptyArray) {
+        setCommitData([]);
+      } else {
+        const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
+          name: `${year.slice(2, 4)}.${index + 1}`,
+          commit: commitCnt,
         }));
         setCommitData(createData);
-      } else {
-        setCommitData([]);
       }
-      setLoading(false);
-    };
+    } else {
+      setCommitData([]);
+    }
+    setLoading(false);
+  };
 
-    useEffect(() => {
-      getRecentThreeYearCommitsCount();
-    }, [clickYear]);
-  } else {
-    const getCommitsPerMonth = async () => {
-      setLoading(true);
-      const { year, month, thisMonth } = checkMonth(date);
-
-      const data = await api.getCommitsTotalPerMonth(year);
-      if (data.success) {
-        let { commitPerYear } = data;
-
-        if (month === thisMonth) {
-          commitPerYear = commitPerYear.slice(0, thisMonth + 1);
-        }
-
-        const checkEmptyArray = commitPerYear.every((it) => it === 0);
-        if (checkEmptyArray) {
-          setCommitData([]);
-        } else {
-          const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
-            name: `${year.slice(2, 4)}.${index + 1}`,
-            commit: commitCnt,
-          }));
-          setCommitData(createData);
-        }
-      } else {
-        setCommitData([]);
-      }
-      setLoading(false);
-    };
-
-    useEffect(() => {
-      getCommitsPerMonth();
-    }, [date]);
-  }
+  useEffect(() => {
+    getCommitsPerMonth();
+  }, []);
 
   return (
     <LineGraphs.Container>
@@ -79,7 +57,7 @@ function LineGraph({ graphTitle, date, clickYear }) {
         <>
           {commitData.length ? (
             <>
-              <LineGraphs.Title>{graphTitle} 커밋 추이</LineGraphs.Title>
+              <LineGraphs.Title>월간 커밋 추이</LineGraphs.Title>
               <LineGraphs.Wrapper>
                 <LineChart width={350} height={280} data={commitData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -106,13 +84,7 @@ function LineGraph({ graphTitle, date, clickYear }) {
 }
 
 LineGraph.propTypes = {
-  graphTitle: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
-  clickYear: PropTypes.bool.isRequired,
-};
-
-LineGraph.defaultProps = {
-  graphTitle: "월간" || "연간",
 };
 
 export default LineGraph;

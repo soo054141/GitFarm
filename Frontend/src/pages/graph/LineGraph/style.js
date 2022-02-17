@@ -21,6 +21,10 @@ export const Title = styled.h5`
   font-size: 13.55px;
   margin-left: 18px;
   margin-top: 15px;
+  padding-top: 17px;
+  @media ${({ theme }) => theme.device.laptop} {
+    padding-top: 0;
+  }
 `;
 
 export const NoData = styled.p`
