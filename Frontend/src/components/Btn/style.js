@@ -14,5 +14,4 @@ export const ButtonWrapper = styled.div`
   border-radius: 10px;
   text-align: center;
   font-size: 14px;
-  cursor: pointer;
 `;
