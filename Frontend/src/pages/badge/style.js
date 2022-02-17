@@ -4,12 +4,20 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 117px;
+  margin-top: 15px;
 `;
 export const IconWrapper = styled.div`
+  margin-top: 50px;
   svg {
     width: 84px;
     height: 100%;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    margin-top: 100px;
+    svg {
+      width: 54px;
+      height: 100%;
+    }
   }
 `;
 export const Text = styled.p`
@@ -22,10 +30,17 @@ export const Text = styled.p`
 
 export const BadgeCollections = styled.div`
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
   width: 79.49%;
   column-gap: 5px;
   row-gap: 10px;
+  @media ${({ theme }) => theme.device.laptop} {
+    margin-top: 30px;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+  }
 `;
 
 export const PerBadge = styled.div`
@@ -42,5 +57,11 @@ export const PerBadge = styled.div`
   svg {
     width: 50px;
     height: 50px;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    svg {
+      width: 60px;
+      height: 60px;
+    }
   }
 `;
