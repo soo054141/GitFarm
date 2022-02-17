@@ -49,7 +49,7 @@ export default (app) => {
   // commits
   router.get("/commits/total", getReposTotalCommitsController);
   router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
-  router.get("/commits/total/per/day/:YYYYMM", getCommitsTotalPerDayController);
+  router.get("/commits/total/per/day", getCommitsTotalPerDayController);
   router.get("/commits/total/recent/year", getCommitsTotalRecentYearController);
   router.get("/commits/continuous", getCommitsContinuousController);
 
