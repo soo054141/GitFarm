@@ -33,7 +33,7 @@ function Calender({ date }) {
     const month = fillZeroMonth(date.getMonth() + 1);
     const commitMonthData = await api.getCommitMonthly(year, month);
 
-    setFunc(commitMonthData.commitPerMonth);
+    setFunc(commitMonthData.commitPerDay);
     setLoading(false);
   };
 
