@@ -8,6 +8,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   border-radius: 10px;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    height: 350px;
+    margin-left: 120px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -30,7 +35,15 @@ export const Description = styled.span`
   color: ${(props) => props.theme.lightGray};
 `;
 
-export const RatioWrapper = styled.div``;
+export const RatioWrapper = styled.div`
+  @media ${({ theme }) => theme.device.laptop} {
+    margin-top: 150px;
+
+    > div {
+      line-height: 1.4;
+    }
+  }
+`;
 
 export const LangColorBox = styled.div`
   background-color: ${({ idx }) => idx};
@@ -46,11 +59,20 @@ export const LangColorBoxWrapper = styled.div`
   margin-bottom: 14px;
 `;
 
-export const PieWrapper = styled.div``;
+export const PieWrapper = styled.div`
+  @media ${({ theme }) => theme.device.laptop} {
+    position: relative;
+    top: 25px;
+    right: 20px;
+  }
+`;
 
 export const LangText = styled.span`
   font-size: 9px;
   color: ${(props) => props.theme.lightGray};
-
   margin-right: 7px;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 14px;
+  }
 `;
