@@ -18,7 +18,12 @@ dotenv.config();
 connectDB();
 app.use(favicon(path.resolve("../", "Frontend", "public", "favicon.ico")));
 app.use(logger("dev"));
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:1111",
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -27,10 +32,20 @@ initPassportStrategy(passport);
 app.use("/api", apiRouter());
 errorHandler(app);
 
-const port = process.env.PORT || 8888;
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
-if (process.env.NODE_ENV !== "test") {
-  app.listen(port, () => console.log(`Listening on PORT ${port}`));
-}
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
+});
 
 export default app;
