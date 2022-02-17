@@ -11,6 +11,7 @@ import initPassportStrategy from "./passport/index.js";
 import apiRouter from "./routes/index.js";
 import errorHandler from "./middleware/error-handler.js";
 import dotenv from "dotenv";
+import keys from "./config/keys.js";
 
 const app = express();
 
@@ -19,7 +20,7 @@ dotenv.config();
 connectDB();
 app.use(
   cors({
-    origin: "http://localhost:1111",
+    origin: keys.clientURL,
     credentials: true,
   }),
 );
