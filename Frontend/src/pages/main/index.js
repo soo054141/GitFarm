@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoadingModal from "@/components/LoadingModal";
 import * as api from "@/api";
+import { Container } from "@/components/Container/style";
 import FarmPicture from "./FarmPicture";
 import CommitDetails from "./CommitDetails";
 import * as Mains from "./style";
@@ -29,7 +30,7 @@ function Main() {
   }, []);
 
   return (
-    <Mains.Container>
+    <Container>
       {!loading ? (
         <>
           <Mains.TodaysCommit>오늘의 커밋</Mains.TodaysCommit>
@@ -54,7 +55,7 @@ function Main() {
       ) : (
         <LoadingModal />
       )}
-    </Mains.Container>
+    </Container>
   );
 }
 

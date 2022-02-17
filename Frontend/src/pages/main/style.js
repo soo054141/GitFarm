@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  margin-top: 89px;
-  padding: 0 25px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const TodaysCommit = styled.h1`
   font-size: 18px;
   line-height: 33px;
