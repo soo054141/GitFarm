@@ -29,7 +29,6 @@ export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
 
 // 랭킹
 export const ranking = (myRank, userBadges, arrayOfBadgesId) => {
-  console.log("네 레벨", myRank);
   if (!userBadges[RANKING1] && myRank === 1) {
     arrayOfBadgesId.push(RANKING1);
     return;
