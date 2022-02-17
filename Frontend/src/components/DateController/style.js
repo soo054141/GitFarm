@@ -7,6 +7,7 @@ export const ArrowWrapper = styled.button`
   svg {
     width: 7px;
     height: 100%;
+    display: none;
   }
 `;
 export const TextWrapper = styled.div`
