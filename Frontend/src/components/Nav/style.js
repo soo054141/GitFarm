@@ -9,6 +9,24 @@ export const Container = styled.nav`
   left: 0;
   right: 0;
   z-index: 90;
+  p {
+    display: none;
+  }
+  @media ${({ theme }) => theme.device.laptop} {
+    background-color: white;
+    position: fixed;
+    bottom: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    svg {
+      display: none;
+    }
+    p {
+      display: block;
+    }
+  }
 `;
 
 export const Home = styled(HomeIcon)`
@@ -26,3 +44,5 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li``;
+
+export const String = styled.p``;
