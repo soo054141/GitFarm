@@ -16,7 +16,7 @@ function Header() {
       </HeaderWrapper>
     );
   }
-  if (location.pathname === "/") {
+  if (location.pathname === "/" || location.pathname === "/loading") {
     return null;
   }
   return (
