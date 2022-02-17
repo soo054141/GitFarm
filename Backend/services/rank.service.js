@@ -2,6 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import { User, Level } from "../model/index.js";
 import { getFulfilledValue } from "../utils/async.js";
+import { calcRankWithConcurrentScore } from "../utils/rank.js";
 
 export const getDefaultRank = () => {
   const myRank = {
@@ -78,36 +79,4 @@ export const getUserRank = async () => {
   const totalUser = await getFulfilledValue(processUserData);
   const userRank = calcRankWithConcurrentScore(totalUser);
   return userRank;
-};
-
-const calcRankWithConcurrentScore = (userData) => {
-  const userRank = [...userData];
-
-  userRank.sort((a, b) => {
-    if (a.score === b.score) {
-      if (a.username < b.username) return -1;
-      if (a.username > b.username) return 1;
-    }
-    return b.score - a.score;
-  });
-
-  let rank = 1;
-  let currentScore = 0;
-  const result = userRank.map((user) => {
-    const { score } = user;
-    if (score >= currentScore) {
-      const newUser = {
-        ...user,
-        rank,
-      };
-      currentScore = score;
-      return newUser;
-    }
-
-    rank += 1;
-    currentScore = score;
-    return { ...user, rank };
-  });
-
-  return result;
 };
