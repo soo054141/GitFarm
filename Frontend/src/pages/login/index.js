@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GitFarmLogoImg from "@/assets/icon/login/GitFarmLogo.svg";
 import MarkGitHub from "@/assets/icon/login/mark-github.svg";
-import * as api from "@/api";
 import * as GitFarm from "./style";
 
 function Login() {
-  api.getBreeds();
   return (
     <GitFarm.Container>
       <GitFarm.Title>Git Farm</GitFarm.Title>
