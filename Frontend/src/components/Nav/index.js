@@ -83,53 +83,10 @@ function Nav() {
                   <Navs.String>마이페이지</Navs.String>
                 </Link>
               </Navs.Item>
-              {/* <Navs.Item />
-              <Navs.Item /> */}
             </Navs.List>
           </Navs.ResponsiveNav>
         </Navs.ResponsiveContainer>
       </Navs.ResponsiveHeader>
-
-      {/* <Navs.ResponsiveHeader>
-        <Navs.ResponsiveDiv>
-          <Navs.ResponsiveLogo>
-            <Link to="/main">
-              <Navs.ResponsiveWrapper>
-                <Navs.GitFarmLogo />
-                <Navs.LogoTitle>Git Farm</Navs.LogoTitle>
-              </Navs.ResponsiveWrapper>
-            </Link>
-          </Navs.ResponsiveLogo>
-
-          <Navs.ResponsiveList>
-            <Navs.Item>
-              <Link to="/main">
-                <Navs.String>오늘의 커밋</Navs.String>
-              </Link>
-            </Navs.Item>
-            <Navs.Item>
-              <Link to="/calender">
-                <Navs.String>월별 커밋 기록</Navs.String>
-              </Link>
-            </Navs.Item>
-            <Navs.Item>
-              <Link to="/rank">
-                <Navs.String>랭링</Navs.String>
-              </Link>
-            </Navs.Item>
-            <Navs.Item>
-              <Link to="/graph">
-                <Navs.String>월간/연간 커밋 그래프</Navs.String>
-              </Link>
-            </Navs.Item>
-            <Navs.Item>
-              <Link to="/mypage">
-                <Navs.String>마이페이지</Navs.String>
-              </Link>
-            </Navs.Item>
-          </Navs.ResponsiveList>
-        </Navs.ResponsiveDiv>
-      </Navs.ResponsiveHeader> */}
     </>
   ) : null;
 }
