@@ -29,6 +29,7 @@ import {
   getTodayController,
   getLoadingData,
 } from "../../controller/index.js";
+import { isInTime } from "../../middleware/is-in-time.js";
 
 const router = express.Router();
 
@@ -43,8 +44,9 @@ export default (app) => {
   );
 
   // all data loading
-  router.get("/loading", getLoadingData);
+  router.get("/loading", isInTime, getLoadingData);
 
+  // commits
   router.get("/commits/total", getReposTotalCommitsController);
   router.get("/commits/total/per/year/:year", getCommitsTotalPerYearController);
   router.get("/commits/total/per/day", getCommitsTotalPerDayController);
