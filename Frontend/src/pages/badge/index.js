@@ -14,19 +14,19 @@ function Badge({ badgesType }) {
 
   const getUserBadges = async () => {
     setLoading(true);
-    const badgesData = await Promise.all([
+    const [badgeData, mypageData, rankData] = await Promise.all([
       api.getUserBadges(),
       api.getMyInfo(),
+      api.getRank(),
     ]);
-    if (badgesData[0].success && badgesData[1].success) {
-      const newUserBadges = await AllBadgesFuncion(
-        badgesData[0].badge,
-        badgesData[1].mypage,
-      );
-      api.postBadges(newUserBadges);
-      setUserBadges(newUserBadges);
-      setLoading(false);
-    }
+    const newUserBadges = await AllBadgesFuncion(
+      badgeData.badge,
+      mypageData.mypage,
+      rankData.data,
+    );
+    api.postBadges(newUserBadges);
+    setUserBadges(newUserBadges);
+    setLoading(false);
   };
 
   useLayoutEffect(() => {

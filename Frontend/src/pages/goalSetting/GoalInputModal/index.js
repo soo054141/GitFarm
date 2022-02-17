@@ -94,7 +94,7 @@ function GoalInputModal({ setOpenModal, modalType }) {
         validation={validation}
       >
         <Input
-          value={!loading && value}
+          value={!loading ? value : ""}
           onChangeCallback={onChangeHandler}
           type={modalType}
           placeholder={content[modalType].text}

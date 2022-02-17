@@ -27,6 +27,11 @@
   },
   "month": [
     {
+      "id": 2018,
+      "success": true,
+      "commitPerYear": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
       "id": 2019,
       "success": true,
       "commitPerYear": [0, 182, 43, 3, 399, 115, 21, 32, 66, 81, 236, 10, 28]
@@ -44,7 +49,7 @@
     {
       "id": 2022,
       "success": true,
-      "commitPerYear": [0, 82, 143]
+      "commitPerYear": [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
   ],
   "perMonth": {
@@ -87,7 +92,8 @@
   },
   "recentThreeYear": {
     "success": true,
-    "recentThreeYear": [
+
+    "lastThreeYear": [
       [2020, 49],
       [2021, 1163],
       [2022, 127]
@@ -95,7 +101,7 @@
   },
   "reposLanguage": {
     "success": true,
-    "data": [
+    "languages": [
       {
         "repo": "have-u-tried-this",
         "language": "TypeScript"
@@ -285,6 +291,44 @@
           "avatarUrl": "https://http.cat/505",
           "score": 3,
           "rank": 4
+        }
+      ]
+    }
+  },
+  "today": {
+    "success": true,
+    "today": {
+      "todayScore": 21,
+      "goal" : 10,
+      "todayCommit": 10,
+      "detail": [
+        {
+          "info": {"name": "YWTechIT", "repo": "alice-sw-engineer-track"},
+          "data": [{"date": "2022-01-20T13:33:11Z", "message": "63일차 1.20.목. 실시간 강의"}]
+        },
+        {
+          "info": {"name": "YWTechIT","repo": "ci-cd-practice"},
+          "data": [
+            {"date": "2022-01-20T07:38:42Z", "message": "Fix typo"},
+            {"date": "2022-01-20T07:29:57Z", "message": "Add Heroku actions"},
+            {"date": "2022-01-20T06:41:25Z", "message": "Fix typo"}, 
+            {"date": "2022-01-20T06:32:27Z", "message": "Fix blanks"},
+            {"date": "2022-01-20T06:31:25Z", "message": "Add actions"},
+            {"date": "2022-01-20T06:24:46Z", "message": "Add 단계별 build"},
+            {"date": "2022-01-20T06:22:28Z","message": "Add ci command"}
+          ]
+        },
+        {
+          "info": {"name": "YWTechIT", "repo": "custombucks-api"},
+          "data": [
+            {"date": "2022-01-20T23:11:15Z", "message": "Update README"},
+            {"date": "2022-01-20T22:16:40Z", "message": "Add comment cron"},
+            {"date": "2022-01-20T22:08:53Z", "message": "Add heroku-awake action"}
+          ]
+        },
+        {
+          "info": {"name": "YWTechIT","repo": "ywBot"},
+          "data": [{"date": "2022-01-20T15:24:45Z", "message": "Update README.md"}]
         }
       ]
     }

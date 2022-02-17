@@ -29,6 +29,7 @@ export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
 
 // 랭킹
 export const ranking = (myRank, userBadges, arrayOfBadgesId) => {
+  console.log("네 레벨", myRank);
   if (!userBadges[RANKING1] && myRank === 1) {
     arrayOfBadgesId.push(RANKING1);
     return;
@@ -77,11 +78,26 @@ export const level = (score, userBadges, arrayOfBadgesId) => {
   }
 };
 
-export const AllBadgesFuncion = async (userBadges, mypageData) => {
+const myRankCalc = (myName, usersRank) => {
+  let Rank = null;
+  usersRank.forEach((userRank) => {
+    if (userRank.username === myName && userRank.rank <= 3) {
+      Rank = userRank.rank;
+    }
+  });
+  return Rank;
+};
+
+export const AllBadgesFuncion = async (userBadges, mypageData, rankData) => {
   const arrayOfBadgesId = [];
+  const { myRank, userRank } = rankData;
+  const myMedalRank = myRankCalc(myRank.username, userRank);
 
   commitAchievement(mypageData.total, userBadges, arrayOfBadgesId);
-  // ranking(3, userBadges, arrayOfBadgesId);
+
+  if (myMedalRank !== null) {
+    ranking(myMedalRank, userBadges, arrayOfBadgesId);
+  }
   continuousDay(mypageData.continuous, userBadges, arrayOfBadgesId);
   level(mypageData.totalScore, userBadges, arrayOfBadgesId, arrayOfBadgesId);
   const newUserBadges = userBadges;
