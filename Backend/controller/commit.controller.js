@@ -9,7 +9,7 @@ import {
   getTodayTotalCommitAllRepo,
   getTotalCommitAllRepo,
 } from "../lib/api/index.js";
-import { isInTime, TARGET_TIME } from "../utils/date.js";
+import { isInTime, month, TARGET_TIME, year, fillZero } from "../utils/date.js";
 import { FindByIdAndUpdate, FindValueByKey } from "../services/db.service.js";
 
 export const getReposTotalCommitsController = async (req, res) => {
