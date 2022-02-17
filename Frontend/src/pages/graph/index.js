@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "@/components/Container/style";
 import DateController from "@/components/DateController";
 import * as api from "@/api";
 import { toDay } from "@/utils/graph";
 import PieChartComponent from "./PieChart";
 import LineGraph from "./LineGraph";
-import { DateControllerWrapper } from "./style";
+import * as Graphs from "./style";
 
 function Graph() {
   const [date, setDate] = useState(toDay);
@@ -27,13 +26,15 @@ function Graph() {
   }, []);
 
   return (
-    <Container>
-      <DateControllerWrapper>
+    <Graphs.Container>
+      <Graphs.DateControllerWrapper>
         <DateController date={date} goToday={goToday} month={false} />
-      </DateControllerWrapper>
-      <LineGraph date={date} />
-      <PieChartComponent reposLanguage={reposLanguage} />
-    </Container>
+      </Graphs.DateControllerWrapper>
+      <Graphs.ResponsiveDiv>
+        <LineGraph date={date} />
+        <PieChartComponent reposLanguage={reposLanguage} />
+      </Graphs.ResponsiveDiv>
+    </Graphs.Container>
   );
 }
 
