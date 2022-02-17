@@ -2,8 +2,10 @@ import React, { Suspense, lazy } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LoadingModal from "@/components/LoadingModal";
 
-const Header = lazy(() => import("./components/Header"));
-const Nav = lazy(() => import("./components/Nav"));
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+// const Header = lazy(() => import("./components/Header"));
+// const Nav = lazy(() => import("./components/Nav"));
 const Login = lazy(() => import("./pages/login"));
 const Main = lazy(() => import("./pages/main"));
 const MonthlyCalender = lazy(() => import("./pages/monthlyCalender"));
@@ -17,9 +19,9 @@ const Badge = lazy(() => import("./pages/badge"));
 function App() {
   return (
     <BrowserRouter>
+      <Header />
+      <Nav />
       <Suspense fallback={<LoadingModal />}>
-        <Header />
-        <Nav />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/main" element={<Main />} />
