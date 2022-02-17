@@ -1,12 +1,25 @@
 /* eslint-disable no-alert */
-import axios from "axios";
-
-const url = "http://localhost:8888";
+import {
+  AXIOS,
+  badgesURL,
+  commitMonthlyURL,
+  commitsTotalPerMonthURL,
+  deleteAccountURL,
+  goalURL,
+  logoutURL,
+  myInfoURL,
+  rankURL,
+  recentThreeYearURL,
+  reposLanguageURL,
+  resolutionURL,
+  todayCommitURL,
+  todayDetailCommitURL,
+} from "../utils/api";
 
 // main
 export const getTodayCommit = async () => {
   try {
-    const res = await axios.get(`${url}/today`);
+    const res = await AXIOS.get(todayCommitURL);
     return res.data;
   } catch (error) {
     return error;
@@ -16,7 +29,7 @@ export const getTodayCommit = async () => {
 // main - 커밋 상세 내역
 export const getTodayDetailCommit = async () => {
   try {
-    const res = await axios.get(`${url}/detail`);
+    const res = await AXIOS.get(todayDetailCommitURL);
     return res.data;
   } catch (error) {
     return error;
@@ -26,7 +39,7 @@ export const getTodayDetailCommit = async () => {
 // mypage
 export const getMyInfo = async () => {
   try {
-    const res = await axios.get(`${url}/mypage`);
+    const res = await AXIOS.get(myInfoURL);
     return res.data;
   } catch (error) {
     console.error();
@@ -36,7 +49,7 @@ export const getMyInfo = async () => {
 // graph - 월간
 export const getCommitsTotalPerMonth = async (year) => {
   try {
-    const res = await axios.get(`${url}/month/${year}`);
+    const res = await AXIOS.get(`${commitsTotalPerMonthURL}/${year}`);
     return res.data;
   } catch (error) {
     return error;
@@ -46,7 +59,7 @@ export const getCommitsTotalPerMonth = async (year) => {
 // calendar 초록 동그라미
 export const getCommitMonthly = async (year, month) => {
   try {
-    const res = await axios.get(`${url}/perMonth`);
+    const res = await AXIOS.get(`${commitMonthlyURL}/${year}-${month}`);
     return res.data;
   } catch (error) {
     console.error(error);
@@ -57,7 +70,7 @@ export const getCommitMonthly = async (year, month) => {
 // user가 가진 badges
 export const getUserBadges = async () => {
   try {
-    const res = await axios.get(`${url}/badge`);
+    const res = await AXIOS.get(badgesURL);
     return res.data;
   } catch (error) {
     return error;
@@ -67,7 +80,7 @@ export const getUserBadges = async () => {
 // 뱃지
 export const postBadges = async (badges) => {
   try {
-    const res = await axios.post(`${url}/badge`, {
+    const res = await AXIOS.post(badgesURL, {
       success: true,
       badge: badges,
     });
@@ -80,7 +93,7 @@ export const postBadges = async (badges) => {
 // 목표 커밋갯수
 export const getGoal = async () => {
   try {
-    const res = await axios.get(`${url}/goal`);
+    const res = await AXIOS.get(goalURL);
     return res.data;
   } catch (error) {
     return error;
@@ -90,7 +103,7 @@ export const getGoal = async () => {
 // 목표 커밋갯수 등록하기
 export const postGoal = async (goalNum) => {
   try {
-    const res = await axios.post(`${url}/goal`, {
+    const res = await AXIOS.post(goalURL, {
       success: true,
       goal: goalNum,
     });
@@ -103,7 +116,7 @@ export const postGoal = async (goalNum) => {
 // 유저 다짐 가져오기
 export const getResolution = async () => {
   try {
-    const res = await axios.get(`${url}/resolution`);
+    const res = await AXIOS.get(resolutionURL);
     return res.data;
   } catch (error) {
     return error;
@@ -113,7 +126,7 @@ export const getResolution = async () => {
 // 유저 다짐 등록하기
 export const postResolution = async (resolutionString) => {
   try {
-    const res = await axios.post(`${url}/resolution`, {
+    const res = await AXIOS.post(resolutionURL, {
       success: true,
       resolution: resolutionString,
     });
@@ -126,7 +139,7 @@ export const postResolution = async (resolutionString) => {
 // 총 커밋 개수 호출(getFullYear 기준 최근 3년)
 export const getRecentThreeYear = async () => {
   try {
-    const res = await axios.get(`${url}/recentThreeYear`);
+    const res = await AXIOS.get(recentThreeYearURL);
     return res.data;
   } catch (error) {
     return error;
@@ -136,7 +149,7 @@ export const getRecentThreeYear = async () => {
 // 총 레포지토리 별 사용 언어
 export const getReposLanguage = async () => {
   try {
-    const res = await axios.get(`${url}/reposLanguage`);
+    const res = await AXIOS.get(reposLanguageURL);
     return res.data;
   } catch (error) {
     return error;
@@ -146,7 +159,7 @@ export const getReposLanguage = async () => {
 // 로그아웃
 export const logout = async () => {
   try {
-    const res = await axios.get(`${url}/logout`);
+    const res = await AXIOS.get(logoutURL);
     return res;
   } catch (error) {
     alert("에러가 발생했습니다.");
@@ -157,7 +170,7 @@ export const logout = async () => {
 // 회원 탈퇴
 export const deleteAccount = async () => {
   try {
-    const res = await axios.delete(`${url}/delete`);
+    const res = await AXIOS.delete(deleteAccountURL);
     if (res.status === 201) {
       return alert("탈퇴 처리되었습니다.");
     }
@@ -170,7 +183,7 @@ export const deleteAccount = async () => {
 // 깃팜 랭크
 export const getRank = async () => {
   try {
-    const res = await axios.get(`${url}/rank`);
+    const res = await AXIOS.get(rankURL);
     return res.data;
   } catch (error) {
     return error;
