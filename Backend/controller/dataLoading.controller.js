@@ -3,6 +3,7 @@ import {
   getContinuousCommitAllRepo,
   getDetailTotalCommitAllRepo,
   getIssuesAllRepo,
+  getLanguagesData,
   getMonthTotalCommitAllRepo,
   getPerDayCommitAllRepo,
   getPullsAllRepo,
