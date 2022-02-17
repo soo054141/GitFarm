@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "@/components/Container/style";
+// import { Container } from "@/components/Container/style";
 import CommitGoal from "./CommitGoal";
 import Resolution from "./Resolution";
 import GoalInputModal from "./GoalInputModal";
-import { TitleText } from "./style";
+import { TitleText, Container, Wrapper } from "./style";
 
 function GoalSetting() {
   const [randomNum, setRandomNum] = useState(undefined);
@@ -23,14 +23,16 @@ function GoalSetting() {
   return (
     <Container>
       <TitleText>목표 설정</TitleText>
-      <CommitGoal onClick={() => modalOpenHandler(0)} />
-      <Resolution
-        onClick={() => modalOpenHandler(1)}
-        randomViewNum={randomNum}
-      />
-      {openModal && (
-        <GoalInputModal setOpenModal={setOpenModal} modalType={modalType} />
-      )}
+      <Wrapper>
+        <CommitGoal onClick={() => modalOpenHandler(0)} />
+        <Resolution
+          onClick={() => modalOpenHandler(1)}
+          randomViewNum={randomNum}
+        />
+        {openModal && (
+          <GoalInputModal setOpenModal={setOpenModal} modalType={modalType} />
+        )}
+      </Wrapper>
     </Container>
   );
 }
