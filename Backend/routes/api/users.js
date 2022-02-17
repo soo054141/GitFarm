@@ -45,6 +45,11 @@ export default (app) => {
 
   // all data loading
   router.get("/loading", isInTime, getLoadingData);
+  router.get("/test", isInTime, (req, res) => {
+    res.json({
+      message: "123",
+    });
+  });
 
   // commits
   router.get("/commits/total", getReposTotalCommitsController);
