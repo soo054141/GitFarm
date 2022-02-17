@@ -6,12 +6,10 @@ function SpeechBubble() {
   const [value, setValue] = useState();
   const getResolutionValue = async () => {
     const data = await getResolution();
-    if (data.success) {
-      if (data.resolution.length > 0) {
-        setValue(data.resolution);
-      } else {
-        setValue("우주최강 개발자가 될거야!");
-      }
+    if (data.resolution.length > 0) {
+      setValue(data.resolution);
+    } else {
+      setValue("우주최강 개발자가 될거야!");
     }
   };
   useEffect(() => {
