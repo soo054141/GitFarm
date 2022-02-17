@@ -62,11 +62,7 @@ export const getFirstAndLastDate = (date) => {
   return { firstDate, lastDate };
 };
 
-export const matchDateCommit = (
-  firstDate,
-  commitCountsPerDate,
-  setCommitCountsPerDate,
-) => {
+export const matchDateCommit = (firstDate, commitCountsPerDate) => {
   const firstDateMonthLast = new Date(
     firstDate.getFullYear(),
     firstDate.getMonth() + 1,
@@ -83,8 +79,8 @@ export const matchDateCommit = (
   for (let i = 0; i < prevMonthDate; i += 1) {
     newArr.unshift(0);
   }
-
-  setCommitCountsPerDate(newArr);
+  // eslint-disable-next-line consistent-return
+  return newArr;
 };
 
 export const stageCalc = (commitCountNum) => {
