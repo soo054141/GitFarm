@@ -23,11 +23,15 @@ function CommitDetails({ todayScore, todayCommit, detail }) {
               <CommitDetail.IconWrapper>
                 <InfoIcon onClick={modalOpenHandler} />
               </CommitDetail.IconWrapper>
-              <CommitDetail.Score>{todayScore}</CommitDetail.Score>
+              <CommitDetail.Score length={String(todayScore).length}>
+                {todayScore}
+              </CommitDetail.Score>
             </CommitDetail.ScoreCell>
             <CommitDetail.ScoreCell>
               <CommitDetail.SubTitle>총 커밋 수</CommitDetail.SubTitle>
-              <CommitDetail.Score>{todayCommit}</CommitDetail.Score>
+              <CommitDetail.Score length={String(todayCommit).length}>
+                {todayCommit}
+              </CommitDetail.Score>
             </CommitDetail.ScoreCell>
           </CommitDetail.ScoreContainer>
           <CommitDetail.DetailsContainer>

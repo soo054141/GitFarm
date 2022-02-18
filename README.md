@@ -28,18 +28,18 @@
 ### 메인 기능
 | 농장꾸미기 | 월간 그래프 | 캘린더 |
 | ------ | ------ | ------ |
-| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702906-a9ba0d7b-b7b0-4947-97c7-1457e03f5d78.png"  width="200px" height="400px"/></div> | ![image](uploads/d9059866e9a137734ce3b27c15a628f7/image.png) | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154720046-39cb6310-d6e9-4b42-9a89-98da4b722861.png"  width="300px" height="400px"/></div> |
+| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702906-a9ba0d7b-b7b0-4947-97c7-1457e03f5d78.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154735803-eb7a1205-1677-4ca5-ab66-f3e15716d7c9.png"  width="300px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154720046-39cb6310-d6e9-4b42-9a89-98da4b722861.png"  width="300px" height="400px"/></div> |
 | user가 목표로 한 일일 커밋양에 비례하여 농장이 점차 채워집니다. (비율 하단 참고) | 월간 그래프 및 연간 그래프를 통해 나의 커밋 통계를 확인합니다. | 월별 캘린더를 통해 커밋 여부와 갯수를 한눈에 확인합니다. 
 <details><summary>농장 비율에 따른 이미지 보기</summary>
-- 오늘의 농장 완성 비율: 20%, 40%, 60%, 80%, 100%
-![image](uploads/df65ec0c2ba7ec2f633abb912ef81f08/image.png)
+- 오늘의 농장 완성 비율: 0%, 20%, 40%, 60%, 80%, 100%
+  <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154740168-05e06041-e549-48dc-aae5-9a9c439e8d6f.png"/></div>
 </details>
 
 ### 서브 기능
-| GitFarm 순위 확인 | 레벨 시스템 | 다양한 배지 획득 |
+| Github 로그인 | GitFarm 순위 확인 | 레벨 시스템 |
 | ------ | ------ | ------ |
-| ![image](uploads/03718fd355f1f5047f009b27ffb17f8a/image.png) |<div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702930-0652f5c6-d5ed-48ef-91cb-8764e38472f3.png"  width="200px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702961-cbdd0920-742d-4091-8791-3c0ae82aa75f.png"  width="300px" height="400px"/></div> |
-| Top10 유저 목록과 나의 순위를 확인할 수 있습니다. | 점수표에 따라 나의 레벨이 정해집니다. (점수 기준 하단 참고) | 특정 목표를 달성하면 Badge를 받을 수 있습니다. |
+| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154741222-399638d3-b7b8-4ca4-9855-23e9ee15c404.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154734818-5f3c9326-5bd8-485a-af6c-ccd99d55c156.png"  width="300px" height="400px"/></div> |<div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702930-0652f5c6-d5ed-48ef-91cb-8764e38472f3.png"  width="200px" height="400px"/></div>| 
+| Github OAuth로 로그인합니다. | Top10 유저 목록과 나의 순위를 확인할 수 있습니다. | 점수표에 따라 나의 레벨이 정해집니다. (점수 기준 하단 참고) | 
 <details><summary>점수표</summary>
 
 | 농장      | 총 커밋 수 |
@@ -58,17 +58,23 @@
 
 </details>
 
-| 유저 정보 확인 | 목표커밋, 다짐 설정 |
-| ------ | ------ |
-| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154706913-505cd486-a588-4413-88fc-7bce2cfd5349.png"  width="300px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154703009-86184005-0941-4936-aff2-599a2ca53645.png"  width="300px" height="400px"/></div>|
-| 유저가 자신의 레벨, 총 커밋수 등의 정보를 확인할 수 있습니다. | 유저가 목표커밋 및 다짐을 설정할 수 있습니다. |
+| 다양한 뱃지 획득 | 유저 정보 확인 | 목표커밋, 다짐 설정 |
+| ------ | ------ |------ |
+| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702961-cbdd0920-742d-4091-8791-3c0ae82aa75f.png"  width="300px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154706913-505cd486-a588-4413-88fc-7bce2cfd5349.png"  width="300px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154703009-86184005-0941-4936-aff2-599a2ca53645.png"  width="300px" height="400px"/></div>|
+| 특정 목표를 달성하면 뱃지를 받을 수 있습니다. | 유저가 자신의 레벨, 총 커밋수 등의 정보를 확인할 수 있습니다. | 유저가 목표커밋 및 다짐을 설정할 수 있습니다. |
 
+####  추가적으로 반응형 디자인으로 고려하여 PC버전의 화면을 구현했습니다.
+<details><summary>반응형 디자인</summary>
+  <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154742634-b863d29b-c70a-49f4-aa01-57239ef5426f.png"/></div>
+</details>
+
+<br/>
 
 ### 프로젝트만의 차별점, 기대 효과
 
 - 기존 Github 페이지에서 제공하는 잔디 그래프 형태로 데이터를 제공하는 대신, 캘린더와 라인 차트 형태로 데이터를 제공하기 때문에 유저가 좀 더 쉽게 데이터를 확인할 수 있습니다.
 
-- 서비스 자체의 캐릭터와 일일 커밋 수에 따라 채워지는 농장을 도입하여 유저에게 게임을 하는 듯한 느낌을 줄 수 있다. 이는 유저의 오락적 요소를 자극할 수 있습니다.
+- 서비스 자체의 캐릭터와 일일 커밋 수에 따라 채워지는 농장을 도입하여 유저에게 게임을 하는 듯한 느낌을 줄 수 있습니다. 이는 유저의 오락적 요소를 자극할 수 있습니다.
 
 - 랭킹 시스템을 도입하여 유저들간의 선의의 경쟁을 유도할 수 있습니다.
 
@@ -82,7 +88,7 @@
 
 ### 프로젝트 구조도
 
-![architecture](https://user-images.githubusercontent.com/76507701/154707587-7d4bf2d9-d414-4e00-b0ce-b4d8ebbe39b2.png)
+![architecture](https://user-images.githubusercontent.com/76507701/154734581-2d6e79d6-0b75-4435-b1b7-4da17a4a73f3.png)
 
 ### 와이어프레임
 
@@ -93,7 +99,7 @@
 - [GitFarm 아카이브](https://www.notion.so/elice/952c76c7fd544f09be980c7fe8b3ed87)
 <br />
 
-## 🧑‍ 프로젝트 팀원 역할 분담
+## 🧑‍🤝‍🧑 프로젝트 팀원 역할 분담
 | 이름   | 역할                   |
 | ------ | ---------------------- |
 | 안영우 | 팀장/백엔드 개발 |
@@ -107,8 +113,8 @@
 #### 프론트엔드
 
 - 기획 단계: 아이디어 회의 및 figma를 활용한 와이어프레임 작성
-- 개발 단계: 페이지별로 개발파트를 분담하여 각 페이지에 필요한 컴포넌트 제작 및 페이지 제작,
-- 수정 단계: 코치님의 피드백 반영해서 수정 및 백엔드의 API 관련 피드백을 반영해서 페이지 구조 및 일부 기능 수정
+- 개발 단계: 페이지별로 개발파트를 분담하여 각 페이지에 필요한 컴포넌트 제작 및 페이지 제작
+- 수정 단계: 코치님의 피드백 및 백엔드의 API 관련 피드백을 반영해서 페이지 구조 및 일부 기능 수정
 
 #### 백엔드
 
