@@ -2,28 +2,28 @@ export const calcRankWithConcurrentScore = (userData) => {
   const userRank = [...userData];
 
   userRank.sort((a, b) => {
-    if (a.score === b.score) {
+    if (a.totalScore === b.totalScore) {
       if (a.username < b.username) return -1;
       if (a.username > b.username) return 1;
     }
-    return b.score - a.score;
+    return b.totalScore - a.totalScore;
   });
 
   let rank = 1;
   let currentScore = 0;
   const result = userRank.map((user) => {
-    const { score } = user;
-    if (score >= currentScore) {
+    const { totalScore } = user;
+    if (totalScore >= currentScore) {
       const newUser = {
         ...user,
         rank,
       };
-      currentScore = score;
+      currentScore = totalScore;
       return newUser;
     }
 
     rank += 1;
-    currentScore = score;
+    currentScore = totalScore;
     return { ...user, rank };
   });
 

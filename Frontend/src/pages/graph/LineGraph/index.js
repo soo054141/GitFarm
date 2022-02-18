@@ -34,7 +34,7 @@ function LineGraph({ date }) {
         setCommitData([]);
       } else {
         const createData = commitEachMonth.slice(1).map((commitCnt, index) => ({
-          name: `${year.slice(2, 4)}.${index + 1}`,
+          name: `${index + 1}월`,
           commit: commitCnt,
         }));
         setCommitData(createData);

@@ -1,5 +1,7 @@
 import app from "../server.js";
 import http from "http";
+import dotenv from "dotenv";
+dotenv.config();
 
 //포트 노멀라이즈
 var port = normalizePort(process.env.PORT || "8888");

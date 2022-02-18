@@ -57,7 +57,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         MODE: JSON.stringify("production"),
-        SERVER_URL: JSON.stringify("http://localhost:8888"),
+        SERVER_URL: JSON.stringify("/api"),
       },
     }),
   ],
@@ -68,8 +68,8 @@ module.exports = {
       },
     },
     static: {
-      directory: path.resolve(__dirname, "dist"), // directory경로: dist 폴더
-      publicPath: "/assets", // localhost:port/publicPath안에 있는 파일에 접근 가능, 파일 업로드시 src경로 변경
+      directory: path.resolve(__dirname, "public"),
+      publicPath: "/assets", // localhost:port/assets/public
     },
     compress: true,
     port: 1111,

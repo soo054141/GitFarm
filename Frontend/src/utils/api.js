@@ -7,8 +7,7 @@ export const LOADING_TIME = MILLISECOND * SECOND;
 
 export const { MODE, SERVER_URL } = process.env;
 
-export const LOGIN_URL =
-  MODE === "production" ? "http://localhost:8888/api/auth/github" : "/main";
+export const LOGIN_URL = MODE === "production" ? "/api/auth/github" : "/main";
 
 export const AXIOS = axios.create({
   baseURL: SERVER_URL,

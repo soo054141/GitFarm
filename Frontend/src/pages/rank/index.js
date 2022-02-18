@@ -11,6 +11,7 @@ function RankPage() {
 
   const getRank = async () => {
     const rankData = await api.getRank();
+
     if (rankData.success) {
       setMyRank(rankData.data.myRank);
       setUserRank(rankData.data.userRank);
@@ -29,16 +30,16 @@ function RankPage() {
           myRanking
           imgURL={myRank.avatarUrl}
           id={myRank.username}
-          point={myRank.score}
+          point={myRank.totalScore}
         />
         <Ranks.ResponsivUserRankWrapper>
           {userRank.map((it) => (
             <Rank
-              key={`${it.username}-${it.rank}-${it.score}`}
+              key={`${it.username}-${it.rank}-${it.totalScore}`}
               ranking={it.rank}
               imgURL={it.avatarUrl}
               id={it.username}
-              point={it.score}
+              point={it.totalScore}
               rank={it.rank}
             />
           ))}
