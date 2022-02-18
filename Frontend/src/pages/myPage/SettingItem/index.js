@@ -15,7 +15,7 @@ SettingItem.defaultProps = {
   subTitle: "로그인 계정22",
   textColor: "#595959",
   content: "testId",
-  setCursor: true,
+  setCursor: false,
   onClick: () => {},
 };
 
