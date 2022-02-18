@@ -64,7 +64,7 @@ function Nav() {
               </Navs.Item>
               <Navs.Item>
                 <Link to="/rank">
-                  <Navs.String>랭링</Navs.String>
+                  <Navs.String>랭킹</Navs.String>
                 </Link>
               </Navs.Item>
               <Navs.Item>

@@ -19,12 +19,10 @@ function CommitDetails({ todayScore, todayCommit, detail }) {
         <>
           <CommitDetail.ScoreContainer>
             <CommitDetail.ScoreCell>
-              <CommitDetail.SubTitle>
-                얻은 점수
-                <CommitDetail.IconWrapper>
-                  <InfoIcon onClick={modalOpenHandler} />
-                </CommitDetail.IconWrapper>
-              </CommitDetail.SubTitle>
+              <CommitDetail.SubTitle>얻은 점수</CommitDetail.SubTitle>
+              <CommitDetail.IconWrapper>
+                <InfoIcon onClick={modalOpenHandler} />
+              </CommitDetail.IconWrapper>
               <CommitDetail.Score>{todayScore}</CommitDetail.Score>
             </CommitDetail.ScoreCell>
             <CommitDetail.ScoreCell>
