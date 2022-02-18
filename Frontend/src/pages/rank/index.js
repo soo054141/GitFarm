@@ -3,6 +3,7 @@ import { Container } from "@/components/Container/style";
 import * as api from "@/api";
 import RankTitle from "./RankTitle";
 import Rank from "./Rank";
+import * as Ranks from "./style";
 
 function RankPage() {
   const [myRank, setMyRank] = useState({});
@@ -23,22 +24,26 @@ function RankPage() {
   return (
     <Container>
       <RankTitle />
-      <Rank
-        myRanking
-        imgURL={myRank.avatarUrl}
-        id={myRank.username}
-        point={myRank.score}
-      />
-      {userRank.map((it) => (
+      <Ranks.ResponsiveDiv>
         <Rank
-          key={`${it.username}-${it.rank}-${it.score}`}
-          ranking={it.rank}
-          imgURL={it.avatarUrl}
-          id={it.username}
-          point={it.score}
-          rank={it.rank}
+          myRanking
+          imgURL={myRank.avatarUrl}
+          id={myRank.username}
+          point={myRank.score}
         />
-      ))}
+        <Ranks.ResponsivUserRankWrapper>
+          {userRank.map((it) => (
+            <Rank
+              key={`${it.username}-${it.rank}-${it.score}`}
+              ranking={it.rank}
+              imgURL={it.avatarUrl}
+              id={it.username}
+              point={it.score}
+              rank={it.rank}
+            />
+          ))}
+        </Ranks.ResponsivUserRankWrapper>
+      </Ranks.ResponsiveDiv>
     </Container>
   );
 }
