@@ -32,6 +32,9 @@ function Loading() {
       <Load.Logo>
         <GitFarmLogoImg />
       </Load.Logo>
+      <Load.ProgressBar>
+        <Load.Progress />
+      </Load.ProgressBar>
       <Load.Message>Repository 정보를 불러오고 있습니다.</Load.Message>
       <Load.Message>잠시만 기다려주세요.</Load.Message>
     </Load.Wrapper>
