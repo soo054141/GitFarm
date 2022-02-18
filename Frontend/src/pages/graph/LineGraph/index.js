@@ -23,17 +23,17 @@ function LineGraph({ date }) {
 
     const data = await api.getCommitsTotalPerMonth(year);
     if (data.success) {
-      let { commitPerYear } = data;
+      let { commitEachMonth } = data;
 
       if (month === thisMonth) {
-        commitPerYear = commitPerYear.slice(0, thisMonth + 1);
+        commitEachMonth = commitEachMonth.slice(0, thisMonth + 1);
       }
 
-      const checkEmptyArray = commitPerYear.every((it) => it === 0);
+      const checkEmptyArray = commitEachMonth.every((it) => it === 0);
       if (checkEmptyArray) {
         setCommitData([]);
       } else {
-        const createData = commitPerYear.slice(1).map((commitCnt, index) => ({
+        const createData = commitEachMonth.slice(1).map((commitCnt, index) => ({
           name: `${year.slice(2, 4)}.${index + 1}`,
           commit: commitCnt,
         }));
