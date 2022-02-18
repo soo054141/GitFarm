@@ -52,11 +52,10 @@ function RankPage() {
             {userRank.map((it) => (
               <Rank
                 key={`${it.username}-${it.rank}-${it.totalScore}`}
-                ranking={it.rank}
                 imgURL={it.avatarUrl}
                 id={it.username}
                 point={it.totalScore}
-                rank={it.rank}
+                rank={String(it.rank)}
               />
             ))}
           </Ranks.ResponsivUserRankWrapper>
