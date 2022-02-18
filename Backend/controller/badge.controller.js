@@ -16,12 +16,15 @@ export const getBadgeController = async (req, res) => {
 
 export const postBadgeController = async (req, res) => {
   try {
+    const { badge } = req.body;
+    const newBadge = JSON.parse(badge);
     await setBadge(req);
     res.status(201).json({
       success: true,
-      badge: req.body.badge,
+      badge: newBadge,
     });
   } catch (err) {
+    console.log(err.message);
     res.status(400).json({
       success: false,
       message: "Bad Request",
