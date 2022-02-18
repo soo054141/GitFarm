@@ -43,14 +43,16 @@ function Main() {
               농장 완성까지 {user.goal - user.todayCommit}커밋 남았습니다!
             </Mains.TodaysCommitCount>
           )}
-          <FarmPicture
-            ratio={Math.floor((user.todayCommit / user.goal) * 100)}
-          />
-          <CommitDetails
-            todayScore={user.todayScore}
-            todayCommit={user.todayCommit}
-            detail={user.detail}
-          />
+          <Mains.Wrapper>
+            <FarmPicture
+              ratio={Math.floor((user.todayCommit / user.goal) * 100)}
+            />
+            <CommitDetails
+              todayScore={user.todayScore}
+              todayCommit={user.todayCommit}
+              detail={user.detail}
+            />
+          </Mains.Wrapper>
         </>
       ) : (
         <LoadingModal />
