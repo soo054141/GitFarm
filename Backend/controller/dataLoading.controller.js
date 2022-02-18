@@ -31,68 +31,66 @@ export const getLoadingData = async (req, res) => {
 
   try {
     // today
-    // const todayCommit = await getTodayTotalCommitAllRepo(user);
-    // const todayIssues = await getTodayTotalIssueAllRepo(user);
-    // const todayPulls = await getTodayTotalPullAllRepo(user);
-    // const todayScore = getScore(todayCommit, todayIssues, todayPulls);
-    // const todayDetail = await getDetailTotalCommitAllRepo(user);
+    const todayCommit = await getTodayTotalCommitAllRepo(user);
+    const todayIssues = await getTodayTotalIssueAllRepo(user);
+    const todayPulls = await getTodayTotalPullAllRepo(user);
+    const todayScore = getScore(todayCommit, todayIssues, todayPulls);
+    const todayDetail = await getDetailTotalCommitAllRepo(user);
 
-    // await FindByIdAndUpdate(Commit, _id, "todayCommit", todayCommit);
-    // await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
-    // await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
+    await FindByIdAndUpdate(Commit, _id, "todayCommit", todayCommit);
+    await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
+    await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
 
     // getEachDayCommit(calendar)
-    console.log(YYYYMM);
     const commitEachDay = await getPerDayCommitAllRepo(user, YYYYMM);
-    console.log(commitEachDay);
     await FindByIdAndUpdate(Commit, _id, "commitEachDay", commitEachDay);
 
-    // // getEachMonthCommit(graph)
-    // const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
-    // await FindByIdAndUpdate(Commit, _id, "commitEachMonth", commitEachMonth);
+    // getEachMonthCommit(graph)
+    const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
+    await FindByIdAndUpdate(Commit, _id, "commitEachMonth", commitEachMonth);
 
-    // // getMyPage data
-    // const total = await getTotalCommitAllRepo(user);
-    // const commits = await getCommitsAllRepo(user);
-    // const issues = await getIssuesAllRepo(user);
-    // const pulls = await getPullsAllRepo(user);
+    // getMyPage data
+    const total = await getTotalCommitAllRepo(user);
+    const commits = await getCommitsAllRepo(user);
+    const issues = await getIssuesAllRepo(user);
+    const pulls = await getPullsAllRepo(user);
 
-    // await FindByIdAndUpdate(Commit, _id, "total", total);
-    // await FindByIdAndUpdate(Level, _id, "commits", commits);
-    // await FindByIdAndUpdate(Level, _id, "issues", issues);
-    // await FindByIdAndUpdate(Level, _id, "pulls", pulls);
+    await FindByIdAndUpdate(Commit, _id, "total", total);
+    await FindByIdAndUpdate(Level, _id, "commits", commits);
+    await FindByIdAndUpdate(Level, _id, "issues", issues);
+    await FindByIdAndUpdate(Level, _id, "pulls", pulls);
 
-    // const totalScore = getScore(commits, issues, pulls);
-    // const continuous = await getContinuousCommitAllRepo(user);
+    const totalScore = getScore(commits, issues, pulls);
+    const continuous = await getContinuousCommitAllRepo(user);
 
-    // await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
-    // await FindByIdAndUpdate(Commit, _id, "continuous", continuous);
+    await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
+    await FindByIdAndUpdate(Commit, _id, "continuous", continuous);
 
-    // const memberDate = getMemberDate(user);
-    // await setMemberDate(req, memberDate);
+    const memberDate = getMemberDate(user);
+    await setMemberDate(req, memberDate);
 
-    // // languages
-    // const languages = await getLanguagesData(user);
-    // await FindByIdAndUpdate(Commit, _id, "languages", languages);
+    // languages
+    const languages = await getLanguagesData(user);
+    await FindByIdAndUpdate(Commit, _id, "languages", languages);
 
-    // // badges
-    // try {
-    //   await getBadge(req);
-    // } catch (err) {
-    //   await setDefaultBadge(req);
-    // }
+    // badges
+    try {
+      await getBadge(req);
+    } catch (err) {
+      await setDefaultBadge(req);
+    }
 
-    // // resolution
-    // try {
-    //   await getResolution(req);
-    // } catch (err) {
-    //   await FindByIdAndUpdate(
-    //     User,
-    //     _id,
-    //     "resolution",
-    //     "나는 최강의 개발자가 될거야!",
-    //   );
-    // }
+    // resolution
+    try {
+      await getResolution(req);
+    } catch (err) {
+      await FindByIdAndUpdate(
+        User,
+        _id,
+        "resolution",
+        "나는 최강의 개발자가 될거야!",
+      );
+    }
 
     res.json({
       message: "calendar와 myPage data를 성공적으로 가져왔습니다.",
