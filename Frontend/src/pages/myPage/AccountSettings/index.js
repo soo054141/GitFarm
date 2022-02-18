@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import RightArrow from "@/assets/icon/right-arrow.svg";
+import NextArrow from "@/assets/icon/next-arrow.svg";
+import SettingItem from "../SettingItem";
 import * as Account from "./style";
 
 function AccountSettings() {
@@ -9,19 +11,13 @@ function AccountSettings() {
       <h1>Account Settings</h1>
       <Link to="/setting">
         <Account.Content>
-          <h2>GitHub 계정 관리</h2>
-          <Account.ArrowWrapper>
-            <RightArrow />
-          </Account.ArrowWrapper>
+          <SettingItem subTitle="GitHub 계정 관리" content={<NextArrow />} />
         </Account.Content>
       </Link>
 
       <Link to="/goal">
         <Account.Content>
-          <h2>목표 설정</h2>
-          <Account.ArrowWrapper>
-            <RightArrow />
-          </Account.ArrowWrapper>
+          <SettingItem subTitle="목표 설정" content={<NextArrow />} />
         </Account.Content>
       </Link>
     </Account.Wrapper>
