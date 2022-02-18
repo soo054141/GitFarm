@@ -75,19 +75,19 @@ export const LoadingDots = styled.div`
 
   @-webkit-keyframes loader10g {
     0% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     25% {
-      background-color: rgba(255, 255, 255, 1);
+      background-color: rgba(106, 189, 140, 1);
     }
     50% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     75% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     100% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
   }
   @keyframes loader10g {
@@ -110,19 +110,19 @@ export const LoadingDots = styled.div`
 
   @-webkit-keyframes loader10m {
     0% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     25% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     50% {
-      background-color: rgba(255, 255, 255, 1);
+      background-color: rgba(106, 189, 140, 1);
     }
     75% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     100% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
   }
   @keyframes loader10m {
@@ -145,19 +145,19 @@ export const LoadingDots = styled.div`
 
   @-webkit-keyframes loader10d {
     0% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     25% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     50% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
     75% {
-      background-color: rgba(255, 255, 255, 1);
+      background-color: rgba(106, 189, 140, 1);
     }
     100% {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(106, 189, 140, 0.2);
     }
   }
   @keyframes loader10d {
@@ -175,6 +175,40 @@ export const LoadingDots = styled.div`
     }
     100% {
       background-color: rgba(106, 189, 140, 0.2);
+    }
+  }
+`;
+
+export const ProgressBar = styled.div`
+  margin-bottom: 20px;
+  width: 250px;
+  height: 25px;
+  border-radius: 6px;
+  background-color: rgba(106, 189, 140, 0.2);
+`;
+
+export const Progress = styled.div`
+  width: 250px;
+  height: 100%;
+  background: ${(props) => props.theme.mainColor};
+  border-radius: 6px;
+  animation: loader 15s ease-in-out infinite;
+
+  @keyframes loader {
+    0% {
+      width: 1%;
+    }
+    25% {
+      width: 25%;
+    }
+    50% {
+      width: 50%;
+    }
+    75% {
+      width: 75%;
+    }
+    100% {
+      width: 100%;
     }
   }
 `;
