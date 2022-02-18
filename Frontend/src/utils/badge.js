@@ -1,20 +1,20 @@
-const ACHIEVEMENT500 = 0;
-const ACHIEVEMENT1000 = 1;
-const ACHIEVEMENT5000 = 2;
-const RANKING1 = 3;
-const RANKING2 = 4;
-const RANKING3 = 5;
-const DAYS7 = 6;
-const DAYS14 = 7;
-const DAYS21 = 8;
-const DAYS28 = 9;
-const LEVEL1 = 10;
-const LEVEL2 = 11;
-const LEVEL3 = 12;
-const LEVEL4 = 13;
-const LEVEL5 = 14;
+export const ACHIEVEMENT500 = 0;
+export const ACHIEVEMENT1000 = 1;
+export const ACHIEVEMENT5000 = 2;
+export const RANKING1 = 3;
+export const RANKING2 = 4;
+export const RANKING3 = 5;
+export const DAYS7 = 6;
+export const DAYS14 = 7;
+export const DAYS21 = 8;
+export const DAYS28 = 9;
+export const LEVEL1 = 10;
+export const LEVEL2 = 11;
+export const LEVEL3 = 12;
+export const LEVEL4 = 13;
+export const LEVEL5 = 14;
 
-// 첫커밋, 50커밋, 100커밋 달성
+// 500커밋, 1000커밋, 5000커밋 달성
 export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
   if (!userBadges[ACHIEVEMENT500] && commitTotal >= 500) {
     arrayOfBadgesId.push(ACHIEVEMENT500);
@@ -25,6 +25,7 @@ export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
   if (!userBadges[ACHIEVEMENT5000] && commitTotal >= 5000) {
     arrayOfBadgesId.push(ACHIEVEMENT5000);
   }
+  return arrayOfBadgesId;
 };
 
 // 랭킹
@@ -77,7 +78,7 @@ export const level = (score, userBadges, arrayOfBadgesId) => {
   }
 };
 
-const myRankCalc = (myName, usersRank) => {
+export const myRankCalc = (myName, usersRank) => {
   let Rank = null;
   usersRank.forEach((userRank) => {
     if (userRank.username === myName && userRank.rank <= 3) {
@@ -88,24 +89,21 @@ const myRankCalc = (myName, usersRank) => {
 };
 
 export const AllBadgesFuncion = async (userBadges, mypageData, rankData) => {
-  const arrayOfBadgesId = [];
+  const newBadges = [];
   const { myRank, userRank } = rankData;
   const myMedalRank = myRankCalc(myRank.username, userRank);
 
-  commitAchievement(1000, userBadges, arrayOfBadgesId);
+  commitAchievement(mypageData.total, userBadges, newBadges);
 
   if (myMedalRank !== null) {
-    ranking(3, userBadges, arrayOfBadgesId);
+    ranking(myMedalRank, userBadges, newBadges);
   }
-  continuousDay(mypageData.continuous, userBadges, arrayOfBadgesId);
-  level(790, userBadges, arrayOfBadgesId, arrayOfBadgesId);
-  const newUserBadges = userBadges;
-  console.log("원래 가지고", userBadges);
-  console.log("이번에 얻게된", arrayOfBadgesId);
 
-  arrayOfBadgesId.forEach((badgeId) => {
+  continuousDay(mypageData.continuous, userBadges, newBadges);
+  level(mypageData.totalScore, userBadges, newBadges);
+  const newUserBadges = userBadges;
+  newBadges.forEach((badgeId) => {
     newUserBadges[badgeId] = true;
   });
-  console.log("newUserBadges", newUserBadges);
-  return newUserBadges;
+  return { newUserBadges, newBadges };
 };
