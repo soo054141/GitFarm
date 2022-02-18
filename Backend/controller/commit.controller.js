@@ -7,21 +7,21 @@ export const getReposTotalCommitsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Commit, _id, "total");
-  ViewResponseJSON(res, false, "total", result);
+  ViewResponseJSON(res, true, "total", result);
 };
 
 export const getCommitsTodayController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-  const result = await FindValueByKey(Commit, _id, "today");
-  ViewResponseJSON(res, false, "today", result);
+  const result = await FindValueByKey(Commit, _id, "todayScore");
+  ViewResponseJSON(res, true, "todayScore", result);
 };
 
 export const getCommitsTodayDetailController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Commit, _id, "todayDetail");
-  ViewResponseJSON(res, false, "todayDetail", result);
+  ViewResponseJSON(res, true, "todayDetail", result);
 };
 
 export const getCommitsTotalPerYearController = async (req, res) => {
@@ -29,7 +29,7 @@ export const getCommitsTotalPerYearController = async (req, res) => {
   const { id } = user;
   const [{ _id }] = await User.find({ id });
   const result = await FindValueByKey(Commit, _id, "commitPerYear");
-  ViewResponseJSON(res, false, "commitPerYear", result);
+  ViewResponseJSON(res, true, "commitPerYear", result);
 };
 
 export const getCommitsTotalPerDayController = async (req, res) => {
@@ -37,12 +37,12 @@ export const getCommitsTotalPerDayController = async (req, res) => {
   const { id } = user;
   const [{ _id }] = await User.find({ id });
   const result = await FindValueByKey(Commit, _id, "commitPerDay");
-  ViewResponseJSON(res, false, "commitPerDay", result);
+  ViewResponseJSON(res, true, "commitPerDay", result);
 };
 
 export const getCommitsContinuousController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Commit, _id, "continuous");
-  ViewResponseJSON(res, false, "continuous", result);
+  ViewResponseJSON(res, true, "continuous", result);
 };

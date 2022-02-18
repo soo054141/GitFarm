@@ -10,7 +10,7 @@ export const getReposLanguage = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Commit, _id, "languages");
-  ViewResponseJSON(res, false, "languages", result);
+  ViewResponseJSON(res, true, "languages", result);
 };
 
 export const getMyPageController = async (req, res) => {

@@ -11,5 +11,5 @@ export const getTodayController = async (req, res) => {
   const goal = await FindValueByKey(User, _id, "goal");
   const detail = await FindValueByKey(Commit, _id, "todayDetail");
   const result = { todayScore, todayCommit, goal, detail };
-  ViewResponseJSON(res, false, "today", result);
+  ViewResponseJSON(res, true, "today", result);
 };

@@ -14,26 +14,26 @@ export const getLevelsController = async (req, res) => {
   const issues = await FindValueByKey(Level, _id, "issues");
   const pulls = await FindValueByKey(Level, _id, "pulls");
   const result = { totalScore, commits, issues, pulls };
-  ViewResponseJSON(res, false, "data", result);
+  ViewResponseJSON(res, true, "data", result);
 };
 
 export const getLevelsCommitsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Level, _id, "commits");
-  ViewResponseJSON(res, false, "commits", result);
+  ViewResponseJSON(res, true, "commits", result);
 };
 
 export const getLevelsIssuesController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Level, _id, "issues");
-  ViewResponseJSON(res, false, "issues", result);
+  ViewResponseJSON(res, true, "issues", result);
 };
 
 export const getLevelsPullsController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const result = await FindValueByKey(Level, _id, "pulls");
-  ViewResponseJSON(res, false, "pulls", result);
+  ViewResponseJSON(res, true, "pulls", result);
 };
