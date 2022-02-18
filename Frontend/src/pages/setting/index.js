@@ -35,7 +35,7 @@ function Setting() {
       <Settings.Wrapper>
         <Settings.Title>GitHub 계정관리</Settings.Title>
         <Settings.ItemWrapper>
-          <SettingItem subTitle="로그인 계정" cursor content={myId} />
+          <SettingItem subTitle="로그인 계정" setCursor content={myId} />
           <SettingItem
             subTitle="계정 로그아웃"
             content={<NextArrow />}
