@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RightArrow from "@/assets/icon/right-arrow.svg";
 import NextArrow from "@/assets/icon/next-arrow.svg";
 import SettingItem from "../SettingItem";
 import * as Account from "./style";
