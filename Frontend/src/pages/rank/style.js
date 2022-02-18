@@ -11,3 +11,17 @@ export const Container = styled.div`
     margin-top: 32px;
   }
 `;
+
+export const ResponsiveDiv = styled.div`
+  @media ${({ theme }) => theme.device.laptop} {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 30px;
+  }
+`;
+
+export const ResponsivUserRankWrapper = styled.div`
+  @media ${({ theme }) => theme.device.laptop} {
+    margin-left: 150px;
+  }
+`;
