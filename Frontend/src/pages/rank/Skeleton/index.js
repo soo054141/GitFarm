@@ -12,9 +12,9 @@ function Skeleton() {
         backgroundColor="#e3e3e3"
         foregroundColor="#d6d6d6"
       >
-        <rect x="79" y="20" rx="3" ry="3" width="88" height="8" />
-        <rect x="79" y="36" rx="3" ry="3" width="52" height="6" />
-        <circle cx="42" cy="30" r="20" />
+        <rect x="95" y="20" rx="3" ry="3" width="88" height="8" />
+        <rect x="95" y="36" rx="3" ry="3" width="52" height="6" />
+        <circle cx="54" cy="30" r="20" />
       </ContentLoader>
     </Skeletons.Container>
   );
