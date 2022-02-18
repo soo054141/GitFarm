@@ -70,8 +70,9 @@ export const Id = styled.div`
 `;
 
 export const Point = styled.div`
-  font-size: 8px;
+  font-size: 12px;
   margin-top: 5px;
+  font-weight: bold;
   color: ${(props) => props.theme.lightGray};
 `;
 
