@@ -10,22 +10,22 @@ function MonthlyCalender() {
   const toDay = new Date();
   const [date, setDate] = useState(toDay);
 
-  const changeDate = (value) => {
-    const newDate = new Date(date.getFullYear(), date.getMonth() + value);
-    setDate(newDate);
-  };
-  const clickLeft = () => {
-    if (date.getFullYear() - 2000 <= 0) return;
-    changeDate(-1);
-  };
-  const clickRight = () => {
-    if (
-      String(toDay.getFullYear()) + String(toDay.getMonth()) ===
-      String(date.getFullYear()) + String(date.getMonth())
-    )
-      return;
-    changeDate(1);
-  };
+  // const changeDate = (value) => {
+  //   const newDate = new Date(date.getFullYear(), date.getMonth() + value);
+  //   setDate(newDate);
+  // };
+  // const clickLeft = () => {
+  //   if (date.getFullYear() - 2000 <= 0) return;
+  //   changeDate(-1);
+  // };
+  // const clickRight = () => {
+  //   if (
+  //     String(toDay.getFullYear()) + String(toDay.getMonth()) ===
+  //     String(date.getFullYear()) + String(date.getMonth())
+  //   )
+  //     return;
+  //   changeDate(1);
+  // };
 
   const goToday = () => {
     setDate(toDay);
@@ -34,8 +34,8 @@ function MonthlyCalender() {
     <Container>
       <DateController
         date={date}
-        clickLeft={clickLeft}
-        clickRight={clickRight}
+        // clickLeft={clickLeft}
+        // clickRight={clickRight}
         goToday={goToday}
         month
       />

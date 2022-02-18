@@ -29,7 +29,7 @@ export const MonthlyRow = styled.div`
 export const stageFunc = (stageNum) => {
   const colors = [
     "white",
-    "#e7f4eb",
+    "#D9F5E2",
     "#E5F1D4",
     "#B9E8C9",
     "#8ECFA5",
@@ -41,8 +41,8 @@ export const stageFunc = (stageNum) => {
 
 export const MonthlyCell = styled.div`
   margin: 2px;
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   margin: 0 auto;
   text-align: center;
   margin-top: 20px;
@@ -57,5 +57,6 @@ export const DateCell = styled.p`
   transform: translateY(-50%);
   font-size: 17px;
   ${(props) => !props.view && "display:none"};
-  color: ${(props) => (!props.stage ? "#C2C2C2" : "#F6F9F0")};
+  color: ${(props) =>
+    props.stage === 4 || props.stage === 5 ? "#F6F9F0" : "#C2C2C2"};
 `;

@@ -4,7 +4,7 @@ import * as Controller from "./style";
 import LeftArrow from "../../assets/icon/left-arrow.svg";
 import RightArrow from "../../assets/icon/right-arrow.svg";
 
-function DateController({ date, clickLeft, clickRight, goToday, month }) {
+function DateController({ date, goToday, month }) {
   return (
     <Controller.Container>
       {/* <Controller.ArrowWrapper>
@@ -24,8 +24,8 @@ function DateController({ date, clickLeft, clickRight, goToday, month }) {
 }
 DateController.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  clickLeft: PropTypes.func.isRequired,
-  clickRight: PropTypes.func.isRequired,
+  // clickLeft: PropTypes.func.isRequired,
+  // clickRight: PropTypes.func.isRequired,
   goToday: PropTypes.func.isRequired,
   month: PropTypes.bool.isRequired,
 };
