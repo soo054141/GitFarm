@@ -8,7 +8,6 @@ import {
   getFirstAndLastDate,
   matchDateCommit,
   stageCalc,
-  fillZeroMonth,
 } from "@/utils/calendar";
 import {
   CalenderContainer,
@@ -33,8 +32,8 @@ function Calender({ date }) {
     // const year = String(date.getFullYear());
     // const month = fillZeroMonth(date.getMonth() + 1);
     const commitMonthData = await api.getCommitMonthly();
-    const { commitPerDay } = commitMonthData;
-    setCommitCountsPerDate(matchDateCommit(firstDate, commitPerDay));
+    const { commitEachDay } = commitMonthData;
+    setCommitCountsPerDate(matchDateCommit(firstDate, commitEachDay));
     setLoading(false);
   };
 
