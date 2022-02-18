@@ -37,6 +37,7 @@ export const getLoadingData = async (req, res) => {
     const todayScore = getScore(todayCommit, todayIssues, todayPulls);
     const todayDetail = await getDetailTotalCommitAllRepo(user);
 
+    await FindByIdAndUpdate(Commit, _id, "todayCommit", todayCommit);
     await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
     await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
 
