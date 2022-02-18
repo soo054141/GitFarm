@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 350px;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 850px;
+  }
 `;
 
 export const Title = styled.h1`

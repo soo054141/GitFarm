@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import LevelImg1 from "@/assets/icon/level/level1.svg";
 import LevelImg2 from "@/assets/icon/level/level2.svg";
@@ -11,39 +11,44 @@ import LevelInformationModal from "../LevelInformationModal";
 
 function LevelInfo({ totalScore }) {
   const [openModal, setOpenModal] = useState(false);
+  const [level, setLevel] = useState("씨앗");
 
   const modalOpenHandler = () => {
     setOpenModal(!openModal);
   };
 
-  const levelCalculator = () => {
+  const levelCalculator = useMemo(() => {
     if (totalScore >= 1651) {
+      setLevel("팜 마스터");
       return <LevelImg5 />;
     }
     if (totalScore >= 851 && totalScore <= 1650) {
+      setLevel("고수 농부");
       return <LevelImg4 />;
     }
     if (totalScore >= 351 && totalScore <= 850) {
+      setLevel("중수 농부");
       return <LevelImg3 />;
     }
     if (totalScore >= 101 && totalScore <= 350) {
+      setLevel("초보 농부");
       return <LevelImg2 />;
     }
     return <LevelImg1 />;
-  };
+  }, [totalScore]);
 
   return (
     <Level.Wrapper>
       {openModal && <LevelInformationModal setOpenModal={setOpenModal} />}
-      <Level.MyLevelIcon>{levelCalculator()}</Level.MyLevelIcon>
+      <Level.MyLevelIcon>{levelCalculator}</Level.MyLevelIcon>
       <Level.MyLevelInfo>
         <Level.Content>
           <Level.Title>나의 레벨</Level.Title>
           <InfoIcon onClick={modalOpenHandler} />
         </Level.Content>
         <Level.Content>
-          <Level.MyLevel>씨앗</Level.MyLevel>
-          <Level.MyScore>({totalScore}점)</Level.MyScore>
+          <Level.MyLevel>{level}</Level.MyLevel>
+          <Level.MyScore>({totalScore.toLocaleString()}점)</Level.MyScore>
         </Level.Content>
       </Level.MyLevelInfo>
     </Level.Wrapper>
@@ -51,12 +56,10 @@ function LevelInfo({ totalScore }) {
 }
 
 LevelInfo.defaultProps = {
-  // level: "씨앗",
   totalScore: 30,
 };
 
 LevelInfo.propTypes = {
-  // level: PropTypes.string,
   totalScore: PropTypes.number,
 };
 
