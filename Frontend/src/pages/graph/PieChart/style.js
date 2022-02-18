@@ -76,3 +76,13 @@ export const LangText = styled.span`
     font-size: 14px;
   }
 `;
+
+export const NoData = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  color: ${(props) => props.theme.darkGray};
+`;
