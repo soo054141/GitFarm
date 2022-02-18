@@ -70,20 +70,20 @@ Badge.defaultProps = {
   badgesType: [
     {
       id: 0,
-      title: "가입 후 첫 커밋 축하",
-      icon: Icon.firstCommit,
+      title: "커밋 500개 달성",
+      icon: Icon.achievement500,
       userHaveBadge: false,
     },
     {
       id: 1,
-      title: "50 커밋 달성",
-      icon: Icon.achievement50,
+      title: "커밋 1000개 달성",
+      icon: Icon.achievement1000,
       userHaveBadge: false,
     },
     {
       id: 2,
-      title: "100 커밋 달성",
-      icon: Icon.achievement100,
+      title: "커밋 5000개 달성",
+      icon: Icon.achievement5000,
       userHaveBadge: false,
     },
 
