@@ -28,16 +28,16 @@ export const getCommitsTotalPerYearController = async (req, res) => {
   const { user } = req;
   const { id } = user;
   const [{ _id }] = await User.find({ id });
-  const result = await FindValueByKey(Commit, _id, "commitPerYear");
-  ViewResponseJSON(res, true, "commitPerYear", result);
+  const result = await FindValueByKey(Commit, _id, "commitEachMonth");
+  ViewResponseJSON(res, true, "commitEachMonth", result);
 };
 
 export const getCommitsTotalPerDayController = async (req, res) => {
   const { user } = req;
   const { id } = user;
   const [{ _id }] = await User.find({ id });
-  const result = await FindValueByKey(Commit, _id, "commitPerDay");
-  ViewResponseJSON(res, true, "commitPerDay", result);
+  const result = await FindValueByKey(Commit, _id, "commitEachDay");
+  ViewResponseJSON(res, true, "commitEachDay", result);
 };
 
 export const getCommitsContinuousController = async (req, res) => {
