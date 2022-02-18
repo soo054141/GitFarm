@@ -46,8 +46,8 @@ export const ScoreCell = styled.div`
 
 export const IconWrapper = styled.div`
   position: absolute;
-  top: 10px;
-  left: 66px;
+  top: 8.5px;
+  left: 58px;
 
   svg {
     width: 22px;

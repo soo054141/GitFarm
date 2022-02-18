@@ -19,6 +19,8 @@ import Rabbit2Icon from "@/assets/icon/farmPicture/five_5_2.svg";
 
 export const Container = styled.div`
   position: relative;
+  border-radius: 20px;
+  overflow: hidden;
 `;
 
 export const Default = styled(DefaultFarmIcon)``;

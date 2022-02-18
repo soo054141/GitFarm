@@ -5,11 +5,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 130px;
+  margin-top: 74px;
   color: ${(props) => props.theme.darkGray};
 
   @media ${({ theme }) => theme.device.laptop} {
-    margin-top: 170px;
+    margin-top: 117px;
   }
 `;
 
