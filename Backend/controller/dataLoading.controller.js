@@ -34,7 +34,7 @@ export const getLoadingData = async (req, res) => {
     const todayCommit = await getTodayTotalCommitAllRepo(user);
     const todayIssues = await getTodayTotalIssueAllRepo(user);
     const todayPulls = await getTodayTotalPullAllRepo(user);
-    const todayScore = getScore(todayCommit, todayIssues, todayPulls);
+    const todayScore = await getScore(todayCommit, todayIssues, todayPulls);
     const todayDetail = await getDetailTotalCommitAllRepo(user);
 
     await FindByIdAndUpdate(Commit, _id, "todayCommit", todayCommit);
@@ -60,7 +60,7 @@ export const getLoadingData = async (req, res) => {
     await FindByIdAndUpdate(Level, _id, "issues", issues);
     await FindByIdAndUpdate(Level, _id, "pulls", pulls);
 
-    const totalScore = getScore(commits, issues, pulls);
+    const totalScore = await getScore(commits, issues, pulls);
     const continuous = await getContinuousCommitAllRepo(user);
 
     await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
