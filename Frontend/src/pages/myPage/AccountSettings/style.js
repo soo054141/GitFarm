@@ -23,3 +23,10 @@ export const Content = styled.div`
     color: ${(props) => props.theme.darkGray};
   }
 `;
+
+export const ArrowWrapper = styled.div`
+  svg {
+    width: 7px;
+    height: 100%;
+  }
+`;
