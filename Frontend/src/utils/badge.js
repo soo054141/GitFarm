@@ -1,6 +1,6 @@
-const FIRSTCOMMIT = 0;
-const ACHIEVEMENT50 = 1;
-const ACHIEVEMENT100 = 2;
+const ACHIEVEMENT500 = 0;
+const ACHIEVEMENT1000 = 1;
+const ACHIEVEMENT5000 = 2;
 const RANKING1 = 3;
 const RANKING2 = 4;
 const RANKING3 = 5;
@@ -16,14 +16,14 @@ const LEVEL5 = 14;
 
 // 첫커밋, 50커밋, 100커밋 달성
 export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
-  if (!userBadges[FIRSTCOMMIT] && commitTotal >= 1) {
-    arrayOfBadgesId.push(FIRSTCOMMIT);
+  if (!userBadges[ACHIEVEMENT500] && commitTotal >= 500) {
+    arrayOfBadgesId.push(ACHIEVEMENT500);
   }
-  if (!userBadges[ACHIEVEMENT50] && commitTotal >= 50) {
-    arrayOfBadgesId.push(ACHIEVEMENT50);
+  if (!userBadges[ACHIEVEMENT1000] && commitTotal >= 1000) {
+    arrayOfBadgesId.push(ACHIEVEMENT1000);
   }
-  if (!userBadges[ACHIEVEMENT100] && commitTotal >= 100) {
-    arrayOfBadgesId.push(ACHIEVEMENT100);
+  if (!userBadges[ACHIEVEMENT5000] && commitTotal >= 5000) {
+    arrayOfBadgesId.push(ACHIEVEMENT5000);
   }
 };
 
@@ -92,16 +92,20 @@ export const AllBadgesFuncion = async (userBadges, mypageData, rankData) => {
   const { myRank, userRank } = rankData;
   const myMedalRank = myRankCalc(myRank.username, userRank);
 
-  commitAchievement(mypageData.total, userBadges, arrayOfBadgesId);
+  commitAchievement(1000, userBadges, arrayOfBadgesId);
 
   if (myMedalRank !== null) {
-    ranking(myMedalRank, userBadges, arrayOfBadgesId);
+    ranking(3, userBadges, arrayOfBadgesId);
   }
   continuousDay(mypageData.continuous, userBadges, arrayOfBadgesId);
-  level(mypageData.totalScore, userBadges, arrayOfBadgesId, arrayOfBadgesId);
+  level(790, userBadges, arrayOfBadgesId, arrayOfBadgesId);
   const newUserBadges = userBadges;
+  console.log("원래 가지고", userBadges);
+  console.log("이번에 얻게된", arrayOfBadgesId);
+
   arrayOfBadgesId.forEach((badgeId) => {
     newUserBadges[badgeId] = true;
   });
+  console.log("newUserBadges", newUserBadges);
   return newUserBadges;
 };
