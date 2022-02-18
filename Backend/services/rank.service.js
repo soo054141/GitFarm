@@ -8,7 +8,7 @@ export const getDefaultRank = () => {
   const myRank = {
     username: "500",
     avatarUrl: "https://http.cat/500",
-    score: 10,
+    totalScore: 10,
     rank: 1,
   };
 
@@ -16,31 +16,31 @@ export const getDefaultRank = () => {
     {
       username: "500",
       avatarUrl: "https://http.cat/500",
-      score: 10,
+      totalScore: 10,
       rank: 1,
     },
     {
       username: "502",
       avatarUrl: "https://http.cat/502",
-      score: 10,
+      totalScore: 10,
       rank: 1,
     },
     {
       username: "503",
       avatarUrl: "https://http.cat/503",
-      score: 8,
+      totalScore: 8,
       rank: 2,
     },
     {
       username: "504",
       avatarUrl: "https://http.cat/504",
-      score: 5,
+      totalScore: 5,
       rank: 3,
     },
     {
       username: "505",
       avatarUrl: "https://http.cat/505",
-      score: 3,
+      totalScore: 3,
       rank: 4,
     },
   ];
@@ -55,11 +55,13 @@ export const getMyRank = async (_id) => {
   const userDocument = await User.findById(_id);
   const { username, avatarUrl } = userDocument;
   const myLevelDocument = await Level.findById(_id);
-  const score = myLevelDocument?.score ? myLevelDocument.score : 0;
+  const totalScore = myLevelDocument?.totalScore
+    ? myLevelDocument.totalScore
+    : 0;
   return {
     username,
     avatarUrl,
-    score,
+    totalScore,
   };
 };
 
@@ -68,11 +70,11 @@ export const getUserRank = async () => {
   const processUserData = userDocument.map(async (user) => {
     const { _id, username, avatarUrl } = user;
     const userData = await Level.findById(_id);
-    const score = userData?.score ? userData.score : 0;
+    const totalScore = userData?.totalScore ? userData.totalScore : 0;
     return {
       username,
       avatarUrl,
-      score,
+      totalScore,
     };
   });
 
