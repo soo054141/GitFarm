@@ -29,7 +29,7 @@ const getPerDayCommitEachRepo = async (user, repo, date) => {
 };
 
 export const getPerDayCommitAllRepo = async (user, date) => {
-  const [year, month] = date;
+  const [year, month] = date.split("-");
   const repoName = await getAllRepoName(user);
   const monthCalendar = getMonthCalendar(month);
 

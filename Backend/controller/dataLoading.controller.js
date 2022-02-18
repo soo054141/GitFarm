@@ -42,8 +42,8 @@ export const getLoadingData = async (req, res) => {
     await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
 
     // getEachDayCommit(calendar)
-    const calendar = await getPerDayCommitAllRepo(user, YYYYMM);
-    await FindByIdAndUpdate(Commit, _id, "commitEachDay", calendar);
+    const commitEachDay = await getPerDayCommitAllRepo(user, YYYYMM);
+    await FindByIdAndUpdate(Commit, _id, "commitEachDay", commitEachDay);
 
     // getEachMonthCommit(graph)
     const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
