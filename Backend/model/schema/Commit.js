@@ -20,6 +20,10 @@ const CommitSchema = new Schema(
       type: Number,
       default: ZERO,
     },
+    todayCommit: {
+      type: Number,
+      default: ZERO,
+    },
     todayScore: {
       type: Number,
       default: ZERO,
