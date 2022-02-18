@@ -10,6 +10,10 @@ export const Container = styled.div`
   border-radius: 10px;
   background: #ffffff;
   position: relative;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 430px;
+  }
 `;
 
 export const Gold = styled(GoldIcon)`
