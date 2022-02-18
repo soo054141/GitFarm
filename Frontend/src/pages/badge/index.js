@@ -19,12 +19,16 @@ function Badge({ badgesType }) {
       api.getMyInfo(),
       api.getRank(),
     ]);
-    const newUserBadges = await AllBadgesFuncion(
+    const { newUserBadges, newBadges } = await AllBadgesFuncion(
       badgeData.badge,
       mypageData.mypage,
       rankData.data,
     );
-    api.postBadges(newUserBadges);
+
+    if (newBadges.length !== 0) {
+      api.postBadges(newUserBadges);
+    }
+
     setUserBadges(newUserBadges);
     setLoading(false);
   };
