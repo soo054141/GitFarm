@@ -8,22 +8,21 @@ function Loading() {
   const navigate = useNavigate();
 
   const getData = async () => {
-    const result = await axios.get("http://localhost:8888/api/users/loading", {
-      withCredentials: true,
-    });
-    return result;
+    try {
+      await axios.get("http://localhost:8888/api/users/loading", {
+        withCredentials: true,
+      });
+    } catch (err) {
+      console.error(err.message);
+    } finally {
+      navigate("/main");
+    }
   };
 
   useEffect(() => {
-    const res = getData();
-    console.log(res);
-    // const isloading = () =>
-    // setTimeout(() => {
-    // navigate("/main");
-    // }, 5000);
-    // isloading();
-    // return () => clearTimeout(isloading);
+    getData();
   }, []);
+
   return (
     <Load.Wrapper>
       <Load.Title>

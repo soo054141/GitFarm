@@ -1,5 +1,10 @@
 import axios from "axios";
 
+const MILLISECOND = 1000;
+const SECOND = 15;
+
+export const LOADING_TIME = MILLISECOND * SECOND;
+
 export const { MODE, SERVER_URL } = process.env;
 
 export const LOGIN_URL =
