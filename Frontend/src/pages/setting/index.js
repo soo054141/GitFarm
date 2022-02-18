@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "@/components/Container/style";
+// import { Container } from "@/components/Container/style";
 import NextArrow from "@/assets/icon/next-arrow.svg";
 import * as api from "@/api";
 import LogoutModal from "./LogoutModal";
@@ -31,7 +31,7 @@ function Setting() {
   }, []);
 
   return (
-    <Container>
+    <Settings.Container>
       <Settings.Wrapper>
         <Settings.Title>GitHub 계정관리</Settings.Title>
         <Settings.ItemWrapper>
@@ -53,7 +53,7 @@ function Setting() {
           )}
         </Settings.ItemWrapper>
       </Settings.Wrapper>
-    </Container>
+    </Settings.Container>
   );
 }
 

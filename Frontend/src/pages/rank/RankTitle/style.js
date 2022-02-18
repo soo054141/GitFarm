@@ -6,8 +6,11 @@ export const Container = styled.div`
 
   p {
     font-size: 18px;
+    font-weight: bold;
+    line-height: 33px;
+    text-align: center;
     color: ${(props) => props.theme.darkGray};
-    line-height: 23px;
+    padding-bottom: 1px;
   }
 
   h1 {

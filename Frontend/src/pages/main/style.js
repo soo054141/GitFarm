@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
 
 export const TodaysCommit = styled.h1`
   font-size: 18px;
+  font-weight: bold;
   line-height: 33px;
   text-align: center;
   color: ${(props) => props.theme.darkGray};

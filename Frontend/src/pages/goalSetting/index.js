@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CommitGoal from "./CommitGoal";
 import Resolution from "./Resolution";
 import GoalInputModal from "./GoalInputModal";
-import { TitleText, Container, Wrapper } from "./style";
+import { Container, TitleText, Wrapper } from "./style";
 
 function GoalSetting() {
   const [randomNum, setRandomNum] = useState(undefined);

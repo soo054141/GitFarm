@@ -5,6 +5,7 @@ import StartedDayCount from "./StartedDayCount";
 import LevelInfo from "./LevelInfo";
 import CommitCount from "./CommitCount";
 import AccountSettings from "./AccountSettings";
+import { ResponsiveDiv } from "./style";
 
 function MyPage() {
   const [user, setUser] = useState({
@@ -29,8 +30,10 @@ function MyPage() {
   return (
     <Container>
       <StartedDayCount memberDate={user.memberDate} />
-      <LevelInfo totalScore={user.totalScore} />
-      <CommitCount total={user.total} continuous={user.continuous} />
+      <ResponsiveDiv>
+        <LevelInfo totalScore={user.totalScore} />
+        <CommitCount total={user.total} continuous={user.continuous} />
+      </ResponsiveDiv>
       <AccountSettings />
     </Container>
   );

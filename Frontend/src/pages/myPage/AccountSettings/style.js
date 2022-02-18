@@ -2,12 +2,17 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 350px;
-  padding: 47px 10px 16px 10px;
-  border-bottom: 1px solid rgba(119, 119, 119, 0.4);
+  padding: 23px;
+  border-radius: 10px;
+  background-color: #ffffff;
 
   h1 {
     font-size: 18px;
     color: ${(props) => props.theme.lightGray};
+  }
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 850px;
   }
 `;
 

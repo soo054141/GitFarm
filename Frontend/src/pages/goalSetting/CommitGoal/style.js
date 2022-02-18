@@ -15,6 +15,9 @@ export const Container = styled.div`
 
   & + & {
     margin-top: 60px;
+    @media ${({ theme }) => theme.device.laptop} {
+      margin-top: 0;
+    }
   }
 `;
 
