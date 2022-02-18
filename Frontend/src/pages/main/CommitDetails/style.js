@@ -57,10 +57,10 @@ export const IconWrapper = styled.div`
 `;
 
 export const Score = styled.p`
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 300;
   color: ${(props) => props.theme.mainColor};
-  margin-left: 100px;
+  margin-left: ${(props) => (props.length === 2 ? "110px" : "85px")};
   margin-top: -10px;
   margin-bottom: 10px;
 `;
