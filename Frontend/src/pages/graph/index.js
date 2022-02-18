@@ -9,16 +9,22 @@ import * as Graphs from "./style";
 function Graph() {
   const [date, setDate] = useState(toDay);
   const [reposLanguage, setReposLanguage] = useState();
+  const [loading, setLoading] = useState(false);
 
   const goToday = () => {
     setDate(toDay);
   };
 
   const getUsersReposLanguage = async () => {
+    setLoading(true);
+
     const res = await api.getReposLanguage();
     if (res.success) {
       setReposLanguage(res.languages);
+    } else {
+      setReposLanguage([]);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -32,7 +38,7 @@ function Graph() {
       </Graphs.DateControllerWrapper>
       <Graphs.ResponsiveDiv>
         <LineGraph date={date} />
-        <PieChartComponent reposLanguage={reposLanguage} />
+        <PieChartComponent reposLanguage={reposLanguage} loading={loading} />
       </Graphs.ResponsiveDiv>
     </Graphs.Container>
   );
