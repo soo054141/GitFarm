@@ -20,41 +20,43 @@
     "success": true,
     "mypage": {
       "total": 1234,
-      "totalScore": 30,
+      "totalScore": 1702,
       "continuous": 31,
-      "memberDate": 12
+      "memberDate": 77
     }
   },
   "month": [
     {
       "id": 2018,
       "success": true,
-      "commitPerYear": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      "commitEachMonth": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
       "id": 2019,
       "success": true,
-      "commitPerYear": [0, 182, 43, 3, 399, 115, 21, 32, 66, 81, 236, 10, 28]
+      "commitEachMonth": [0, 182, 43, 3, 399, 115, 21, 32, 66, 81, 236, 10, 28]
     },
     {
       "id": 2020,
       "success": true,
-      "commitPerYear": [0, 82, 143, 73, 99, 135, 151, 84, 166, 108, 66, 60, 28]
+      "commitEachMonth": [
+        0, 82, 143, 73, 99, 135, 151, 84, 166, 108, 66, 60, 28
+      ]
     },
     {
       "id": 2021,
       "success": true,
-      "commitPerYear": [0, 2, 3, 3, 9, 35, 151, 84, 16, 8, 66, 0, 8]
+      "commitEachMonth": [0, 2, 3, 3, 9, 35, 151, 84, 16, 8, 66, 0, 8]
     },
     {
       "id": 2022,
       "success": true,
-      "commitPerYear": [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      "commitEachMonth": [0, 34, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
   ],
   "perMonth": {
     "success": true,
-    "commitPerMonth": [
+    "commitEachDay ": [
       1, 2, 3, 4, 5, 6, 7, 8, 2, 10, 11, 12, 13, 0, 30, 16, 17, 18, 19, 20, 21,
       10, 2, 57, 5, 4, 7, 2, 29, 30, 31
     ]
@@ -65,7 +67,7 @@
       true,
       true,
       true,
-      false,
+      true,
       false,
       false,
       true,
@@ -92,7 +94,6 @@
   },
   "recentThreeYear": {
     "success": true,
-
     "lastThreeYear": [
       [2020, 49],
       [2021, 1163],
@@ -256,41 +257,42 @@
     "success": true,
     "data": {
       "myRank": {
-        "username": "500",
-        "avatarUrl": "https://http.cat/500",
-        "score": 10,
+        "username": "test",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/81283255?v=4",
+
+        "totalScore": 10,
         "rank": 1
       },
       "userRank": [
         {
-          "username": "500",
-          "avatarUrl": "https://http.cat/500",
-          "score": 10,
+          "username": "YWTechIT",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/54543013?v=4",
+          "totalScore": 10,
           "rank": 1
         },
         {
-          "username": "502",
-          "avatarUrl": "https://http.cat/502",
-          "score": 10,
-          "rank": 1
-        },
-        {
-          "username": "503",
-          "avatarUrl": "https://http.cat/503",
-          "score": 8,
+          "username": "h1jun",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/81283255?v=4",
+          "totalScore": 9,
           "rank": 2
         },
         {
-          "username": "504",
-          "avatarUrl": "https://http.cat/504",
-          "score": 5,
+          "username": "soo054141",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/48131318?v=4",
+          "totalScore": 8,
           "rank": 3
+        },
+        {
+          "username": "tjwdud",
+          "avatarUrl": "https://avatars.githubusercontent.com/u/33392925?v=4",
+          "totalScore": 7,
+          "rank": 4
         },
         {
           "username": "505",
           "avatarUrl": "https://http.cat/505",
-          "score": 3,
-          "rank": 4
+          "totalScore": 6,
+          "rank": 5
         }
       ]
     }
@@ -298,12 +300,15 @@
   "today": {
     "success": true,
     "today": {
-      "todayScore": 21,
+      "todayScore": 100,
       "goal": 10,
       "todayCommit": 10,
       "detail": [
         {
-          "info": { "name": "YWTechIT", "repo": "alice-sw-engineer-track" },
+          "info": {
+            "name": "YWTechIT",
+            "repo": "alice-sw-engineer-track"
+          },
           "data": [
             {
               "date": "2022-01-20T13:33:11Z",
@@ -312,22 +317,47 @@
           ]
         },
         {
-          "info": { "name": "YWTechIT", "repo": "ci-cd-practice" },
+          "info": {
+            "name": "YWTechIT",
+            "repo": "ci-cd-practice"
+          },
           "data": [
-            { "date": "2022-01-20T07:38:42Z", "message": "Fix typo" },
-            { "date": "2022-01-20T07:29:57Z", "message": "Add Heroku actions" },
-            { "date": "2022-01-20T06:41:25Z", "message": "Fix typo" },
-            { "date": "2022-01-20T06:32:27Z", "message": "Fix blanks" },
-            { "date": "2022-01-20T06:31:25Z", "message": "Add actions" },
-            { "date": "2022-01-20T06:24:46Z", "message": "Add 단계별 build" },
-            { "date": "2022-01-20T06:22:28Z", "message": "Add ci command" }
+            {
+              "date": "2022-01-20T07:38:42Z",
+              "message": "Fix typo"
+            },
+            {
+              "date": "2022-01-20T07:29:57Z",
+              "message": "Add Heroku actions"
+            },
+            {
+              "date": "2022-01-20T06:41:25Z",
+              "message": "Fix typo"
+            },
+            {
+              "date": "2022-01-20T06:24:46Z",
+              "message": "Add 단계별 build"
+            },
+            {
+              "date": "2022-01-20T06:22:28Z",
+              "message": "Add ci command"
+            }
           ]
         },
         {
-          "info": { "name": "YWTechIT", "repo": "custombucks-api" },
+          "info": {
+            "name": "YWTechIT",
+            "repo": "custombucks-api"
+          },
           "data": [
-            { "date": "2022-01-20T23:11:15Z", "message": "Update README" },
-            { "date": "2022-01-20T22:16:40Z", "message": "Add comment cron" },
+            {
+              "date": "2022-01-20T23:11:15Z",
+              "message": "Update README"
+            },
+            {
+              "date": "2022-01-20T22:16:40Z",
+              "message": "Add comment cron"
+            },
             {
               "date": "2022-01-20T22:08:53Z",
               "message": "Add heroku-awake action"
@@ -335,9 +365,15 @@
           ]
         },
         {
-          "info": { "name": "YWTechIT", "repo": "ywBot" },
+          "info": {
+            "name": "YWTechIT",
+            "repo": "ywBot"
+          },
           "data": [
-            { "date": "2022-01-20T15:24:45Z", "message": "Update README.md" }
+            {
+              "date": "2022-01-20T15:24:45Z",
+              "message": "Update README.md"
+            }
           ]
         }
       ]
