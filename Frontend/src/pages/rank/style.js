@@ -25,3 +25,14 @@ export const ResponsivUserRankWrapper = styled.div`
     margin-left: 150px;
   }
 `;
+
+export const NoData = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  margin-top: 100px;
+  color: ${(props) => props.theme.darkGray};
+`;

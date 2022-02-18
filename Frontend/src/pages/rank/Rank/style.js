@@ -6,7 +6,7 @@ import BronzeIcon from "@/assets/icon/rank/bronze.svg";
 export const Container = styled.div`
   width: 349px;
   margin-top: 32px;
-  padding: ${({ myRank }) => (myRank ? "22px" : "28px")} 17px;
+  padding: 28px 30px;
   border-radius: 10px;
   background: #ffffff;
   position: relative;
@@ -33,16 +33,20 @@ export const Bronze = styled(BronzeIcon)`
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: ${({ myRank }) =>
-    myRank ? "1fr 210px 1fr" : "30px 60px 150px 50px;"};
-  margin-top: ${({ myRank }) => (myRank ? "20px" : "0px")};
+  grid-template-columns: ${({ myRanking }) =>
+    myRanking ? "1fr 210px 1fr" : "30px 60px 150px 50px;"};
+  margin-top: ${({ myRanking }) => (myRanking ? "20px" : "0px")};
   align-items: center;
-  margin-left: ${({ myRank }) => (myRank ? "" : "12px")};
+  margin-left: ${({ myRanking }) => (myRanking ? "" : "12px")};
   overflow-wrap: break-word;
 `;
 
-export const MyRankTitle = styled.h1`
+export const MyRankTitle = styled.span`
+  display: inline-block;
   font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-left: 10px;
   color: ${(props) => props.theme.darkGray};
 `;
 
@@ -70,8 +74,9 @@ export const Id = styled.div`
 `;
 
 export const Point = styled.div`
-  font-size: 8px;
+  font-size: 12px;
   margin-top: 5px;
+  font-weight: bold;
   color: ${(props) => props.theme.lightGray};
 `;
 

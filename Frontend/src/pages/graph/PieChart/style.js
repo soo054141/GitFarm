@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   border-radius: 10px;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 0%), 0 10px 10px rgb(0 0 0 / 3%);
 
   @media ${({ theme }) => theme.device.laptop} {
     height: 350px;
