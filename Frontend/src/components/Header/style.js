@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
-  backdrop-filter: blur(50px);
+  background-color: #f6f9f0;
   position: fixed;
   top: 0;
   left: 0;
@@ -28,8 +28,6 @@ export const HeaderBackground = styled.div`
   position: absolute;
   left: -25%;
   top: -25%;
-  backdrop-filter: blur(50px);
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+
   z-index: -1;
 `;
