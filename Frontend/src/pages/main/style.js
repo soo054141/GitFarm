@@ -26,6 +26,6 @@ export const TodaysCommitCount = styled.span`
   font-size: 14px;
   line-height: 33px;
   text-align: center;
-  color: ${(props) => props.theme.lightGray};
+  color: ${(props) => props.theme.mainColor};
   padding-bottom: 10px;
 `;
