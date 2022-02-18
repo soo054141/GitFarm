@@ -18,6 +18,8 @@ function RankPage() {
     if (rankData.success) {
       setMyRank(rankData.data.myRank);
       setUserRank(rankData.data.userRank);
+    } else {
+      setMyRank(null);
     }
     setLoading(false);
   };
@@ -29,38 +31,41 @@ function RankPage() {
   return (
     <Container>
       <RankTitle />
-      <Ranks.ResponsiveDiv>
-        {loading ? (
-          <Skeletons />
-        ) : (
-          <Rank
-            myRanking
-            imgURL={myRank.avatarUrl}
-            id={myRank.username}
-            point={myRank.totalScore}
-          />
-        )}
-
-        {loading ? (
-          <Ranks.ResponsivUserRankWrapper>
+      {myRank ? (
+        <Ranks.ResponsiveDiv>
+          {loading ? (
             <Skeletons />
-            <Skeletons />
-            <Skeletons />
-          </Ranks.ResponsivUserRankWrapper>
-        ) : (
-          <Ranks.ResponsivUserRankWrapper>
-            {userRank.map((it) => (
-              <Rank
-                key={`${it.username}-${it.rank}-${it.totalScore}`}
-                imgURL={it.avatarUrl}
-                id={it.username}
-                point={it.totalScore}
-                rank={String(it.rank)}
-              />
-            ))}
-          </Ranks.ResponsivUserRankWrapper>
-        )}
-      </Ranks.ResponsiveDiv>
+          ) : (
+            <Rank
+              myRanking
+              imgURL={myRank.avatarUrl}
+              id={myRank.username}
+              point={myRank.totalScore}
+            />
+          )}
+          {loading ? (
+            <Ranks.ResponsivUserRankWrapper>
+              <Skeletons />
+              <Skeletons />
+              <Skeletons />
+            </Ranks.ResponsivUserRankWrapper>
+          ) : (
+            <Ranks.ResponsivUserRankWrapper>
+              {userRank.map((it) => (
+                <Rank
+                  key={`${it.username}-${it.rank}-${it.totalScore}`}
+                  imgURL={it.avatarUrl}
+                  id={it.username}
+                  point={it.totalScore}
+                  rank={String(it.rank)}
+                />
+              ))}
+            </Ranks.ResponsivUserRankWrapper>
+          )}
+        </Ranks.ResponsiveDiv>
+      ) : (
+        <Ranks.NoData>데이터가 없습니다.</Ranks.NoData>
+      )}
     </Container>
   );
 }
