@@ -30,14 +30,6 @@ export const getLoadingData = async (req, res) => {
   const YYYYMM = `${year}-${fillZero(month, 2, "0")}`;
 
   try {
-    // getEachDayCommit(calendar)
-    const calendar = await getPerDayCommitAllRepo(user, YYYYMM);
-    await FindByIdAndUpdate(Commit, _id, "commitEachDay", calendar);
-
-    // getEachMonthCommit(graph)
-    const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
-    await FindByIdAndUpdate(Commit, _id, "commitEachMonth", commitEachMonth);
-
     // today
     const todayCommit = await getTodayTotalCommitAllRepo(user);
     const todayIssues = await getTodayTotalIssueAllRepo(user);
@@ -47,6 +39,14 @@ export const getLoadingData = async (req, res) => {
 
     await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
     await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
+
+    // getEachDayCommit(calendar)
+    const calendar = await getPerDayCommitAllRepo(user, YYYYMM);
+    await FindByIdAndUpdate(Commit, _id, "commitEachDay", calendar);
+
+    // getEachMonthCommit(graph)
+    const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
+    await FindByIdAndUpdate(Commit, _id, "commitEachMonth", commitEachMonth);
 
     // getMyPage data
     const total = await getTotalCommitAllRepo(user);
