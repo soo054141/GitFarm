@@ -4,7 +4,7 @@
 /* eslint-disable no-underscore-dangle */
 import express from "express";
 import passport from "passport";
-
+import timeLimit from "../../middleware/time-limit.js";
 import {
   getReposTotalCommitsController,
   getCommitsTodayController,
@@ -29,7 +29,6 @@ import {
   getTodayController,
   getLoadingData,
 } from "../../controller/index.js";
-import { isInTime } from "../../middleware/is-in-time.js";
 
 const router = express.Router();
 
@@ -43,8 +42,8 @@ export default (app) => {
     router,
   );
 
-  // all data loading
-  router.get("/loading", isInTime, getLoadingData);
+  // get All data With timeLimit
+  router.get("/loading", timeLimit, getLoadingData);
 
   // commits
   router.get("/commits/total", getReposTotalCommitsController);
