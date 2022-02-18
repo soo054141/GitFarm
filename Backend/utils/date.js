@@ -13,10 +13,12 @@ export const RECENT_THREE_YEARS = [
   year - ONE_YEARS_AGO,
   year,
 ];
+
 export const fillZero = (target, targetLenth, padString) => {
   const str = target.toString();
   return str.padStart(targetLenth, padString);
 };
+export const fillZeroMonth = fillZero(month, 2, "0");
 export const THREE_YEARS = 3;
 // eslint-disable-next-line no-use-before-define
 export const today = `${year}-${fillZero(month, 2, "0")}-${fillZero(
@@ -62,8 +64,6 @@ export const getMonthCalendar = (month) => {
 
   return Array.from({ length: 30 }, () => 0);
 };
-
-export const fillZeroMonth = fillZero(month, 2, "0");
 
 export const TARGET_TIME = 60;
 export const isInTime = (TARGET_TIME, pastTime) => {
