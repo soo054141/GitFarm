@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import InfoIcon from "@/assets/icon/info.svg";
-import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
-import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
+import CommitIcon from "@/assets/icon/commitIcon.svg";
 import PropTypes from "prop-types";
 import ScoreInformationModal from "../ScoreInformationModal";
 import * as CommitDetail from "./style";
@@ -43,24 +42,15 @@ function CommitDetails({ todayScore, todayCommit, detail }) {
                     {commits.info.name}/{commits.info.repo}
                   </CommitDetail.RepoName>
 
-                  {commits.data.map((el, commitLength) => (
+                  {commits.data.map((el) => (
                     <CommitDetail.CommitWrapper
                       key={`${el.message}-${el.date}`}
                     >
                       <div>
-                        {commitLength > 0 && (
-                          <CommitDetail.LineWrapper
-                            key={`${el.message}--${el.date}`}
-                          >
-                            <VerticalLineIcon
-                              key={`${el.message}--${el.date}`}
-                            />
-                          </CommitDetail.LineWrapper>
-                        )}
                         <CommitDetail.CommitMessage
                           key={`${el.message}----${el.date}`}
                         >
-                          <CommitCircleIcon />
+                          <CommitIcon />
                           {el.message}
                         </CommitDetail.CommitMessage>
                       </div>
