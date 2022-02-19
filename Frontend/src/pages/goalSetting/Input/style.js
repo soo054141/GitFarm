@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const InputWrapper = styled.input.attrs((props) => ({
   placeholder: props.placeholder,
   maxLength: 20,
-  // value: props.value,
+  type: props.inputType
 }))`
   background-color: #f2f2f2;
   width: 295px;
