@@ -1,17 +1,19 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
-import { getCreatedAtById } from "../../../../../utils/db.js";
+import { startOfDay } from "../../../../../utils/date.js";
+import { extractYMD, getCreatedAtById } from "../../../../../utils/db.js";
 import { getOctokitAuth } from "../../../Octokit/utils.js";
 
 export const getCommitsEachRepo = async (user, repo) => {
   const { username } = user;
   const createdAt = await getCreatedAtById(user);
-  const octokit = getOctokitAuth(user);
+  const { YEAR, MONTH, DAY } = extractYMD(createdAt);
 
+  const octokit = getOctokitAuth(user);
   const commits = await octokit.paginate(
     `GET /repos/${username}/${repo}/commits`,
     {
-      since: createdAt,
+      since: `${YEAR}-${MONTH}-${DAY}${startOfDay}`,
       author: username,
       per_page: 100,
     },
