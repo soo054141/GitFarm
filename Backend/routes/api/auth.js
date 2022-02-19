@@ -62,7 +62,9 @@ export default (app) => {
   });
 
   router.get("/logout", (req, res) => {
-    res.clearCookie("token");
-    res.redirect(LOGOUT);
+    res.clearCookie("token").json({
+      success: true,
+      message: "로그아웃 되었습니다.",
+    });
   });
 };
