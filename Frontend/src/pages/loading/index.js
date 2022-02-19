@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GitFarmLogoImg from "@/assets/icon/login/GitFarmLogo.svg";
+import Refresh from "@/assets/icon/header/refresh.svg";
 import * as Load from "./style";
 
 function Loading() {
@@ -32,6 +33,13 @@ function Loading() {
       <Load.Logo>
         <GitFarmLogoImg />
       </Load.Logo>
+      <Load.MessageBox>
+        <Refresh /> 버튼을 누르면 <br />
+        커밋 데이터가 업데이트 됩니다.
+        <br />
+        업데이트는 1시간마다 가능하며 약 15초 소요됩니다.
+        <br />
+      </Load.MessageBox>
       <Load.ProgressBar>
         <Load.Progress />
       </Load.ProgressBar>

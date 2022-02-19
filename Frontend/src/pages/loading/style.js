@@ -36,7 +36,7 @@ export const Message = styled.p`
   text-align: center;
   margin-bottom: 5px;
   font-size: 14px;
-  color: ${(props) => props.theme.mainColor};
+  color: ${(props) => props.theme.lightGray};
 `;
 
 export const LoadingDots = styled.div`
@@ -210,5 +210,20 @@ export const Progress = styled.div`
     100% {
       width: 100%;
     }
+  }
+`;
+
+export const MessageBox = styled.div`
+  dispaly: flex;
+  color: ${(props) => props.theme.mainColor};
+  text-align: center;
+  line-height: 15px;
+  font-size: 12px;
+  margin-bottom: 15px;
+  svg {
+    width: 13px;
+  }
+  path {
+    fill: ${(props) => props.theme.lightGray};
   }
 `;
