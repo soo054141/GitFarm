@@ -52,6 +52,7 @@ export const LangColorBox = styled.div`
   height: 12.5px;
   border-radius: 50%;
   margin-right: 7px;
+  opacity: 0.85;
 `;
 
 export const LangColorBoxWrapper = styled.div`
@@ -62,6 +63,7 @@ export const LangColorBoxWrapper = styled.div`
 
 export const PieWrapper = styled.div`
   margin-left: 16px;
+  opacity: 0.85;
   @media ${({ theme }) => theme.device.laptop} {
     position: relative;
     bottom: 25px;
