@@ -37,13 +37,8 @@ describe("/api/auth", () => {
 
   test("GitHub 로그아웃 한 경우", async () => {
     const response = await request(app).get("/api/auth/logout").send();
-    const expectedStatus = 302;
-    const expectedLocation =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:8888"
-        : "http://localhost:1111";
+    const expectedStatus = 200;
 
     expect(response.statusCode).toEqual(expectedStatus);
-    expect(response.headers.location).toStrictEqual(expectedLocation);
   });
 });
