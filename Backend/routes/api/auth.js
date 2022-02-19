@@ -4,22 +4,8 @@ import passport from "passport";
 import httpError from "http-errors";
 import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
-import dotenv from "dotenv";
-import keys from "../../config/keys.js";
-
-dotenv.config();
 
 const router = express.Router();
-
-const AFTER_LOGIN =
-  process.env.NODE_ENV === "production"
-    ? `http://localhost:8888/loading`
-    : "/api/auth/login/success";
-
-const LOGOUT =
-  process.env.NODE_ENV === "production"
-    ? `${keys.clientURL}/`
-    : `/api/auth/login/failed`;
 
 export default (app) => {
   app.use("/auth", router);
@@ -43,7 +29,7 @@ export default (app) => {
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect("http://localhost:1111/loading");
+      res.redirect("/loading");
     },
   );
 
