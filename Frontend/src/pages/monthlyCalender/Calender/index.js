@@ -32,8 +32,16 @@ function Calender({ date }) {
     // const year = String(date.getFullYear());
     // const month = fillZeroMonth(date.getMonth() + 1);
     const commitMonthData = await api.getCommitMonthly();
-    const { commitEachDay } = commitMonthData;
-    setCommitCountsPerDate(matchDateCommit(firstDate, commitEachDay));
+    if (commitMonthData.success) {
+      const { commitEachDay } = commitMonthData;
+      setCommitCountsPerDate(matchDateCommit(firstDate, commitEachDay));
+      setLoading(false);
+      return;
+    }
+    setCommitCountsPerDate([
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0,
+    ]);
     setLoading(false);
   };
 
@@ -56,13 +64,13 @@ function Calender({ date }) {
               key={`${oneWeek[idx2].date}-${oneWeek[idx2].month}}-monthly-row`}
             >
               {oneWeek.map((perDate, idx) => {
-                const weekNum3 = idx2 * 7;
+                const weekNum = idx2 * 7;
                 return (
                   <MonthlyCell
                     view={perDate.month === currentMonth + 1 && true}
                     key={`${perDate.date}-${perDate.month}-monthly-cell`}
                     stage={stageCalc(
-                      commitCountsPerDate[parseInt(idx + weekNum3, 10)],
+                      commitCountsPerDate[parseInt(idx + weekNum, 10)],
                     )}
                   >
                     <DateCell
@@ -71,7 +79,7 @@ function Calender({ date }) {
                         perDate.date + perDate.month + perDate.year
                       }-date-cell`}
                       stage={stageCalc(
-                        commitCountsPerDate[parseInt(idx + weekNum3, 10)],
+                        commitCountsPerDate[parseInt(idx + weekNum, 10)],
                       )}
                     >
                       {perDate.date}

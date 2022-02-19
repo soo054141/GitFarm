@@ -55,12 +55,23 @@ export const IconWrapper = styled.div`
     cursor: pointer;
   }
 `;
-
+const wordLengthMarginLeft = (length) => {
+  if (length === 1) {
+    return "130px";
+  }
+  if (length === 2) {
+    return "110px";
+  }
+  if (length === 3) {
+    return "85px";
+  }
+  return "110px";
+};
 export const Score = styled.p`
   font-size: 40px;
   font-weight: 300;
   color: ${(props) => props.theme.mainColor};
-  margin-left: ${(props) => (props.length === 2 ? "110px" : "85px")};
+  margin-left: ${(props) => wordLengthMarginLeft(props.length)};
   margin-top: -10px;
   margin-bottom: 10px;
 `;
@@ -96,15 +107,6 @@ export const RepoName = styled.p`
   margin-bottom: 7px;
 `;
 
-export const VerticalLine = styled.div`
-  width: 20px;
-  height: 15px;
-  position: absolute;
-  top: -13px;
-  left: 3.76px;
-  border-left: 1px #777777 solid;
-  border-opacity: 0.2px;
-`;
 export const CommitWrapper = styled.div`
   margin-left: 6px;
   display: flex;
@@ -113,14 +115,7 @@ export const CommitWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 14px;
 `;
-export const LineWrapper = styled.div`
-  display: flex;
-  svg {
-    position: absolute;
-    top: -17px;
-    left: 3.24px;
-  }
-`;
+
 export const CommitMessage = styled.p`
   font-size: 12px;
   color: ${(props) => (props.time ? props.theme.mainColor : "#535353")};

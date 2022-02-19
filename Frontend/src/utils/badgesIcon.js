@@ -44,3 +44,59 @@ export const level5 = <Level5 />;
 export const ranking1 = <Ranking1 />;
 export const ranking2 = <Ranking2 />;
 export const ranking3 = <Ranking3 />;
+
+export const badgesType = [
+  {
+    id: 0,
+    title: "커밋 500개 달성",
+    icon: achievement500,
+    userHaveBadge: false,
+  },
+  {
+    id: 1,
+    title: "커밋 1000개 달성",
+    icon: achievement1000,
+    userHaveBadge: false,
+  },
+  {
+    id: 2,
+    title: "커밋 5000개 달성",
+    icon: achievement5000,
+    userHaveBadge: false,
+  },
+
+  { id: 3, title: "랭킹 1위", icon: ranking1, userHaveBadge: false },
+  { id: 4, title: "랭킹 2위", icon: ranking2, userHaveBadge: false },
+  { id: 5, title: "랭킹 3위", icon: ranking3, userHaveBadge: false },
+
+  {
+    id: 6,
+    title: "7일 연속 커밋 달성",
+    icon: days7,
+    userHaveBadge: false,
+  },
+  {
+    id: 7,
+    title: "2주 연속 커밋 달성",
+    icon: days14,
+    userHaveBadge: false,
+  },
+  {
+    id: 8,
+    title: "3주 연속 커밋 달성",
+    icon: days21,
+    userHaveBadge: false,
+  },
+  {
+    id: 9,
+    title: "4주 연속 커밋 달성",
+    icon: days28,
+    userHaveBadge: false,
+  },
+
+  { id: 10, title: "씨앗 레벨", icon: level1, userHaveBadge: false },
+  { id: 11, title: "초보 농부", icon: level2, userHaveBadge: false },
+  { id: 12, title: "중수 농부", icon: level3, userHaveBadge: false },
+  { id: 13, title: "고수 농부", icon: level4, userHaveBadge: false },
+  { id: 14, title: "팜 마스터", icon: level5, userHaveBadge: false },
+];

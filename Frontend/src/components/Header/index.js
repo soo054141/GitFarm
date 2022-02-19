@@ -22,7 +22,13 @@ function Header() {
   return (
     <HeaderWrapper>
       <HeaderBackground />
-      {location.pathname === "/main" ? <Refresh /> : <div />}
+      {location.pathname === "/main" ? (
+        <Link to="/loading">
+          <Refresh />
+        </Link>
+      ) : (
+        <div />
+      )}
 
       <Link to="/badge">
         <Seeds />

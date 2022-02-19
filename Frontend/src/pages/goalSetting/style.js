@@ -6,10 +6,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 74px;
+  color: ${(props) => props.theme.darkGray};
   @media ${({ theme }) => theme.device.laptop} {
+    display: flex;
+    flex-direction: column;
     margin-top: 117px;
   }
-  color: ${(props) => props.theme.darkGray};
+
 `;
 
 export const TitleText = styled.div`
