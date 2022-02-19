@@ -16,29 +16,33 @@ function PieChartComponent({ reposLanguage, loading }) {
     }
   });
 
-  const codeRatioArray = [];
   const language = Object.keys(languageCountObj);
   const values = Object.values(languageCountObj);
 
-  const denominator = reposLanguage.length;
-  let other = 0;
-
+  let repoLanguageArray = [];
   language.forEach((it, idx) => {
-    if (idx >= 4) return;
-
-    const valueCal = +((values[idx] / denominator) * 100).toFixed(2);
-    other += valueCal;
-    codeRatioArray.push({
+    repoLanguageArray.push({
       name: language[idx],
-      value: valueCal,
+      value: +values[idx],
     });
   });
 
-  codeRatioArray.sort((a, b) => b.value - a.value);
+  repoLanguageArray = repoLanguageArray
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5);
 
-  if (other !== 100) {
-    codeRatioArray.push({ name: "Other", value: (100 - other).toFixed(2) });
-  }
+  let denominator = 0;
+  repoLanguageArray.forEach((it) => {
+    denominator += it.value;
+  });
+
+  const codeRatioArray = [];
+  repoLanguageArray.forEach((it) => {
+    codeRatioArray.push({
+      name: it.name,
+      value: +((it.value / denominator) * 100).toFixed(2),
+    });
+  });
 
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
@@ -57,7 +61,9 @@ function PieChartComponent({ reposLanguage, loading }) {
               <PieCharts.Wrapper>
                 <PieCharts.Heading>
                   <PieCharts.Title>사용 언어 비율</PieCharts.Title>
-                  <PieCharts.Description>전체 레포 기준</PieCharts.Description>
+                  <PieCharts.Description>
+                    전체 레포 기준 (상위 5개)
+                  </PieCharts.Description>
                 </PieCharts.Heading>
                 <PieCharts.RatioWrapper>
                   {codeRatioArray &&
