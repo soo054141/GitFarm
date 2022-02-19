@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 import { startOfDay } from "../../../../../utils/date.js";
-import { getCreatedAtById } from "../../../../../utils/db.js";
+import { extractYMD, getCreatedAtById } from "../../../../../utils/db.js";
 import { getOctokitAuth } from "../../../Octokit/utils.js";
 
 export const getPullsEachRepo = async (user, repo) => {
