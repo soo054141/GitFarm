@@ -37,7 +37,7 @@ export default (app) => {
     "/users",
     passport.authenticate("jwt", {
       session: false,
-      failureRedirect: "/api/auth/github",
+      failureRedirect: "/",
     }),
     router,
   );

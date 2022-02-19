@@ -20,7 +20,7 @@ dotenv.config();
 connectDB();
 app.use(
   cors({
-    origin: keys.clientURL,
+    origin: "http://localhost:1111",
     credentials: true,
   }),
 );
