@@ -14,11 +14,11 @@ function MonthlyCalender() {
   //   const newDate = new Date(date.getFullYear(), date.getMonth() + value);
   //   setDate(newDate);
   // };
-  // const clickLeft = () => {
+  // const clickPrev = () => {
   //   if (date.getFullYear() - 2000 <= 0) return;
   //   changeDate(-1);
   // };
-  // const clickRight = () => {
+  // const clickNext = () => {
   //   if (
   //     String(toDay.getFullYear()) + String(toDay.getMonth()) ===
   //     String(date.getFullYear()) + String(date.getMonth())
@@ -34,8 +34,8 @@ function MonthlyCalender() {
     <Container>
       <DateController
         date={date}
-        // clickLeft={clickLeft}
-        // clickRight={clickRight}
+        // clickPrev={clickPrev}
+        // clickNext={clickNext}
         goToday={goToday}
         month
       />
