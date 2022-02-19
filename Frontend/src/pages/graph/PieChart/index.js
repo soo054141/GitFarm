@@ -22,16 +22,23 @@ function PieChartComponent({ reposLanguage, loading }) {
 
   const denominator = reposLanguage.length;
   let other = 0;
-  for (let i = 0; i < 4; i += 1) {
-    const valueCal = +((values[i] / denominator) * 100).toFixed(2);
+
+  language.forEach((it, idx) => {
+    if (idx >= 4) return;
+
+    const valueCal = +((values[idx] / denominator) * 100).toFixed(2);
     other += valueCal;
     codeRatioArray.push({
-      name: language[i],
+      name: language[idx],
       value: valueCal,
     });
-  }
+  });
+
   codeRatioArray.sort((a, b) => b.value - a.value);
-  codeRatioArray.push({ name: "Other", value: (100 - other).toFixed(2) });
+
+  if (other !== 0) {
+    codeRatioArray.push({ name: "Other", value: (100 - other).toFixed(2) });
+  }
 
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
