@@ -1,3 +1,7 @@
+# Release 0.0.9.8
+1. production mode server, frontend URL 수정
+
+
 # <img src="https://user-images.githubusercontent.com/76507701/154678507-0688fbe5-36b9-4c45-8d07-9566eb3f3612.png"  width="25" height="25" margin-right="10px"/> GitFarm
 ### 깃 잔디를 풍성하게 심도록 도와주는 GitHub 관리 웹 앱
 <br />
