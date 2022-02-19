@@ -11,7 +11,6 @@ import initPassportStrategy from "./passport/index.js";
 import apiRouter from "./routes/index.js";
 import errorHandler from "./middleware/error-handler.js";
 import dotenv from "dotenv";
-import keys from "./config/keys.js";
 
 const app = express();
 

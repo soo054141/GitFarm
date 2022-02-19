@@ -20,7 +20,7 @@ export default async (req, res, next) => {
     if (calc >= TARGET_TIME) {
       return next();
     }
-    return res.redirect("http://localhost:1111/");
+    return res.redirect("/");
   } catch (err) {
     next(err);
   }
