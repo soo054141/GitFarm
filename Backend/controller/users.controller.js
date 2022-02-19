@@ -27,13 +27,12 @@ export const getMyPageController = async (req, res) => {
 export const deleteUserController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
-
   try {
     await User.findByIdAndDelete(_id);
     await Badge.findByIdAndDelete(_id);
     await Commit.findByIdAndDelete(_id);
     await Level.findByIdAndDelete(_id);
-    res.status(201).json({
+    res.status(201).clearCookie("token").json({
       success: true,
       message: "success deleted",
     });
