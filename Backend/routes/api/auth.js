@@ -62,9 +62,16 @@ export default (app) => {
   });
 
   router.get("/logout", (req, res) => {
-    res.clearCookie("token").json({
-      success: true,
-      message: "로그아웃 되었습니다.",
-    });
+    try {
+      res.clearCookie("token").json({
+        success: true,
+        message: "로그아웃 되었습니다.",
+      });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: "로그아웃에 실패했습니다.",
+      });
+    }
   });
 };
