@@ -62,15 +62,22 @@ export default (app) => {
   });
 
   router.get("/logout", (req, res) => {
+    const token = req.cookies?.token;
     try {
+      if (!token) {
+        res.status(204).json({
+          success: true,
+          message: "쿠키가 정상적으로 삭제되지 않았습니다.",
+        });
+      }
       res.clearCookie("token").json({
         success: true,
-        message: "로그아웃 되었습니다.",
+        message: "쿠키가 정상적으로 삭제 되었습니다.",
       });
     } catch (err) {
       res.status(500).json({
         success: false,
-        message: "로그아웃에 실패했습니다.",
+        message: "알 수 없는 오류가 발생했습니다.",
       });
     }
   });
