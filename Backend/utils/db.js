@@ -23,11 +23,9 @@ export const getUpdatedAtById = async (user, Model) => {
 };
 
 export const extractYMD = (createdAt) => {
-  const [YEAR, MONTH, DAYAndTime] = createdAt;
-  const DAY = DAYAndTime.slice(0, 2);
   return {
-    YEAR,
-    MONTH,
-    DAY,
+    YEAR: createdAt.getFullYear(),
+    MONTH: createdAt.getMonth() + 1,
+    DAY: createdAt.getDate(),
   };
 };
