@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as api from "@/api";
 import Description from "@/components/Description";
 import Modal from "@/components/Modal";
@@ -6,8 +7,14 @@ import PropTypes from "prop-types";
 import { Wrapper } from "./style";
 
 function LogoutModal({ setOpenModal }) {
+  const navigate = useNavigate();
+
   const logoutHanlder = async () => {
-    await api.logout();
+    const res = await api.logout();
+    if (res.data.success) {
+      alert(res.data.message);
+      navigate("/");
+    }
   };
 
   return (
