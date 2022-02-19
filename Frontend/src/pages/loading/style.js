@@ -36,7 +36,7 @@ export const Message = styled.p`
   text-align: center;
   margin-bottom: 5px;
   font-size: 14px;
-  color: ${(props) => props.theme.lightGray};
+  color: ${(props) => props.theme.mainColor};
 `;
 
 export const LoadingDots = styled.div`
@@ -215,7 +215,7 @@ export const Progress = styled.div`
 
 export const MessageBox = styled.div`
   dispaly: flex;
-  color: ${(props) => props.theme.mainColor};
+  color: ${(props) => props.theme.lightGray};
   text-align: center;
   line-height: 15px;
   font-size: 12px;
