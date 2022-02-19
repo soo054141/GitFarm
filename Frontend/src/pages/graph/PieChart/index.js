@@ -16,20 +16,22 @@ function PieChartComponent({ reposLanguage, loading }) {
     }
   });
 
-  let codeRatioArray = [];
+  const codeRatioArray = [];
   const language = Object.keys(languageCountObj);
   const values = Object.values(languageCountObj);
 
   const denominator = reposLanguage.length;
-  for (let i = 0; i < language.length; i += 1) {
+  let other = 0;
+  for (let i = 0; i < 4; i += 1) {
     const valueCal = +((values[i] / denominator) * 100).toFixed(2);
+    other += valueCal;
     codeRatioArray.push({
       name: language[i],
       value: valueCal,
     });
   }
   codeRatioArray.sort((a, b) => b.value - a.value);
-  codeRatioArray = codeRatioArray.slice(0, 4);
+  codeRatioArray.push({ name: "Other", value: 100 - other });
 
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
@@ -42,7 +44,7 @@ function PieChartComponent({ reposLanguage, loading }) {
       {loading ? (
         <LoadingModal />
       ) : (
-        <>
+        <PieCharts.PieChartContainer>
           {reposLanguage.length ? (
             <>
               <PieCharts.Wrapper>
@@ -93,7 +95,7 @@ function PieChartComponent({ reposLanguage, loading }) {
           ) : (
             <PieCharts.NoData>데이터가 없습니다.</PieCharts.NoData>
           )}
-        </>
+        </PieCharts.PieChartContainer>
       )}
     </PieCharts.Container>
   );
