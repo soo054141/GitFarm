@@ -212,3 +212,18 @@ export const Progress = styled.div`
     }
   }
 `;
+
+export const MessageBox = styled.div`
+  dispaly: flex;
+  color: ${(props) => props.theme.lightGray};
+  text-align: center;
+  line-height: 15px;
+  font-size: 12px;
+  margin-bottom: 15px;
+  svg {
+    width: 13px;
+  }
+  path {
+    fill: ${(props) => props.theme.lightGray};
+  }
+`;
