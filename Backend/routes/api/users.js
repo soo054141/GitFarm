@@ -38,7 +38,6 @@ export default (app) => {
     passport.authenticate("jwt", {
       session: false,
       failureRedirect: "/",
-      failureMessage: "로그인 후 이용해주세요.",
     }),
     router,
   );
