@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as api from "@/api";
 import Modal from "@/components/Modal";
 import Description from "@/components/Description";
@@ -7,14 +8,22 @@ import PropTypes from "prop-types";
 import { Wrapper } from "./style";
 
 function DeleteAccountModal({ setOpenModal }) {
-  const deleteAccountHanlder = async () => {
-    await api.deleteAccount();
+  const navigate = useNavigate();
+
+  const deleteAccountHandler = async () => {
+    const res = await api.deleteAccount();
+    if (res.status === 201) {
+      navigate("/");
+    } else {
+      alert("탈퇴 실패~~!");
+    }
   };
+
   return (
     <Modal
       setOpenModal={setOpenModal}
       title="GitFarm 탈퇴하기"
-      deleteAccountHanlder={deleteAccountHanlder}
+      deleteAccountHandler={deleteAccountHandler}
       twoBtn
     >
       <Wrapper>
