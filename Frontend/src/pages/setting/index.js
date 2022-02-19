@@ -36,18 +36,22 @@ function Setting() {
         <Settings.Title>GitHub 계정관리</Settings.Title>
         <Settings.ItemWrapper>
           <SettingItem subTitle="로그인 계정" setCursor content={myId} />
-          <SettingItem
-            subTitle="계정 로그아웃"
-            content={<NextArrow />}
-            onClick={ModalLogoutOpenHandler}
-          />
+          {myId && (
+            <SettingItem
+              subTitle="계정 로그아웃"
+              content={<NextArrow />}
+              onClick={ModalLogoutOpenHandler}
+            />
+          )}
           {openLogoutModal && <LogoutModal setOpenModal={setOpenLogoutModal} />}
-          <SettingItem
-            subTitle="깃팜 회원 탈퇴"
-            textColor="#6ABD8C"
-            content={<NextArrow />}
-            onClick={ModalDeleteAccountOpenHandler}
-          />
+          {myId && (
+            <SettingItem
+              subTitle="깃팜 회원 탈퇴"
+              textColor="#6ABD8C"
+              content={<NextArrow />}
+              onClick={ModalDeleteAccountOpenHandler}
+            />
+          )}
           {openDeleteAccountModal && (
             <DeleteAccountModal setOpenModal={setOpenDeleteAccountModal} />
           )}

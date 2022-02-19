@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: white;
   width: 350px;
-  height: 200px;
+  height: 215px;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgb(0 0 0 / 0%), 0 10px 10px rgb(0 0 0 / 3%);
 
@@ -17,8 +17,8 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-left: 20px;
-  margin-top: 14px;
+  margin-top: 9px;
+  margin-left: 38px;
 `;
 
 export const Heading = styled.div`
@@ -38,7 +38,7 @@ export const Description = styled.span`
 
 export const RatioWrapper = styled.div`
   @media ${({ theme }) => theme.device.laptop} {
-    margin-top: 150px;
+    margin-top: 126px;
 
     > div {
       line-height: 1.4;
@@ -52,24 +52,27 @@ export const LangColorBox = styled.div`
   height: 12.5px;
   border-radius: 50%;
   margin-right: 7px;
+  opacity: 0.85;
 `;
 
 export const LangColorBoxWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 `;
 
 export const PieWrapper = styled.div`
+  margin-left: 16px;
+  opacity: 0.85;
   @media ${({ theme }) => theme.device.laptop} {
     position: relative;
-    top: 25px;
-    right: 20px;
+    bottom: 24px;
+    right: 29px;
   }
 `;
 
 export const LangText = styled.span`
-  font-size: 9px;
+  font-size: 12px;
   color: ${(props) => props.theme.lightGray};
   margin-right: 7px;
 
@@ -86,4 +89,16 @@ export const NoData = styled.p`
   height: 100%;
   font-size: 15px;
   color: ${(props) => props.theme.darkGray};
+`;
+
+export const PieChartContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    margin-left: 24px;
+  }
 `;

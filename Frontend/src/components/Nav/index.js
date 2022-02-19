@@ -59,7 +59,7 @@ function Nav() {
               </Navs.Item>
               <Navs.Item>
                 <Link to="/calender">
-                  <Navs.String>월별 커밋 기록</Navs.String>
+                  <Navs.String>이달의 커밋</Navs.String>
                 </Link>
               </Navs.Item>
               <Navs.Item>
@@ -69,7 +69,7 @@ function Nav() {
               </Navs.Item>
               <Navs.Item>
                 <Link to="/graph">
-                  <Navs.String>월간/연간 커밋 그래프</Navs.String>
+                  <Navs.String>커밋 통계</Navs.String>
                 </Link>
               </Navs.Item>
               <Navs.Item>

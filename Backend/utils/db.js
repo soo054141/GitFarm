@@ -21,3 +21,11 @@ export const getUpdatedAtById = async (user, Model) => {
   const updatedAt = document?.updatedAt;
   return updatedAt;
 };
+
+export const extractYMD = (createdAt) => {
+  return {
+    YEAR: createdAt.getFullYear(),
+    MONTH: createdAt.getMonth() + 1,
+    DAY: createdAt.getDate(),
+  };
+};

@@ -171,9 +171,7 @@ export const logout = async () => {
 export const deleteAccount = async () => {
   try {
     const res = await AXIOS.delete(deleteAccountURL);
-    if (res.status === 201) {
-      return alert("탈퇴 처리되었습니다.");
-    }
+    return res;
   } catch (error) {
     alert("에러가 발생했습니다.");
     return error;
