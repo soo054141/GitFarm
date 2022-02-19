@@ -18,17 +18,17 @@ export const Container = styled.div`
 
 export const Gold = styled(GoldIcon)`
   position: absolute;
-  left: 90px;
+  left: 104px;
 `;
 
 export const Silver = styled(SilverIcon)`
   position: absolute;
-  left: 90px;
+  left: 104px;
 `;
 
 export const Bronze = styled(BronzeIcon)`
   position: absolute;
-  left: 90px;
+  left: 104px;
 `;
 
 export const Wrapper = styled.div`
