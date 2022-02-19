@@ -13,18 +13,14 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   position: absolute;
-  top: 48px;
+  top: 63px;
   right: 20px;
 `;
 
 export const Title = styled.h5`
   font-size: 13.55px;
-  margin-left: 18px;
-  margin-top: 15px;
-  padding-top: 17px;
-  @media ${({ theme }) => theme.device.laptop} {
-    padding-top: 0;
-  }
+  margin-left: 24px;
+  padding-top: 26px;
 `;
 
 export const NoData = styled.p`
@@ -36,3 +32,5 @@ export const NoData = styled.p`
   font-size: 15px;
   color: ${(props) => props.theme.darkGray};
 `;
+
+export const LineGraphContainer = styled.div``;
