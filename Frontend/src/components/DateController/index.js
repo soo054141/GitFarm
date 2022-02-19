@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as Controller from "./style";
-import LeftArrow from "../../assets/icon/left-arrow.svg";
-import RightArrow from "../../assets/icon/right-arrow.svg";
+import PrevArrow from "../../assets/icon/left-arrow.svg";
+import NextArrow from "../../assets/icon/right-arrow.svg";
 
 function DateController({ date, goToday, month }) {
   return (
     <Controller.Container>
       {/* <Controller.ArrowWrapper>
-        <LeftArrow />
+        <PrevArrow />
       </Controller.ArrowWrapper> */}
       <Controller.TextWrapper>
         <Controller.DateText onClick={goToday}>
@@ -17,15 +17,15 @@ function DateController({ date, goToday, month }) {
       </Controller.TextWrapper>
       {/* 
       <Controller.ArrowWrapper>
-        <RightArrow />
+        <NextArrow />
       </Controller.ArrowWrapper> */}
     </Controller.Container>
   );
 }
 DateController.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  // clickLeft: PropTypes.func.isRequired,
-  // clickRight: PropTypes.func.isRequired,
+  // PrevArrow: PropTypes.func.isRequired,
+  // NextArrow: PropTypes.func.isRequired,
   goToday: PropTypes.func.isRequired,
   month: PropTypes.bool.isRequired,
 };
