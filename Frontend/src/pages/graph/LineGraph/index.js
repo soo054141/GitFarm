@@ -54,7 +54,7 @@ function LineGraph({ date }) {
       {loading ? (
         <LoadingModal />
       ) : (
-        <>
+        <LineGraphs.LineGraphContainer>
           {commitData.length ? (
             <>
               <LineGraphs.Title>월간 커밋 추이</LineGraphs.Title>
@@ -77,7 +77,7 @@ function LineGraph({ date }) {
           ) : (
             <LineGraphs.NoData>데이터가 없습니다.</LineGraphs.NoData>
           )}
-        </>
+        </LineGraphs.LineGraphContainer>
       )}
     </LineGraphs.Container>
   );
