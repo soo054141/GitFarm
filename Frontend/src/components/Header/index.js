@@ -22,7 +22,8 @@ function Header() {
   return (
     <HeaderWrapper>
       <HeaderBackground />
-      <Refresh />
+      {location.pathname === "/main" ? <Refresh /> : <div />}
+
       <Link to="/badge">
         <Seeds />
       </Link>
