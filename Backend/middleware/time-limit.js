@@ -20,9 +20,7 @@ export default async (req, res, next) => {
     if (calc >= TARGET_TIME) {
       return next();
     }
-    return res.status(401).json({
-      message: "재요청 불가",
-    });
+    return res.redirect("http://localhost:1111/");
   } catch (err) {
     next(err);
   }
