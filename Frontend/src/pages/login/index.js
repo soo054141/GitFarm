@@ -11,7 +11,7 @@ function Login() {
       <GitFarm.Logo>
         <GitFarmLogoImg />
       </GitFarm.Logo>
-      <a href={LOGIN_URL}>
+      <a href="http://localhost:8888/api/auth/github">
         <GitFarm.LoginBtn>
           <MarkGitHub />
           GitHub 계정으로 시작
