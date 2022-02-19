@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { convertKST } from "@/utils/time";
 import InfoIcon from "@/assets/icon/info.svg";
 import CommitCircleIcon from "@/assets/icon/commit-circle.svg";
 import VerticalLineIcon from "@/assets/icon/vertical-line.svg";
-import PropTypes from "prop-types";
 import ScoreInformationModal from "../ScoreInformationModal";
 import * as CommitDetail from "./style";
 
@@ -68,7 +69,7 @@ function CommitDetails({ todayScore, todayCommit, detail }) {
                         time
                         key={`${el.message}----${el.date}`}
                       >
-                        {el.date.split("T")[1].slice(0, 5)}
+                        {convertKST(el.date)}
                       </CommitDetail.CommitMessage>
                     </CommitDetail.CommitWrapper>
                   ))}
