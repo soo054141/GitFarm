@@ -51,20 +51,6 @@ export const getDefaultRank = () => {
   };
 };
 
-export const getMyRank = async (_id) => {
-  const userDocument = await User.findById(_id);
-  const { username, avatarUrl } = userDocument;
-  const myLevelDocument = await Level.findById(_id);
-  const totalScore = myLevelDocument?.totalScore
-    ? myLevelDocument.totalScore
-    : 0;
-  return {
-    username,
-    avatarUrl,
-    totalScore,
-  };
-};
-
 export const getUserRank = async () => {
   const userDocument = await User.find();
   const processUserData = userDocument.map(async (user) => {
@@ -81,4 +67,24 @@ export const getUserRank = async () => {
   const totalUser = await getFulfilledValue(processUserData);
   const userRank = calcRankWithConcurrentScore(totalUser);
   return userRank;
+};
+
+export const getMyRank = async (_id) => {
+  const userDocument = await User.findById(_id);
+  const { username, avatarUrl } = userDocument;
+  const myLevelDocument = await Level.findById(_id);
+
+  const userRank = await getUserRank();
+  const [myRank] = userRank.filter((user) => user.username === username);
+
+  const totalScore = myLevelDocument?.totalScore
+    ? myLevelDocument.totalScore
+    : 0;
+
+  return {
+    username,
+    avatarUrl,
+    totalScore,
+    rank: myRank.rank,
+  };
 };
