@@ -10,9 +10,9 @@ function Rank({ myRanking, imgURL, id, point, rank }) {
       <Ranks.Wrapper myRank={myRanking}>
         <Ranks.Ranking>{rank}</Ranks.Ranking>
         <Ranks.ProfileImg imgURL={imgURL}>
-          {rank === "1" && <Ranks.Gold />}
-          {rank === "2" && <Ranks.Silver />}
-          {rank === "3" && <Ranks.Bronze />}
+          {rank === 1 && <Ranks.Gold />}
+          {rank === 2 && <Ranks.Silver />}
+          {rank === 3 && <Ranks.Bronze />}
         </Ranks.ProfileImg>
         <Ranks.Detail>
           <Ranks.Id>{id}</Ranks.Id>
@@ -28,7 +28,7 @@ Rank.propTypes = {
   imgURL: PropTypes.string,
   id: PropTypes.string,
   point: PropTypes.number,
-  rank: PropTypes.string,
+  rank: PropTypes.number,
 };
 
 Rank.defaultProps = {
@@ -36,7 +36,7 @@ Rank.defaultProps = {
   imgURL: "",
   id: "",
   point: 0,
-  rank: "-",
+  rank: 0,
 };
 
 export default Rank;

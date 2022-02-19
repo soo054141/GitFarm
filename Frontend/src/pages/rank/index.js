@@ -41,6 +41,7 @@ function RankPage() {
               imgURL={myRank.avatarUrl}
               id={myRank.username}
               point={myRank.totalScore}
+              rank={myRank.rank}
             />
           )}
           {loading ? (
@@ -57,7 +58,7 @@ function RankPage() {
                   imgURL={it.avatarUrl}
                   id={it.username}
                   point={it.totalScore}
-                  rank={String(it.rank)}
+                  rank={it.rank}
                 />
               ))}
             </Ranks.ResponsivUserRankWrapper>
