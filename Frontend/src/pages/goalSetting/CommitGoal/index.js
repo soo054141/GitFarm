@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LeafIcon from "@/assets/icon/blank-leaf.svg";
 import PropTypes from "prop-types";
-import * as api from "@/api";
 
 import { Container, Title, IconWrapper, GoalNum, Description } from "./style";
 
-function CommitGoal({ onClick }) {
-  const [goalNum, setGoalNum] = useState();
-  const getGoalValue = async () => {
-    const data = await api.getGoal("goal");
-    if (data.success) {
-      setGoalNum(data.goal);
-    }
-  };
-  useEffect(() => {
-    getGoalValue();
-  });
+function CommitGoal({ onClick, goalNum }) {
   return (
     <Container onClick={onClick}>
       <Title>일별 목표 커밋 수</Title>
@@ -34,6 +23,7 @@ function CommitGoal({ onClick }) {
 }
 
 CommitGoal.propTypes = {
+  goalNum: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 export default CommitGoal;
