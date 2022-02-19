@@ -31,7 +31,7 @@ function PieChartComponent({ reposLanguage, loading }) {
     });
   }
   codeRatioArray.sort((a, b) => b.value - a.value);
-  codeRatioArray.push({ name: "Other", value: 100 - other });
+  codeRatioArray.push({ name: "Other", value: (100 - other).toFixed(2) });
 
   const langColor = githubLangColors;
   const COLORS = codeRatioArray.map((it) => {
