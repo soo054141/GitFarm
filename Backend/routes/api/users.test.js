@@ -1,6 +1,5 @@
 import "regenerator-runtime";
 import { GOAL } from "../../model/default/index.js";
-import { BADGE_LENGTH } from "../../utils/model.js";
 import request from "supertest";
 import app from "../../server.js";
 
@@ -99,13 +98,14 @@ describe("/api/users", () => {
       const expectedMyRank = {
         username: expect.any(String),
         avatarUrl: expect.any(String),
-        score: expect.any(Number),
+        totalScore: expect.any(Number),
+        rank: expect.any(Number),
       };
       const expectedUserRank = [
         {
           username: expect.any(String),
           avatarUrl: expect.any(String),
-          score: expect.any(Number),
+          totalScore: expect.any(Number),
           rank: expect.any(Number),
         },
       ];
@@ -115,7 +115,7 @@ describe("/api/users", () => {
         expect.objectContaining(expectedMyRank),
       );
       expect(response._body.data.userRank).toEqual(
-        expect.arrayContaining(expectedUserRank),
+        expect.objectContaining(expectedUserRank),
       );
     });
   });
@@ -132,6 +132,7 @@ describe("/api/users", () => {
         {
           repo: expect.any(String),
           language: expect.any(String),
+          _id: expect.any(String),
         },
       ];
 
@@ -209,12 +210,12 @@ describe("/api/users", () => {
       const response = await request(app)
         .post("/api/users/badge")
         .set("Cookie", token)
-        .send({ badge: 1 });
+        .send({ badge: `[true]` });
 
       const expectedStatus = 201;
       const expectedBody = {
         success: true,
-        badge: 1,
+        badge: [true],
       };
       expect(response.statusCode).toEqual(expectedStatus);
       expect(response._body).toStrictEqual(expectedBody);
@@ -228,7 +229,7 @@ describe("/api/users", () => {
 
       const expectedStatus = 200;
       expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body.badge).toHaveLength(BADGE_LENGTH);
+      expect(Array.isArray(response._body.badge)).toBe(true);
     });
   });
 });
