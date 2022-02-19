@@ -33,4 +33,6 @@ export const NoData = styled.p`
   color: ${(props) => props.theme.darkGray};
 `;
 
-export const LineGraphContainer = styled.div``;
+export const LineGraphContainer = styled.div`
+  height: 100%;
+`;
