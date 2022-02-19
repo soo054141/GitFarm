@@ -36,7 +36,7 @@ function PieChartComponent({ reposLanguage, loading }) {
 
   codeRatioArray.sort((a, b) => b.value - a.value);
 
-  if (other !== 0) {
+  if (other !== 100) {
     codeRatioArray.push({ name: "Other", value: (100 - other).toFixed(2) });
   }
 

@@ -66,8 +66,8 @@ export const PieWrapper = styled.div`
   opacity: 0.85;
   @media ${({ theme }) => theme.device.laptop} {
     position: relative;
-    bottom: 25px;
-    right: 20px;
+    bottom: 24px;
+    right: 29px;
   }
 `;
 
@@ -95,4 +95,9 @@ export const PieChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    margin-left: 24px;
+  }
+}
 `;
