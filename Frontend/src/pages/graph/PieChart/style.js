@@ -95,9 +95,10 @@ export const PieChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 
   @media ${({ theme }) => theme.device.laptop} {
     margin-left: 24px;
   }
-}
 `;
