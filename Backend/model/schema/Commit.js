@@ -24,6 +24,10 @@ const CommitSchema = new Schema(
       type: Number,
       default: ZERO,
     },
+    totalScore: {
+      type: Number,
+      default: ZERO,
+    },
     todayScore: {
       type: Number,
       default: ZERO,
