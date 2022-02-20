@@ -17,7 +17,7 @@ export const getMyPageController = async (req, res) => {
   const { user } = req;
   const _id = await getUserObjectId(user);
   const total = await FindValueByKey(Commit, _id, "total");
-  const totalScore = await FindValueByKey(Level, _id, "totalScore");
+  const totalScore = await FindValueByKey(Commit, _id, "totalScore");
   const continuous = await FindValueByKey(Commit, _id, "continuous");
   const memberDate = await getMemberDate(user);
   const result = { total, totalScore, continuous, memberDate };
