@@ -57,14 +57,14 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         MODE: JSON.stringify("production"),
-        SERVER_URL: JSON.stringify("http://localhost:8888"),
+        SERVER_URL: JSON.stringify("http://localhost:7777"),
       },
     }),
   ],
   devServer: {
     proxy: {
       "/api": {
-        target: "http://localhost:8888",
+        target: "http://localhost:7777",
       },
     },
     static: {
