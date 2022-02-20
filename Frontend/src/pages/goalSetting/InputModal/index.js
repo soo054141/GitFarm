@@ -71,8 +71,8 @@ function InputModal({ setOpenModal, modalType }) {
 
   const confirmHandler = () => {
     if (modalType === "goal") {
-      if (value < 1 || value >= 100) {
-        setValidation("1~100까지의 숫자를 입력해주세요");
+      if (value < 1 || value > 99) {
+        setValidation("1~99까지의 숫자를 입력해주세요");
         return;
       }
       setValidation("");
