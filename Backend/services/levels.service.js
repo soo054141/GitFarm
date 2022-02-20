@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 
-import { Level } from "../model/index.js";
+import { Commit, Level } from "../model/index.js";
 import { getUserObjectId } from "../utils/db.js";
 
 /* eslint-disable import/prefer-default-export */
@@ -13,14 +13,17 @@ export const getScore = (commits, issues, pulls) => {
 };
 
 export const getAccumulatedTotalScore = async (req, todayScore) => {
-  const { user } = req;
-  const _id = await getUserObjectId(user);
-  const levelDocument = await Level.findById(_id);
-
-  if (levelDocument) {
+  try {
+    const { user } = req;
+    const _id = await getUserObjectId(user);
+    const levelDocument = await Level.findById(_id);
+    const commitDocument = await Commit.findById(_id);
     const { totalScore } = levelDocument;
-    const result = totalScore + todayScore;
+    const { todayScore: dbTodayScore } = commitDocument;
+    const result = totalScore + todayScore - dbTodayScore;
     return result;
+  } catch (e) {
+    console.log(e.message);
+    return todayScore;
   }
-  return todayScore;
 };
