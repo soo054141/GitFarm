@@ -116,12 +116,17 @@ export const CommitWrapper = styled.div`
   margin-bottom: 14px;
 `;
 
-export const CommitMessage = styled.p`
+export const CommitMessage = styled.div`
   font-size: 12px;
   color: ${(props) => (props.time ? props.theme.mainColor : "#535353")};
   margin-right: ${(props) => props.time && "6px"};
-  width: ${(props) => props.time && "30px"};
+  width: ${(props) => (props.time ? "35px" : "260px")};
   text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  // background-color: yellow;
+  text-align: left;
   svg {
     margin-right: 2px;
   }
