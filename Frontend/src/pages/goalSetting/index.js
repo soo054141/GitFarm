@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Container } from "@/components/Container/style";
-import * as api from "@/api";
 import CommitGoal from "./CommitGoal";
 import Resolution from "./Resolution";
 import InputModal from "./InputModal";
@@ -10,14 +8,6 @@ function GoalSetting() {
   const [randomNum, setRandomNum] = useState(undefined);
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState(0);
-  const [goalNum, setGoalNum] = useState();
-
-  const getGoalValue = async () => {
-    const { success, goal } = await api.getGoal("goal");
-    if (success) {
-      setGoalNum(goal);
-    }
-  };
 
   const modalOpenHandler = (type) => {
     setModalType(type);
@@ -28,18 +18,11 @@ function GoalSetting() {
     const random = Math.floor(Math.random() * 3);
     setRandomNum(random);
   }, []);
-  useEffect(() => {
-    getGoalValue();
-  }, [openModal]);
   return (
     <Container>
       <TitleText>목표 설정</TitleText>
       <Wrapper>
-        <CommitGoal
-          onClick={() => modalOpenHandler("goal")}
-          goalNum={goalNum}
-        />
-        {goalNum}
+        <CommitGoal onClick={() => modalOpenHandler("goal")} />
         <Resolution
           onClick={() => modalOpenHandler("resolution")}
           randomViewNum={randomNum}
