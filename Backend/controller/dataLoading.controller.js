@@ -41,32 +41,23 @@ export const getLoadingData = async (req, res) => {
     const todayDetail = await getDetailTotalCommitAllRepo(user);
 
     await FindByIdAndUpdate(Commit, _id, "todayCommit", todayCommit);
-    await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
     await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
 
-    // getEachDayCommit(calendar)
     const commitEachDay = await getPerDayCommitAllRepo(user, YYYYMM);
     await FindByIdAndUpdate(Commit, _id, "commitEachDay", commitEachDay);
 
-    // getEachMonthCommit(graph)
     const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
     await FindByIdAndUpdate(Commit, _id, "commitEachMonth", commitEachMonth);
 
     // getMyPage data
     const total = await getTotalCommitAllRepo(user);
-    // const commits = await getCommitsAllRepo(user);
-    // const issues = await getIssuesAllRepo(user);
-    // const pulls = await getPullsAllRepo(user);
-
     await FindByIdAndUpdate(Commit, _id, "total", total);
-    // await FindByIdAndUpdate(Level, _id, "commits", commits);
-    // await FindByIdAndUpdate(Level, _id, "issues", issues);
-    // await FindByIdAndUpdate(Level, _id, "pulls", pulls);
 
     const totalScore = await getAccumulatedTotalScore(req, todayScore);
     const continuous = await getContinuousCommitAllRepo(user);
 
-    await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
+    await FindByIdAndUpdate(Commit, _id, "totalScore", totalScore);
+    await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
     await FindByIdAndUpdate(Commit, _id, "continuous", continuous);
 
     const memberDate = getMemberDate(user);
