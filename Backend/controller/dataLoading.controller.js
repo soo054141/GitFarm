@@ -15,7 +15,10 @@ import {
 import { Commit, Level, User } from "../model/index.js";
 import { getBadge, setDefaultBadge } from "../services/badge.service.js";
 import { FindByIdAndUpdate } from "../services/db.service.js";
-import { getScore } from "../services/levels.service.js";
+import {
+  getAccumulatedTotalScore,
+  getScore,
+} from "../services/levels.service.js";
 import {
   getMemberDate,
   setMemberDate,
@@ -51,16 +54,16 @@ export const getLoadingData = async (req, res) => {
 
     // getMyPage data
     const total = await getTotalCommitAllRepo(user);
-    const commits = await getCommitsAllRepo(user);
-    const issues = await getIssuesAllRepo(user);
-    const pulls = await getPullsAllRepo(user);
+    // const commits = await getCommitsAllRepo(user);
+    // const issues = await getIssuesAllRepo(user);
+    // const pulls = await getPullsAllRepo(user);
 
     await FindByIdAndUpdate(Commit, _id, "total", total);
-    await FindByIdAndUpdate(Level, _id, "commits", commits);
-    await FindByIdAndUpdate(Level, _id, "issues", issues);
-    await FindByIdAndUpdate(Level, _id, "pulls", pulls);
+    // await FindByIdAndUpdate(Level, _id, "commits", commits);
+    // await FindByIdAndUpdate(Level, _id, "issues", issues);
+    // await FindByIdAndUpdate(Level, _id, "pulls", pulls);
 
-    const totalScore = await getScore(commits, issues, pulls);
+    const totalScore = await getAccumulatedTotalScore(req, todayScore);
     const continuous = await getContinuousCommitAllRepo(user);
 
     await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
