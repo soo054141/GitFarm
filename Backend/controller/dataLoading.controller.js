@@ -3,7 +3,6 @@ import {
   getContinuousCommitAllRepo,
   getDetailTotalCommitAllRepo,
   getIssuesAllRepo,
-  getLanguagesData,
   getMonthTotalCommitAllRepo,
   getPerDayCommitAllRepo,
   getPullsAllRepo,
@@ -15,7 +14,10 @@ import {
 import { Commit, Level, User } from "../model/index.js";
 import { getBadge, setDefaultBadge } from "../services/badge.service.js";
 import { FindByIdAndUpdate } from "../services/db.service.js";
-import { getScore } from "../services/levels.service.js";
+import {
+  getScore,
+  getAccumulatedTotalScore,
+} from "../services/levels.service.js";
 import {
   getMemberDate,
   setMemberDate,
@@ -30,24 +32,23 @@ export const getLoadingData = async (req, res) => {
   const YYYYMM = `${year}-${fillZero(month, 2, "0")}`;
 
   try {
-    // today
-    const todayCommit = await getTodayTotalCommitAllRepo(user);
-    const todayIssues = await getTodayTotalIssueAllRepo(user);
-    const todayPulls = await getTodayTotalPullAllRepo(user);
-    const todayScore = await getScore(todayCommit, todayIssues, todayPulls);
-    const todayDetail = await getDetailTotalCommitAllRepo(user);
-
-    await FindByIdAndUpdate(Commit, _id, "todayCommit", todayCommit);
-    await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
-    await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
-
     // getEachDayCommit(calendar)
-    const commitEachDay = await getPerDayCommitAllRepo(user, YYYYMM);
-    await FindByIdAndUpdate(Commit, _id, "commitEachDay", commitEachDay);
+    const calendar = await getPerDayCommitAllRepo(user, YYYYMM);
+    await FindByIdAndUpdate(Commit, _id, "commitEachDay", calendar);
 
     // getEachMonthCommit(graph)
     const commitEachMonth = await getMonthTotalCommitAllRepo(user, year);
     await FindByIdAndUpdate(Commit, _id, "commitEachMonth", commitEachMonth);
+
+    // today
+    const todayCommit = await getTodayTotalCommitAllRepo(user);
+    const todayIssues = await getTodayTotalIssueAllRepo(user);
+    const todayPulls = await getTodayTotalPullAllRepo(user);
+    const todayScore = getScore(todayCommit, todayIssues, todayPulls);
+    const todayDetail = await getDetailTotalCommitAllRepo(user);
+
+    await FindByIdAndUpdate(Commit, _id, "todayScore", todayScore);
+    await FindByIdAndUpdate(Commit, _id, "todayDetail", todayDetail);
 
     // getMyPage data
     const total = await getTotalCommitAllRepo(user);
@@ -60,7 +61,9 @@ export const getLoadingData = async (req, res) => {
     await FindByIdAndUpdate(Level, _id, "issues", issues);
     await FindByIdAndUpdate(Level, _id, "pulls", pulls);
 
-    const totalScore = await getScore(commits, issues, pulls);
+    // const totalScore = getScore(commits, issues, pulls);
+    const totalScore = await getAccumulatedTotalScore(rep, todayScore);
+    console.log(totalScore);
     const continuous = await getContinuousCommitAllRepo(user);
 
     await FindByIdAndUpdate(Level, _id, "totalScore", totalScore);
@@ -95,7 +98,9 @@ export const getLoadingData = async (req, res) => {
     res.json({
       message: "calendar와 myPage data를 성공적으로 가져왔습니다.",
     });
+    console.log("success");
   } catch (err) {
+    console.log("object");
     console.log(err.message);
     res.status(400).json({
       message: "data를 가져오는데 실패했습니다.",
