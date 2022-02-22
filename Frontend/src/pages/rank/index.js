@@ -52,15 +52,19 @@ function RankPage() {
             </Ranks.ResponsivUserRankWrapper>
           ) : (
             <Ranks.ResponsivUserRankWrapper>
-              {userRank.map((it) => (
-                <Rank
-                  key={`${it.username}-${it.rank}-${it.totalScore}`}
-                  imgURL={it.avatarUrl}
-                  id={it.username}
-                  point={it.totalScore}
-                  rank={it.rank}
-                />
-              ))}
+              {userRank.map((it, idx) =>
+                idx <= 9 ? (
+                  <Rank
+                    key={`${it.username}-${it.rank}-${it.totalScore}`}
+                    imgURL={it.avatarUrl}
+                    id={it.username}
+                    point={it.totalScore}
+                    rank={it.rank}
+                  />
+                ) : (
+                  ""
+                ),
+              )}
             </Ranks.ResponsivUserRankWrapper>
           )}
         </Ranks.ResponsiveDiv>
