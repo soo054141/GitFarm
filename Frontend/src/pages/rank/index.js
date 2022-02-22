@@ -52,18 +52,22 @@ function RankPage() {
             </Ranks.ResponsivUserRankWrapper>
           ) : (
             <Ranks.ResponsivUserRankWrapper>
-              {userRank.map((it, idx) =>
-                idx <= 9 ? (
-                  <Rank
-                    key={`${it.username}-${it.rank}-${it.totalScore}`}
-                    imgURL={it.avatarUrl}
-                    id={it.username}
-                    point={it.totalScore}
-                    rank={it.rank}
-                  />
-                ) : (
-                  ""
-                ),
+              {userRank.length ? (
+                userRank.map((it, idx) =>
+                  idx <= 9 ? (
+                    <Rank
+                      key={`${it.username}-${it.rank}-${it.totalScore}`}
+                      imgURL={it.avatarUrl}
+                      id={it.username}
+                      point={it.totalScore}
+                      rank={it.rank}
+                    />
+                  ) : (
+                    ""
+                  ),
+                )
+              ) : (
+                <Ranks.NoData>데이터가 없습니다.</Ranks.NoData>
               )}
             </Ranks.ResponsivUserRankWrapper>
           )}
