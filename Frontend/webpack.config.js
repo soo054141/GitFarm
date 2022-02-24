@@ -16,11 +16,12 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
+    extensions: [".js", ".jsx"],
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
       },
