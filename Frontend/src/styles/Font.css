@@ -4,7 +4,7 @@
   font-weight: 400;
   src: local("NotoSansKR"),
     url(./../assets/font/NotoSansKR-Regular.woff2) format("woff2");
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -13,5 +13,5 @@
   font-weight: 700;
   src: local("NotoSansKR"),
     url(./../assets/font/NotoSansKR-Bold.woff2) format("woff2");
-  font-display: fallback;
+  font-display: swap;
 }
