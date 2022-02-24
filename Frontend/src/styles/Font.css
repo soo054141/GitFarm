@@ -13,18 +13,3 @@
   src: local("NotoSansKR"),
     url(./../assets/font/NotoSansKR-Bold.woff2) format("woff2");
 }
-
-@font-face {
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 400;
-  src: local("NotoSans"), url(./../assets/font/NotoSans.woff2) format("woff2");
-}
-
-@font-face {
-  font-family: "Noto Sans";
-  font-style: bold;
-  font-weight: 700;
-  src: local("NotoSans"),
-    url(./../assets/font/NotoSans-Bold.woff2) format("woff2");
-}
