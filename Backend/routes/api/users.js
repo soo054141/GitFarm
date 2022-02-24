@@ -18,10 +18,6 @@ import {
   getBadgeController,
   postBadgeController,
   getMyPageController,
-  getLevelsController,
-  getLevelsCommitsController,
-  getLevelsIssuesController,
-  getLevelsPullsController,
   getRankController,
   getGoalController,
   postGoalController,
@@ -56,12 +52,6 @@ export default (app) => {
   router.get("/today/commits", getCommitsTodayController);
   router.get("/today/commits/detail", getCommitsTodayDetailController);
   router.route("/today/goal").get(getGoalController).post(postGoalController);
-
-  // levels
-  router.get("/levels", getLevelsController);
-  router.get("/levels/commits", getLevelsCommitsController);
-  router.get("/levels/issues", getLevelsIssuesController);
-  router.get("/levels/pulls", getLevelsPullsController);
 
   // language
   router.get("/repos/language", getReposLanguage);
