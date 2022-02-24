@@ -19,7 +19,10 @@
     "import/ignore": [".css$", "node_modules/*"]
   },
   "rules": {
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
     "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "indent": "off", // prettier에서 설정
     "linebreak-style": 0, // 빌드 시 개행문자 관련
