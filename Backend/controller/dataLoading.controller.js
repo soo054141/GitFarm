@@ -1,24 +1,21 @@
 import {
-  getCommitsAllRepo,
   getContinuousCommitAllRepo,
   getDetailTotalCommitAllRepo,
-  getIssuesAllRepo,
   getLanguagesData,
   getMonthTotalCommitAllRepo,
   getPerDayCommitAllRepo,
-  getPullsAllRepo,
   getTodayTotalCommitAllRepo,
   getTodayTotalIssueAllRepo,
   getTodayTotalPullAllRepo,
   getTotalCommitAllRepo,
 } from "../lib/api/index.js";
-import { Commit, Level, User } from "../model/index.js";
+import { Commit, User } from "../model/index.js";
 import { getBadge, setDefaultBadge } from "../services/badge.service.js";
 import { FindByIdAndUpdate } from "../services/db.service.js";
 import {
   getAccumulatedTotalScore,
   getScore,
-} from "../services/levels.service.js";
+} from "../services/commits.service.js";
 import {
   getMemberDate,
   setMemberDate,
