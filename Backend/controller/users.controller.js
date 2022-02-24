@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
-import { User, Badge, Commit, Level } from "../model/index.js";
+import { User, Badge, Commit } from "../model/index.js";
 import { getMemberDate, FindValueByKey } from "../services/index.js";
 import { getUserObjectId } from "../utils/db.js";
 import { ViewResponseJSON } from "./view.controller.js";
@@ -31,7 +31,6 @@ export const deleteUserController = async (req, res) => {
     await User.findByIdAndDelete(_id);
     await Badge.findByIdAndDelete(_id);
     await Commit.findByIdAndDelete(_id);
-    await Level.findByIdAndDelete(_id);
     res.status(201).clearCookie("token").json({
       success: true,
       message: "success deleted",

@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 
-import { Commit, Level } from "../model/index.js";
+import { Commit } from "../model/index.js";
 import { getUserObjectId } from "../utils/db.js";
 
 /* eslint-disable import/prefer-default-export */
@@ -17,6 +17,7 @@ export const getAccumulatedTotalScore = async (req, todayScore) => {
     const { user } = req;
     const _id = await getUserObjectId(user);
     const commitDocument = await Commit.findById(_id);
+
     const { totalScore, todayScore: dbTodayScore } = commitDocument;
     const result = totalScore + todayScore - dbTodayScore;
     return result;

@@ -72,12 +72,12 @@ export const getUserRank = async () => {
 export const getMyRank = async (_id) => {
   const userDocument = await User.findById(_id);
   const { username, avatarUrl } = userDocument;
-  const myLevelDocument = await Commit.findById(_id);
+  const myCommitDocument = await Commit.findById(_id);
 
   const userRank = await getUserRank();
   const [myRank] = userRank.filter((user) => user.username === username);
-  const totalScore = myLevelDocument?.totalScore
-    ? myLevelDocument.totalScore
+  const totalScore = myCommitDocument?.totalScore
+    ? myCommitDocument.totalScore
     : 0;
 
   return {

@@ -10,12 +10,6 @@ export {
   getCommitsContinuousController,
 } from "./commit.controller.js";
 export { getGoalController, postGoalController } from "./goal.controller.js";
-export {
-  getLevelsController,
-  getLevelsCommitsController,
-  getLevelsIssuesController,
-  getLevelsPullsController,
-} from "./levels.controller.js";
 export { getLoadingData } from "./dataLoading.controller.js";
 export { getRankController } from "./rank.controller.js";
 export {
