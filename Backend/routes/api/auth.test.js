@@ -11,18 +11,6 @@ describe("/api/auth", () => {
     expect(response.statusCode).toEqual(expected);
   });
 
-  test("GitHub 인증이 정상적으로 진행된 경우", async () => {
-    const response = await request(app).get("/api/auth/login/success").send();
-    const expectedStatus = 200;
-    const expectedBody = {
-      success: true,
-      message: "로그인이 정상적으로 완료 되었습니다.",
-    };
-
-    expect(response.statusCode).toEqual(expectedStatus);
-    expect(response._body).toStrictEqual(expectedBody);
-  });
-
   test("GitHub 인증이 비정상적으로 진행된 경우", async () => {
     const response = await request(app).get("/api/auth/login/failed").send();
     const expectedStatus = 401;

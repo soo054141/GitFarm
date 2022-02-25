@@ -11,16 +11,6 @@ dotenv.config();
 
 const router = express.Router();
 
-const AFTER_LOGIN =
-  process.env.NODE_ENV === "production"
-    ? `http://localhost:8888/loading`
-    : "/api/auth/login/success";
-
-const LOGOUT =
-  process.env.NODE_ENV === "production"
-    ? `${keys.clientURL}/`
-    : `/api/auth/login/failed`;
-
 export default (app) => {
   app.use("/auth", router);
 
@@ -43,16 +33,9 @@ export default (app) => {
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect("http://localhost:1111/loading");
+      res.redirect("/loading");
     },
   );
-
-  router.get("/login/success", (req, res) => {
-    res.json({
-      success: true,
-      message: "로그인이 정상적으로 완료 되었습니다.",
-    });
-  });
 
   router.get("/login/failed", (req, res) => {
     res.status(401).json({
