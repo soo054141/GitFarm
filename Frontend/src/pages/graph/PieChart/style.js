@@ -77,7 +77,7 @@ export const LangText = styled.span`
   margin-right: 7px;
 
   @media ${({ theme }) => theme.device.laptop} {
-    font-size: 14px;
+    font-size: 13px;
   }
 `;
 
