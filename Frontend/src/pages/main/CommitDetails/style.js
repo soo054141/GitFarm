@@ -68,7 +68,7 @@ const wordLengthMarginLeft = (length) => {
   return "110px";
 };
 export const Score = styled.p`
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 300;
   color: ${(props) => props.theme.mainColor};
   margin-left: ${(props) => wordLengthMarginLeft(props.length)};

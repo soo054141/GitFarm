@@ -17,7 +17,6 @@ export const getAccumulatedTotalScore = async (req, todayScore) => {
     const { user } = req;
     const _id = await getUserObjectId(user);
     const commitDocument = await Commit.findById(_id);
-
     const { totalScore, todayScore: dbTodayScore } = commitDocument;
     const result = totalScore + todayScore - dbTodayScore;
     return result;

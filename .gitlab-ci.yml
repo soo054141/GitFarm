@@ -1,0 +1,15 @@
+image: node:latest
+
+stages:
+  - test-frontend
+  
+test-frontend:
+  stage: test-frontend
+  only:
+    - master
+    - maintenance
+  script:
+    - cd Frontend/
+    - npm run dev
+    - echo "Frontend Running successfully"
+
