@@ -32,15 +32,14 @@ export const commitAchievement = (commitTotal, userBadges, arrayOfBadgesId) => {
 export const ranking = (myRank, userBadges, arrayOfBadgesId) => {
   if (!userBadges[RANKING1] && myRank === 1) {
     arrayOfBadgesId.push(RANKING1);
-    return;
   }
   if (!userBadges[RANKING2] && myRank === 2) {
     arrayOfBadgesId.push(RANKING2);
-    return;
   }
   if (!userBadges[RANKING3] && myRank === 3) {
     arrayOfBadgesId.push(RANKING3);
   }
+  return arrayOfBadgesId;
 };
 
 // 연속커밋날짜
@@ -57,6 +56,7 @@ export const continuousDay = (continuous, userBadges, arrayOfBadgesId) => {
   if (!userBadges[DAYS28] && continuous >= 28) {
     arrayOfBadgesId.push(DAYS28);
   }
+  return arrayOfBadgesId;
 };
 
 // 레벨
@@ -76,6 +76,7 @@ export const level = (score, userBadges, arrayOfBadgesId) => {
   if (!userBadges[LEVEL5] && score > 1650) {
     arrayOfBadgesId.push(LEVEL5);
   }
+  return arrayOfBadgesId;
 };
 
 export const AllBadgesFuncion = async (userBadges, mypageData, rankData) => {
