@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 
-import { Commit, Level } from "../model/index.js";
+import { Commit } from "../model/index.js";
 import { getUserObjectId } from "../utils/db.js";
 
 /* eslint-disable import/prefer-default-export */

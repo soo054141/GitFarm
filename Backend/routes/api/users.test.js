@@ -29,64 +29,6 @@ describe("/api/users", () => {
     });
   });
 
-  describe("/api/users/levels", () => {
-    test("GET levels", async () => {
-      const response = await request(app)
-        .get("/api/users/levels")
-        .set("Cookie", token)
-        .send();
-
-      const expectedStatus = 200;
-      const expectedLevels = {
-        totalScore: expect.any(Number),
-        commits: expect.any(Number),
-        issues: expect.any(Number),
-        pulls: expect.any(Number),
-      };
-
-      expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body.data).toEqual(expectedLevels);
-    });
-
-    test("GET levels/commits", async () => {
-      const response = await request(app)
-        .get("/api/users/levels/commits")
-        .set("Cookie", token)
-        .send();
-
-      const expectedStatus = 200;
-
-      expect(response.statusCode).toEqual(expectedStatus);
-      expect(typeof response._body.commits).toBe("number");
-    });
-
-    test("GET levels/issues", async () => {
-      const response = await request(app)
-        .get("/api/users/levels/issues")
-        .set("Cookie", token)
-        .send();
-
-      const expectedStatus = 200;
-      const expectedLevelsIssues = 0;
-
-      expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body.issues).toEqual(expectedLevelsIssues);
-    });
-
-    test("GET levels/pulls", async () => {
-      const response = await request(app)
-        .get("/api/users/levels/pulls")
-        .set("Cookie", token)
-        .send();
-
-      const expectedStatus = 200;
-      const expectedLevelsPulls = 0;
-
-      expect(response.statusCode).toEqual(expectedStatus);
-      expect(response._body.pulls).toEqual(expectedLevelsPulls);
-    });
-  });
-
   describe("/api/users/rank", () => {
     test("GET rank", async () => {
       const response = await request(app)

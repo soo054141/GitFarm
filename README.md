@@ -19,7 +19,7 @@
 
 ## :bulb: 프로젝트 기획 의도
 
-- 불특정 다수에게 필요한 서비스도 좋지만, 그러한 서비스를 개발하는 개발자들을 위해 도움이 되는 서비스를 만들고 싶었습니다. 개발자로 일하기 위해서는 꾸준한 공부를 패시브로 지녀야 하는데 공부한 내용을 기록으로 남길 때 1일 1커밋을 주로 이용하곤 합니다. 그래서 목표를 설정하고 목표를 달성했을 때 성취감을 주기 위해 이와 같은 프로젝트를 기획하게 되었습니다.
+- 불특정 다수에게 필요한 서비스도 좋지만, 그러한 서비스를 개발하는 개발자들을 위해 도움이 되는 서비스를 만들고 싶었습니다. 개발자로 일하기 위해서는 꾸준히 공부를 해야 하는데, 공부한 내용을 기록으로 남길 때 1일 1커밋을 주로 이용합니다. 목표를 설정하고 목표를 달성했을 때 성취감을 주기 위해 이와 같은 프로젝트를 기획하게 되었습니다.
 
 <br />
 
@@ -28,8 +28,8 @@
 ### 메인 기능
 | 농장꾸미기 | 월간 그래프 | 캘린더 |
 | ------ | ------ | ------ |
-| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702906-a9ba0d7b-b7b0-4947-97c7-1457e03f5d78.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154735803-eb7a1205-1677-4ca5-ab66-f3e15716d7c9.png"  width="300px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154720046-39cb6310-d6e9-4b42-9a89-98da4b722861.png"  width="300px" height="400px"/></div> |
-| user가 목표로 한 일일 커밋양에 비례하여 농장이 점차 채워집니다. (비율 하단 참고) | 월간 그래프 및 연간 그래프를 통해 나의 커밋 통계를 확인합니다. | 월별 캘린더를 통해 커밋 여부와 갯수를 한눈에 확인합니다. 
+| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155487805-60cffda1-08b3-4546-aa00-423785d505e5.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155487936-c496276e-ab1f-4953-ad7c-7d3917bd18aa.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488110-49239060-aa52-4a2a-ba62-bbd6e42509b1.png"  width="200px" height="400px"/></div> |
+| 유저가 목표로 한 일일 커밋양에 비례하여 농장이 점차 채워집니다. (비율 하단 참고) | 월간 그래프를 통해 나의 커밋 통계를 확인합니다. 나의 언의 사용 현황도 확인이 가능합니다. | 월별 캘린더를 통해 커밋 여부와 갯수를 한눈에 확인합니다. 
 <details><summary>농장 비율에 따른 이미지 보기</summary>
 - 오늘의 농장 완성 비율: 0%, 20%, 40%, 60%, 80%, 100%
   <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154740168-05e06041-e549-48dc-aae5-9a9c439e8d6f.png"/></div>
@@ -38,7 +38,7 @@
 ### 서브 기능
 | Github 로그인 | GitFarm 순위 확인 | 레벨 시스템 |
 | ------ | ------ | ------ |
-| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154741222-399638d3-b7b8-4ca4-9855-23e9ee15c404.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154734818-5f3c9326-5bd8-485a-af6c-ccd99d55c156.png"  width="300px" height="400px"/></div> |<div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702930-0652f5c6-d5ed-48ef-91cb-8764e38472f3.png"  width="200px" height="400px"/></div>| 
+| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488606-0e466bdc-bf80-467e-b98a-9174f22af191.png"  width="200px" height="400px"/></div> | <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488898-8d6b549c-c8da-438f-80c0-a4a15b622dcd.png"  width="200px" height="400px"/></div> |<div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488651-d343904c-9310-4fdc-8927-349af53a9afa.png"  width="200px" height="400px"/></div>| 
 | Github OAuth로 로그인합니다. | Top10 유저 목록과 나의 순위를 확인할 수 있습니다. | 점수표에 따라 나의 레벨이 정해집니다. (점수 기준 하단 참고) | 
 <details><summary>점수표</summary>
 
@@ -60,7 +60,7 @@
 
 | 다양한 뱃지 획득 | 유저 정보 확인 | 목표커밋, 다짐 설정 |
 | ------ | ------ |------ |
-| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154702961-cbdd0920-742d-4091-8791-3c0ae82aa75f.png"  width="300px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154706913-505cd486-a588-4413-88fc-7bce2cfd5349.png"  width="300px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/154703009-86184005-0941-4936-aff2-599a2ca53645.png"  width="300px" height="400px"/></div>|
+| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488660-fb104dd4-3258-4518-8c7a-8b1f7161395a.png"  width="200px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488628-f967df4c-3898-4ade-a22c-8f6af90cd5fb.png"  width="200px" height="400px"/></div>| <div align='center'><img src="https://user-images.githubusercontent.com/76507701/155488682-7a001859-0d08-4f7f-a2bd-b18b3f0adc83.png"  width="200px" height="400px"/></div>|
 | 특정 목표를 달성하면 뱃지를 받을 수 있습니다. | 유저가 자신의 레벨, 총 커밋수 등의 정보를 확인할 수 있습니다. | 유저가 목표커밋 및 다짐을 설정할 수 있습니다. |
 
 ####  추가적으로 반응형 디자인으로 고려하여 PC버전의 화면을 구현했습니다.
@@ -88,7 +88,7 @@
 
 ### 프로젝트 구조도
 
-![architecture](https://user-images.githubusercontent.com/76507701/154734581-2d6e79d6-0b75-4435-b1b7-4da17a4a73f3.png)
+![architecture](https://user-images.githubusercontent.com/76507701/155487920-b65771b1-c6a5-48ba-a6f4-5b5df31735cc.png)
 
 ### 와이어프레임
 

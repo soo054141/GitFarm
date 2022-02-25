@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { ButtonWrapper } from "./style";
 
 function Btn({ children, long, color, onClick }) {
