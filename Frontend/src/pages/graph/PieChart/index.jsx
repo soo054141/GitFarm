@@ -2,44 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PieChart, Pie, Cell } from "recharts";
 import LoadingModal from "@/components/LoadingModal";
-import githubLangColors from "./github-lang-colors.json";
+import { makeLanguageRatioArray, languageColor } from "@/utils/pieChart";
+
 import * as PieCharts from "./style";
 
 function PieChartComponent({ reposLanguage, loading }) {
-  const languageCountObj = {};
-
-  reposLanguage.forEach((it) => {
-    if (Object.prototype.hasOwnProperty.call(languageCountObj, it.language)) {
-      languageCountObj[it.language] += 1;
-    } else {
-      languageCountObj[it.language] = 1;
-    }
-  });
-
-  const sortedLanguageCountObj = Object.fromEntries(
-    Object.entries(languageCountObj).sort(([, a], [, b]) => b - a),
-  );
-
-  let denominator = 0;
-  Object.entries(sortedLanguageCountObj).forEach((languageArray, idx) => {
-    if (idx > 4) return;
-    denominator += languageArray[1];
-  });
-
-  const languageRatioArray = [];
-  Object.entries(sortedLanguageCountObj).forEach((languageArray, idx) => {
-    if (idx > 4) return;
-    languageRatioArray.push({
-      name: languageArray[0],
-      value: +((languageArray[1] / denominator) * 100).toFixed(2),
-    });
-  });
-
-  const langColor = githubLangColors;
-  const COLORS = languageRatioArray.map((it) => {
-    const langName = it.name;
-    return langColor[langName];
-  });
+  const languageRatioArray = makeLanguageRatioArray(reposLanguage);
+  const COLORS = languageColor(languageRatioArray);
 
   return (
     <PieCharts.Container>
