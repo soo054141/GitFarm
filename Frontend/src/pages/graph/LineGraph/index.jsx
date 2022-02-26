@@ -10,14 +10,11 @@ import {
 } from "recharts";
 
 import * as LineGraphs from "./style";
-import useCommitsPerMonth from "./useCommitsPerMonth";
 
-function LineGraph() {
-  const [commitData, loading] = useCommitsPerMonth();
-
+function LineGraph({ commitData, commitsLoading }) {
   return (
     <LineGraphs.Container>
-      {loading ? (
+      {commitsLoading ? (
         <LoadingModal />
       ) : (
         <LineGraphs.LineGraphContainer>

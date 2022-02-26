@@ -4,10 +4,10 @@ import { sliceDate } from "@/utils/graph";
 
 function useCommitsPerMonth() {
   const [commitData, setCommitData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [commitsLoading, setCommitsLoading] = useState(false);
 
   const getCommitsPerMonth = async () => {
-    setLoading(true);
+    setCommitsLoading(true);
     const { year, month } = sliceDate(new Date());
 
     const data = await api.getCommitsTotalPerMonth(year);
@@ -29,13 +29,13 @@ function useCommitsPerMonth() {
     } else {
       setCommitData([]);
     }
-    setLoading(false);
+    setCommitsLoading(false);
   };
 
   useEffect(() => {
     getCommitsPerMonth();
   }, []);
 
-  return [commitData, loading];
+  return [commitData, commitsLoading];
 }
 export default useCommitsPerMonth;
