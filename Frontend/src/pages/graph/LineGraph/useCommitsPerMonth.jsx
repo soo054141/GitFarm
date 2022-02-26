@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as api from "@/api";
-import { checkMonth } from "@/utils/graph";
+import { sliceDate } from "@/utils/graph";
 
 function useCommitsPerMonth() {
   const [commitData, setCommitData] = useState([]);
@@ -8,17 +8,15 @@ function useCommitsPerMonth() {
 
   const getCommitsPerMonth = async () => {
     setLoading(true);
-    const { year, month, thisMonth } = checkMonth(new Date());
+    const { year, month } = sliceDate(new Date());
 
     const data = await api.getCommitsTotalPerMonth(year);
     if (data.success) {
       let { commitEachMonth } = data;
-
-      if (month === thisMonth) {
-        commitEachMonth = commitEachMonth.slice(0, thisMonth + 1);
-      }
+      commitEachMonth = commitEachMonth.slice(0, month + 1);
 
       const checkEmptyArray = commitEachMonth.every((it) => it === 0);
+
       if (checkEmptyArray) {
         setCommitData([]);
       } else {
