@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import LoadingModal from "@/components/LoadingModal";
 import {
   LineChart,
@@ -8,7 +9,6 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-
 import * as LineGraphs from "./style";
 
 function LineGraph({ commitData, loading }) {
@@ -45,5 +45,15 @@ function LineGraph({ commitData, loading }) {
     </LineGraphs.Container>
   );
 }
+
+LineGraph.propTypes = {
+  commitData: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      commit: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 export default LineGraph;
