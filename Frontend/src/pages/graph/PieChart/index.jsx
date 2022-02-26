@@ -16,31 +16,22 @@ function PieChartComponent({ reposLanguage, loading }) {
     }
   });
 
-  const language = Object.keys(languageCountObj);
-  const values = Object.values(languageCountObj);
-
-  let repoLanguageArray = [];
-  language.forEach((it, idx) => {
-    repoLanguageArray.push({
-      name: language[idx],
-      value: +values[idx],
-    });
-  });
-
-  repoLanguageArray = repoLanguageArray
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 5);
+  const sortedLanguageCountObj = Object.fromEntries(
+    Object.entries(languageCountObj).sort(([, a], [, b]) => b - a),
+  );
 
   let denominator = 0;
-  repoLanguageArray.forEach((it) => {
-    denominator += it.value;
+  Object.entries(sortedLanguageCountObj).forEach((languageArray, idx) => {
+    if (idx > 4) return;
+    denominator += languageArray[1];
   });
 
   const codeRatioArray = [];
-  repoLanguageArray.forEach((it) => {
+  Object.entries(sortedLanguageCountObj).forEach((languageArray, idx) => {
+    if (idx > 4) return;
     codeRatioArray.push({
-      name: it.name,
-      value: +((it.value / denominator) * 100).toFixed(2),
+      name: languageArray[0],
+      value: +((languageArray[1] / denominator) * 100).toFixed(2),
     });
   });
 
