@@ -1,6 +1,5 @@
 import React from "react";
 import LoadingModal from "@/components/LoadingModal";
-import PropTypes from "prop-types";
 import {
   LineChart,
   Line,
@@ -49,9 +48,5 @@ function LineGraph() {
     </LineGraphs.Container>
   );
 }
-
-LineGraph.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
-};
 
 export default LineGraph;
