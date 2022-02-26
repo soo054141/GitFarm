@@ -26,17 +26,17 @@ function PieChartComponent({ reposLanguage, loading }) {
     denominator += languageArray[1];
   });
 
-  const codeRatioArray = [];
+  const languageRatioArray = [];
   Object.entries(sortedLanguageCountObj).forEach((languageArray, idx) => {
     if (idx > 4) return;
-    codeRatioArray.push({
+    languageRatioArray.push({
       name: languageArray[0],
       value: +((languageArray[1] / denominator) * 100).toFixed(2),
     });
   });
 
   const langColor = githubLangColors;
-  const COLORS = codeRatioArray.map((it) => {
+  const COLORS = languageRatioArray.map((it) => {
     const langName = it.name;
     return langColor[langName];
   });
@@ -57,8 +57,8 @@ function PieChartComponent({ reposLanguage, loading }) {
                   </PieCharts.Description>
                 </PieCharts.Heading>
                 <PieCharts.RatioWrapper>
-                  {codeRatioArray &&
-                    codeRatioArray.map((it, idx) => (
+                  {languageRatioArray &&
+                    languageRatioArray.map((it, idx) => (
                       <PieCharts.LangColorBoxWrapper
                         key={`${it.name}-${it.value}`}
                       >
@@ -73,10 +73,10 @@ function PieChartComponent({ reposLanguage, loading }) {
               </PieCharts.Wrapper>
 
               <PieCharts.PieWrapper>
-                {codeRatioArray && (
+                {languageRatioArray && (
                   <PieChart width={200} height={200}>
                     <Pie
-                      data={codeRatioArray}
+                      data={languageRatioArray}
                       cx="50%"
                       cy="50%"
                       innerRadius={40}
@@ -85,7 +85,7 @@ function PieChartComponent({ reposLanguage, loading }) {
                       dataKey="value"
                       isAnimationActive={false}
                     >
-                      {codeRatioArray.map((it, index) => (
+                      {languageRatioArray.map((it, index) => (
                         <Cell
                           key={`cell-${it.name}-${it.value}`}
                           fill={COLORS[index % COLORS.length]}
