@@ -1,34 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DateController from "@/components/DateController";
-import * as api from "@/api";
 import PieChartComponent from "./PieChart";
 import LineGraph from "./LineGraph";
 import * as Graphs from "./style";
+import useUsersReposLanguage from "./useUsersReposLanguage";
 
 function Graph() {
   const [date, setDate] = useState(new Date());
-  const [reposLanguage, setReposLanguage] = useState();
-  const [loading, setLoading] = useState(false);
+  const [reposLanguage, loading] = useUsersReposLanguage();
 
   const goToday = () => {
     setDate(new Date());
   };
-
-  const getUsersReposLanguage = async () => {
-    setLoading(true);
-
-    const res = await api.getReposLanguage();
-    if (res.success) {
-      setReposLanguage(res.languages);
-    } else {
-      setReposLanguage([]);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    getUsersReposLanguage();
-  }, []);
 
   return (
     <Graphs.Container>
