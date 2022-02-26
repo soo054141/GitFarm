@@ -57,7 +57,7 @@ function RankPage() {
             {!myRank && <Ranks.NoData>데이터가 없습니다.</Ranks.NoData>}
 
             <Ranks.ResponsivUserRankWrapper>
-              {userRank.length &&
+              {userRank.length > 0 &&
                 userRank.map((it, idx) =>
                   idx <= 9 ? (
                     <Rank

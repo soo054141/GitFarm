@@ -16,7 +16,7 @@ function LineGraph({ commitData, loading }) {
     <LineGraphs.Container>
       <LineGraphs.LineGraphContainer>
         {loading && <LoadingModal />}
-        {!loading && commitData.length && (
+        {!loading && commitData.length > 0 && (
           <>
             <LineGraphs.Title>월간 커밋 추이</LineGraphs.Title>
             <LineGraphs.Wrapper>

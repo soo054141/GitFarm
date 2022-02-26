@@ -13,7 +13,7 @@ function PieChartComponent({ reposLanguage, loading }) {
   return (
     <PieCharts.Container>
       {loading && <LoadingModal />}
-      {!loading && reposLanguage.length && (
+      {!loading && reposLanguage.length > 0 && (
         <PieCharts.PieChartContainer>
           <PieCharts.Wrapper>
             <PieCharts.Heading>
