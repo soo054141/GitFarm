@@ -8,7 +8,7 @@ import useCommitsPerMonth from "../../hooks/useCommitsPerMonth";
 
 function Graph() {
   const [date, setDate] = useState(new Date());
-  const [reposLanguage, loading] = useUsersReposLanguage();
+  const [reposLanguage, reposLanguageLoading] = useUsersReposLanguage();
   const [commitData, commitsLoading] = useCommitsPerMonth();
 
   const goToday = () => {
@@ -21,8 +21,11 @@ function Graph() {
         <DateController date={date} goToday={goToday} month={false} />
       </Graphs.DateControllerWrapper>
       <Graphs.ResponsiveDiv>
-        <LineGraph commitData={commitData} commitsLoading={commitsLoading} />
-        <PieChartComponent reposLanguage={reposLanguage} loading={loading} />
+        <LineGraph commitData={commitData} loading={commitsLoading} />
+        <PieChartComponent
+          reposLanguage={reposLanguage}
+          loading={reposLanguageLoading}
+        />
       </Graphs.ResponsiveDiv>
     </Graphs.Container>
   );

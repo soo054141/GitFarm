@@ -11,10 +11,10 @@ import {
 
 import * as LineGraphs from "./style";
 
-function LineGraph({ commitData, commitsLoading }) {
+function LineGraph({ commitData, loading }) {
   return (
     <LineGraphs.Container>
-      {commitsLoading ? (
+      {loading ? (
         <LoadingModal />
       ) : (
         <LineGraphs.LineGraphContainer>

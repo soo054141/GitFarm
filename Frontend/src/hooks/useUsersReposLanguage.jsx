@@ -3,7 +3,7 @@ import * as api from "@/api";
 
 function useUsersReposLanguage() {
   const [reposLanguage, setReposLanguage] = useState();
-  const [loading, setLoading] = useState(false);
+  const [reposLanguageLoading, setLoading] = useState(false);
 
   const getUsersReposLanguage = async () => {
     setLoading(true);
@@ -21,6 +21,6 @@ function useUsersReposLanguage() {
     getUsersReposLanguage();
   }, []);
 
-  return [reposLanguage, loading];
+  return [reposLanguage, reposLanguageLoading];
 }
 export default useUsersReposLanguage;
