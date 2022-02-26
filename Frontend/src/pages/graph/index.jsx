@@ -1,35 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DateController from "@/components/DateController";
-import * as api from "@/api";
-import { toDay } from "@/utils/graph";
 import PieChartComponent from "./PieChart";
 import LineGraph from "./LineGraph";
 import * as Graphs from "./style";
+import useUsersReposLanguage from "../../hooks/useUsersReposLanguage";
+import useCommitsPerMonth from "../../hooks/useCommitsPerMonth";
 
 function Graph() {
-  const [date, setDate] = useState(toDay);
-  const [reposLanguage, setReposLanguage] = useState();
-  const [loading, setLoading] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [reposLanguage, reposLanguageLoading] = useUsersReposLanguage();
+  const [commitData, commitsLoading] = useCommitsPerMonth();
 
   const goToday = () => {
-    setDate(toDay);
+    setDate(new Date());
   };
-
-  const getUsersReposLanguage = async () => {
-    setLoading(true);
-
-    const res = await api.getReposLanguage();
-    if (res.success) {
-      setReposLanguage(res.languages);
-    } else {
-      setReposLanguage([]);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    getUsersReposLanguage();
-  }, []);
 
   return (
     <Graphs.Container>
@@ -37,8 +21,11 @@ function Graph() {
         <DateController date={date} goToday={goToday} month={false} />
       </Graphs.DateControllerWrapper>
       <Graphs.ResponsiveDiv>
-        <LineGraph date={date} />
-        <PieChartComponent reposLanguage={reposLanguage} loading={loading} />
+        <LineGraph commitData={commitData} loading={commitsLoading} />
+        <PieChartComponent
+          reposLanguage={reposLanguage}
+          loading={reposLanguageLoading}
+        />
       </Graphs.ResponsiveDiv>
     </Graphs.Container>
   );

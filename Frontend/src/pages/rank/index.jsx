@@ -31,28 +31,33 @@ function RankPage() {
   return (
     <Container>
       <RankTitle />
-      {myRank ? (
-        <Ranks.ResponsiveDiv>
-          {loading ? (
+      <Ranks.ResponsiveDiv>
+        {loading && (
+          <>
             <Skeletons />
-          ) : (
-            <Rank
-              myRanking
-              imgURL={myRank.avatarUrl}
-              id={myRank.username}
-              point={myRank.totalScore}
-              rank={myRank.rank}
-            />
-          )}
-          {loading ? (
             <Ranks.ResponsivUserRankWrapper>
               <Skeletons />
               <Skeletons />
               <Skeletons />
             </Ranks.ResponsivUserRankWrapper>
-          ) : (
+          </>
+        )}
+
+        {!loading && (
+          <>
+            {myRank && (
+              <Rank
+                myRanking
+                imgURL={myRank.avatarUrl}
+                id={myRank.username}
+                point={myRank.totalScore}
+                rank={myRank.rank}
+              />
+            )}
+            {!myRank && <Ranks.NoData>데이터가 없습니다.</Ranks.NoData>}
+
             <Ranks.ResponsivUserRankWrapper>
-              {userRank.length ? (
+              {userRank.length > 0 &&
                 userRank.map((it, idx) =>
                   idx <= 9 ? (
                     <Rank
@@ -65,16 +70,14 @@ function RankPage() {
                   ) : (
                     ""
                   ),
-                )
-              ) : (
+                )}
+              {!userRank.length && (
                 <Ranks.NoData>데이터가 없습니다.</Ranks.NoData>
               )}
             </Ranks.ResponsivUserRankWrapper>
-          )}
-        </Ranks.ResponsiveDiv>
-      ) : (
-        <Ranks.NoData>데이터가 없습니다.</Ranks.NoData>
-      )}
+          </>
+        )}
+      </Ranks.ResponsiveDiv>
     </Container>
   );
 }
