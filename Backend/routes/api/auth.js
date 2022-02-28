@@ -5,7 +5,6 @@ import httpError from "http-errors";
 import createToken from "../../utils/jwt.js";
 import { cookieConfig } from "../../utils/cookie.js";
 import dotenv from "dotenv";
-import keys from "../../config/keys.js";
 
 dotenv.config();
 
@@ -33,7 +32,7 @@ export default (app) => {
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect("/loading");
+      res.redirect("http://localhost:1111/loading");
     },
   );
 
