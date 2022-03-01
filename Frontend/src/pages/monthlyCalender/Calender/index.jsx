@@ -47,7 +47,7 @@ function Calender({ date }) {
 
   useLayoutEffect(() => {
     getCommitMonthlyCount(setCommitCountsPerDate);
-    setDates(makeCalendar(firstDate, lastDate, commitCountsPerDate));
+    setDates(makeCalendar(firstDate, lastDate));
   }, [date]);
 
   return (

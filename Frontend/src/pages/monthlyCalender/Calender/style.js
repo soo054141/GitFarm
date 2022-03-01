@@ -47,13 +47,14 @@ export const MonthlyCell = styled.div`
   text-align: center;
   margin-top: 20px;
   border-radius: 50%;
+  line-height: 20px;
   background-color: ${(props) =>
     !props.view ? "white" : stageFunc(props.stage)};
 `;
 
 export const DateCell = styled.p`
   position: relative;
-  top: 55%;
+  top: 50%;
   transform: translateY(-50%);
   font-size: 17px;
   ${(props) => !props.view && "display:none"};
