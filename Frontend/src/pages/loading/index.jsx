@@ -10,7 +10,7 @@ function Loading() {
 
   const getData = async () => {
     try {
-      await axios.get("/api/users/loading", {
+      await axios.get("http://localhost:7777/api/users/loading", {
         withCredentials: true,
       });
     } catch (err) {
