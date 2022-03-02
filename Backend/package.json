@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./bin/www.js",
-    "deploy": "pm2 start ./bin/www.js --watch",
+    "deploy": "pm2-runtime start ecosystem.config.js --env production",
     "test": "jest --detectOpenHandles --watch",
     "coverage": "jest --coverage"
   },
@@ -24,7 +24,6 @@
     "eslint-plugin-jest": "^26.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.5.1",
-    "nodemon": "^2.0.15",
     "regenerator-runtime": "^0.13.9",
     "supertest": "^6.2.2"
   },
@@ -39,9 +38,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-github2": "^0.1.12",
     "passport-jwt": "^4.0.0",
+    "pm2": "^5.2.0",
     "serve-favicon": "^2.5.0"
   },
   "plugin": [

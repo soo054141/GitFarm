@@ -23,7 +23,7 @@ app.use(
     credentials: true,
   }),
 );
-app.use(favicon(path.resolve("../", "Frontend", "public", "favicon.ico")));
+app.use(favicon(path.resolve("public", "favicon.ico")));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
