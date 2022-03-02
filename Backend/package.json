@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./bin/www.js",
-    "deploy": "pm2 start ./bin/www.js --watch",
+    "dev": "pm2-dev ./bin/www.js",
+    "deploy": "pm2-runtime ./bin/www.js",
     "test": "jest --detectOpenHandles --watch",
     "coverage": "jest --coverage"
   },
