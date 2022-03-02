@@ -19,7 +19,7 @@ dotenv.config();
 connectDB();
 app.use(
   cors({
-    origin: "http://localhost:1111",
+    origin: "https://elice-kdt-sw-1st-team1.elicecoding.com",
     credentials: true,
   }),
 );
