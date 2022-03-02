@@ -32,7 +32,7 @@ export default (app) => {
       const payload = { id, username };
       const token = await createToken(payload);
       res.cookie("token", token, cookieConfig);
-      res.redirect("/loading");
+      res.redirect("http://localhost:1111/loading");
     },
   );
 

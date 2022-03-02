@@ -6,7 +6,7 @@ services:
       - ./Frontend/dist/:/usr/share/nginx/html
       - ./Nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "80:80"
+      - "1111:80"
     depends_on:
       - backend
 
