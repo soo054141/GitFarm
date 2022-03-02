@@ -62,7 +62,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         MODE: JSON.stringify("production"),
-        SERVER_URL: JSON.stringify("http://localhost:7777"),
+        SERVER_URL: JSON.stringify("/"),
       },
     }),
   ],
