@@ -39,6 +39,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.0",
     "morgan": "^1.10.0",
+    "node-schedule": "^2.1.0",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-github2": "^0.1.12",
