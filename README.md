@@ -109,30 +109,42 @@
 | 황원준 | 프론트엔드 개발  |
 
 ### 기여한 내용
-| 이름 | 역할 | 담당한 부분 |
-| --- | --- | --- |
-| 김유림 | 프론트엔드 | 1. 메인 캐릭터, 다짐설정 캐릭터 디자인 |
-|       |  |2. login, loading, 유저 다짐, rank, myPage 마크업 |
-|  |  |3. main 페이지 농장, 커밋 상세 내역 관련 API 연동 |
-| --- | --- |4. 커밋 상세 내역 시간 유틸 함수 작성, 레벨 시스템 구현 |
-| --- | --- |5. myPage 기능 구현|
-| --- | --- |6. loading 페이지 구현, 로그아웃/회원탈퇴 기능 구현|
-| --- | --- | 7. 반응형 작업(main, rank, myPage, setting)  |
-
-
-| 이름 | 역할 | 담당한 부분 |
-| --- | --- | --- |
-| 김유림 | 프론트엔드 | 1. 메인 캐릭터, 다짐설정 캐릭터 디자인
-2. login, loading, 유저 다짐, rank, myPage 마크업
-3. main 페이지 농장, 커밋 상세 내역 관련 API 연동
-4. 커밋 상세 내역 시간 유틸 함수 작성, 레벨 시스템 구현
-5. myPage 기능 구현
-6. loading 페이지 구현, 로그아웃/회원탈퇴 기능 구현
-7. 반응형 작업(main, rank, myPage, setting) |
-
-
-
-
+<table>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>역할</th>
+      <th>담당한 부분</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> 
+      <td rowspan="8">김유림</td>
+      <td rowspan="8">프론트엔드</td>
+    </tr>
+    <tr> 
+      <td>1. 메인 캐릭터, 다짐설정 캐릭터 디자인</td>
+    </tr>
+    <tr> 
+      <td>2. login, loading, 유저 다짐, rank, myPage 마크업</td>
+    </tr>
+    <tr> 
+      <td>3. main 페이지 농장, 커밋 상세 내역 관련 API 연동</td>
+    </tr>
+    <tr> 
+      <td>4. 커밋 상세 내역 시간 유틸 함수 작성, 레벨 시스템 구현</td>
+    </tr>
+    <tr> 
+      <td>5. myPage 기능 구현</td>
+    </tr>
+    <tr> 
+      <td>6. loading 페이지 구현, 로그아웃/회원탈퇴 기능 구현</td>
+    </tr>
+    <tr> 
+      <td>7. 반응형 작업(main, rank, myPage, setting)</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 파트별 역할
 
